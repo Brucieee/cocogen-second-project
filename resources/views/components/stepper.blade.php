@@ -3,7 +3,7 @@
 <div class="stepper-container">
     <!-- Logo -->
     <div class="logo-container">
-        <img src="{{ asset('assets/icons/Icon-Cocogen.png') }}" alt="Logo" class="logo">
+        <img src="{{ asset('assets/icons/Icon-Cocogen.png') }}" alt="Logo" class="logo {{ $currentStep >= 3 ? 'enlarged' : '' }}">
     </div>
 
     <!-- Circles and Lines -->
@@ -56,24 +56,48 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        width: 255px;
-        height: 831.5px;
+        justify-content: center;
+        width: 185px;
+        height: auto;
         background-color: var(--Primary-Teal, #008080);
-        padding: 35px;
-        gap: 97px; /* Ensures 97px gap between logo and steps */
+        padding: 35px 35px 417px 35px;
+        margin: 0;
+        gap: 97px;
     }
 
     .logo-container {
-        width: 185px;
+        width: 220px;
+        /* Keep the width fixed */
         height: 61px;
-        margin-bottom: 0; /* Removed extra space between logo and steps */
+        /* Let the container adjust based on the logo size */
+        overflow: hidden;
+        /* Ensure logo doesn't overflow outside */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        /* Align logo to the top of the container */
+        margin-top: 0;
+        /* Remove any margin from the container */
     }
 
     .logo {
-        width: 185px;
+        width: 250px;
+        /* Maintain aspect ratio */
         height: 61px;
+        /* Allow logo height to adjust based on width */
         object-fit: contain;
+        /* Prevent image distortion */
+        transition: transform 0.3s ease-in-out;
+        /* Smooth transition for scaling */
+        transform-origin: center center;
+        /* Center the scale transformation */
+        margin-top: 0;
+        /* Remove any default margin on top */
+    }
+
+    .logo.enlarged {
+        transform: scale(3);
+        /* Scale the logo by 3x or adjust this value */
     }
 
     .steps-wrapper {
@@ -102,13 +126,13 @@
         flex-direction: column;
         border-radius: 50%;
         border: 1px solid var(--Primary-Teal, #008080);
-        background: var(--Teal-LVL-0, #F7FFFF);
+        background: var(--Teal-LVL-0, #D7DEE3);
         z-index: 1;
     }
 
     .check-icon {
-        width: 28.438px;
-        height: 28.438px;
+        width: 28px;
+        height: 28px;
         visibility: hidden;
         flex-shrink: 0;
         object-fit: contain;
@@ -118,7 +142,7 @@
         font-family: 'Inter', sans-serif;
         font-size: 12px;
         font-weight: 700;
-        color: #D7DEE3;
+        color: #848A90;
     }
 
     .step-text {
