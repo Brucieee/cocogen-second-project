@@ -51,8 +51,8 @@
 
     .logo {
         display: flex;
-        margin: 20px;
         align-items: center;
+        padding: 20px ;
     }
 
     .logo-img {
@@ -68,7 +68,7 @@
 
     .nav-links li {
         position: relative;
-        padding: 0px 15px;
+        padding: 10px 15px;
 
     }
 
@@ -76,8 +76,9 @@
         color: black; 
         text-decoration: none;
         display: block; 
-        padding: 10px 15px;
-        margin-top: 10px;
+        padding: 20px 15px;
+      
+
     }
 
     /* Background color applied to entire LI */
@@ -102,7 +103,6 @@
         display: flex;
         align-items: center;
         margin: 10px;
-        margin-top: 20px;
     }
 
     .search-icon {
@@ -114,10 +114,6 @@
     .signin {
         display: flex;
         align-items: center;
-    }
-
-    .signin a {
-        margin-top: 10px ;
     }
 
     .signin-logo {
