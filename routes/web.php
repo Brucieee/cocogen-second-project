@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StepperController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,5 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/step1', [StepperController::class, 'step1'])->name('step1');
+Route::get('/step2', [StepperController::class, 'step2'])->name('step2');
+Route::get('/step3', [StepperController::class, 'step3'])->name('step3');
 
 require __DIR__.'/auth.php';
