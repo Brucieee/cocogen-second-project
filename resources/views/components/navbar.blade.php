@@ -102,6 +102,23 @@
         color: white;
     }
 
+    .nav-links a .background {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0; /* Initially no height */
+    background-color: #E4509A; /* Color 1 (on hover for file-claim) */
+    transition: background-color 0.3s ease, height 0.3s ease;
+    z-index: -1; /* Behind the text */
+    }   
+
+    .file-claim a:hover .background,
+    .get-quote a:hover .background {
+    height: 100%; /* Slide down */
+    }
+
     /* Search Icon */
     .search-signin {
         display: flex;
