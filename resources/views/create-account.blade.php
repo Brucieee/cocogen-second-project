@@ -12,6 +12,14 @@
             max-width: 900px;
         }
 
+        .form-container 
+        {
+            width: 775px;
+            height: 830px;
+            margin: auto;
+            display: block;
+        }
+
         .create-account-1 {
             display: block;
         }
@@ -68,7 +76,7 @@
 
 
 
-                <div class="container py-4">
+                <div class="form-container">
 
                     <div class="container py-4" style="margin-top:35px;">
                         <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />

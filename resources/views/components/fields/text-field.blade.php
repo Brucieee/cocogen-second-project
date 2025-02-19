@@ -13,7 +13,7 @@
         max-width: 400px;
         padding: 10px;
         border: none;
-        border-bottom: 2px solid #006666;
+        border-bottom: 1px solid #006666;
         font-size: 14px;
     }
 
