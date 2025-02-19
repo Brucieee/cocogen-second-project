@@ -1,7 +1,8 @@
 <!-- Secondary Arrow Button Component -->
 <style>
     .btn-secondary-arrow {
-        height: 48px;
+        width: 342.5px;
+        height: 44px;
         border-radius: 4px !important;
         background: #ffffff;
         padding: 10px 20px;
