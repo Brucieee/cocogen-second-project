@@ -21,10 +21,10 @@
                 <div class="main-container" style="width: 756px; height: 692px; padding: 35px; display: flex; flex-direction: column; gap: 25px; overflow: hidden;">
 
 
-                    <x-reminder.reminder-update-profile />
-                    <x-buttons.pill-button
-                        :pillOneText="'Selection title'"
-                        :pillTwoText="'Selection title'" />
+                <x-reminder.reminder-update-profile />
+                <x-buttons.pill-button 
+                :pillOneText="'No'" 
+                :pillTwoText="'Yes'" />
 
 
 
