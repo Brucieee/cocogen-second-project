@@ -46,12 +46,14 @@
             margin: 10px 0;
         ">{{ $title }}</h5>
 
+        <!-- Justified description -->
         <p style="
             color: #3B3939;
             font-size: 14px;
             font-weight: 500;
             line-height: 24px;
             margin: 10px 0;
+            text-align: justify; /* Makes the description text justified */
         ">{{ $description }}</p>
 
         <!-- Button Inside Card Content -->
