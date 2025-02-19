@@ -33,7 +33,7 @@
 
 <div class="dropdown-container">
     <label class="dropdown-label" for="{{ $name }}">{{ $label }}<span class="asterisk">*</span></label>
-    <select id="{{ $name }}" name="{{ $name }}" class="dropdown-select" style="width: {{ $width ?? '330px' }}; height: {{ $height ?? '40px' }};">
+    <select id="{{ $name }}" name="{{ $name }}" class="dropdown-select" style="width: {{ $width ?? '390px' }}; height: {{ $height ?? '40px' }};">
         @foreach ($options as $value => $text)
             <option value="{{ $value }}">{{ $text }}</option>
         @endforeach
