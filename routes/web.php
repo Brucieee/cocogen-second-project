@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StepperController;
+use App\Http\Controllers\PageController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,5 +23,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/step1', [StepperController::class, 'step1'])->name('step1');
 Route::get('/step2', [StepperController::class, 'step2'])->name('step2');
 Route::get('/step3', [StepperController::class, 'step3'])->name('step3');
+
+Route::get('/create-account', [PageController::class, 'CreateAccount'])->name('CreateAccount');
+
 
 require __DIR__.'/auth.php';
