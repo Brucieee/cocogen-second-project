@@ -15,18 +15,12 @@
             <div class="col-auto d-flex align-items-start p-4">
                 <x-stepper :currentStep="session('currentStep', 1)" class="position-sticky top-0" style="width: 255px; height: 831.5px;" />
             </div>
+            
+
 
             <!-- Main Content Section (Right Side) -->
             <div class="col" style="margin-top: 54px; margin-left: 360px; margin-right: 144px;">
                 <div class="main-container" style="width: 756px; height: 692px; padding: 35px; display: flex; flex-direction: column; gap: 25px; overflow: hidden;">
-
-
-                <x-reminder.reminder-update-profile />
-                <x-buttons.pill-button 
-                :pillOneText="'No'" 
-                :pillTwoText="'Yes'" />
-
-
 
                     <!-- Back Button Component -->
                     <x-createaccount.back-button title="Create account" backUrl="{{ url()->previous() }}" />
