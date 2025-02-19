@@ -21,7 +21,13 @@
                 <div class="main-container" style="width: 756px; height: 692px; padding: 35px; display: flex; flex-direction: column; gap: 25px; overflow: hidden;">
 
 
-                <x-reminder.reminder-update-profile />
+                    <x-reminder.reminder-update-profile />
+                    <x-buttons.pill-button
+                        :pillOneText="'Selection title'"
+                        :pillTwoText="'Selection title'" />
+
+
+
                     <!-- Back Button Component -->
                     <x-createaccount.back-button title="Create account" backUrl="{{ url()->previous() }}" />
 
