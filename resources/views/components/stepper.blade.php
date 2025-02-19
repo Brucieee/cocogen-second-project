@@ -2,179 +2,125 @@
 
 <div class="stepper-container">
     <!-- Logo -->
-    <div class="logo-container">
+    <div class="logo-container text-center">
         <img src="{{ asset('assets/icons/Icon-Cocogen.png') }}" alt="Logo" class="logo {{ $currentStep >= 3 ? 'enlarged' : '' }}">
     </div>
 
-    <!-- Circles and Lines -->
+    <!-- Steps -->
     <div class="steps-wrapper">
-        <!-- Step 1 -->
-        <div class="step {{ $currentStep >= 1 ? 'completed' : '' }}">
-            <div class="circle">
-                @if ($currentStep >= 1)
-                <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step 1" class="check-icon">
-                @else
-                <span class="step-number">1</span>
-                @endif
+        @php
+            $steps = [
+                1 => 'Select Account',
+                2 => 'Your Identity',
+                3 => 'Account Created'
+            ];
+        @endphp
+
+        @foreach ($steps as $step => $text)
+            <div class="step d-flex align-items-center {{ $currentStep >= $step ? 'completed' : '' }}">
+                <div class="circle d-flex justify-content-center align-items-center">
+                    @if ($currentStep >= $step)
+                        <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step {{ $step }}" class="check-icon">
+                    @else
+                        <span class="step-number">{{ $step }}</span>
+                    @endif
+                </div>
+                <div class="step-text {{ $currentStep < $step ? 'inactive' : '' }}">{{ $text }}</div>
             </div>
-            <div class="step-text {{ $currentStep < 1 ? 'inactive' : '' }}">Select Account</div>
-        </div>
 
-        <div class="line {{ $currentStep >= 2 ? 'active' : '' }}"></div>
-
-        <!-- Step 2 -->
-        <div class="step {{ $currentStep >= 2 ? 'completed' : '' }}">
-            <div class="circle">
-                @if ($currentStep >= 2)
-                <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step 2" class="check-icon">
-                @else
-                <span class="step-number">2</span>
-                @endif
-            </div>
-            <div class="step-text {{ $currentStep < 2 ? 'inactive' : '' }}">Your Identity</div>
-        </div>
-
-        <div class="line {{ $currentStep >= 3 ? 'active' : '' }}"></div>
-
-        <!-- Step 3 -->
-        <div class="step {{ $currentStep >= 3 ? 'completed' : '' }}">
-            <div class="circle">
-                @if ($currentStep >= 3)
-                <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step 3" class="check-icon">
-                @else
-                <span class="step-number">3</span>
-                @endif
-            </div>
-            <div class="step-text {{ $currentStep < 3 ? 'inactive' : '' }}">Account Created</div>
-        </div>
+            @if ($step < 3)
+                <div class="line {{ $currentStep > $step ? 'active' : '' }}"></div>
+            @endif
+        @endforeach
     </div>
 </div>
 
-<!-- Styles -->
+<!-- Bootstrap-Based Styles -->
 <style>
-    .stepper-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 185px;
-        height: auto;
-        background-color: var(--Primary-Teal, #008080);
-        padding: 35px 35px 417px 35px;
-        margin: 0;
-        gap: 97px;
-    }
+.stepper-container {
+    width: 255px;
+    height: 831.5px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #008080;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 97px;
+}
 
-    .logo-container {
-        width: 220px;
-        /* Keep the width fixed */
-        height: 61px;
-        /* Let the container adjust based on the logo size */
-        overflow: hidden;
-        /* Ensure logo doesn't overflow outside */
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        /* Align logo to the top of the container */
-        margin-top: 0;
-        /* Remove any margin from the container */
-    }
+.logo-container img {
+    width: 220px;
+    height: 61px;
+    object-fit: contain;
+}
 
-    .logo {
-        width: 250px;
-        /* Maintain aspect ratio */
-        height: 61px;
-        /* Allow logo height to adjust based on width */
-        object-fit: contain;
-        /* Prevent image distortion */
-        transition: transform 0.3s ease-in-out;
-        /* Smooth transition for scaling */
-        transform-origin: center center;
-        /* Center the scale transformation */
-        margin-top: 0;
-        /* Remove any default margin on top */
-    }
+.steps-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
+.step {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Updated gap to 15px */
+    position: relative;
+}
 
-    .steps-wrapper {
-        width: 185px;
-        height: 155px;
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        gap: 15px;
-    }
+.circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #008080;
+    background: #D7DEE3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .step {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        position: relative;
-    }
+.check-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    display: none;
+}
 
-    .circle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 28px;
-        height: 28px;
-        padding: 0;
-        flex-direction: column;
-        border-radius: 50%;
-        border: 1px solid var(--Primary-Teal, #008080);
-        background: var(--Teal-LVL-0, #D7DEE3);
-        z-index: 1;
-    }
+.step-number {
+    font-size: 12px;
+    font-weight: 700;
+    color: #848A90;
+}
 
-    .check-icon {
-        width: 28px;
-        height: 28px;
-        visibility: hidden;
-        flex-shrink: 0;
-        object-fit: contain;
-    }
+.step-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFF;
+}
 
-    .step-number {
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        color: #848A90;
-    }
+.step.completed .circle {
+    background-color: #FFF;
+    border-color: #FFF;
+}
 
-    .step-text {
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--Primary-White, #FFF);
-    }
+.step.completed .check-icon {
+    display: block;
+}
 
-    .step.completed .circle {
-        background-color: #FFFFFF;
-        border-color: #FFFFFF;
-    }
+.line {
+    width: 2px;
+    height: 38px;
+    background-color: #D7DEE3;
+    margin-left: 14px;
+}
 
-    .step.completed .check-icon {
-        visibility: visible;
-    }
+.line.active {
+    background-color: #FFF;
+}
 
-    .line {
-        width: 1px;
-        height: 38px;
-        background-color: #D7DEE3;
-        margin-left: 14px;
-        margin-top: -20px;
-        margin-bottom: -15px;
-    }
-
-    .line.active {
-        background-color: #FFFFFF;
-    }
-
-    .step-text.completed {
-        color: #FFFFFF;
-    }
-
-    .step-text.inactive {
-        color: #D7DEE3;
-    }
+.step-text.inactive {
+    color: #D7DEE3;
+}
 </style>
