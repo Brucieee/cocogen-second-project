@@ -95,10 +95,6 @@
         /* Remove any default margin on top */
     }
 
-    .logo.enlarged {
-        transform: scale(3);
-        /* Scale the logo by 3x or adjust this value */
-    }
 
     .steps-wrapper {
         width: 185px;

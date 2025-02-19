@@ -3,7 +3,7 @@
     <div class="logo">
         <img src="{{ asset('asset/cocogen-logo.svg') }}" alt="Cocogen Insurance Logo" class="logo-img">
     </div>
-    
+
     <!-- Navigation Links aligned to the right -->
     <ul class="nav-links">
         <li><a href="/about">About</a></li>
@@ -13,7 +13,7 @@
         <li><a href="/contact">Contact</a></li>
         <li class="file-claim"><a href="/file-a-claim">File a Claim</a></li>
         <li class="get-quote"><a href="/get-a-quote">Get a Quote</a></li>
-        
+
         <!-- Search Icon -->
         <div class="search-signin">
             <a href="/search">
@@ -46,23 +46,27 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: white; /* White background for navbar */
+        background-color: white;
+        /* White background for navbar */
     }
 
     .logo {
         display: flex;
         align-items: center;
-        padding: 20px ;
+        padding: 20px;
     }
 
     .logo-img {
         height: 40px;
-        margin-right: 10px; /* Space between logo and text */
+        margin-right: 10px;
+        /* Space between logo and text */
     }
+
     .nav-links {
         display: flex;
         list-style: none;
-        margin-left: auto; /* Moves the nav-links to the right */
+        margin-left: auto;
+        /* Moves the nav-links to the right */
         padding: 0;
     }
 
@@ -73,11 +77,11 @@
     }
 
     .nav-links a {
-        color: black; 
+        color: black;
         text-decoration: none;
-        display: block; 
+        display: block;
         padding: 20px 15px;
-      
+
 
     }
 
@@ -117,13 +121,14 @@
     }
 
     .signin-logo {
-        margin: 5px; /* Space between logo and text */
+        margin: 5px;
+        /* Space between logo and text */
         margin-top: 15px;
     }
 
     .signin-logo-img {
-        width: 20px; /* Set logo size */
+        width: 20px;
+        /* Set logo size */
         height: 20px;
     }
-
 </style>
