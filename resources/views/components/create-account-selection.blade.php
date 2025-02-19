@@ -6,6 +6,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 35px;
+    border-radius: 5px;
+    border: 1px solid #008080;
+    background: #F0FAFF;
+    font-family: 'Inter', sans-serif;
 ">
     <img src="{{ $image }}" alt="Image" style="
         width: 292px;
@@ -30,9 +34,7 @@
             gap: 10px;
             align-self: stretch;
             color: #2D2727;
-            font-family: Inter;
             font-size: 23px;
-            font-style: normal;
             font-weight: 700;
             line-height: normal;
         ">{{ $title }}</h5>
@@ -45,9 +47,7 @@
             gap: 10px;
             align-self: stretch;
             color: #3B3939;
-            font-family: Inter;
             font-size: 14px;
-            font-style: normal;
             font-weight: 500;
             line-height: 24px;
         ">{{ $description }}</p>

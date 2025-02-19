@@ -22,4 +22,4 @@ Route::get('/step1', [StepperController::class, 'step1'])->name('step1');
 Route::get('/step2', [StepperController::class, 'step2'])->name('step2');
 Route::get('/step3', [StepperController::class, 'step3'])->name('step3');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
