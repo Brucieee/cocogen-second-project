@@ -76,6 +76,19 @@
             margin-bottom: 20px;
 
         }
+
+        .icon-info {
+            margin-left: 10px;
+            width: 21px;
+            height: 21px;
+        }
+
+        .your-identity-container{
+            width: 784px;
+            height: 542px;
+            margin: auto;
+            padding: 35px;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -93,6 +106,11 @@
                 $("#form-1").show();
             })
 
+            $("#next-btn-2").click(function(e) {
+                e.preventDefault();
+                $("#form-2").hide();
+                $("#your-identity-form").show();
+            })
 
 
 
@@ -315,8 +333,8 @@
                             </div>
                         </div>
 
-                        <p class="question">Which Cocogen branch should you wish to be contacted by? <span class="asterisk-policy">*</span></p>
-
+                        <p class="question">Which Cocogen branch should you wish to be contacted by? <span class="asterisk-policy">*</span><img class="icon-info" src="{{ asset('assets/icons/Icon-Info.png') }}">
+                        </p>
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6">
                                 <x-fields.dropdown-field
@@ -369,12 +387,36 @@
                 </div>
             </div>
 
+            <!-- Step 2 -->
+
+            <div class="your-identity-container" id="identity-form">
+
+
+                <div class="your-identity-form" id="identity-form-1">
+                    <div class="container py-4" style="margin-top:35px;">
+                        <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
+                    </div>
+                    <div class="form-title" style="margin-left:35px;">
+                        <x-CreateAccount.form-title title="Your Identity" />
+                    </div>
+
+                    <p class="question">Present residence <span class="asterisk-policy">*</span></p>
+
+                    <div class="col">
+                        
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
 
 
 
-            <!-- Add Bootstrap JavaScript (optional) -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Add Bootstrap JavaScript (optional) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
