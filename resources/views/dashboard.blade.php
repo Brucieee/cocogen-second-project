@@ -13,8 +13,10 @@
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
-            margin: 0; /* Remove the margin here */
-            padding: 0; /* Ensure padding is also removed */
+            margin: 0;
+            /* Remove the margin here */
+            padding: 0;
+            /* Ensure padding is also removed */
         }
 
         .stepper {
@@ -36,8 +38,10 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 25px;
-            background-color: #f8f9fa; /* Light background */
-            color: #212529; /* Dark text color */
+            background-color: #f8f9fa;
+            /* Light background */
+            color: #212529;
+            /* Dark text color */
         }
 
         @media (max-width: 992px) {
@@ -46,8 +50,10 @@
                 margin-left: 20px;
                 margin-right: 20px;
             }
+
             .stepper {
-                width: 200px; /* Adjust stepper width on smaller screens */
+                width: 200px;
+                /* Adjust stepper width on smaller screens */
             }
         }
     </style>
@@ -56,15 +62,21 @@
 <body>
     <div class="container">
         <!-- Stepper Component (Sticky on Left) -->
-        <x-stepper :currentStep="session('currentStep', 2)" class="stepper" />
+        <x-stepper
+            :currentStep="session('currentStep', 2)"
+            class="stepper" />
 
         <!-- Main Content Section (Right Side) -->
         <div class="main-container mx-auto">
 
-        <x-buttons.checkbox-button id="1" label="Agree to terms and conditions" :checked="false " />
+        <x-buttons.primary-arrow-button :id="'button1'">
+    Click Me
+</x-buttons.primary-arrow-button>
 
             <!-- Back Button Component -->
-            <x-createaccount.back-button title="Create account" backUrl="{{ url()->previous() }}" />
+            <x-createaccount.back-button
+                title="Create account"
+                backUrl="{{ url()->previous() }}" />
 
             <!-- Create Account Selection Components -->
             <div id="account-selection" class="d-flex justify-content-center align-items-center gap-4" style="flex-grow: 1;">

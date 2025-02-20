@@ -1,4 +1,3 @@
-<!-- Arrow Button Component -->
 <style>
     .btn-arrow-icon {
         width: 342.5px;
@@ -55,6 +54,16 @@
     }
 </style>
 
-<button class="btn-arrow-icon">
+<button class="btn-arrow-icon" id="btn-arrow-{{ $id ?? 'default' }}">
     <span class="button-text">{{ $slot }}</span>
 </button>
+
+
+<!-- To call:
+ 
+<x-arrow-button 
+    :id="'button1'">
+    Click Me
+</x-arrow-button> 
+
+-->
