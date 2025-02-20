@@ -4,139 +4,126 @@
 <style>
 .stepper-container {
     width: 255px;
-    height: 831.5px;
-    position: fixed;
-    left: 0;
+    min-height: 100vh;
+    position: sticky;
     top: 0;
+    left: 0;
     background-color: #008080;
     padding: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 97px;
+    gap: 50px; /* Space between logo and steps */
     overflow: hidden;
 }
 
+/* Logo */
 .logo-container img {
     width: 220px;
     height: 61px;
     object-fit: contain;
 }
 
+/* Steps Wrapper */
 .steps-wrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
-}
-
-.step {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Updated gap to 15px */
+    width: 185px;
+    height: 155px; /* Fixed height for the steps wrapper */
+    gap: 15px;
     position: relative;
 }
 
-.circle {
+/* Step Row */
+.step {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+    position: relative;
+}
+
+/* First Column (Circle) */
+.step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensures circles stay in place */
     width: 32px;
-    height: 32px;
+    position: relative;
+}
+
+/* Circle */
+.circle {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid #008080;
     background: #D7DEE3;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* Ensure circle is on top of the line */
 }
 
-.check-icon {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    display: none;
-}
-
+/* Step Number */
 .step-number {
     font-size: 12px;
     font-weight: 700;
     color: #848A90;
 }
 
-.step-text {
-    font-size: 12px;
-    font-weight: 700;
-    color: #FFF;
+/* Line */
+.line {
+    position: absolute;
+    top: 32px; /* Position the line below the circle */
+    left: 50%;
+    width: 1px;
+    height: 100%; /* Stretches through the gap */
+    background-color: #D7DEE3;
+    z-index: 0;
 }
 
+/* Active Step */
 .step.completed .circle {
     background-color: #FFF;
     border-color: #FFF;
 }
 
-.step.completed .check-icon {
-    display: block;
-}
-
-.line {
-    width: 2px;
-    height: 38px;
-    background-color: #D7DEE3;
-    margin-left: 14px;
-}
-
+/* Active Line */
 .line.active {
     background-color: #FFF;
 }
 
+/* Second Column (Step Text) */
+.step-right {
+    flex-grow: 1;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+}
 .step-text.inactive {
     color: #D7DEE3;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-    .stepper-container {
-        width: 100%;
-        height: auto;
-        position: static;
-        padding: 20px;
-        gap: 30px;
-    }
+/* Connect line should only be visible between steps */
+.step:not(:last-child) .line {
+    display: block;
+}
 
-    .logo-container img {
-        width: 150px;
-        height: 42px;
-    }
-
-    .steps-wrapper {
-        gap: 10px;
-    }
-
-    .step {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .circle {
-        width: 28px;
-        height: 28px;
-    }
-
-    .step-number {
-        font-size: 10px;
-    }
-
-    .step-text {
-        font-size: 10px;
-    }
-
-    .line {
-        height: 20px;
-    }
+.step:last-child .line {
+    display: none;
 }
 </style>
 
 <div class="stepper-container">
     <!-- Logo -->
     <div class="logo-container text-center">
-        <img src="{{ asset('assets/icons/Icon-Cocogen.png') }}" alt="Logo" class="logo {{ $currentStep >= 3 ? 'enlarged' : '' }}">
+        <img src="{{ asset('assets/icons/Icon-Cocogen.png') }}" alt="Logo">
     </div>
 
     <!-- Steps -->
@@ -150,20 +137,27 @@
         @endphp
 
         @foreach ($steps as $step => $text)
-            <div class="step d-flex align-items-center {{ $currentStep >= $step ? 'completed' : '' }}">
-                <div class="circle d-flex justify-content-center align-items-center">
-                    @if ($currentStep >= $step)
-                        <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step {{ $step }}" class="check-icon">
-                    @else
-                        <span class="step-number">{{ $step }}</span>
+            <div class="step {{ $currentStep >= $step ? 'completed' : '' }}">
+                <!-- Left: Circle -->
+                <div class="step-left">
+                    <div class="circle">
+                        @if ($currentStep >= $step)
+                            <img src="{{ asset('assets/icons/Icon-CheckWhiteCircleGreen.svg') }}" alt="Step {{ $step }}" class="check-icon">
+                        @else
+                            <span class="step-number">{{ $step }}</span>
+                        @endif
+                    </div>
+                    <!-- Line (Connects circles) -->
+                    @if ($step < 3) <!-- Don't show line after the last step -->
+                        <div class="line {{ $currentStep >= $step ? 'active' : '' }}"></div>
                     @endif
                 </div>
-                <div class="step-text {{ $currentStep < $step ? 'inactive' : '' }}">{{ $text }}</div>
-            </div>
 
-            @if ($step < 3)
-                <div class="line {{ $currentStep > $step ? 'active' : '' }}"></div>
-            @endif
+                <!-- Right: Step Text -->
+                <div class="step-right {{ $currentStep < $step ? 'inactive' : '' }}">
+                    {{ $text }}
+                </div>
+            </div>
         @endforeach
     </div>
 </div>
