@@ -48,6 +48,6 @@
     }
 </style>
 
-<button class="btn-secondary-arrow">
+<button class="btn-secondary-arrow" id="{{ $id ?? 'default-id' }}">
     <span class="button-text">{{ $slot }}</span>
 </button>
