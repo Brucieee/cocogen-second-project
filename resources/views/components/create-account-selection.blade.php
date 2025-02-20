@@ -13,17 +13,20 @@
         gap: 20px;
         padding: 20px;
         border-radius: 5px;
-        border: 1px solid #C0E6E6; /* Initial border color */
+        border: 1px solid #C0E6E6;
+        /* Initial border color */
         background: #F7FCFF;
         font-family: 'Inter', sans-serif;
         box-sizing: border-box;
         overflow: hidden;
-        transition: background-color 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        /* Added border-color transition */
     }
 
     .card-container:hover {
         background-color: #F0FAFF;
-        border-color: #008080; /* Border color when hovered */
+        border-color: #008080;
+        /* Border color when hovered */
     }
 
     .card-image {
@@ -41,7 +44,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        width: 100%; 
+        width: 100%;
         flex-grow: 1;
     }
 
@@ -104,9 +107,11 @@
 
         <!-- Button Inside Card Content -->
         <div class="card-button-container">
-            <!-- Use the secondary button component by default -->
-            <x-buttons.secondary-button id="policyholder-button" class="secondary-button">{{ $buttonText }}</x-buttons.secondary-button>
-
+            <!-- Use the secondary button component with dynamic id -->
+            <x-buttons.secondary-button
+                :id="$id">
+                {{ $slot }}
+            </x-buttons.secondary-button>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <style>
-    .primary-button {
+    .primary-btn {
         display: flex;
         padding: 10px 20px;
         justify-content: center;
@@ -19,6 +19,6 @@
 </style>
 
 
-<button class="primary-button">
-    {{ $slot }}
+<button class="primary-btn" id="{{ $id ?? 'default-id' }}">
+    <span class="button-text">{{ $slot }}</span>
 </button>
