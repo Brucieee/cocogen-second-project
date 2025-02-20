@@ -26,6 +26,7 @@
 </style>
 
 <!-- Secondary Button Component -->
-<button class="secondary-btn" id="{{ $id }}">
-    {{ $slot }}
+<button class="secondary-btn" id="{{ $id ?? 'default-id' }}">
+    <span class="button-text">{{ $slot }}</span>
 </button>
+
