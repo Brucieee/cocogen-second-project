@@ -60,6 +60,9 @@
 
         <!-- Main Content Section (Right Side) -->
         <div class="main-container mx-auto">
+
+        <x-buttons.checkbox-button id="1" label="Agree to terms and conditions" :checked="false " />
+
             <!-- Back Button Component -->
             <x-createaccount.back-button title="Create account" backUrl="{{ url()->previous() }}" />
 
