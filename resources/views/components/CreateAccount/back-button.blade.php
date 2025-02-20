@@ -35,7 +35,7 @@
 </style>
 
 <!-- Back Button Component -->
-<div class="back-button-container">
+<div class="back-button-container" id="{{ $id ?? 'default-id' }}">
     <button class="back-button" onclick="window.location.href='{{ $backUrl }}'">
         <img src="{{ asset('assets/icons/Icon-ArrowLeft.svg') }}" alt="Back" class="back-button-icon">
     </button>

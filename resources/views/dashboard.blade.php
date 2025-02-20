@@ -3,13 +3,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             box-sizing: border-box;
         }
 
-        .container {
+        .create-account-container {
             display: flex;
             justify-content: flex-start;
             align-items: flex-start;
@@ -29,50 +29,70 @@
         }
 
         .create-account {
-            width: 756px;
-            height: 692px;
-            padding: 35px;
+            width: 100%;
+            padding: 25px;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Stack the elements vertically */
             align-items: flex-start;
             gap: 25px;
             background-color: #f8f9fa;
             color: #212529;
+            margin-left: 255px; /* Ensure stepper doesn't overlap */
+        }
+
+        .create-account.mx-auto {
+            max-width: 756px;
+            max-height: 692px;
+            margin-top: 50px;
+            margin-left: 380px;
+        }
+
+        /* Adjust layout for account selection */
+        .account-selections {
+            display: flex; /* Make the selections appear side by side */
+            justify-content: space-between;
+            gap: 22px;  /* Space between the selections */
+        }
+
+        .create-account-selection {
+            width: 100%;
+            max-width: 45%;  /* Set max-width for each selection component */
         }
 
         @media (max-width: 992px) {
-            .main-container {
-                width: 100%;
-                margin-left: 20px;
-                margin-right: 20px;
+            .create-account {
+                margin-left: 0;  /* Remove the left margin to center on mobile */
+                padding: 20px;
             }
 
-            .stepper {
-                width: 200px;
+            .account-selections {
+                flex-direction: column;  /* Stack selections vertically on smaller screens */
+                gap: 15px;
+            }
 
+            .create-account-selection {
+                width: 100%;  /* Full width on smaller screens */
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+
+    <div class="create-account-container">
         <x-stepper
             :currentStep="session('currentStep', 1)"
             class="stepper" />
 
         <div class="create-account mx-auto">
 
-        <x-buttons.primary-arrow-button/>
-
+            <!-- Back button is at the top -->
             <x-createaccount.back-button
                 title="Create account"
                 backUrl="{{ url()->previous() }}" />
 
-
-
-            <!-- Create Account Selection Components -->
-            <div id="account-selection" class="d-flex justify-content-center align-items-center gap-4" style="flex-grow: 1;">
+            <!-- Account selection components side by side in a flex container -->
+            <div class="account-selections">
                 <x-create-account-selection
                     :id="'policyholder-selection'"
                     image="/assets/images/Image-Policyholder.png"
@@ -86,7 +106,7 @@
                     title="Partner"
                     description="Sign up as Partner. Be a Cocogen agent to earn additional income, and get perks for being a partner of Cocogen."
                     buttonText="Create account as Agent" />
-            </div>  
+            </div>
 
         </div>
     </div>

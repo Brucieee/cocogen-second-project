@@ -14,19 +14,16 @@
         padding: 20px;
         border-radius: 5px;
         border: 1px solid #C0E6E6;
-        /* Initial border color */
         background: #F7FCFF;
         font-family: 'Inter', sans-serif;
         box-sizing: border-box;
         overflow: hidden;
         transition: background-color 0.3s ease, border-color 0.3s ease;
-        /* Added border-color transition */
     }
 
     .card-container:hover {
         background-color: #F0FAFF;
         border-color: #008080;
-        /* Border color when hovered */
     }
 
     .card-image {
@@ -64,7 +61,6 @@
         line-height: 24px;
         margin: 10px 0;
         text-align: justify;
-        transition: color 0.3s ease;
     }
 
     .card-button-container {
@@ -74,7 +70,7 @@
 
     /* Default Style for Secondary Button */
     .secondary-button {
-        background-color: #C0E6E6;
+
         border-color: #008080;
         color: #008080;
         width: 100%;
@@ -85,12 +81,18 @@
         transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Hover Effect for Switching to Primary Button */
-    .card-container:hover .secondary-button {
-        background-color: #008080 !important;
-        border-color: #008080 !important;
-        color: white !important;
+    .secondary-btn:hover {
+        background-color: #008080;
+        color: white;
+        border: 1px solid #008080;
     }
+
+    .card-container:hover .secondary-btn{
+        background-color: #008080;
+        color: white;
+        border: 1px solid #008080;
+    }
+    
 </style>
 
 <!-- Card Component -->
@@ -109,8 +111,8 @@
         <div class="card-button-container">
             <!-- Use the secondary button component with dynamic id -->
             <x-buttons.secondary-button
-                :id="$id">
-                {{ $slot }}
+                :id="$id" class="secondary-button"> 
+                {{ $buttonText }} <!-- Use buttonText here instead of $slot -->
             </x-buttons.secondary-button>
         </div>
     </div>
