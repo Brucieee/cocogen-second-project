@@ -38,7 +38,7 @@
             display: flex;
             flex-direction: column; /* Keeps back button on top */
             gap: 25px; /* Space between elements */
-            position: relative;
+        position: relative;
             box-sizing: border-box; /* Ensures padding is included in the size */
         }
 

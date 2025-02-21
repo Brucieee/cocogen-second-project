@@ -14,30 +14,6 @@
             display: flex;
             flex-direction: row; 
         }
-
-        .stepper-container {
-            width: 255px;
-            height: 100vh;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-container {
-            margin-top: 66px;
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px; 
-            flex-grow: 1; 
-        }
     </style>
 </head>
 
@@ -51,10 +27,7 @@
     <div class="create-account-1">
         <div class="container-fluid">
             <div class="row">
-                <!-- Stepper Component (Sticky on Left) -->
-                <div class="col-auto d-flex align-items-start p-4">
-                    <x-stepper :currentStep="session('currentStep', 1)" class="position-sticky top-0" style="width: 255px; height: 831.5px;" />
-                </div>
+                
 
 
 
