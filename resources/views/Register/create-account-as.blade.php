@@ -27,6 +27,12 @@
             padding: 25px;
             padding-bottom: 0px;
             display: flex;
+<<<<<<< HEAD
+            flex-direction: column; /* Keeps back button on top */
+            gap: 25px; /* Space between elements */
+        position: relative;
+            box-sizing: border-box; /* Ensures padding is included in the size */
+=======
             flex-direction: column;
             gap: 25px;
             

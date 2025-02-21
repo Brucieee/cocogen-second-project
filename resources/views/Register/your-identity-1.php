@@ -14,21 +14,6 @@
             display: flex;
             flex-direction: row; 
         }
-
-        .stepper-container {
-            width: 255px;
-            height: 100%;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-        }
-
         .content-container {
             margin-top: 66px;
             margin-right: 130px;

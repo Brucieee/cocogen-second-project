@@ -14,8 +14,6 @@
             /* Fixed width */
             height: 692px;
             /* Fixed height */
-            margin-top: 60px;
-            margin-bottom: 66px;
             margin-left: 125px;
             margin-right: 144px;
             padding: 25px;
@@ -35,6 +33,8 @@
         $(document).ready(function() {
 
             $('#form-2').hide();
+            $("#step2").hide();
+            $("#step3").hide();
 
             $('#next-btn-1').click(function() {
                 $("#form-1").hide();
@@ -45,6 +45,7 @@
                 e.preventDefault();
                 $("#form-2").hide();
                 $("#form-1").show();
+
             })
 
             $("#next-btn-2").click(function(e) {
@@ -65,6 +66,18 @@
 </head>
 
 <body>
+    <div id="step1">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+
+    </div>
+    <div id="step2">
+        <x-stepper :currentStep="session('currentStep', 2)" />
+
+    </div>
+    <div id="step3">
+        <x-stepper :currentStep="session('currentStep', 3)" />
+
+    </div>
 
     <div class="container-create-account">
         <form method="" action="">
