@@ -24,6 +24,7 @@
             padding: 35px;
             gap: 25px;
             margin: auto;
+            display: flex;
         }
         .form-1{
             border: 1px solid black;
@@ -32,6 +33,12 @@
         .identity-btn-1{
             border: 1px solid black;
 
+        }
+
+        .row-1, .row-2{
+            justify-content: space-between;
+            gap: 25px;
+            display: flex;
         }
     </style>
 </head>
