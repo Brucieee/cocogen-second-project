@@ -5,58 +5,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-         html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%; 
+            height: 100%;
             font-family: 'Inter', sans-serif;
             display: flex;
-            flex-direction: row; 
+            flex-direction: row;
+            box-sizing: border-box;
         }
-        .stepper-container {
-            width: 255px;
-            height: 100%;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-        }
+
         .content-container {
-            width: 756px; /* Fixed width */
-            height: 692px; /* Fixed height */
+            width: 756px;
+            /* Fixed width */
+            height: 692px;
+            /* Fixed height */
             margin-top: 60px;
-            margin-bottom: 66px;
             margin-left: 125px;
             margin-right: 144px;
-            padding: 25px; /* Padding around the content */
+            padding: 25px;
+            /* Padding around the content */
             display: flex;
-            flex-direction: column; /* Keeps back button on top */
-            gap: 25px; /* Space between elements */
+            flex-direction: column;
+            /* Keeps back button on top */
+            gap: 25px;
+            /* Space between elements */
             position: relative;
-            box-sizing: border-box; /* Ensures padding is included in the size */
         }
 
         /* Row container for select-account components */
         .select-account-row {
             display: flex;
-            gap: 22px;
-            justify-content: space-between;
-            width: 100%;
+            justify-content:space-between;
         }
 
         .select-account-component {
-            width: 45%; /* Each component takes up 45% of the width */
+            width: 45%;
+            /* Each component takes up 45% of the width */
         }
 
         /* Ensure content inside components is responsive */
         .select-account-component img {
-            width: 100%; /* Ensures images are responsive */
+            width: 100%;
+            /* Ensures images are responsive */
         }
 
         /* Positioning for the back button to stay on top */
@@ -70,9 +63,9 @@
 
 <body>
 
-    <div class="stepper-container">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
+
+    <x-stepper :currentStep="session('currentStep', 1)" />
+
 
     <div class="content-container">
 
