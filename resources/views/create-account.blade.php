@@ -142,10 +142,10 @@
                 <div class="form-container" id="form-1">
 
                     <div class="container py-4" style="margin-top:35px;">
-                        <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
+                        <x-Register.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
                     </div>
                     <div class="form-title" style="margin-left:35px;">
-                        <x-CreateAccount.form-title title="Getting to know you" />
+                        <x-Register.form-title title="Getting to know you" />
                     </div>
 
 
@@ -265,12 +265,12 @@
                 <div class="create-account-2" id="form-2">
 
                     <div class="container py-4" style="margin-top:35px;">
-                        <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
+                        <x-Register.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
                     </div>
 
                     <div class="container-form-2">
                         <div class="form-title" style="margin-left:35px;">
-                            <x-CreateAccount.form-title title="Getting to know you" />
+                            <x-Register.form-title title="Getting to know you" />
                         </div>
 
                         <p class="question">What policy are you interested in?<span class="asterisk-policy">*</span>(you may select as many as you want)</p>
@@ -400,10 +400,10 @@
             <div class="your-identity-container" id="identity-form">
                 <div class="your-identity-form" id="identity-form-1">
                     <div class="container py-4" style="margin-top:35px;">
-                        <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
+                        <x-Register.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
                     </div>
                     <div class="form-title" style="margin-left:35px;">
-                        <x-CreateAccount.form-title title="Your Identity" />
+                        <x-Register.form-title title="Your Identity" />
                     </div>
 
                     <p class="question" style="margin-left:35px;">Present residence <span class="asterisk-policy">*</span></p>

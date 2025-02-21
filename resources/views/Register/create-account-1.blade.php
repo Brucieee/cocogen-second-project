@@ -61,10 +61,10 @@
                 <div class="form-container" id="form-1">
 
                     <div class="container py-4" style="margin-top:35px;">
-                        <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
+                        <x-Register.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
                     </div>
                     <div class="form-title" style="margin-left:35px;">
-                        <x-CreateAccount.form-title title="Getting to know you" />
+                        <x-Register.form-title title="Getting to know you" />
                     </div>
 
 
