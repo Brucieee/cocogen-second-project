@@ -22,8 +22,9 @@
             top: 96px;
             left: 349px;
             padding: 35px;
-            gap: 25px;
+            gap: 55px;
             margin: auto;
+            display: flex;
         }
         .form-1{
             border: 1px solid black;
@@ -44,7 +45,7 @@
     <div class="form-container-1" id="form-1">
         <div class="form-title">
             <h1>Create account as Policyholder</h1>
-        </div>
+        
 
         <div class="form-1">
             <x-Register.form-title
@@ -115,7 +116,7 @@
 
                 </div>
             </div>
-
+            </div>
         </div>
     </div>
 
