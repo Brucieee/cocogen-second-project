@@ -22,7 +22,7 @@
             top: 96px;
             left: 349px;
             padding: 35px;
-            gap: 25px;
+            gap: 55px;
             margin: auto;
             display: flex;
         }
@@ -51,7 +51,7 @@
     <div class="form-container-1" id="form-1">
         <div class="form-title">
             <h1>Create account as Policyholder</h1>
-        </div>
+        
 
         <div class="form-1">
             <x-Register.form-title
@@ -122,7 +122,7 @@
 
                 </div>
             </div>
-
+            </div>
         </div>
     </div>
 
