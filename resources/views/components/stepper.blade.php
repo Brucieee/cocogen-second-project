@@ -2,8 +2,8 @@
 /* Stepper Container */
 .stepper-container {
     width: 255px;
-    height: 100vh;
-    position: relative; /* Keeps it locked on the left */
+    height: 100%;
+    position:sticky; /* Keeps it locked on the left */
     top: 0;
     left: 0;
     background-color: #008080;
