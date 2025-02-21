@@ -7,7 +7,7 @@
     <style>
         html,
         body {
-            margin: 0;
+            margin: 0px;
             padding: 0;
             width: 100%;
             height: 100%;
@@ -19,40 +19,38 @@
 
         .content-container {
             width: 756px;
-            /* Fixed width */
-            height: 692px;
-            /* Fixed height */
-            margin-top: 60px;
+            height: 600px;
+            margin-top: 55px;
             margin-left: 125px;
             margin-right: 144px;
+            margin-bottom: 0px;
             padding: 25px;
-            /* Padding around the content */
+            padding-bottom: 0px;
             display: flex;
+<<<<<<< HEAD
+            flex-direction: column; /* Keeps back button on top */
+            gap: 25px; /* Space between elements */
+        position: relative;
+            box-sizing: border-box; /* Ensures padding is included in the size */
+=======
             flex-direction: column;
-            /* Keeps back button on top */
             gap: 25px;
-            /* Space between elements */
-            position: relative;
+            
         }
 
-        /* Row container for select-account components */
         .select-account-row {
             display: flex;
-            justify-content:space-between;
+            justify-content: space-between;
         }
 
         .select-account-component {
             width: 45%;
-            /* Each component takes up 45% of the width */
         }
 
-        /* Ensure content inside components is responsive */
         .select-account-component img {
             width: 100%;
-            /* Ensures images are responsive */
         }
 
-        /* Positioning for the back button to stay on top */
         .back-button-row {
             width: 100%;
             top: 0;
@@ -62,7 +60,6 @@
 </head>
 
 <body>
-
 
     <x-stepper :currentStep="session('currentStep', 1)" />
 
@@ -77,20 +74,20 @@
         <div class="select-account-row">
             <div class="select-account-component">
                 <x-Register.select-account
-                    :image="'images/Image-Partner.png'"
-                    :title="'title'"
-                    :description="'description'"
-                    :buttonText="'buttonText'"
-                    :id="'id'" />
+                    :image="'images/Image-Policyholder.png'"
+                    :title="'Policyholder'"
+                    :description="'Sign up as Policyholder. Avail of Cocogen products, access policies conveniently, and file claims easily.'"
+                    :buttonText="'Create account as Policyholder'"
+                    :id="'policyholder-btn'" />
             </div>
 
             <div class="select-account-component">
                 <x-Register.select-account
                     :image="'images/Image-Partner.png'"
-                    :title="'title'"
-                    :description="'description'"
-                    :buttonText="'buttonText'"
-                    :id="'id'" />
+                    :title="'Partner'"
+                    :description="'Sign up as Partner. Be a Cocogen agent to earn additional income, and get perks for being a partner of Cocogen.'"
+                    :buttonText="'Create account as Agent'"
+                    :id="'partner-btn'" />
             </div>
         </div>
     </div>
