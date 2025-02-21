@@ -31,38 +31,46 @@
 
     <script>
         $(document).ready(function() {
+            // Initially hide all except the first form
+            $('#form-2, #identity-form').hide();
+            $("#step2, #step3").hide();
 
-            $('#form-2').hide();
-            $("#step2").hide();
-            $("#step3").hide();
-
+            // Move to Step 2
             $('#next-btn-1').click(function() {
                 $("#form-1").hide();
                 $("#form-2").show();
+                $("#step1").hide();
+                $("#step2").show();
             });
 
-            $("#cancel-btn-2").click(function(e) {
-                e.preventDefault();
+            // Move back to Step 1
+            $("#cancel-btn-2").click(function() {
                 $("#form-2").hide();
                 $("#form-1").show();
+                $("#step2").hide();
+                $("#step1").show();
+            });
 
-            })
-
+            // Move to Step 3
             $("#next-btn-2").click(function(e) {
                 e.preventDefault();
                 $("#form-2").hide();
+                $("#step2").hide();
                 $("#identity-form").show();
-            })
+                $("#step3").show();
+            });
+
+            // Move back to Step 2
             $("#cancel-btn-3").click(function(e) {
                 e.preventDefault();
-                $("#form-2").show();
                 $("#identity-form").hide();
-            })
-
-
-
+                $("#step3").hide();
+                $("#form-2").show();
+                $("#step2").show();
+            });
         });
     </script>
+
 </head>
 
 <body>
@@ -82,6 +90,7 @@
     <div class="container-create-account">
         <form method="" action="">
             @include('Register.create-account-1')
+            @include('Register.create-account-2')
         </form>
 
     </div>

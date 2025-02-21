@@ -15,6 +15,10 @@
             display: flex;
             flex-direction: row;
         }
+
+        .form-container {
+            display: block;
+        }
     </style>
 </head>
 
@@ -49,8 +53,10 @@
                 <x-fields.text-field
                     type="text"
                     name="MiddleName"
-                    label="Field Label"
-                    placeholder="Middle Name" />
+                    label="Middle Name"
+                    placeholder="Middle Name" 
+                    required
+                    />
             </div>
             <div class="col">
                 <x-fields.text-field

@@ -17,7 +17,7 @@
         }
 
         .create-account-2 {
-            display: block;
+            display: none;
         }
     </style>
 </head>

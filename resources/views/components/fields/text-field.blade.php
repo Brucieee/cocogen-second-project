@@ -34,6 +34,7 @@
         color: red;
         font-size: 10px;
     }
+    
 </style>
 
 <div class="text-field-container">
