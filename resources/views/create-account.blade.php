@@ -77,17 +77,21 @@
 
         }
 
-        .icon-info {
+        .icon-info2 {
             margin-left: 10px;
             width: 21px;
             height: 21px;
         }
 
-        .your-identity-container{
-            width: 784px;
-            height: 542px;
+        /* step 2 form */
+
+        .your-identity-container {
+            width: 61%;
+            height: auto;
             margin: auto;
             padding: 35px;
+            font-family: 'Inter', serif;
+            display: none;
         }
     </style>
     <script>
@@ -109,7 +113,12 @@
             $("#next-btn-2").click(function(e) {
                 e.preventDefault();
                 $("#form-2").hide();
-                $("#your-identity-form").show();
+                $("#identity-form").show();
+            })
+            $("#cancel-btn-3").click(function(e) {
+                e.preventDefault();
+                $("#form-2").show();
+                $("#identity-form").hide();
             })
 
 
@@ -333,7 +342,7 @@
                             </div>
                         </div>
 
-                        <p class="question">Which Cocogen branch should you wish to be contacted by? <span class="asterisk-policy">*</span><img class="icon-info" src="{{ asset('assets/icons/Icon-Info.png') }}">
+                        <p class="question">Which Cocogen branch should you wish to be contacted by? <span class="asterisk-policy">*</span><img class="icon-info2" src="{{ asset('assets/icons/Icon-Info2.svg') }}">
                         </p>
                         <div class="row d-flex align-items-center">
                             <div class="col-md-6">
@@ -385,13 +394,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Step 2 -->
+                 <!-- Step 2 -->
 
             <div class="your-identity-container" id="identity-form">
-
-
                 <div class="your-identity-form" id="identity-form-1">
                     <div class="container py-4" style="margin-top:35px;">
                         <x-createaccount.back-button title="Create account as a Policyholder" backUrl="{{ url()->previous() }}" />
@@ -400,23 +406,94 @@
                         <x-CreateAccount.form-title title="Your Identity" />
                     </div>
 
-                    <p class="question">Present residence <span class="asterisk-policy">*</span></p>
+                    <p class="question" style="margin-left:35px;">Present residence <span class="asterisk-policy">*</span></p>
 
-                    <div class="col">
-                        
+                    <div class="row">
+                        <div class="col">
+                            <x-fields.text-field
+                                type="text"
+                                name="House-Unit"
+                                label="House/Unit No."
+                                placeholder="10"
+                                width="211px"
+                                height="56px"
+                                required />
+
+                            <x-fields.dropdown-field
+                                name="City"
+                                label="City"
+                                :options="['City' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                                width="211px"
+                                height="56px"
+                                required />
+
+                            <x-fields.text-field
+                                type="text"
+                                name="zip"
+                                label="ZIP"
+                                placeholder="10"
+                                width="211px"
+                                height="56px"
+                                required />
+                        </div>
+                        <div class="col">
+                            <x-fields.text-field
+                                type="text"
+                                name="Street"
+                                label="Street"
+                                placeholder="Street name"
+                                width="211px"
+                                height="56px"
+                                required />
+
+                            <x-fields.dropdown-field
+                                name="Province"
+                                label="Province"
+                                :options="['City' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                                width="211px"
+                                height="56px"
+                                required />
+                        </div>
+                        <div class="col">
+                            <x-fields.dropdown-field
+                                name="Barangay"
+                                label="Barangay"
+                                :options="['Barangay' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                                width="211px"
+                                height="56px"
+                                required />
+
+                            <x-fields.dropdown-field
+                                name="Region"
+                                label="Region"
+                                :options="['Region' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                                width="211px"
+                                height="56px"
+                                required />
+                        </div>
                     </div>
-                </div>
+                    <div class="row" style="margin-top:35px; margin-bottom:35px;">
+                        <div class="col">
+                            <x-Buttons.secondary-arrow-button id="cancel-btn-3">Cancel </x-Buttons.secondary-arrow-button>
+                        </div>
 
+                        <div class="col">
+                            <x-Buttons.primary-arrow-button id="next-btn-3">Next </x-Buttons.primary-arrow-button>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
 
-        </div>
 
 
 
 
 
-        <!-- Add Bootstrap JavaScript (optional) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Add Bootstrap JavaScript (optional) -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
