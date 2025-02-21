@@ -28,18 +28,11 @@
             padding: 25px;
             /* Padding around the content */
             display: flex;
-<<<<<<< HEAD
-            flex-direction: column; /* Keeps back button on top */
-            gap: 25px; /* Space between elements */
-        position: relative;
-            box-sizing: border-box; /* Ensures padding is included in the size */
-=======
             flex-direction: column;
             /* Keeps back button on top */
             gap: 25px;
             /* Space between elements */
             position: relative;
->>>>>>> ca1fa65bc5c61f82d1f80efc5b7560bf76b84811
         }
 
         /* Row container for select-account components */
