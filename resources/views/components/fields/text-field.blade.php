@@ -2,7 +2,7 @@
     /* Main container */
     .text-field-container {
         height: 56px;
-        width: 100%;
+        width: {{ $width ?? '100%' }}; /* Use dynamic width or default to 100% */
         display: flex;
         flex-direction: column;
     }
@@ -37,7 +37,6 @@
         padding-left: 0;
         /* Ensure no padding before the asterisk */
     }
-
 
     /* Input Field Container */
     .input-container {
