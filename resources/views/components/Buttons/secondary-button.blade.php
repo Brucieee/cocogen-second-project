@@ -1,4 +1,3 @@
-<!-- Unified Styles -->
 <style>
     .secondary-btn {
         display: flex;
@@ -16,16 +15,15 @@
         line-height: 24px;
         border: none;
         cursor: pointer;
+        transition: background-color 0.2s ease;
     }
 
-    .secondary-btn:hover {
-        background-color: #008080;
-        color: white;
-        border: 1px solid #008080;
+    .secondary-btn:active {
+        background: var(--Teal-LVL-3, #C0E6E6);
     }
+
 </style>
 
-<!-- Secondary Button Component -->
 <button class="secondary-btn" id="{{ $id ?? 'default-id' }}">
     <span class="button-text">{{ $slot }}</span>
 </button>

@@ -2,16 +2,17 @@
     .title-container {
         display: flex;
         flex-direction: column;
-        text-align: {{ $align ?? 'left' }};
-        width:100%;
-        height:48px;
-        border-left: 4px solid #003592;
+        text-align: left; /* Default text alignment */
+        width: 100%;
+        height: 48px;
+        border-left: 3px solid var(--Secondary-Blue, #003592); /* Updated border-left */
+        border-radius: 2px; /* Added border-radius */
     }
     .title-text {
-        font-size: {{ $size ?? '23px' }};
-        font-weight: {{ $weight ?? 'bold' }};
-        color: {{ $color ?? 'black' }};
-        font-family: 'Inter', sanserif;
+        font-size: 23px; /* Default font size */
+        font-weight: bold; /* Default font weight */
+        color: black; /* Default text color */
+        font-family: 'Inter', sans-serif;
         padding-left: 15px;
         padding-top: 10px;
     }

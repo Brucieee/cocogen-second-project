@@ -15,9 +15,13 @@
         line-height: 24px;
         border: none;
         cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .primary-btn:active {
+        background: var(--Teal-LVL-6, #60B3B3);
     }
 </style>
-
 
 <button class="primary-btn" id="{{ $id ?? 'default-id' }}">
     <span class="button-text">{{ $slot }}</span>
