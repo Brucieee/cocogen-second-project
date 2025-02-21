@@ -69,7 +69,6 @@
 
     /* Default Style for Secondary Button */
     .secondary-button {
-
         border-color: #008080;
         color: #008080;
         width: 100%;
@@ -90,6 +89,55 @@
         background-color: #008080;
         color: white;
         border: 1px solid #008080;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+        .card-container {
+            width: 100% !important;
+            height: auto !important;
+            min-height: auto;
+            max-width: 100%;
+            padding: 15px;
+        }
+
+        .card-image {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 250px;
+        }
+
+        .card-title {
+            font-size: 20px;
+        }
+
+        .card-description {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card-container {
+            width: 100% !important;
+            height: auto !important;
+            min-height: auto;
+            max-width: 100%;
+            padding: 10px;
+        }
+
+        .card-image {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 200px;
+        }
+
+        .card-title {
+            font-size: 18px;
+        }
+
+        .card-description {
+            font-size: 11px;
+        }
     }
 </style>
 
