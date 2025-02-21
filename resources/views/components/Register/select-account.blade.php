@@ -114,12 +114,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- To Call:
-<x-CreateAccount.select-account
-    :image="'images/Image-Partner.png'"
-    :title="'title'"
-    :description="'description'"
-    :buttonText="'buttonText'"
-    :id="'id'" /> -->

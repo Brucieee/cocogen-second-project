@@ -5,65 +5,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Remove margin and padding for both html and body */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%; /* Ensure body height fills the viewport */
-            font-family: 'Inter', sans-serif;
-            display: flex; /* Use flexbox to layout the components horizontally */
-            flex-direction: row; /* Align elements in a row (side by side) */
-        }
 
-        /* Stepper container styles */
-        .stepper-container {
-            width: 255px;
-            height: 100vh; /* Full height */
-            position: fixed; /* Fix it on the left side */
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-container {
-            margin-top: 66px;
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px; 
-            flex-grow: 1; 
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="stepper-container">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
 
-    <div class="content-container">
-        <x-CreateAccount.select-account
-            :image="'images/Image-Partner.png'"
-            :title="'title'"
-            :description="'description'"
-            :buttonText="'buttonText'"
-            :id="'id'" />
-
-            <x-CreateAccount.select-account
-            :image="'images/Image-Partner.png'"
-            :title="'title'"
-            :description="'description'"
-            :buttonText="'buttonText'"
-            :id="'id'" />
-    </div>
+        @include('register.create-account-as')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

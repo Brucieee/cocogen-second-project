@@ -28,7 +28,6 @@
             align-items: center;
             gap: 50px;
             z-index: 1000;
-            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
         }
 
         .content-container {
