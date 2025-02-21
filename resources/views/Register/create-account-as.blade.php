@@ -16,12 +16,11 @@
         }
         .stepper-container {
             width: 255px;
-            height: 150vh;
+            height: 100%;
             position: fixed; 
             top: 0;
             left: 0;
             background-color: #008080;
-            padding: 35px;
             display: flex;
             flex-direction: column;
             align-items: center;
