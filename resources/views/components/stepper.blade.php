@@ -1,11 +1,9 @@
-@props(['currentStep'])
-
-<!-- Bootstrap-Based Styles -->
 <style>
+/* Stepper Container */
 .stepper-container {
     width: 255px;
-    min-height: 100vh;
-    position: sticky;
+    height: 100vh;
+    position: relative; /* Keeps it locked on the left */
     top: 0;
     left: 0;
     background-color: #008080;
@@ -13,8 +11,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px; /* Space between logo and steps */
-    overflow: hidden;
+    gap: 50px;
+    pointer-events: auto; /* Ensures it can interact with the user */
+    display:static;
+}
+
+/* Ensure main content does not go behind the stepper */
+.main-content {
+    margin-left: 255px; /* Push content to the right of the stepper */
+    padding: 20px;
+    position: relative;
+    pointer-events: auto; /* Enable interactions with content */
 }
 
 /* Logo */
@@ -29,7 +36,7 @@
     display: flex;
     flex-direction: column;
     width: 185px;
-    height: 155px; /* Fixed height for the steps wrapper */
+    height: 155px;
     gap: 15px;
     position: relative;
 }
@@ -50,7 +57,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Ensures circles stay in place */
+    height: 100%;
     width: 32px;
     position: relative;
 }
@@ -65,7 +72,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* Ensure circle is on top of the line */
+    z-index: 1;
 }
 
 /* Step Number */
@@ -78,10 +85,10 @@
 /* Line */
 .line {
     position: absolute;
-    top: 32px; /* Position the line below the circle */
+    top: 32px;
     left: 50%;
     width: 1px;
-    height: 100%; /* Stretches through the gap */
+    height: 100%;
     background-color: #D7DEE3;
     z-index: 0;
 }
@@ -97,7 +104,7 @@
     background-color: #FFF;
 }
 
-/* Second Column (Step Text) */
+/* Step Text */
 .step-right {
     flex-grow: 1;
     font-size: 12px;
@@ -106,11 +113,12 @@
     display: flex;
     align-items: center;
 }
+
 .step-text.inactive {
     color: #D7DEE3;
 }
 
-/* Connect line should only be visible between steps */
+/* Hide connecting line on last step */
 .step:not(:last-child) .line {
     display: block;
 }
@@ -147,8 +155,7 @@
                             <span class="step-number">{{ $step }}</span>
                         @endif
                     </div>
-                    <!-- Line (Connects circles) -->
-                    @if ($step < 3) <!-- Don't show line after the last step -->
+                    @if ($step < 3)
                         <div class="line {{ $currentStep >= $step ? 'active' : '' }}"></div>
                     @endif
                 </div>

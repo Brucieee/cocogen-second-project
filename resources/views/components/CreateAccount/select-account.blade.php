@@ -1,4 +1,3 @@
-<!-- Unified Styles -->
 <style>
     .card-container {
         width: 332px !important;
@@ -87,33 +86,40 @@
         border: 1px solid #008080;
     }
 
-    .card-container:hover .secondary-btn{
+    .card-container:hover .secondary-btn {
         background-color: #008080;
         color: white;
         border: 1px solid #008080;
     }
-    
 </style>
 
 <!-- Card Component -->
 <div class="card-container">
     <!-- Fixed Image -->
-    <img src="{{ $image }}" alt="Image" class="card-image">
+    <img src="{{ asset('assets/' . $image) }}" alt="Image" class="card-image">
 
     <!-- Card Content -->
     <div class="card-content">
         <h5 class="card-title">{{ $title }}</h5>
 
-        <!-- Justified description -->
         <p class="card-description">{{ $description }}</p>
 
         <!-- Button Inside Card Content -->
         <div class="card-button-container">
-            <!-- Use the secondary button component with dynamic id -->
             <x-buttons.secondary-button
-                :id="$id" class="secondary-button"> 
-                {{ $buttonText }} <!-- Use buttonText here instead of $slot -->
+                :id="$id"
+                class="secondary-button">
+                {{ $buttonText }}
             </x-buttons.secondary-button>
         </div>
     </div>
 </div>
+
+
+<!-- To Call:
+<x-CreateAccount.select-account
+    :image="'images/Image-Partner.png'"
+    :title="'title'"
+    :description="'description'"
+    :buttonText="'buttonText'"
+    :id="'id'" /> -->
