@@ -19,3 +19,9 @@
 />
 
 <x-Reminders.update-profile/>
+
+<x-Buttons.pill-button pillOneText="First Pill" pillTwoText="Second Pill" />
+
+<x-Fields.add-policy label="Policy No." required="true" />
+
+

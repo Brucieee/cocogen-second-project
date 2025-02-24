@@ -16,28 +16,38 @@
             flex-direction: row;
         }
 
-        .create-account-2-2-container {
-            margin-left: 111px;
-            margin-top: 35px;
-            display: flex;
-            width: 780px auto;
-            height: 955px auto;
-            gap: 25px;
+        .stepper-container {
+            width: 255px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #008080;
             padding: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            z-index: 1000;
+            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-container {
+            margin-top: 66px;
+            margin-right: 130px;
+            margin-bottom: 66px;
+            margin-left: 370px;
+            flex-grow: 1;
         }
     </style>
 </head>
 
 <body>
-    <div class="create-account-2-2-container">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
-        <div class="account-form-2-2">
-            <x-Register.form-title title="Getting to know you" />
-            
 
-        </div>
+<x-title-required title="Policy Name" :required="true" placeholder="(e.g., Health Policy)" />
 
-    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

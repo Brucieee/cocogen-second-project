@@ -22,8 +22,8 @@
             left: 349px;
             padding: 35px;
             gap: 25px;
-            margin-left: 300px;
-            display: none;
+            margin-left: 115px;
+            display: flex;
             flex-direction: column;
         }
 
@@ -145,12 +145,10 @@
 
             <div class="existing-policy">
                 <p>Do you have an existing policy with Cocogen?<span>*</span></p>
-                <div class="pill-btns">
                     <x-Buttons.pill-button
                         id="existing-policy-pill"
                         :pillOneText="'No'"
                         :pillTwoText="'Yes'" />
-                </div>
             </div>
         </div>
         <div class="next-cancel-btns">
