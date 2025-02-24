@@ -11,7 +11,9 @@
 
 <body>  
 
-    @include('Register.create-account-2-2')
+    <!-- @include('Register.create-account-2-2') -->
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

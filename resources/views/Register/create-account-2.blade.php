@@ -12,12 +12,12 @@
             width: 100%;
             height: 100%;
             font-family: 'Inter', sans-serif;
-            display: none;
+            display: flex;
             flex-direction: row;
         }
 
         .create-account-2 {
-            display: none;
+            display: flex;
             flex-direction: column;
             width: 780px auto;
             height: 975px auto;
@@ -25,7 +25,6 @@
             gap: 25px;
             margin-left: 115px;
             margin-top: 66px;
-
         }
 
         .account-form-2 {
@@ -42,8 +41,14 @@
 
         .checkbox-col-1 {
             display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .checkbox-col-1 .checkbox-row {
+            display: flex;
             gap: 10px;
-            justify-content: space-between;
+            width: 48%; /* Ensure they take up 2 columns */
         }
 
         .check-row-1,
@@ -66,15 +71,14 @@
             display: flex;
             gap: 20px;
             flex-direction: column;
-
         }
 
         .contact-col-1 {
             display: flex;
             gap: 20px;
         }
-        .next-cancel-btn-2
-        {
+
+        .next-cancel-btn-2 {
             display: flex;
             gap: 25px;
         }
@@ -82,7 +86,7 @@
 </head>
 
 <body>
-<div class="create-account-2" id="form-2">
+    <div class="create-account-2" id="form-2">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="account-form-2">
             <x-Register.form-title title="Getting to know you" />
@@ -101,18 +105,20 @@
                                 name="International-Travel"
                                 label="International Travel Plus"
                                 :checked=false />
+                        </div>
+                        <div class="check-row-2">
                             <x-buttons.checkbox-button
                                 id="Domestic-Travel"
                                 name="Domestic-Travel"
                                 label="Domestic Travel Plus"
                                 :checked=false />
-                        </div>
-                        <div class="check-row-2">
                             <x-buttons.checkbox-button
                                 id="furtech"
                                 name="furtech"
                                 label="Furtech"
                                 :checked=false />
+                        </div>
+                        <div class="check-row-3">
                             <x-buttons.checkbox-button
                                 id="bonds"
                                 name="bonds"
@@ -124,7 +130,7 @@
                                 label="Hackguard"
                                 :checked=false />
                         </div>
-                        <div class="check-row-3">
+                        <div class="check-row-4">
                             <x-buttons.checkbox-button
                                 id="condo-excel"
                                 name="condo-excel"
@@ -146,7 +152,7 @@
                     </div>
 
                     <div class="branch-contact">
-                        <p>Which branch should you with to be contacted by?<span>*</span><img src="" alt="icon-info"></p>
+                        <p>Which branch should you wish to be contacted by?<span>*</span><img src="" alt="icon-info"></p>
                         <div class="branch-input">
                             <x-fields.dropdown-field-2
                                 id="branch"
@@ -160,42 +166,41 @@
                     </div>
 
                     <div class="contact-type">
-                        <div class="contact-col-1">
-                            <x-buttons.checkbox-button
-                                id="email"
-                                name="email"
-                                label="Email"
-                                :checked=false />
-                            <x-buttons.checkbox-button
-                                id="sms"
-                                name="sms"
-                                label="SMS"
-                                :checked=false />
-                        </div>
-                        <div class="contact-col-1">
-                            <x-buttons.checkbox-button
-                                id="call"
-                                name="call"
-                                label="Call"
-                                :checked=false />
-                            <x-buttons.checkbox-button
-                                id="messenger"
-                                name="messenger"
-                                label="Messenger"
-                                :checked=false />
+                        <div class="checkbox-col-1">
+                            <div class="checkbox-row">
+                                <x-buttons.checkbox-button
+                                    id="email"
+                                    name="email"
+                                    label="Email"
+                                    :checked=false />
+                                <x-buttons.checkbox-button
+                                    id="sms"
+                                    name="sms"
+                                    label="SMS"
+                                    :checked=false />
+                            </div>
+                            <div class="checkbox-row">
+                                <x-buttons.checkbox-button
+                                    id="call"
+                                    name="call"
+                                    label="Call"
+                                    :checked=false />
+                                <x-buttons.checkbox-button
+                                    id="messenger"
+                                    name="messenger"
+                                    label="Messenger"
+                                    :checked=false />
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
+
             <div class="next-cancel-btn-2">
                 <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
                 <x-buttons.primary-button>Next</x-buttons.primary-button>
             </div>
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

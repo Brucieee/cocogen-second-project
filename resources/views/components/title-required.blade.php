@@ -35,7 +35,7 @@
     @if($required)
       <span class="required">*</span>
     @endif
-    @if($placeholder)
+    @if(isset($placeholder) && $placeholder)
       <span class="custom-placeholder">{{ $placeholder }}</span>
     @endif
   </span>
