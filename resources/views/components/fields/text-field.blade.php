@@ -33,9 +33,7 @@
         font-weight: 400;
         line-height: normal;
         margin-left: 0;
-        /* Ensure no extra space before the asterisk */
         padding-left: 0;
-        /* Ensure no padding before the asterisk */
     }
 
     /* Input Field Container */
@@ -66,7 +64,6 @@
     /* Placeholder Text Styling */
     .text-field::placeholder {
         color: #1E1F21;
-        /* Change placeholder text color */
     }
 </style>
 
@@ -76,11 +73,11 @@
         <span class="label-text">
             {{ $label }}
             @if(!empty($required))<span class="required">*</span> @endif
-        </span> <!-- Dynamic label text -->
+        </span>
     </div>
 
     <!-- Input Field Container -->
     <div class="input-container">
-        <input type="text" id="{{ $id }}" class="text-field" placeholder="{{ $placeholder }}">
+        <input type="{{ $type ?? 'text' }}" id="{{ $id }}" class="text-field" placeholder="{{ $placeholder }}">
     </div>
 </div>

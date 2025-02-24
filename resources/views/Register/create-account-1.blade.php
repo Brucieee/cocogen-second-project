@@ -13,32 +13,18 @@
             height: 100%;
             font-family: 'Inter', sans-serif;
             display: flex;
-            flex-direction: row;
         }
 
-        .form-container-1 {
+        .account-container-1 {
             width: 784px;
             height: 542px auto;
             top: 96px;
             left: 349px;
             padding: 35px;
             gap: 55px;
-            margin: auto;
+            margin-left: 300px;
             display: flex;
-        }
-        .form-1{
-            border: 1px solid black;
-            gap: 35px;
-        }
-        .identity-btn-1{
-            border: 1px solid black;
-
-        }
-
-        .row-1, .row-2{
-            justify-content: space-between;
-            gap: 25px;
-            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -48,82 +34,60 @@
 
 
 
-    <div class="form-container-1" id="form-1">
-        <div class="form-title">
-            <h1>Create account as Policyholder</h1>
-        
-
-        <div class="form-1">
-            <x-Register.form-title
-                title="Your identity" />
-            <div class="form-contents-1">
-                <div class="row-1">
-                    <x-fields.text-field
-                        name="house-unit"
-                        label="House/Unit No."
-                        placeholder="10"
+    <div class="account-container-1" id="account-form-1">
+        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <div class="account-form">
+            <x-Register.form-title title="Getting to know you" />
+            <div class="account-form-contents">
+                <div class="form-row-1">
+                <x-fields.text-field
+                        id="first-name"
+                        name="first-name"
+                        label="First Name"
+                        placeholder="First Name"
+                        width="212px"
                         required />
-
-                    <x-fields.text-field
-                        name="Street"
-                        label="Street"
-                        placeholder="Street name"
+                <x-fields.text-field
+                        id="middle-name"
+                        name="middle-name"
+                        label="Middle Name"
+                        placeholder="Middle Name"
+                        width="212px"
                         required />
-
-                    <x-fields.dropdown-field
-                        name="Barangay"
-                        label="Barangay"
-                        :options="['Pasig Filipino' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
-                        width="345px"
-                        height="56px"
+                <x-fields.text-field
+                        id="last-name"
+                        name="last-name"
+                        label="Last Name"
+                        placeholder="Last Name"
+                        width="212px"
                         required />
                 </div>
-                <div class="row-2">
-
-                    <x-fields.dropdown-field
-                        name="City"
-                        label="City"
-                        :options="['City' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
-                        width="345px"
-                        height="56px"
+                <div class="form-row-2">
+                <x-fields.text-field
+                        type="Date"
+                        id="date-birth"
+                        name="date-birth"
+                        label="Date of Birth"
+                        placeholder="Date of Birth"
+                        width="330px"
                         required />
-
-                    <x-fields.dropdown-field
-                        name="Province"
-                        label="Province"
-                        :options="['Province' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
-                        width="345px"
-                        height="56px"
-                        required />
-
-                    <x-fields.dropdown-field
-                        name="Region"
-                        label="Region"
-                        :options="['Region' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
-                        width="345px"
-                        height="56px"
+                <x-fields.text-field
+                        id="place-birth"
+                        name="-place-birth"
+                        label="Place of Birth"
+                        placeholder="Place of Birth"
+                        width="330px"
                         required />
                 </div>
-                <div class="row-3">
-
-                    <x-fields.text-field
-                        name="zip"
-                        label="ZIP"
-                        placeholder="10"
-                        required />
+                <div class="form-row-3">
+                    
                 </div>
-
-            </div>
-
-            <div class="identity-btn-1">
-                <div class="row-btn">
-                    <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-                    <x-buttons.primary-button>Next</x-buttons.primary-button>
-
+                <div class="form-row-4">
+                    
                 </div>
-            </div>
             </div>
         </div>
+
     </div>
 
 
