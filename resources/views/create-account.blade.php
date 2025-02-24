@@ -99,10 +99,6 @@
 
 
         </form>
-
-       
-        
-
         @include('Register.account-registered')
 
     </div>

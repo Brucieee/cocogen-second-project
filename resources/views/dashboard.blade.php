@@ -9,9 +9,12 @@
     </style>
 </head>
 
-<body>  
+<body>
+    <form method="" action="">
 
-    <!-- @include('Register.create-account-2-2') -->
+       @include('Register.create-account-2') 
+
+    </form>
 
 
 

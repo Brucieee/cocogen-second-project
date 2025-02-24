@@ -42,13 +42,15 @@
         .checkbox-col-1 {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap; /* Allow wrapping */
+            flex-wrap: wrap;
+            /* Allow wrapping */
         }
 
         .checkbox-col-1 .checkbox-row {
             display: flex;
             gap: 10px;
-            width: 48%; /* Ensure they take up 2 columns */
+            width: 48%;
+            /* Ensure they take up 2 columns */
         }
 
         .check-row-1,
@@ -86,8 +88,9 @@
 </head>
 
 <body>
+    
     <div class="create-account-2" id="form-2">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+    <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="account-form-2">
             <x-Register.form-title title="Getting to know you" />
             <div class="policy-checkbox">
@@ -155,13 +158,13 @@
                         <p>Which branch should you wish to be contacted by?<span>*</span><img src="" alt="icon-info"></p>
                         <div class="branch-input">
                             <x-fields.dropdown-field-2
-                                id="branch"
-                                name="branch"
-                                label="Select one (1) Cocogen branch"
-                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                                placeholder="Filipino"
-                                width="330px"
-                                required />
+                                name="language"
+                                id="languageDropdown"
+                                label="Field Label"
+                                placeholder="Type here to search"
+                                :options="['filipino' => 'Filipino', 'english' => 'English', 'others' => 'Others']"
+                                :required="true" />
+
                         </div>
                     </div>
 
@@ -201,6 +204,7 @@
                 <x-buttons.primary-button>Next</x-buttons.primary-button>
             </div>
         </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
