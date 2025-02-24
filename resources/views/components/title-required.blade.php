@@ -1,5 +1,5 @@
 <style scoped>
-  .title-required {
+  .title-text-required {
     width: auto;
     height: auto;
     color: var(--Primary-Black-Text, #303030);
@@ -8,11 +8,13 @@
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
+    margin: 0; /* Ensure no margin */
+    padding: 0; /* Ensure no padding */
   }
 
   .required {
     color: var(--Status-Danger, #DD0707);
-    margin-left: 4px;
+    margin-left: 4px; /* Add space between required asterisk and text */
   }
 
   .custom-placeholder {
@@ -30,7 +32,7 @@
 </style>
 
 <div class="title-required">
-  <span class="title-text">
+  <span class="title-text-required">
     {{ $title }}
     @if($required)
       <span class="required">*</span>
