@@ -5,50 +5,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%; 
+            height: 100%;
             font-family: 'Inter', sans-serif;
             display: flex;
-            flex-direction: row; 
+            flex-direction: row;
         }
 
-        .stepper-container {
-            width: 255px;
-            height: 100vh;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            padding: 35px;
+        .create-account-2-2-container {
+            margin-left: 111px;
+            margin-top: 35px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-container {
-            margin-top: 66px;
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px; 
-            flex-grow: 1; 
+            width: 780px auto;
+            height: 955px auto;
+            gap: 25px;
+            padding: 35px;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="stepper-container">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
-
-    <div class="content-container">
-      
+    <div class="create-account-2-2-container">
+        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
 
     </div>
 

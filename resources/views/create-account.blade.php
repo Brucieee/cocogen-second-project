@@ -96,13 +96,16 @@
     <div class="container-create-account">
         <form method="" action="">
             @include('Register.create-account-1')
-            @include('Register.create-account-2')
+          @include('Register.create-account-2-2')
+
 
         </form>
 
         @include('Register.account-registered')
 
     </div>
+  
+
     <!-- Add Bootstrap JavaScript (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
