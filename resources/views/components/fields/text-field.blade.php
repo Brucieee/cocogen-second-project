@@ -2,7 +2,7 @@
     /* Main container */
     .text-field-container {
         height: 56px;
-        width: {{ $width ?? '100%' }}; /* Use dynamic width or default to 100% */
+        width: {{ $width ?? '100%' }}; 
         display: flex;
         flex-direction: column;
     }

@@ -39,31 +39,41 @@
 </div>
 
 <style>
-    .dropdown-container {
-        display: flex;
-        flex-direction: column;
-        width: {{ $width ?? '100%' }};
-        position: relative;
-    }
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Inherit width from the parent element (input container) */
+    position: relative;
+    gap: 5px;
+}
 
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        border-radius: 6px;
-        border: 1px solid var(--Surfaces-LVL-1, #F2F2F2);
-        box-shadow: 4px 2px 10px rgba(230, 230, 230, 0.5);
-        z-index: 10;
-    }
+.input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Ensure the input container spans the full width of its parent */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 50%; /* Inherit the width of the input container */
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--Surfaces-LVL-1, #F2F2F2);
+    box-shadow: 4px 2px 10px rgba(230, 230, 230, 0.5);
+    z-index: 10;
+    box-sizing: border-box;
+}
 
     .dropdown-icon {
         width: 16px;
         height: 16px;
         margin-left: auto;
         transition: transform 0.3s ease;
+        filter: invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%);
     }
 
     .dropdown-menu.open {
@@ -77,6 +87,7 @@
         padding: 8px 16px;
         align-items: center;
         gap: 10px;
+        box-sizing: border-box;
     }
 
     .search-bar {
@@ -116,6 +127,9 @@
         icon.src = menu.classList.contains('open') 
             ? '{{ asset('assets/icons/Icon-ArrowUp.svg') }}' 
             : '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
+        icon.style.filter = menu.classList.contains('open')
+            ? 'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)' // #D7DEE3
+            : 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
     }
 
     function filterOptions(input) {
