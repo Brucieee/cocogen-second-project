@@ -14,6 +14,13 @@
             font-family: 'Inter', sans-serif;
             display: flex;
         }
+        .content-container {
+            margin-top: 66px;
+            margin-right: 130px;
+            margin-bottom: 66px;
+            margin-left: 370px;
+            flex-grow: 1;
+        }
 
         .account-container-1 {
             width: 775px auto;

@@ -15,17 +15,21 @@
             display: flex;
             flex-direction: row;
         }
+        .content-container {
+            margin-top: 66px;
+            margin-right: 130px;
+            margin-bottom: 66px;
+            margin-left: 370px;
+            flex-grow: 1;
+        }
 
         .create-account-2 {
             display: flex;
             flex-direction: column;
-            width: 780px auto;
+            width: 780px ;
             height: 975px auto;
             padding: 35px;
             gap: 25px;
-            margin-left: 115px;
-            margin-top: 66px;
-            margin-left: 370px;
         }
 
         .account-form-2 {
@@ -161,10 +165,11 @@
                             <x-fields.dropdown-field-2
                                 name="language"
                                 id="languageDropdown"
-                                label="Field Label"
+                                label="Select one (1) Cocogen branch"
                                 placeholder="Type here to search"
-                                :options="['filipino' => 'Filipino', 'english' => 'English', 'others' => 'Others']"
-                                :required="true" />
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                                :required="true"
+                                width="300px" />
 
                         </div>
                     </div>

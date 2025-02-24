@@ -16,6 +16,14 @@
             flex-direction: row;
         }
 
+        .content-container {
+            margin-top: 66px;
+            margin-right: 130px;
+            margin-bottom: 66px;
+            margin-left: 370px;
+            flex-grow: 1;
+        }
+
         .identity-3-container {
             margin-left: 98px;
             margin-top: 65px;
@@ -27,35 +35,41 @@
             flex-direction: column;
 
         }
-        .identity-form-3
-        {
+
+        .identity-form-3 {
             display: flex;
             flex-direction: column;
             gap: 35px;
         }
-        .payment-method_exists{
+
+        .payment-method_exists {
             display: flex;
             gap: 20px;
         }
-        .pill-button
-        {
+
+        .pill-button {
             gap: 22px;
             display: flex;
 
         }
-        .paymnet-fields
-        {
+
+        .payment-fields {
             display: flex;
             justify-content: space-between;
             gap: 25px;
+        }
+
+        .next-cancel-btn-3 {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .form-contents {
+            display: flex;
+            gap: 20px;
             flex-direction: column;
         }
-        .next-cancel-btn-3
-        {
-            display: flex;
-            justify-content: space-between;
-            gap: 25px;
-        } 
     </style>
 </head>
 
@@ -64,41 +78,45 @@
     <div class="identity-3-container">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="identity-form-3">
-            <x-Register.form-title title="Getting to know you" />
-            <div class="payment-method">
-                <x-title-required title="Do you want to add payment method?" placeholder="(Optional)" required="false" />
-                <div class="pill-btns">
-                    <x-Buttons.pill-button
-                        id="existing-policy-pill"
-                        :pillOneText="'No'"
-                        :pillTwoText="'Yes'" />
+            <x-Register.form-title title="Your identity" />
+            <div class="form-contents">
+                <div class="payment-method">
+                    <x-title-required title="Do you want to add payment method?" placeholder="(Optional)" :required="false" />
+                    <div class="pill-btns">
+                        <x-Buttons.pill-button
+                            id="existing-policy-pill"
+                            :pillOneText="'No'"
+                            :pillTwoText="'Yes'" />
+                    </div>
+                    <div class="payment-fields">
+                        <x-Fields.dropdown-field-2
+                            id="payment-type"
+                            name="payment-type"
+                            label="Payment Types"
+                            :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                            placeholder="Payment Type"
+                            width="330px"
+                            required />
+                        <x-Fields.dropdown-field-2
+                            id="bank"
+                            name="bank"
+                            label="Bank/E-Wallet"
+                            :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                            placeholder="Bank/E-Wallet Name"
+                            width="330px"
+                            required />
+                    </div>
                 </div>
-                <div class="payment-fields">
-                    <x-Fields.dropdown-field-2
-                        id="payment-type"
-                        name="payment-type"
-                        label="Payment Types"
-                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                        placeholder="Payment Type"
-                        width="330px"
-                        required />
-                    <x-Fields.dropdown-field-2
-                        id="bank"
-                        name="bank"
-                        label="Bank/E-Wallet"
-                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                        placeholder="Bank/E-Wallet Name"
-                        width="330px"
-                        required />
-                </div>
-
-                <div class="next-cancel-btn-3">
-                    <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-                    <x-buttons.primary-button>Next</x-buttons.primary-button>
-                </div>
-
-
             </div>
+
+
+            <div class="next-cancel-btn-3">
+                <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
+                <x-buttons.primary-button>Next</x-buttons.primary-button>
+            </div>
+
+
+
         </div>
     </div>
 

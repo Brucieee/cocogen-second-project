@@ -49,44 +49,44 @@
 
 
     <script>
-        $(document).ready(function() {
-            $("#step2").hide();
-            $("#step3").hide();
-            $("#step3").hide();
+//         $(document).ready(function() {
+//             $("#step2").hide();
+//             $("#step3").hide();
+//             $("#step3").hide();
 
 
 
-        });
-        $(document).ready(function() {
-    $("#step2").hide();
-    $("#step3").hide();
+//         });
+//         $(document).ready(function() {
+//     $("#step2").hide();
+//     $("#step3").hide();
 
-    // Move to Step 2
-    $('#next-btn-1').click(function () {
-        $("#step1").hide();
-        $("#step2").show();
-    });
+//     // Move to Step 2
+//     $('#next-btn-1').click(function () {
+//         $("#step1").hide();
+//         $("#step2").show();
+//     });
 
-    // Move back to Step 1
-    $("#cancel-btn-2").click(function () {
-        $("#step2").hide();
-        $("#step1").show();
-    });
+//     // Move back to Step 1
+//     $("#cancel-btn-2").click(function () {
+//         $("#step2").hide();
+//         $("#step1").show();
+//     });
 
-    // Move to Step 3
-    $("#next-btn-2").click(function (e) {
-        e.preventDefault();
-        $("#step2").hide();
-        $("#step3").show();
-    });
+//     // Move to Step 3
+//     $("#next-btn-2").click(function (e) {
+//         e.preventDefault();
+//         $("#step2").hide();
+//         $("#step3").show();
+//     });
 
-    // Move back to Step 2
-    $("#cancel-btn-3").click(function (e) {
-        e.preventDefault();
-        $("#step3").hide();
-        $("#step2").show();
-    });
-});
+//     // Move back to Step 2
+//     $("#cancel-btn-3").click(function (e) {
+//         e.preventDefault();
+//         $("#step3").hide();
+//         $("#step2").show();
+//     });
+// });
 
     </script>
 
@@ -103,19 +103,20 @@
         <x-stepper :currentStep="session('currentStep', 3)" />
     </div>
 
-    <div class="container-create-account">
+    <div class="content-container">
         <form method="" action="">
-            @include('Register.create-account-2')
-
+            
+    
 
         </form>
 
 
-
+        @include('Register.your-identity-3')
 
         @include('Register.account-registered')
 
     </div>
+    
 
 
     <!-- Add Bootstrap JavaScript (optional) -->
