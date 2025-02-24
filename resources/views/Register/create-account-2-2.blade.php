@@ -31,6 +31,11 @@
 <body>
     <div class="create-account-2-2-container">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <div class="account-form-2-2">
+            <x-Register.form-title title="Getting to know you" />
+            
+
+        </div>
 
     </div>
 

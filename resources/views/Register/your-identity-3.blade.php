@@ -15,19 +15,47 @@
             display: flex;
             flex-direction: row;
         }
-    
+
+        .identity-3-container {}
     </style>
 </head>
 
 <body>
 
-        <div class="content-container"></div>
+    <div class="identity-3-container">
+        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <div class="identity-form-3">
+            <x-Register.form-title title="Getting to know you" />
+            <div class="payment-method">
+                <x-title-required title="Do you want to add payment method?" placeholder="(Optional)" />
+                <div class="pill-btns">
+                    <x-Buttons.pill-button
+                        id="existing-policy-pill"
+                        :pillOneText="'No'"
+                        :pillTwoText="'Yes'" />
+                </div>
+                <div class="payment-fields">
+                    <x-fields.dropdown-field-2
+                        id="payment-type"
+                        name="payment-type"
+                        label="Payment Types"
+                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                        placeholder="Payment Type"
+                        width="330px"
+                        required />
+                    <x-fields.dropdown-field-2
+                        id="bank"
+                        name="bank"
+                        label="Bank/E-Wallet"
+                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                        placeholder="Bank/E-Wallet Name"
+                        width="330px"
+                        required />
+                </div>
 
 
-
-
-
-
+            </div>
+        </div>
     </div>
 
 

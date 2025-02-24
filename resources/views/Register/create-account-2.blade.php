@@ -82,7 +82,7 @@
 </head>
 
 <body>
-    <div class="create-account-2" id="form-2">
+<div class="create-account-2" id="form-2">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="account-form-2">
             <x-Register.form-title title="Getting to know you" />

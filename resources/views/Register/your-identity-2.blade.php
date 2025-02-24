@@ -129,7 +129,6 @@
 
 <body>
 
-    <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="content-container">
         <div class="container-1">
@@ -150,7 +149,7 @@
                             Upload ID
                         </x-Buttons.upload-button>
 
-                        <x-Reminder.file-format />
+                        <x-Reminders.file-format />
                     </div>
 
                     <div class="container-5">
@@ -158,7 +157,7 @@
                         <x-Buttons.upload-button>
                             Upload
                         </x-Buttons.upload-button>
-                        <x-Reminder.file-format />
+                        <x-Reminders.file-format />
                     </div>
                 </div>
                 <div class="container-6">
