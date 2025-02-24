@@ -15,7 +15,7 @@
     margin-left: 4px;
   }
 
-  .placeholder {
+  .custom-placeholder {
     background: transparent;
     color: var(--Primary-Caption-Black-text, #585858);
     font-family: Inter, sans-serif;
@@ -24,8 +24,8 @@
     font-weight: 500;
     line-height: 24px;
     margin-left: 8px;
-    cursor: default;
-    /* Prevent loading cursor */
+    cursor: default; /* Prevent loading cursor */
+    opacity: 1; /* Ensure full opacity for correct color */
   }
 </style>
 
@@ -33,10 +33,10 @@
   <span class="title-text">
     {{ $title }}
     @if($required)
-    <span class="required">*</span>
+      <span class="required">*</span>
     @endif
     @if($placeholder)
-    <span class="placeholder">{{ $placeholder }}</span>
+      <span class="custom-placeholder">{{ $placeholder }}</span>
     @endif
   </span>
 </div>

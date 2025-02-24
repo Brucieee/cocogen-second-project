@@ -9,7 +9,7 @@
     </style>
 </head>
 
-<body>
+<body>  
 
     @include('Register.create-account-2-2')
 
