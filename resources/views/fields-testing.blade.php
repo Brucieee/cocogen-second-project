@@ -17,3 +17,5 @@
     :width="'300px'"
     :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']"
 />
+
+<x-Reminders.update-profile/>
