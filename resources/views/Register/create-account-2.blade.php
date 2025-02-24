@@ -15,17 +15,21 @@
             display: flex;
             flex-direction: row;
         }
+        .content-container {
+            margin-top: 66px;
+            margin-right: 130px;
+            margin-bottom: 66px;
+            margin-left: 370px;
+            flex-grow: 1;
+        }
 
         .create-account-2 {
             display: flex;
             flex-direction: column;
-            width: 780px auto;
+            width: 780px ;
             height: 975px auto;
             padding: 35px;
             gap: 25px;
-            margin-left: 115px;
-            margin-top: 66px;
-            margin-left: 370px;
         }
 
         .account-form-2 {
@@ -156,13 +160,14 @@
                         <p>Which branch should you wish to be contacted by?<span>*</span><img src="" alt="icon-info"></p>
                         <div class="branch-input">
                             <x-fields.dropdown-field-2
-                                id="branch"
-                                name="branch"
+                                name="language"
+                                id="languageDropdown"
                                 label="Select one (1) Cocogen branch"
+                                placeholder="Type here to search"
                                 :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                                placeholder="Filipino"
-                                width="330px"
-                                required />
+                                :required="true"
+                                width="300px" />
+
                         </div>
                     </div>
 
