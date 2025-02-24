@@ -12,12 +12,12 @@
             width: 100%;
             height: 100%;
             font-family: 'Inter', sans-serif;
-            display: none;
+            display: flex;
             flex-direction: row;
         }
 
         .create-account-2 {
-            display: none;
+            display: flex;
             flex-direction: column;
             width: 780px auto;
             height: 975px auto;
@@ -151,7 +151,7 @@
                             <x-fields.dropdown-field-2
                                 id="branch"
                                 name="branch"
-                                label="Select one (1) Cocogen branch*"
+                                label="Select one (1) Cocogen branch"
                                 :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
                                 placeholder="Filipino"
                                 width="330px"

@@ -95,10 +95,11 @@
 
     <div class="container-create-account">
         <form method="" action="">
-            @include('Register.your-identity-3')
-
-
+        @include('Register.create-account-2')
         </form>
+
+       
+        
 
         @include('Register.account-registered')
 
