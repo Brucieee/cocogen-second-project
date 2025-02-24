@@ -8,3 +8,12 @@
     :width="'300px'"
     :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']"
 />
+
+<x-fields.dropdown-field-2
+    label="Test"
+    id="test"
+    placeholder="Select nationality"
+    :required="false"
+    :width="'300px'"
+    :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']"
+/>
