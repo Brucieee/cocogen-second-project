@@ -5,6 +5,6 @@
     id="nationality-dropdown" 
     placeholder="Select nationality" 
     :required="true" 
-    :width="'336px'"
+    :width="'300px'"
     :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']"
 />
