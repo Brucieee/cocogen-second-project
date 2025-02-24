@@ -68,10 +68,6 @@
 </head>
 
 <body>
-
-
-
-
     <div class="form-container-1" id="identity-form-1">
 
         <h1>Create account as Policyholder</h1>
