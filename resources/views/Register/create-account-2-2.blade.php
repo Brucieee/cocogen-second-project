@@ -84,12 +84,14 @@
             <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 35px; align-self: stretch;">
 
                 <!-- Title for Branch -->
-                <x-title-required title="Which Cocogen branch should you wish to be contacted by?" :required="true" />
+                <x-title-required
+                    title="Which Cocogen branch should you wish to be contacted by?"
+                    :required="true" />
 
                 <!-- Dropdown Container -->
                 <div style="display: flex; align-items: flex-end; gap: 20px; align-self: stretch;">
                     <x-fields.dropdown-field-2
-                        label="Select one (1) Cocogen branch*"
+                        label="Select one (1) Cocogen branch"
                         id="selected_branch"
                         placeholder="Select branch"
                         :required="true"
@@ -103,14 +105,24 @@
             <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px;">
 
                 <!-- Title for Contact -->
-                <x-title-required title="How do you want to be contacted?" :required="true" placeholder="(You may select more than one)" />
+                <x-title-required
+                    title="How do you want to be contacted?"
+                    :required="true"
+                    placeholder="(You may select more than one)" />
 
-                <!-- Checkbox Container -->
-                <div style="display: flex; align-items: flex-start; gap: 20px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
-                    <x-Buttons.checkbox-button label="Email" />
-                    <x-Buttons.checkbox-button label="Phone" />
-                    <x-Buttons.checkbox-button label="SMS" />
-                    <x-Buttons.checkbox-button label="Mail" />
+                <!-- Main Container -->
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <!-- Left Container -->
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <x-Buttons.checkbox-button label="Email" />
+                        <x-Buttons.checkbox-button label="SMS" />
+                    </div>
+
+                    <!-- Right Container -->
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <x-Buttons.checkbox-button label="Messenger" />
+                        <x-Buttons.checkbox-button label="Call" />
+                    </div>
                 </div>
 
             </div>

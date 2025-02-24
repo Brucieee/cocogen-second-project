@@ -1,48 +1,3 @@
-<div class="dropdown-container">
-    <!-- Closed Dropdown Field -->
-    <div class="text-field-container">
-        <div class="label-container">
-            <span class="label-text">
-                {{ $label }}
-                @if(!empty($required))<span class="required">*</span>@endif
-            </span>
-        </div>
-        <div class="input-container" onclick="toggleDropdown('{{ $id }}')">
-            <input 
-                type="text" 
-                id="{{ $id }}" 
-                class="text-field" 
-                placeholder="{{ $placeholder }}" 
-                oninput="filterOptions(this.value, '{{ $id }}')"
-            >
-            <img 
-                src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" 
-                id="dropdown-icon-{{ $id }}" 
-                class="dropdown-icon"
-                onload="initializeIcon('{{ $id }}')"
-            >
-        </div>
-    </div>
-
-    <!-- Open Dropdown Menu -->
-    <div class="dropdown-menu" id="dropdown-menu-{{ $id }}">
-        <!-- Search Bar -->
-        <div class="search-bar-container">
-            <img src="{{ asset('assets/icons/Icon-Search.svg') }}" class="search-icon">
-            <input type="text" class="search-bar" placeholder="Type here to search" oninput="filterOptions(this.value, '{{ $id }}')">
-        </div>
-        
-        <!-- Dropdown Options -->
-        <div class="dropdown-options">
-            @foreach ($options as $option)
-                <div class="dropdown-option" onclick="selectOption('{{ $option }}', '{{ $id }}')">
-                    {{ $option }}
-                </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-
 <style>
     .dropdown-container {
         display: flex;
@@ -52,8 +7,68 @@
         gap: 5px;
     }
 
+    .dropdown-text-field-container {
+        height: 56px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropdown-label-container {
+        display: flex;
+        padding: 0px 10px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+    }
+
+    .dropdown-label-text {
+        color: var(--Surfaces-LVL-5, #848A90);
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .dropdown-required {
+        color: var(--Status-Danger, #DD0707);
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: normal;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .dropdown-input-container {
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 1px;
+        border-bottom: 1px solid var(--Teal-LVL-9, #066);
+        color: #1E1F21;
+    }
+
+    .dropdown-text-field {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #1E1F21;
+    }
+
+    .dropdown-text-field::placeholder {
+        color: #1E1F21;
+    }
+
     .dropdown-menu {
-        display: none;
+        display: none; /* Hidden by default */
         position: absolute;
         top: calc(100% + 5px);
         left: 0;
@@ -66,17 +81,17 @@
         box-sizing: border-box;
     }
 
+    .dropdown-menu.open {
+        display: flex; /* Shown when open */
+        flex-direction: column;
+        gap: 5px;
+    }
+
     .dropdown-icon {
         width: 16px;
         height: 16px;
         margin-left: auto;
-        transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition for both properties */
-    }
-
-    .dropdown-menu.open {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        transition: transform 0.3s ease, filter 0.3s ease;
     }
 
     .search-bar-container {
@@ -116,6 +131,51 @@
     }
 </style>
 
+<div class="dropdown-container">
+    <!-- Closed Dropdown Field -->
+    <div class="dropdown-text-field-container">
+        <div class="dropdown-label-container">
+            <span class="dropdown-label-text">
+                {{ $label }}
+                @if(!empty($required))<span class="dropdown-required">*</span>@endif
+            </span>
+        </div>
+        <div class="dropdown-input-container" onclick="toggleDropdown('{{ $id }}')">
+            <input 
+                type="text" 
+                id="{{ $id }}" 
+                class="dropdown-text-field" 
+                placeholder="{{ $placeholder }}" 
+                oninput="filterOptions(this.value, '{{ $id }}')"
+            >
+            <img 
+                src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" 
+                id="dropdown-icon-{{ $id }}" 
+                class="dropdown-icon"
+                onload="initializeIcon('{{ $id }}')"
+            >
+        </div>
+    </div>
+
+    <!-- Open Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdown-menu-{{ $id }}">
+        <!-- Search Bar -->
+        <div class="search-bar-container">
+            <img src="{{ asset('assets/icons/Icon-Search.svg') }}" class="search-icon">
+            <input type="text" class="search-bar" placeholder="Type here to search" oninput="filterOptions(this.value, '{{ $id }}')">
+        </div>
+        
+        <!-- Dropdown Options -->
+        <div class="dropdown-options">
+            @foreach ($options as $option)
+                <div class="dropdown-option" onclick="selectOption('{{ $option }}', '{{ $id }}')">
+                    {{ $option }}
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
 <script>
     // Initializes the icon to ensure it is visible
     function initializeIcon(id) {
@@ -125,38 +185,37 @@
 
     // Toggles the dropdown visibility and changes the icon accordingly
     function toggleDropdown(id) {
-        const allMenus = document.querySelectorAll('.dropdown-menu');
-        const allIcons = document.querySelectorAll('.dropdown-icon');
-        
-        // Close other dropdowns and reset their icons
-        allMenus.forEach(menu => {
-            if (menu.id !== `dropdown-menu-${id}`) {
-                menu.classList.remove('open');
-            }
-        });
-        
-        allIcons.forEach(icon => {
-            if (icon.id !== `dropdown-icon-${id}`) {
-                icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
-                icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
-            }
-        });
-
-        // Toggle the clicked dropdown
-        const menu = document.getElementById(`dropdown-menu-${id}`);
-        const icon = document.getElementById(`dropdown-icon-${id}`);
-        menu.classList.toggle('open');
-        
-        // Change the icon with smooth transition
-        if (menu.classList.contains('open')) {
-            icon.src = '{{ asset('assets/icons/Icon-ArrowUp.svg') }}';
-            icon.style.filter = 'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)'; // #D7DEE3
-        } else {
+    const allMenus = document.querySelectorAll('.dropdown-menu');
+    const allIcons = document.querySelectorAll('.dropdown-icon');
+    
+    // Close other dropdowns and reset their icons
+    allMenus.forEach(menu => {
+        if (menu.id !== `dropdown-menu-${id}`) {
+            menu.classList.remove('open');
+        }
+    });
+    
+    allIcons.forEach(icon => {
+        if (icon.id !== `dropdown-icon-${id}`) {
             icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
             icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
         }
-    }
+    });
 
+    // Toggle the clicked dropdown
+    const menu = document.getElementById(`dropdown-menu-${id}`);
+    const icon = document.getElementById(`dropdown-icon-${id}`);
+    menu.classList.toggle('open');
+    
+    // Change the icon with smooth transition
+    if (menu.classList.contains('open')) {
+        icon.src = '{{ asset('assets/icons/Icon-ArrowUp.svg') }}';
+        icon.style.filter = 'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)'; // #D7DEE3
+    } else {
+        icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
+        icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
+    }
+}
     // Filters options in the dropdown based on input value
     function filterOptions(input, id) {
         const options = document.querySelectorAll(`#dropdown-menu-${id} .dropdown-option`);

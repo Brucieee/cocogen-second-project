@@ -35,35 +35,12 @@
             position: relative;
         }
 
-        /* Row container for select-account components */
-        .select-account-row {
-            display: flex;
-            justify-content:space-between;
-        }
 
-        .select-account-component {
-            width: 45%;
-            /* Each component takes up 45% of the width */
-        }
-
-        /* Ensure content inside components is responsive */
-        .select-account-component img {
-            width: 100%;
-            /* Ensures images are responsive */
-        }
-
-        /* Positioning for the back button to stay on top */
-        .back-button-row {
-            width: 100%;
-            top: 0;
-            left: 0;
-        }
     </style>
 </head>
 
 <body>
 
-<<<<<<< HEAD
     <div class="stepper-container">
         <x-stepper :currentStep="session('currentStep', 1)" />
     </div>
@@ -71,15 +48,6 @@
     <div class="content-container">
       
 
-=======
-
-    <x-stepper :currentStep="session('currentStep', 1)" />
-
-
-    <div class="content-container">
-
-       
->>>>>>> 10b0fd281417c50fac0b1fe110a4340a1a0ddd8b
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
