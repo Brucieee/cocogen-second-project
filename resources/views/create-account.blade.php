@@ -95,7 +95,9 @@
 
     <div class="container-create-account">
         <form method="" action="">
-        @include('Register.create-account-2')
+            @include('Register.create-account-2')
+
+
         </form>
 
        
