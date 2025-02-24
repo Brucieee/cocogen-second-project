@@ -1,6 +1,6 @@
+@once
 <style>
-    /* Main container */
-    .text-field-container {
+   .text-field-container {
         height: 56px;
         width: {{ $width ?? '100%' }}; 
         display: flex;
@@ -66,7 +66,7 @@
         color: #1E1F21;
     }
 </style>
-
+@endonce
 <div class="text-field-container">
     <!-- Label Container -->
     <div class="label-container">

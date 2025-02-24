@@ -25,6 +25,7 @@
             gap: 25px;
             margin-left: 115px;
             margin-top: 66px;
+            margin-left: 370px;
         }
 
         .account-form-2 {
