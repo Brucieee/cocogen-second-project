@@ -15,7 +15,12 @@
                 placeholder="{{ $placeholder }}" 
                 oninput="filterOptions(this.value, '{{ $id }}')"
             >
-            <img src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" id="dropdown-icon-{{ $id }}" class="dropdown-icon">
+            <img 
+                src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" 
+                id="dropdown-icon-{{ $id }}" 
+                class="dropdown-icon"
+                onload="initializeIcon('{{ $id }}')"
+            >
         </div>
     </div>
 
@@ -112,6 +117,12 @@
 </style>
 
 <script>
+    // Initializes the icon to ensure it is visible
+    function initializeIcon(id) {
+        const icon = document.getElementById(`dropdown-icon-${id}`);
+        icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // Initial down arrow icon color
+    }
+
     // Toggles the dropdown visibility and changes the icon accordingly
     function toggleDropdown(id) {
         const allMenus = document.querySelectorAll('.dropdown-menu');
