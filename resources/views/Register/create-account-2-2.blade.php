@@ -16,6 +16,7 @@
             flex-direction: row;
         }
 
+<<<<<<< HEAD
         .stepper-container {
             width: 255px;
             height: 100vh;
@@ -38,6 +39,16 @@
             margin-bottom: 66px;
             margin-left: 370px;
             flex-grow: 1;
+=======
+        .create-account-2-2-container {
+            margin-left: 111px;
+            margin-top: 35px;
+            display: flex;
+            width: 780px auto;
+            height: 955px auto;
+            gap: 25px;
+            padding: 35px;
+>>>>>>> e18c115e6de190ed86133f09d4c299d218f43573
         }
     </style>
 </head>
