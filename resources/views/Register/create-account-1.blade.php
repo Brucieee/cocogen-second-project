@@ -14,6 +14,7 @@
             font-family: 'Inter', sans-serif;
             display: flex;
         }
+
         .content-container {
             margin-top: 66px;
             margin-right: 130px;
@@ -23,13 +24,12 @@
         }
 
         .account-container-1 {
-            width: 775px auto;
+            width: 775px ;
             height: 830px auto;
             top: 96px;
             left: 349px;
             padding: 35px;
             gap: 25px;
-            margin-left: 115px;
             display: flex;
             flex-direction: column;
         }
@@ -54,10 +54,16 @@
             gap: 25px;
             flex-direction: column;
         }
-        .next-cancel-btns{
+
+        .next-cancel-btns {
             justify-content: space-between;
             gap: 25px;
             display: flex;
+        }
+        .existing-policy {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -147,15 +153,22 @@
                 </div>
             </div>
             <div class="reminder">
+                <x-Reminders.reminder-update-profile>
+                You may change your input data should you need to update your information. Note: Email address cannot be changed.
+                </x-reminder-update-profile>
 
             </div>
 
             <div class="existing-policy">
-                <p>Do you have an existing policy with Cocogen?<span>*</span></p>
-                    <x-Buttons.pill-button
-                        id="existing-policy-pill"
-                        :pillOneText="'No'"
-                        :pillTwoText="'Yes'" />
+            <x-question-label text="Do you have an existing policy with Cocogen?" 
+            required="true" 
+            size="16px" 
+            weight="500" style="Inter" />
+
+                <x-Buttons.pill-button
+                    id="existing-policy-pill"
+                    :pillOneText="'No'"
+                    :pillTwoText="'Yes'" />
             </div>
         </div>
         <div class="next-cancel-btns">

@@ -105,16 +105,13 @@
 
     <div class="content-container">
         <form method="" action="">
-            
+        @include('Register.create-account-1')
     
 
         </form>
 
 
-        @include('Register.failed-otp-page')
-
-        @include('Register.account-registered')
-
+        
     </div>
     
 

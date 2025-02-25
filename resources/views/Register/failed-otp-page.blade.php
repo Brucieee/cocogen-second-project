@@ -15,8 +15,7 @@
             display: flex;
             flex-direction: row;
             box-sizing: border-box;
-            font-family: Inter, sans-serif;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
             
         }
 
@@ -30,6 +29,30 @@
             flex-direction: column;
             box-shadow: 1px 1px 3px rgb(137, 131, 131) ;
             background: #FFFFFF;
+        }
+
+        .warning-contents 
+        {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        .failed-otp-container h2 {
+            font-size: 27px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            
+        }
+
+        
+        .failed-otp-container p {
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            color: #585858;
+            
+            
         }
         .content-container {
             margin-top: 165px;
