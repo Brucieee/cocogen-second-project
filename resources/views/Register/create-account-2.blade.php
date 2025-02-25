@@ -15,6 +15,7 @@
             display: flex;
             flex-direction: row;
         }
+
         .content-container {
             margin-top: 66px;
             margin-right: 130px;
@@ -26,7 +27,7 @@
         .create-account-2 {
             display: flex;
             flex-direction: column;
-            width: 780px ;
+            width: 780px;
             height: 975px auto;
             padding: 35px;
             gap: 25px;
@@ -47,16 +48,11 @@
         .checkbox-col-1 {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap; /* Allow wrapping */
-        }
-
-        .checkbox-col-1 .checkbox-row {
-            display: flex;
-            gap: 10px;
-            width: 48%; /* Ensure they take up 2 columns */
+            flex-wrap: wrap;
         }
 
         .check-row-1,
+        .check-row-3,
         .check-row-2 {
             display: flex;
             gap: 10px;
@@ -66,7 +62,13 @@
 
         .contact-representative {
             display: flex;
-            gap: 25px;
+            gap: 35px;
+            flex-direction: column;
+        }
+
+        .representatives {
+            display: flex;
+            gap: 20px;
             flex-direction: column;
         }
 
@@ -77,6 +79,8 @@
             gap: 20px;
             flex-direction: column;
         }
+
+
 
         .contact-col-1 {
             display: flex;
@@ -96,7 +100,12 @@
         <div class="account-form-2">
             <x-Register.form-title title="Getting to know you" />
             <div class="policy-checkbox">
-                <p>What policy are you interested in? <span>*</span> (You may select as many as you want)</p>
+                <x-question-label text="What policy are you interested in? "
+                    required="true"
+                    size="16px"
+                    weight="500" style="Inter"
+                    info="You may select as many as you want" />
+
                 <div class="policy-checkboxes">
                     <div class="checkbox-col-1">
                         <div class="check-row-1">
@@ -124,10 +133,10 @@
                                 :checked=false />
                         </div>
                         <div class="check-row-3">
-                            <x-buttons.checkbox-button
-                                id="bonds"
-                                name="bonds"
-                                label="Bonds"
+                        <x-buttons.checkbox-button
+                                id="condo-excel"
+                                name="condo-excel"
+                                label="Condo Excel Plus"
                                 :checked=false />
                             <x-buttons.checkbox-button
                                 id="hackguard"
@@ -136,18 +145,18 @@
                                 :checked=false />
                         </div>
                         <div class="check-row-4">
-                            <x-buttons.checkbox-button
-                                id="condo-excel"
-                                name="condo-excel"
-                                label="Condo Excel"
-                                :checked=false />
+                            
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-representative">
                     <div class="representatives">
-                        <p>Do you want to be contacted by a Cocogen Representative?<span>*</span></p>
+                        <x-question-label text="Do you want to be contacted by a Cocogen Representative? "
+                            required="true"
+                            size="16px"
+                            weight="500" style="Inter"
+                            info="" />
                         <div class="pill-btns">
                             <x-Buttons.pill-button
                                 id="existing-policy-pill"
@@ -157,7 +166,15 @@
                     </div>
 
                     <div class="branch-contact">
-                        <p>Which branch should you wish to be contacted by?<span>*</span><img src="" alt="icon-info"></p>
+                        <x-question-label
+                            text="Which Cocogen branch should you wish to be contacted by?"
+                            required="true"
+                            size="16px"
+                            weight="500"
+                            style="Inter"
+                            info=""
+                            icon="" />
+
                         <div class="branch-input">
                             <x-fields.dropdown-field-2
                                 name="language"
@@ -172,6 +189,14 @@
                     </div>
 
                     <div class="contact-type">
+                        <x-question-label
+                            text="How do you want to be contacted? "
+                            required="true"
+                            size="16px"
+                            weight="500"
+                            style="Inter"
+                            info="You may select more than one"
+                            icon="" />
                         <div class="checkbox-col-1">
                             <div class="checkbox-row">
                                 <x-buttons.checkbox-button

@@ -21,9 +21,9 @@
             width: 756px;
             height: 600px;
             margin-top: 55px;
-            margin-left: 125px;
+            margin-left: 225px;
             margin-right: 144px;
-            margin-bottom: 0px;
+            margin-bottom: 44px;
             padding: 25px;
             padding-bottom: 0px;
             display: flex;
@@ -54,8 +54,6 @@
 </head>
 
 <body>
-
-    <x-stepper :currentStep="session('currentStep', 1)" />
 
 
     <div class="content-container">

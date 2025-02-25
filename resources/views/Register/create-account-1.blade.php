@@ -24,7 +24,7 @@
         }
 
         .account-container-1 {
-            width: 775px ;
+            width: 775px;
             height: 830px auto;
             top: 96px;
             left: 349px;
@@ -60,6 +60,7 @@
             gap: 25px;
             display: flex;
         }
+
         .existing-policy {
             display: flex;
             gap: 20px;
@@ -154,16 +155,16 @@
             </div>
             <div class="reminder">
                 <x-Reminders.reminder-update-profile>
-                You may change your input data should you need to update your information. Note: Email address cannot be changed.
-                </x-reminder-update-profile>
+                    You may change your input data should you need to update your information. Note: Email address cannot be changed.
+                    </x-reminder-update-profile>
 
             </div>
 
             <div class="existing-policy">
-            <x-question-label text="Do you have an existing policy with Cocogen?" 
-            required="true" 
-            size="16px" 
-            weight="500" style="Inter" />
+                <x-question-label text="Do you have an existing policy with Cocogen?"
+                    required="true"
+                    size="16px"
+                    weight="500" style="Inter" />
 
                 <x-Buttons.pill-button
                     id="existing-policy-pill"

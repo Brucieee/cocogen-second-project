@@ -105,7 +105,7 @@
 
     <div class="content-container">
         <form method="" action="">
-        @include('Register.create-account-1')
+        @include('Register.your-identity-1')
     
 
         </form>
