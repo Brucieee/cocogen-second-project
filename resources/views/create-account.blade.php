@@ -105,8 +105,8 @@
 
     <div class="content-container">
         <form method="" action="">
-        @include('Register.your-identity-1')
-    
+        @include('Register.otp-page')
+     
 
         </form>
 
