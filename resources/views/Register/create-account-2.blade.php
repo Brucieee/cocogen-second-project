@@ -91,6 +91,18 @@
             display: flex;
             gap: 25px;
         }
+
+        .icon-info {
+            width: 20px;
+            height: 21px;
+            border-radius: 20px;
+        }
+        .label-icon
+        {
+            display: flex;
+            gap: 10px;
+            
+        }
     </style>
 </head>
 
@@ -133,7 +145,7 @@
                                 :checked=false />
                         </div>
                         <div class="check-row-3">
-                        <x-buttons.checkbox-button
+                            <x-buttons.checkbox-button
                                 id="condo-excel"
                                 name="condo-excel"
                                 label="Condo Excel Plus"
@@ -145,7 +157,7 @@
                                 :checked=false />
                         </div>
                         <div class="check-row-4">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -166,14 +178,18 @@
                     </div>
 
                     <div class="branch-contact">
-                        <x-question-label
-                            text="Which Cocogen branch should you wish to be contacted by?"
-                            required="true"
-                            size="16px"
-                            weight="500"
-                            style="Inter"
-                            info=""
-                            icon="" />
+                        <div class="label-icon">
+                            <x-question-label
+                                text="Which Cocogen branch should you wish to be contacted by?"
+                                required="true"
+                                size="16px"
+                                weight="500"
+                                style="Inter"
+                                info="" />
+
+                                <x-modal-info />
+
+                        </div>
 
                         <div class="branch-input">
                             <x-fields.dropdown-field-2

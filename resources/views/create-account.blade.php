@@ -105,7 +105,7 @@
 
     <div class="content-container">
         <form method="" action="">
-        @include('Register.account-registered')
+        @include('Register.create-account-2')
      
 
         </form>
