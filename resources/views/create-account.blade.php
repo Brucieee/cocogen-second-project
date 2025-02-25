@@ -17,21 +17,6 @@
             box-sizing: border-box;
         }
 
-        /* .container-create-account {
-            width: 756px;
-            height: 692px;
-            margin-left: 125px;
-            margin-right: 144px;
-            padding: 25px;
-
-            display: flex;
-            flex-direction: column;
-            
-            gap: 25px;
-           
-            position: relative;
-            box-sizing: border-box;
-        } */
         .stepper {
             position: absolute;
             width: auto;
@@ -39,7 +24,6 @@
             left: 0;
             display: none;
             height: 100%;
-            /* Hide all stepper elements by default */
         }
 
         #step1 {
@@ -49,45 +33,7 @@
 
 
     <script>
-//         $(document).ready(function() {
-//             $("#step2").hide();
-//             $("#step3").hide();
-//             $("#step3").hide();
-
-
-
-//         });
-//         $(document).ready(function() {
-//     $("#step2").hide();
-//     $("#step3").hide();
-
-//     // Move to Step 2
-//     $('#next-btn-1').click(function () {
-//         $("#step1").hide();
-//         $("#step2").show();
-//     });
-
-//     // Move back to Step 1
-//     $("#cancel-btn-2").click(function () {
-//         $("#step2").hide();
-//         $("#step1").show();
-//     });
-
-//     // Move to Step 3
-//     $("#next-btn-2").click(function (e) {
-//         e.preventDefault();
-//         $("#step2").hide();
-//         $("#step3").show();
-//     });
-
-//     // Move back to Step 2
-//     $("#cancel-btn-3").click(function (e) {
-//         e.preventDefault();
-//         $("#step3").hide();
-//         $("#step2").show();
-//     });
-// });
-
+        
     </script>
 
 </head>
@@ -96,19 +42,15 @@
     <div id="step1" class="stepper">
         <x-stepper :currentStep="session('currentStep', 1)" />
     </div>
-    <div id="step2" class="stepper">
-        <x-stepper :currentStep="session('currentStep', 2)" />
-    </div>
-    <div id="step3" class="stepper">
-        <x-stepper :currentStep="session('currentStep', 3)" />
-    </div>
+    
 
     <div class="content-container">
-        <form method="" action="">
-        @include('Register.create-account-2')
-     
+        <form method="" action="" id="StepForm">
+   
 
         </form>
+
+        <div class="step" id="step1">@include('Register.create-account-1')</div>
 
 
         

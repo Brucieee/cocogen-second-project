@@ -35,12 +35,24 @@
         }
 
         .form-row-1,
+        .form-row-3
+        {
+        justify-content: space-between;
+        gap: 25px;
+        display: flex;
+        }
+
         .form-row-2,
-        .form-row-3,
         .form-row-4 {
+            display: flex;
             justify-content: space-between;
             gap: 25px;
-            display: flex;
+            width: 100%;
+        }
+
+        .form-row-2>*,
+        .form-row-4>* {
+            flex: 1;
         }
 
         .account-form-contents {
@@ -70,6 +82,9 @@
 </head>
 
 <body>
+
+
+
     <div class="account-container-1" id="account-form-1">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="account-form">
@@ -173,8 +188,8 @@
             </div>
         </div>
         <div class="next-cancel-btns">
-            <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-            <x-buttons.primary-button>Next</x-buttons.primary-button>
+            <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
+            <x-buttons.primary-button id="nextBtn1">Next</x-buttons.primary-button>
         </div>
     </div>
 

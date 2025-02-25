@@ -244,8 +244,8 @@
             </div>
 
             <div class="next-cancel-btn-2">
-                <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button>Next</x-buttons.primary-button>
+                <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
+                <x-buttons.primary-button id="nextBtn2">Next</x-buttons.primary-button>
             </div>
         </div>
     </div>

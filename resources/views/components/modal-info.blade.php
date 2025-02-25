@@ -12,7 +12,7 @@
             <div class="title-p">
                 <p class="modal-title">BRANCH HOURS</p>
                 <div class="modal-p">
-                    <p>Cocogen branches are open Monday to Friday, from 8AM to 5PM.  Please be reminded you will be accommodated within office hours only. </p>
+                    <p>Cocogen branches are open Monday to Friday, from 8AM to 5PM. Please be reminded you will be accommodated within office hours only. </p>
                     <p>If you have concerns regarding account creation, you may email <span style="font-weight: bold;">client_services@cocogen.com</span> </p>
                 </div>
             </div>
@@ -49,32 +49,33 @@
         margin-top: 189px;
         display: flex;
         gap: 15px;
-        
+
     }
-    .title-p{
+
+    .title-p {
         display: flex;
         gap: 15px;
         flex-direction: column;
     }
-    .modal-title 
-    {
+
+    .modal-title {
         font-weight: 700;
         font-size: 16px;
         font-family: 'Inter', sans-serif;
     }
-    .modal-p 
-    {
+
+    .modal-p {
         display: flex;
         gap: 16px;
         flex-direction: column;
     }
-    .modal-p p
-    {
+
+    .modal-p p {
         text-align: left;
         text-shadow: 14px;
         font-weight: 400;
         color: #2D2727;
-        font-family: 'Inter',sans-serif;
+        font-family: 'Inter', sans-serif;
     }
 
     .close-btn {
