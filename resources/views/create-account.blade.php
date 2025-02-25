@@ -105,7 +105,7 @@
 
     <div class="content-container">
         <form method="" action="">
-        @include('Register.otp-page')
+        @include('Register.account-registered')
      
 
         </form>

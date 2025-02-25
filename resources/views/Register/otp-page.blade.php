@@ -52,6 +52,11 @@
             display: flex;
             gap: 25px;
         }
+        .main-otp-content{
+            display: flex;
+            gap: 25px;
+            flex-direction: column;
+        }
 
     </style>
 </head>
