@@ -111,7 +111,7 @@
         </form>
 
 
-        @include('Register.your-identity-3')
+        @include('Register.failed-otp-page')
 
         @include('Register.account-registered')
 
