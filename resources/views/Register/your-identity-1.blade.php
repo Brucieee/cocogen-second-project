@@ -59,15 +59,48 @@
             display: flex;
         }
 
+        .row-1,
+        .row-2 {
+
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .row-1>*,
+        .row-2>* {
+            flex: 1;
+            /* Ensures equal width for all fields */
+            min-width: 0;
+            /* Prevents flex items from exceeding the container */
+        }
+
+
         .row-btn {
             justify-content: space-between;
             gap: 25px;
             display: flex;
         }
+
+        .stepper {
+            position: fixed;
+            width: 200px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: block;
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
+    <div id="step1" class="stepper">
+        <x-stepper :currentStep="session('currentStep', 2)" />
+    </div>
+
+
     <div class="form-container-1" id="identity-form-1">
 
         <h1>Create account as Policyholder</h1>
@@ -94,37 +127,44 @@
 
                         required />
 
-                    <x-fields.dropdown-field
+                    <x-fields.dropdown-field-2
                         id="house"
                         name="Barangay"
                         label="Barangay"
-                        :options="['Pasig Filipino' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        placeholder="Pasig Branch"
                         width="345px"
                         height="56px"
                         required />
                 </div>
                 <div class="row-2">
 
-                    <x-fields.dropdown-field
+                    <x-fields.dropdown-field-2
+                        id="city"
                         name="City"
                         label="City"
-                        :options="['City' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        placeholder="City"
                         width="345px"
                         height="56px"
                         required />
 
-                    <x-fields.dropdown-field
+                    <x-fields.dropdown-field-2
+                        id="province"
                         name="Province"
                         label="Province"
-                        :options="['Province' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        placeholder="Province"
                         width="345px"
                         height="56px"
                         required />
 
-                    <x-fields.dropdown-field
+                    <x-fields.dropdown-field-2
+                        id="region"
                         name="Region"
                         label="Region"
-                        :options="['Region' => 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        placeholder="Region"
                         width="345px"
                         height="56px"
                         required />
@@ -132,7 +172,7 @@
                 <div class="row-3">
 
                     <x-fields.text-field
-                        id="house"
+                        id="zip"
                         name="zip"
                         label="ZIP"
                         placeholder="10"

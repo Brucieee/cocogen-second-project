@@ -48,7 +48,7 @@
 
         </form>
 
-        <div class="step" id="step1">@include('Register.create-account-2')</div>
+        <div class="step" id="step1">@include('Register.your-identity-3')</div>
 
 
         

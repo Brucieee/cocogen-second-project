@@ -84,8 +84,8 @@
             width: 200px;
             /* Adjust as needed */
             top: 50%;
-            right: 20px;
-            /* Keeps it on the right */
+            left: 20px;
+            /* Moves it to the left */
             transform: translateY(-50%);
             /* Centers it vertically */
             display: block;

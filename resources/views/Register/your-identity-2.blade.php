@@ -124,10 +124,24 @@
             width: 100%;
             gap: 25px;
         }
+
+        .stepper {
+            position: fixed;
+            width: 200px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: block;
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="step1" class="stepper">
+        <x-stepper :currentStep="session('currentStep', 2)" />
+    </div>
 
 
     <div class="content-container">

@@ -17,7 +17,6 @@
         }
 
         .content-container {
-            margin-top: 66px;
             margin-right: 130px;
             margin-bottom: 66px;
             margin-left: 370px;
@@ -26,7 +25,6 @@
 
         .identity-3-container {
             margin-left: 98px;
-            margin-top: 65px;
             width: 784px;
             height: 454px auto;
             padding: 35px;
@@ -42,8 +40,9 @@
             gap: 35px;
         }
 
-        .payment-method_exists {
+        .payment-method {
             display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -70,10 +69,24 @@
             gap: 20px;
             flex-direction: column;
         }
+
+        .stepper {
+            position: fixed;
+            width: 200px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: block;
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="step1" class="stepper">
+        <x-stepper :currentStep="session('currentStep', 2)" />
+    </div>
 
     <div class="identity-3-container">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
@@ -109,14 +122,17 @@
                 </div>
             </div>
 
+            <div class="reminder-change">
+            <x-Reminders.dynamic-reminder
+                    icon="assets/icons/Icon-LightBulb.svg"
+                    message="You may change your payment method later." />
+            </div>
+
 
             <div class="next-cancel-btn-3">
                 <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
                 <x-buttons.primary-button>Next</x-buttons.primary-button>
             </div>
-
-
-
         </div>
     </div>
 

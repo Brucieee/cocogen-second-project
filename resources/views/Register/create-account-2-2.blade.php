@@ -134,10 +134,25 @@
             gap: 25px;
             align-self: stretch;
         }
+
+        .stepper {
+            position: fixed;
+            width: 200px;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: block;
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="step1" class="stepper">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+    </div>
+
     <div class="main-container">
         <!-- Back Button Component -->
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
