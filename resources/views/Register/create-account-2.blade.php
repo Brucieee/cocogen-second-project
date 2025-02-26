@@ -97,14 +97,32 @@
             height: 21px;
             border-radius: 20px;
         }
-        .label-icon
-        {
+
+        .label-icon {
             display: flex;
             gap: 10px;
-            
+
+        }
+        .stepper {
+            position: fixed;
+            /* Keeps it in place */
+            width: 200px;
+            /* Adjust as needed */
+            top: 50%;
+            right: 20px;
+            /* Keeps it on the right */
+            transform: translateY(-50%);
+            /* Centers it vertically */
+            display: block;
+            /* Ensure it's visible */
+            height: 100%;
         }
     </style>
 </head>
+
+<div id="step1" class="stepper">
+    <x-stepper :currentStep="session('currentStep', 1)" />
+</div>
 
 <body>
     <div class="create-account-2" id="form-2">
@@ -187,7 +205,7 @@
                                 style="Inter"
                                 info="" />
 
-                                <x-modal-info />
+                            <x-modal-info />
 
                         </div>
 
