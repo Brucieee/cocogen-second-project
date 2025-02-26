@@ -97,20 +97,24 @@
             height: 21px;
             border-radius: 20px;
         }
-        .label-icon
-        {
+
+        .label-icon {
             display: flex;
             gap: 10px;
-            
+
         }
     </style>
 </head>
 
 <body>
+
     <div class="create-account-2" id="form-2">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <x-Register.back-button
+            title="Create account as Policyholder"
+            backUrl="{{ url()->previous() }}" />
         <div class="account-form-2">
-            <x-Register.form-title title="Getting to know you" />
+            <x-Register.form-title
+                title="Getting to know you" />
             <div class="policy-checkbox">
                 <x-question-label text="What policy are you interested in? "
                     required="true"
@@ -187,7 +191,7 @@
                                 style="Inter"
                                 info="" />
 
-                                <x-modal-info />
+                            <x-modal-info />
 
                         </div>
 
@@ -201,7 +205,7 @@
                                 :required="true"
                                 width="300px" />
 
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="contact-type">

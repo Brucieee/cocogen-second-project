@@ -34,23 +34,23 @@
             flex-direction: column;
         }
 
-        .form-row-1,
-        .form-row-3
-        {
-        justify-content: space-between;
-        gap: 25px;
-        display: flex;
+        .form-row-1 {
+            justify-content: space-between;
+            gap: 25px;
+            display: flex;
         }
 
         .form-row-2,
+        .form-row-3,
         .form-row-4 {
             display: flex;
             justify-content: space-between;
-            gap: 25px;
+            gap: 35px;
             width: 100%;
         }
 
         .form-row-2>*,
+        .form-row-3,
         .form-row-4>* {
             flex: 1;
         }
@@ -86,9 +86,12 @@
 
 
     <div class="account-container-1" id="account-form-1">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <x-Register.back-button
+            title="Create account as Policyholder"
+            backUrl="{{ url()->previous() }}" />
         <div class="account-form">
-            <x-Register.form-title title="Getting to know you" />
+            <x-Register.form-title
+                title="Getting to know you" />
             <div class="account-form-contents">
                 <div class="form-row-1">
                     <x-fields.text-field
@@ -120,7 +123,7 @@
                         name="date-birth"
                         label="Date of Birth"
                         placeholder="Date of Birth"
-                        width="330px"
+                        width=100%
                         required />
                     <x-fields.text-field
                         id="place-birth"
@@ -176,20 +179,24 @@
             </div>
 
             <div class="existing-policy">
-                <x-question-label text="Do you have an existing policy with Cocogen?"
+                <x-question-label
+                    text="Do you have an existing policy with Cocogen?"
                     required="true"
                     size="16px"
                     weight="500" style="Inter" />
 
-                <x-Buttons.pill-button
+                <x-buttons.pill-button
                     id="existing-policy-pill"
                     :pillOneText="'No'"
                     :pillTwoText="'Yes'" />
+
             </div>
         </div>
         <div class="next-cancel-btns">
-            <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
-            <x-buttons.primary-button id="nextBtn1">Next</x-buttons.primary-button>
+            <x-buttons.secondary-button
+                id="prev-button">Cancel</x-buttons.secondary-button>
+            <x-buttons.primary-button
+                id="nextBtn1">Next</x-buttons.primary-button>
         </div>
     </div>
 

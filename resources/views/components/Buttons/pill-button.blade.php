@@ -1,10 +1,8 @@
-<!-- Add your styles in the head (before the content) -->
 <style>
     .pill-buttons-container {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 17px;
-        justify-content: left;
     }
 
     .pill-button {
@@ -34,7 +32,7 @@
         display: none;
         width: 24px;
         height: 24px;
-        margin-right: 10px; /* Custom margin for spacing */
+        margin-right: 10px;
     }
 
     .pill-button.expanded {
@@ -47,37 +45,21 @@
     }
 </style>
 
-
-
-<div class="pill-buttons-container d-inline-flex align-items-center gap-17">
-    <!-- Pill One -->
-    <button class="pill-button btn" id="pill-one" onclick="togglePill('pill-one')">
+<div class="pill-buttons-container">
+    <button class="pill-button" id="{{ $idOne ?? 'pill-one' }}" onclick="togglePill('{{ $idOne ?? 'pill-one' }}', '{{ $idTwo ?? 'pill-two' }}')">
         <img src="assets/icons/Icon-CheckCircle.svg" class="check-circle-icon" alt="Check Icon">
         <span class="button-text">{{ $pillOneText }}</span>
     </button>
 
-    <!-- Pill Two -->
-    <button class="pill-button btn" id="pill-two" onclick="togglePill('pill-two')">
+    <button class="pill-button" id="{{ $idTwo ?? 'pill-two' }}" onclick="togglePill('{{ $idTwo ?? 'pill-two' }}', '{{ $idOne ?? 'pill-one' }}')">
         <img src="assets/icons/Icon-CheckCircle.svg" class="check-circle-icon" alt="Check Icon">
         <span class="button-text">{{ $pillTwoText }}</span>
     </button>
 </div>
 
-
-<!-- Add JavaScript for interaction at the bottom of the page -->
 <script>
-    function togglePill(pillId) {
-        // Get the two pill buttons
-        const pillOne = document.getElementById('pill-one');
-        const pillTwo = document.getElementById('pill-two');
-
-        // If the clicked pill is already expanded, collapse it
-        if (pillId === 'pill-one') {
-            pillOne.classList.toggle('expanded');
-            pillTwo.classList.remove('expanded'); // Collapse Pill Two if clicked on Pill One
-        } else if (pillId === 'pill-two') {
-            pillTwo.classList.toggle('expanded');
-            pillOne.classList.remove('expanded'); // Collapse Pill One if clicked on Pill Two
-        }
+    function togglePill(selectedId, otherId) {
+        document.getElementById(selectedId).classList.add('expanded');
+        document.getElementById(otherId).classList.remove('expanded');
     }
 </script>

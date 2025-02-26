@@ -19,19 +19,14 @@
 
         .content-container {
             width: 756px;
-            /* Fixed width */
             height: 692px;
-            /* Fixed height */
             margin-top: 60px;
             margin-left: 125px;
             margin-right: 144px;
             padding: 25px;
-            /* Padding around the content */
             display: flex;
             flex-direction: column;
-            /* Keeps back button on top */
             gap: 25px;
-            /* Space between elements */
             position: relative;
         }
 
@@ -41,9 +36,9 @@
 
 <body>
 
-    <div class="stepper-container">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
+        <div class="stepper-container">
+            <x-stepper :currentStep="session('currentStep', 1)" />
+        </div>
 
     <div class="content-container">
       
