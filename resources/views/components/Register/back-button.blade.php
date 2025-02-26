@@ -1,4 +1,4 @@
-@props(['title', 'backUrl'])
+@props(['title', 'backUrl' => null])
 
 <!-- Back Button Styles -->
 <style>
@@ -22,7 +22,7 @@
     .back-button-icon {
         width: 32px;
         height: 32px;
-        cursor: pointer; /* Only the icon is clickable */
+        cursor: pointer;
     }
 
     .back-button-title {
@@ -36,8 +36,10 @@
 
 <!-- Back Button Component -->
 <div class="back-button-container" id="{{ $id ?? 'default-id' }}">
-    <button class="back-button" onclick="window.location.href='{{ $backUrl }}'">
-        <img src="{{ asset('assets/icons/Icon-ArrowLeft.svg') }}" alt="Back" class="back-button-icon">
-    </button>
+    @if($backUrl)
+        <button class="back-button" onclick="window.location.href='{{ $backUrl }}'">
+            <img src="{{ asset('assets/icons/Icon-ArrowLeft.svg') }}" alt="Back" class="back-button-icon">
+        </button>
+    @endif
     <div class="back-button-title">{{ $title }}</div>
 </div>
