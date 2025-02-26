@@ -219,7 +219,7 @@
                                 :required="true"
                                 width="300px" />
 
-                        </div>
+                        </div>  
                     </div>
 
                     <div class="contact-type">
