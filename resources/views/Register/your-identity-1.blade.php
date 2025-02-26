@@ -91,6 +91,7 @@
             font-style: normal;
             font-weight: 700;
             line-height: normal;
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -184,7 +185,7 @@
 
             <div class="identity-btn-1">
                 <div class="row-btn">
-                    <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
+                    <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
                     <x-buttons.primary-button>Next</x-buttons.primary-button>
 
                 </div>

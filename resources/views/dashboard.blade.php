@@ -11,8 +11,7 @@
 
 <body>
     
-    @include('Register.your-identity-2')
-    
+    @include('Register.failed-otp-page')
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
