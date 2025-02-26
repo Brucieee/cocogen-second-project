@@ -65,7 +65,7 @@
 
 <body>
 
-    <x-stepper :currentStep="session('currentStep', 1)" />
+    <x-stepper :currentStep="session('currentStep', 3)" />
 
     <div class="failed-otp-container">
         <img src="{{asset('assets/icons/Icon-WarningCircle.svg')}}" alt="Icon-warning" class="warning-icon">

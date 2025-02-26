@@ -14,6 +14,7 @@
             font-family: 'Inter', sans-serif;
             display: flex;
             flex-direction: row;
+            background: #F7FCFF;
         }
 
         .content-registered {
@@ -31,20 +32,11 @@
             position: relative;
             text-align: center;
             gap: 31px;
-        }
-        .content-container {
-            width: 756px;
-            height: 600px;
             margin-top: 184px;
             margin-left: 492px;
             margin-right: 239px;
             margin-bottom: 333px;
-            padding: 25px;
-            padding-bottom: 0px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            position: relative;
+            background: white;
         }
 
         .icon { 
@@ -78,6 +70,9 @@
 </head>
 
 <body>
+
+    <x-stepper :currentStep="session('currentStep', 3)" />
+
 
     <div class="content-registered">
         <div class="checked-icon">
