@@ -10,16 +10,12 @@
 </head>
 
 <body>
-
-    <div class="stepper-container">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
-
-    <div class="content-container">
-        @include('Register.create-account-2-2')
-    </div>
+    
+    @include('Register.create-account-as')
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+

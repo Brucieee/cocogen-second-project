@@ -55,11 +55,15 @@
 
 <body>
 
-
+    <div class="stepper-container">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+    </div>
     <div class="content-container">
 
         <div class="back-button-row">
-            <x-Register.back-button title="Go Back" backUrl="{{ route('dashboard') }}" />
+            <x-Register.back-button
+                title="Go Back"
+                backUrl="{{ route('dashboard') }}" />
         </div>
 
         <!-- Row for Select Account Components -->

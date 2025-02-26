@@ -125,10 +125,14 @@
 </div>
 
 <body>
+
     <div class="create-account-2" id="form-2">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <x-Register.back-button
+            title="Create account as Policyholder"
+            backUrl="{{ url()->previous() }}" />
         <div class="account-form-2">
-            <x-Register.form-title title="Getting to know you" />
+            <x-Register.form-title
+                title="Getting to know you" />
             <div class="policy-checkbox">
                 <x-question-label text="What policy are you interested in? "
                     required="true"
@@ -219,7 +223,7 @@
                                 :required="true"
                                 width="300px" />
 
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="contact-type">
