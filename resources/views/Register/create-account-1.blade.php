@@ -34,7 +34,8 @@
             flex-direction: column;
         }
 
-        .form-row-1 {
+        .form-row-1,
+        .form-row-3 {
             justify-content: space-between;
             gap: 25px;
             display: flex;
@@ -78,12 +79,29 @@
             gap: 20px;
             flex-direction: column;
         }
+
+        .stepper {
+            position: fixed;
+            /* Keeps it in place */
+            width: 200px;
+            /* Adjust as needed */
+            top: 50%;
+            right: 20px;
+            /* Keeps it on the right */
+            transform: translateY(-50%);
+            /* Centers it vertically */
+            display: block;
+            /* Ensure it's visible */
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
 
-
+    <div id="step1" class="stepper">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+    </div>
 
     <div class="account-container-1" id="account-form-1">
         <x-Register.back-button

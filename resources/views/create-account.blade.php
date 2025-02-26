@@ -39,9 +39,7 @@
 </head>
 
 <body>
-    <div id="step1" class="stepper">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
+
     
 
     <div class="content-container">
@@ -50,7 +48,7 @@
 
         </form>
 
-        <div class="step" id="step1">@include('Register.create-account-1')</div>
+        <div class="step" id="step1">@include('Register.create-account-2')</div>
 
 
         
