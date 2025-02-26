@@ -7,8 +7,7 @@
     <style>
         html,
         body {
-            margin: 0px;
-            padding: 0;
+
             width: 100%;
             height: 100%;
             font-family: 'Inter', sans-serif;
@@ -50,6 +49,7 @@
             top: 0;
             left: 0;
         }
+
     </style>
 </head>
 
@@ -62,7 +62,7 @@
 
         <div class="back-button-row">
             <x-Register.back-button
-                title="Go Back"
+                title="Create account"
                 backUrl="{{ route('dashboard') }}" />
         </div>
 

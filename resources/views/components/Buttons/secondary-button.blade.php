@@ -15,13 +15,22 @@
         line-height: 24px;
         border: none;
         cursor: pointer;
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .secondary-btn:active {
-        background: var(--Teal-LVL-3, #C0E6E6);
+    /* Hover Effect */
+    .secondary-btn:hover {
+        background: #008080;
+        color: white;
     }
 
+    /* Click Effect */
+    .secondary-btn:active,
+    .secondary-btn:focus {
+        background: #60B3B3;
+        color: white;
+        outline: none; /* Removes the default focus outline */
+    }
 </style>
 
 <button class="secondary-btn" id="{{ $id ?? 'default-id' }}">

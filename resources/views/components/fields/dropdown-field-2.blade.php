@@ -102,12 +102,18 @@
         box-sizing: border-box;
     }
 
+    .search-bar::placeholder {
+    font-size: 14px; /* Adjust size as needed */
+}
+
+
     .search-bar {
         flex: 1;
         padding: 5px 12px;
         border-radius: 5px;
         border: 1px solid #F7F7F7;
         background: #FAFAFA;
+        width: 100%;
     }
 
     .search-icon {

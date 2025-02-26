@@ -68,28 +68,23 @@
     }
 
     /* Default Style for Secondary Button */
-    .secondary-button {
-        border-color: #008080;
-        color: #008080;
-        width: 100%;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: 1px solid;
-        cursor: pointer;
-        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-    }
+    /* Default Style for Secondary Button */
 
-    .secondary-btn:hover {
-        background-color: #008080;
-        color: white;
-        border: 1px solid #008080;
-    }
 
     .card-container:hover .secondary-btn {
         background-color: #008080;
         color: white;
         border: 1px solid #008080;
     }
+
+    /* Ensure active state still applies when the button is clicked */
+    .card-container:hover .secondary-btn:active,
+    .card-container:hover .secondary-btn:focus {
+        background-color: #60B3B3 !important;
+        color: white !important;
+        border: 1px solid #60B3B3 !important;
+    }
+
 
     /* Media Queries for Responsiveness */
     @media (max-width: 768px) {

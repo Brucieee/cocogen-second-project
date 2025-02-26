@@ -1,9 +1,8 @@
 <style>
-/* Stepper Container */
 .stepper-container {
     width: 255px;
-    height: 100%;
-    position:sticky; /* Keeps it locked on the left */
+    height: 100vh;
+    position: sticky;
     top: 0;
     left: 0;
     background-color: #008080;
@@ -11,27 +10,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
-    pointer-events: auto; /* Ensures it can interact with the user */
-    display:static;
+    gap: 97px;
+    pointer-events: auto;
 }
 
-/* Ensure main content does not go behind the stepper */
 .main-content {
-    margin-left: 255px; /* Push content to the right of the stepper */
+    margin-left: 255px; 
     padding: 20px;
     position: relative;
-    pointer-events: auto; /* Enable interactions with content */
+    pointer-events: auto; 
 }
 
-/* Logo */
 .logo-container img {
     width: 220px;
     height: 61px;
     object-fit: contain;
 }
 
-/* Steps Wrapper */
 .steps-wrapper {
     display: flex;
     flex-direction: column;
@@ -41,7 +36,6 @@
     position: relative;
 }
 
-/* Step Row */
 .step {
     display: flex;
     align-items: center;
@@ -51,7 +45,6 @@
     position: relative;
 }
 
-/* First Column (Circle) */
 .step-left {
     display: flex;
     flex-direction: column;
@@ -62,12 +55,11 @@
     position: relative;
 }
 
-/* Circle */
 .circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #008080;
+    border: 1px solid #D7DEE3;
     background: #D7DEE3;
     display: flex;
     justify-content: center;
@@ -75,14 +67,17 @@
     z-index: 1;
 }
 
-/* Step Number */
+.step.completed .circle {
+    background-color: #FFF; /* Active background */
+    border-color: #FFF;
+}
+
 .step-number {
     font-size: 12px;
     font-weight: 700;
     color: #848A90;
 }
 
-/* Line */
 .line {
     position: absolute;
     top: 32px;
@@ -93,32 +88,23 @@
     z-index: 0;
 }
 
-/* Active Step */
-.step.completed .circle {
-    background-color: #FFF;
-    border-color: #FFF;
-}
-
-/* Active Line */
 .line.active {
     background-color: #FFF;
 }
 
-/* Step Text */
 .step-right {
     flex-grow: 1;
     font-size: 12px;
     font-weight: 700;
-    color: #FFF;
     display: flex;
     align-items: center;
+    color: #D7DEE3; /* Default inactive */
 }
 
-.step-text.inactive {
-    color: #D7DEE3;
+.step.completed .step-right {
+    color: #FFF; /* Active text */
 }
 
-/* Hide connecting line on last step */
 .step:not(:last-child) .line {
     display: block;
 }
@@ -160,7 +146,6 @@
                     @endif
                 </div>
 
-                <!-- Right: Step Text -->
                 <div class="step-right {{ $currentStep < $step ? 'inactive' : '' }}">
                     {{ $text }}
                 </div>

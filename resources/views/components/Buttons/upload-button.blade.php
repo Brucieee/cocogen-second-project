@@ -1,7 +1,7 @@
 <style>
     /* Upload Button Container */
     .upload-button-container {
-        width: 123px auto;
+        width: fit-content;
         height: 54px;
         display: flex;
         padding: 15px;
@@ -35,8 +35,8 @@
     }
 </style>
 
-
-<div class="upload-button-container">
+<!-- Dynamic Upload Button -->
+<div id="{{ $id }}" class="upload-button-container">
     <!-- Upload Icon -->
     <img src="{{ asset('assets/icons/Icon-Upload.svg') }}" alt="Upload Icon" class="upload-icon">
     

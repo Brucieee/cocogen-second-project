@@ -21,8 +21,9 @@
             top: 96px;
             left: 349px;
             padding: 35px;
-            gap: 55px;
-            margin-left: 300px;
+            gap: 25px;
+            margin-left: 94px;
+            margin-top: 96px;
             display: flex;
             flex-direction: column;
 
@@ -83,27 +84,25 @@
             display: flex;
         }
 
-        .stepper {
-            position: fixed;
-            width: 200px;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            display: block;
-            height: 100%;
+        .policyholder-title {
+            color: var(--Primary-Black, #2D2727);
+            font-family: Inter, sans-serif;
+            font-size: 27px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
         }
     </style>
 </head>
 
 <body>
-    <div id="step1" class="stepper">
-        <x-stepper :currentStep="session('currentStep', 2)" />
-    </div>
 
+    <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="form-container-1" id="identity-form-1">
 
-        <h1>Create account as Policyholder</h1>
+        <h1 class="policyholder-title">Create account as Policyholder</h1>
+
         <div class="form-1">
             <x-Register.form-title
                 title="Your identity" />
@@ -131,8 +130,8 @@
                         id="house"
                         name="Barangay"
                         label="Barangay"
-                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
-                        placeholder="Pasig Branch"
+                        :options="[ 'Barangay 1', 'Barangay 2', 'Barangay 3']"
+                        placeholder="Barangay"
                         width="345px"
                         height="56px"
                         required />
@@ -143,7 +142,7 @@
                         id="city"
                         name="City"
                         label="City"
-                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="[ 'Pasig', 'Manila', 'Quezon City', 'Cavite']"
                         placeholder="City"
                         width="345px"
                         height="56px"
@@ -153,7 +152,7 @@
                         id="province"
                         name="Province"
                         label="Province"
-                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="['Manila', 'Batangas', 'Abra']"
                         placeholder="Province"
                         width="345px"
                         height="56px"
@@ -163,7 +162,7 @@
                         id="region"
                         name="Region"
                         label="Region"
-                        :options="[ 'Pasig Branch', 'Makati Branch', 'Quezon Branch']"
+                        :options="['NCR', 'Region 1', 'Region 2']"
                         placeholder="Region"
                         width="345px"
                         height="56px"

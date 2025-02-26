@@ -32,6 +32,8 @@
             gap: 25px;
             display: flex;
             flex-direction: column;
+            margin-left: 115px;
+            margin-top: 66px;
         }
 
         .form-row-1,
@@ -79,31 +81,16 @@
             gap: 20px;
             flex-direction: column;
         }
-
-        .stepper {
-            position: fixed;
-            /* Keeps it in place */
-            width: 200px;
-            /* Adjust as needed */
-            top: 50%;
-            left: 20px;
-            /* Moves it to the left */
-            transform: translateY(-50%);
-            /* Centers it vertically */
-            display: block;
-            /* Ensure it's visible */
-            height: 100%;
-        }
     </style>
 </head>
 
 <body>
 
-    <div id="step1" class="stepper">
-        <x-stepper :currentStep="session('currentStep', 1)" />
-    </div>
+    <x-stepper
+        :currentStep="session('currentStep', 1)" />
 
-    <div class="account-container-1" id="account-form-1">
+    <div class="account-container-1"
+        id="account-form-1">
         <x-Register.back-button
             title="Create account as Policyholder"
             backUrl="{{ url()->previous() }}" />
@@ -124,8 +111,7 @@
                         name="middle-name"
                         label="Middle Name"
                         placeholder="Middle Name"
-                        width="212px"
-                        required />
+                        width="212px" />
                     <x-fields.text-field
                         id="last-name"
                         name="last-name"
@@ -147,7 +133,7 @@
                         id="place-birth"
                         name="-place-birth"
                         label="Place of Birth"
-                        placeholder="Place of Birth"
+                        placeholder="City, Region, Country"
                         width="330px"
                         required />
                 </div>
@@ -204,9 +190,10 @@
                     weight="500" style="Inter" />
 
                 <x-buttons.pill-button
-                    id="existing-policy-pill"
-                    :pillOneText="'No'"
-                    :pillTwoText="'Yes'" />
+                    idOne="policy-yes-btn"
+                    idTwo="policy-no-btn"
+                    pillOneText="No"
+                    pillTwoText="Yes" />
 
             </div>
         </div>

@@ -31,6 +31,8 @@
             height: 975px auto;
             padding: 35px;
             gap: 25px;
+            margin-left: 115px;
+            margin-top: 66px;
         }
 
         .account-form-2 {
@@ -103,26 +105,10 @@
             gap: 10px;
 
         }
-        .stepper {
-            position: fixed;
-            /* Keeps it in place */
-            width: 200px;
-            /* Adjust as needed */
-            top: 50%;
-            right: 20px;
-            /* Keeps it on the right */
-            transform: translateY(-50%);
-            /* Centers it vertically */
-            display: block;
-            /* Ensure it's visible */
-            height: 100%;
-        }
     </style>
 </head>
 
-<div id="step1" class="stepper">
-    <x-stepper :currentStep="session('currentStep', 1)" />
-</div>
+<x-stepper :currentStep="session('currentStep', 1)" />
 
 <body>
 
@@ -193,9 +179,10 @@
                             info="" />
                         <div class="pill-btns">
                             <x-Buttons.pill-button
-                                id="existing-policy-pill"
-                                :pillOneText="'No, I will explore Cocogen products myself'"
-                                :pillTwoText="'Yes, I need a representative to talk to me'" />
+                                idOne="pill-one-No-1"
+                                idTwo="pill-two-Yes-1"
+                                pillOneText="No, I will explore Cocogen products myself"
+                                pillTwoText="Yes, I need a representative to talk to me" />
                         </div>
                     </div>
 
@@ -221,7 +208,7 @@
                                 placeholder="Type here to search"
                                 :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
                                 :required="true"
-                                width="300px" />
+                                :width="'100%'" />
 
                         </div>
                     </div>
@@ -271,6 +258,31 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $(".pill-button").on("click", function() {
+                const selectedId = $(this).attr("id");
+
+                // Toggle button states
+                $(".pill-button").removeClass("expanded");
+                $(this).addClass("expanded");
+
+                // Hide or show sections based on selected button
+                if (selectedId === "pill-one-No-1") {
+                    $(".branch-contact, .contact-type").hide();
+                } else {
+                    $(".branch-contact, .contact-type").show();
+                }
+            });
+
+            // Ensure correct visibility on page load (in case of pre-selected values)
+            if ($("#pill-one-No-1").hasClass("expanded")) {
+                $(".branch-contact, .contact-type").hide();
+            }
+        });
+    </script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -29,16 +29,9 @@
             align-items: center;
             gap: 50px;
             z-index: 1000;
-            box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
         }
 
-        .content-container {
-            margin-top: 66px;
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px;
-            flex-grow: 1;
-        }
+
 
         .main-container {
             display: inline-flex;
@@ -48,6 +41,8 @@
             gap: 25px;
             border-radius: 8px;
             background: var(--Surfaces-LVL-0, #F7FCFF);
+            margin-left: 111px;
+            margin-top: 35px width: 780px;
         }
 
         .getting-to-know-you-container {
@@ -76,9 +71,13 @@
 
         .pill-button-container {
             display: flex;
-            align-items: center;
             gap: 22px;
+            flex-direction: column;
+            width: 710px;
+            align-items: flex-start;
+            /* Prevents stretching */
         }
+
 
         .branch-container {
             display: flex;
@@ -130,21 +129,13 @@
             gap: 25px;
             align-self: stretch;
         }
-
-        .stepper {
-            position: fixed;
-            width: 200px;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            display: block;
-            height: 100%;
-        }
     </style>
 </head>
 
 <body>
 
+
+    <x-stepper :currentStep="session('currentStep', 1)" />
 
     <div class="main-container">
         <!-- Back Button Component -->
@@ -182,8 +173,11 @@
                 <!-- Pill Button Container -->
                 <div class="pill-button-container">
                     <x-Buttons.pill-button
+                        idOne="pill-one-No-1.2"
+                        idTwo="pill-two-Yes-1.2"
                         pillOneText="No, I will explore Cocogen products myself"
                         pillTwoText="Yes, I need a representative to talk to me" />
+
                 </div>
             </div>
 
@@ -204,7 +198,7 @@
                     id="selected_branch"
                     placeholder="Select branch"
                     :required="true"
-                    :width="'300px'"
+                    width="'300px'"
                     :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
             </div>
         </div>
@@ -245,6 +239,26 @@
         </div>
     </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $(".pill-button").on("click", function() {
+                const selectedId = $(this).attr("id");
+
+                // Toggle button states
+                $(".pill-button").removeClass("expanded");
+                $(this).addClass("expanded");
+
+                // Hide or show sections based on selected button
+                if (selectedId === "pill-one-No-1.2") {
+                    $(".branch-container, .dropdown-container, .contact-container").hide();
+                } else {
+                    $(".branch-container, .dropdown-container, .contact-container").show();
+                }
+            });
+        });
+    </script>
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -1,41 +1,3 @@
-<div class="add-policy-container" id="policy-container">
-    <!-- Initial 2 policies -->
-    <div class="policy-component" id="policy-1">
-        <div class="label-container">
-            <span class="label-text">
-                Policy 1
-                <span class="required">*</span>
-            </span>
-        </div>
-
-        <div class="policy-container">
-            <input type="text" class="policy-input" id="input-policy-1" name="policy[1]" placeholder="Enter policy details" />
-            <div class="action-container">
-                <img src="{{ asset('assets/icons/Icon-Delete.svg') }}" class="icon-delete" onclick="deletePolicy(1)" />
-                <img src="{{ asset('assets/icons/Icon-Add.svg') }}" class="icon-add" onclick="addPolicy()" />
-            </div>
-        </div>
-    </div>
-
-    <div class="policy-component" id="policy-2">
-        <div class="label-container">
-            <span class="label-text">
-                Policy 2
-                <span class="required">*</span>
-            </span>
-        </div>
-
-        <div class="policy-container">
-            <input type="text" class="policy-input" id="input-policy-2" name="policy[2]" placeholder="Enter policy details" />
-            <div class="action-container">
-                <img src="{{ asset('assets/icons/Icon-Delete.svg') }}" class="icon-delete" onclick="deletePolicy(2)" />
-                <img src="{{ asset('assets/icons/Icon-Add.svg') }}" class="icon-add" onclick="addPolicy()" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Add the necessary styles inside the component -->
 <style>
     .add-policy-container {
         display: flex;
@@ -70,14 +32,56 @@
         align-items: center;
     }
 
-    .icon-delete, .icon-add {
+    .icon-delete,
+    .icon-add {
         width: 39px;
         height: 39px;
         cursor: pointer;
     }
 </style>
 
-<!-- Add the necessary JavaScript inside the component -->
+<div class="add-policy-container" id="policy-container">
+    <!-- Initial 2 policies -->
+    <div class="policy-component" id="policy-1">
+        <div class="label-container">
+            <span class="label-text">
+                Policy 1
+                <span class="required">*</span>
+            </span>
+        </div>
+
+        <div class="policy-container">
+            <input type="text" class="policy-input"
+                id="input-policy-1"
+                name="policy[1]"
+                placeholder="Enter policy details" />
+            <div class="action-container">
+                <img src="{{ asset('assets/icons/Icon-Delete.svg') }}" class="icon-delete" onclick="deletePolicy(1)" />
+                <img src="{{ asset('assets/icons/Icon-Add.svg') }}" class="icon-add" onclick="addPolicy()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="policy-component"
+        id="policy-2">
+        <div class="label-container">
+            <span class="label-text">
+                Policy 2
+                <span class="required">*</span>
+            </span>
+        </div>
+
+        <div class="policy-container">
+            <input type="text" class="policy-input" 
+            id="input-policy-2" name="policy[2]" placeholder="Enter policy details" />
+            <div class="action-container">
+                <img src="{{ asset('assets/icons/Icon-Delete.svg') }}" class="icon-delete" onclick="deletePolicy(2)" />
+                <img src="{{ asset('assets/icons/Icon-Add.svg') }}" class="icon-add" onclick="addPolicy()" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     let policyCount = 2; // Start with two policies already added
 
@@ -158,14 +162,14 @@
         policies.forEach((policy, index) => {
             const newPolicyId = index + 1; // Update the policyId starting from 1
             policy.id = `policy-${newPolicyId}`;
-            
+
             const label = policy.querySelector(".label-text");
             label.textContent = `Policy ${newPolicyId}`;
 
             const input = policy.querySelector(".policy-input");
             input.id = `input-policy-${newPolicyId}`;
             input.name = `policy[${newPolicyId}]`;
-            
+
             const deleteIcon = policy.querySelector(".icon-delete");
             deleteIcon.onclick = () => deletePolicy(newPolicyId);
 

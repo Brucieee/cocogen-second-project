@@ -11,7 +11,7 @@
 
 <body>
     
-    @include('Register.create-account-as')
+    @include('Register.your-identity-2')
     
 
 
