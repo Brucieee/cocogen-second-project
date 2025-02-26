@@ -13,7 +13,7 @@
         padding: 20px;
         border-radius: 5px;
         border: 1px solid #C0E6E6;
-        background: #F7FCFF;
+        background: #FFF;
         font-family: 'Inter', sans-serif;
         box-sizing: border-box;
         overflow: hidden;

@@ -11,7 +11,7 @@
 
 <body>
     
-    @include('Register.failed-otp-page')
+    @include('Register.create-account-as')
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

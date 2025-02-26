@@ -29,8 +29,7 @@
             flex-direction: column;
             box-shadow: 1px 1px 3px rgb(137, 131, 131);
             background: #FFFFFF;
-            margin-left: 276px;
-            margin-top: 165px;
+            margin: auto;
         }
 
         .warning-contents {
