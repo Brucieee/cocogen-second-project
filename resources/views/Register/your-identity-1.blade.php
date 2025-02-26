@@ -22,8 +22,7 @@
             left: 349px;
             padding: 35px;
             gap: 25px;
-            margin-left: 94px;
-            margin-top: 96px;
+            margin: auto;
             display: flex;
             flex-direction: column;
 

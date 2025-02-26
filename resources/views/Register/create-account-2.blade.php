@@ -31,8 +31,7 @@
             height: 975px auto;
             padding: 35px;
             gap: 25px;
-            margin-left: 115px;
-            margin-top: 66px;
+            margin: auto;
         }
 
         .account-form-2 {
@@ -147,9 +146,9 @@
                                 label="Domestic Travel Plus"
                                 :checked=false />
                             <x-buttons.checkbox-button
-                                id="furtech"
-                                name="furtech"
-                                label="Furtech"
+                                id="pro_tech"
+                                name="Pro-Tech"
+                                label="Pro-Tech"
                                 :checked=false />
                         </div>
                         <div class="check-row-3">
@@ -157,11 +156,6 @@
                                 id="condo-excel"
                                 name="condo-excel"
                                 label="Condo Excel Plus"
-                                :checked=false />
-                            <x-buttons.checkbox-button
-                                id="hackguard"
-                                name="hackguard"
-                                label="Hackguard"
                                 :checked=false />
                         </div>
                         <div class="check-row-4">
@@ -181,8 +175,8 @@
                             <x-Buttons.pill-button
                                 idOne="pill-one-No-1"
                                 idTwo="pill-two-Yes-1"
-                                pillOneText="No, I will explore Cocogen products myself"
-                                pillTwoText="Yes, I need a representative to talk to me" />
+                                pillOneText="No, I will explore Cocogen products myself."
+                                pillTwoText="Yes, I need a representative to talk to me." />
                         </div>
                     </div>
 
@@ -269,9 +263,9 @@
 
                 // Hide or show sections based on selected button
                 if (selectedId === "pill-one-No-1") {
-                    $(".branch-contact, .contact-type").hide();
+                    $(".branch-contact, .contact-type").slideUp();
                 } else {
-                    $(".branch-contact, .contact-type").show();
+                    $(".branch-contact, .contact-type").slideDown();
                 }
             });
 

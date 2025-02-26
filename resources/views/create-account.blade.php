@@ -11,7 +11,8 @@
 
 <body>
     
-    @include('Register.')
+    @include('Register.otp-page
+    ')
     
 
 

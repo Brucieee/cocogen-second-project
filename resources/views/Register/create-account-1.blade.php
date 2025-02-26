@@ -32,8 +32,7 @@
             gap: 25px;
             display: flex;
             flex-direction: column;
-            margin-left: 115px;
-            margin-top: 66px;
+            margin: auto;
         }
 
         .form-row-1,

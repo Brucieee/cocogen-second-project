@@ -40,10 +40,11 @@
             width: 784px;
             height: 485 auto;
             height: 600px;
-            margin-top: 35px;
+            /* margin-top: 65px;
             margin-left: 388px;
             margin-right: 144px;
-            margin-bottom: 0px;
+            margin-bottom: 0px; */
+            margin: auto;
         }
         .page-contents
         {
@@ -61,6 +62,7 @@
             display: flex;
             gap: 25px;
             flex-direction: column;
+
         }
 
     </style>
@@ -68,22 +70,22 @@
 
 <body>
 
-    <x-stepper :currentStep="session('currentStep', 1)" />
+    <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="otp-page-container">
-        <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+        <x-Register.back-button title="Create account as Policyholder"  />
         <div class="page-contents">
             <x-Register.form-title title="Your identity" />
             <div class="main-otp-content">
-                <x-Reminders.dynamic-reminder
+            <x-Reminders.dynamic-reminder
                     icon="assets/icons/Icon-LockKey.svg"
-                    message="An OTP has been sent to your registered email address" />
-
+                    fontWeight="700"
+                    message="An OTP has been sent to your registered email address."
+                     />
                     <x-otp-input duration="60" />
             </div>
 
             <div class="otp-btns">
-                <x-buttons.secondary-button>Continue later</x-button.secondary-button>
                     <x-buttons.primary-button>Next</x-button.primary-button>
             </div>
 
