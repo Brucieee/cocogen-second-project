@@ -39,6 +39,11 @@
             flex-direction: column;
             width: 784px;
             height: 485 auto;
+            height: 600px;
+            margin-top: 35px;
+            margin-left: 388px;
+            margin-right: 144px;
+            margin-bottom: 0px;
         }
         .page-contents
         {
@@ -62,6 +67,8 @@
 </head>
 
 <body>
+
+    <x-stepper :currentStep="session('currentStep', 1)" />
 
     <div class="otp-page-container">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />

@@ -29,6 +29,12 @@
         #step1 {
             display: flex;
         }
+
+        .step {
+
+            display: flex;
+            
+        }
     </style>
 
 
@@ -42,17 +48,30 @@
 
     
 
-    <div class="content-container">
         <form method="" action="" id="StepForm">
-   
+        <div class="step" id="step1">@include('Register.failed-otp-page')</div>
+        
 
         </form>
 
-        <div class="step" id="step1">@include('Register.your-identity-3')</div>
-
 
         
-    </div>
+<!--         
+        Register.create-account-1
+        Register.create-account-2
+        Register.create-account-2-2
+
+        Register.your-identity-1
+        Register.your-identity-2
+        Register.your-identity-3
+
+        Register.otp-page
+        Register.failed-otp-page
+        Register.account-registered
+         -->
+
+        
+        
     
 
 

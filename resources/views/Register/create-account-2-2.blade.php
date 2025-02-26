@@ -42,7 +42,8 @@
             border-radius: 8px;
             background: var(--Surfaces-LVL-0, #F7FCFF);
             margin-left: 111px;
-            margin-top: 35px width: 780px;
+            margin-top: 35px; 
+            width: 780px;
         }
 
         .getting-to-know-you-container {
@@ -250,9 +251,9 @@
 
                 // Hide or show sections based on selected button
                 if (selectedId === "pill-one-No-1.2") {
-                    $(".branch-container, .dropdown-container, .contact-container").hide();
+                    $(".branch-container, .dropdown-container, .contact-container").slideUp();
                 } else {
-                    $(".branch-container, .dropdown-container, .contact-container").show();
+                    $(".branch-container, .dropdown-container, .contact-container").slideDown();
                 }
             });
         });
