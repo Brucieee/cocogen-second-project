@@ -31,8 +31,20 @@
             position: relative;
             text-align: center;
             gap: 31px;
-            display: none;
-
+        }
+        .content-container {
+            width: 756px;
+            height: 600px;
+            margin-top: 184px;
+            margin-left: 492px;
+            margin-right: 239px;
+            margin-bottom: 333px;
+            padding: 25px;
+            padding-bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: relative;
         }
 
         .icon { 
@@ -45,6 +57,9 @@
 
         .registered-contents {
             gap: 33px;
+            display: flex;
+            flex-direction: column;
+
             
 
         }
@@ -52,6 +67,12 @@
            gap: 35px;
           
         
+        }
+        .content-text
+        {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
     </style>
 </head>
@@ -64,6 +85,7 @@
         </div>
 
         <div class="registered-contents">
+
             <div class="content-text">
                 <div class="content-title">
                     <h2>Account Created</h2>

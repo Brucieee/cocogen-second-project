@@ -14,6 +14,7 @@
             font-family: 'Inter', sans-serif;
             display: flex;
         }
+
         .content-container {
             margin-top: 66px;
             margin-right: 130px;
@@ -23,24 +24,35 @@
         }
 
         .account-container-1 {
-            width: 775px auto;
+            width: 775px;
             height: 830px auto;
             top: 96px;
             left: 349px;
             padding: 35px;
             gap: 25px;
-            margin-left: 115px;
             display: flex;
             flex-direction: column;
         }
 
         .form-row-1,
+        .form-row-3
+        {
+        justify-content: space-between;
+        gap: 25px;
+        display: flex;
+        }
+
         .form-row-2,
-        .form-row-3,
         .form-row-4 {
+            display: flex;
             justify-content: space-between;
             gap: 25px;
-            display: flex;
+            width: 100%;
+        }
+
+        .form-row-2>*,
+        .form-row-4>* {
+            flex: 1;
         }
 
         .account-form-contents {
@@ -54,15 +66,25 @@
             gap: 25px;
             flex-direction: column;
         }
-        .next-cancel-btns{
+
+        .next-cancel-btns {
             justify-content: space-between;
             gap: 25px;
             display: flex;
+        }
+
+        .existing-policy {
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
         }
     </style>
 </head>
 
 <body>
+
+
+
     <div class="account-container-1" id="account-form-1">
         <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
         <div class="account-form">
@@ -147,20 +169,27 @@
                 </div>
             </div>
             <div class="reminder">
+                <x-Reminders.reminder-update-profile>
+                    You may change your input data should you need to update your information. Note: Email address cannot be changed.
+                    </x-reminder-update-profile>
 
             </div>
 
             <div class="existing-policy">
-                <p>Do you have an existing policy with Cocogen?<span>*</span></p>
-                    <x-Buttons.pill-button
-                        id="existing-policy-pill"
-                        :pillOneText="'No'"
-                        :pillTwoText="'Yes'" />
+                <x-question-label text="Do you have an existing policy with Cocogen?"
+                    required="true"
+                    size="16px"
+                    weight="500" style="Inter" />
+
+                <x-Buttons.pill-button
+                    id="existing-policy-pill"
+                    :pillOneText="'No'"
+                    :pillTwoText="'Yes'" />
             </div>
         </div>
         <div class="next-cancel-btns">
-            <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-            <x-buttons.primary-button>Next</x-buttons.primary-button>
+            <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
+            <x-buttons.primary-button id="nextBtn1">Next</x-buttons.primary-button>
         </div>
     </div>
 
