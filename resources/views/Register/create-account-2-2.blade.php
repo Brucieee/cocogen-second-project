@@ -254,8 +254,10 @@
 
     <script>
         $(document).ready(function() {
-            $(".pill-button").on("click", function(event) {
+            // Handle Pill Button Click
+            $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
+
                 const selectedId = $(this).attr("id");
 
                 // Toggle button states
@@ -270,14 +272,18 @@
                 }
             });
 
-            $("#nextBtn2-2").click(function(event) {
+            // Handle Next Button Click
+            $(document).on("click", "#nextBtn2-2", function(event) {
                 event.preventDefault();
 
-                // Replace the current form content with the included next step
+                // Replace the current content, ensuring the event handlers persist
                 $(".create-account2-2").html($("#identity-step2").html());
+
+                // Reinitialize event listeners after content replacement
             });
         });
     </script>
+
 
     </script>
 

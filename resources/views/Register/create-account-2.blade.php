@@ -276,6 +276,8 @@
                 } else {
                     $(".branch-contact, .contact-type").slideDown();
                 }
+
+                return false;
             });
 
             // Ensure correct visibility on page load (in case of pre-selected values)

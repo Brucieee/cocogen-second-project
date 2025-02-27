@@ -193,12 +193,18 @@
             .d-none {
                 display: none !important;
             }
+            .identity-form2 
+            {
+                display: flex;
+                width: 100%;
+                height: 100%;
+            }
         </style>
     </head>
 
     <body>
 
-        <div class="identity-form2" id="identity-form2">
+        <div class="identity-form2">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
             <div class="content-container">
@@ -235,14 +241,14 @@
                             </div>
                         </div>
                     </div>
+                    <div id="identity3-step" style="display: none;">
+                        @include('Register.your-identity-3')
+                    </div>
                 </div>
 
-                <div id="identity2-step" style="display: none;">
-                    @include('Register.your-identity-2')
-                </div>
+
             </div>
         </div>
-
 
 
         <!-- jQuery and Bootstrap JS -->
@@ -306,11 +312,11 @@
                 initializeFileUpload('uploadID');
                 initializeFileUpload('uploadDisplayPicture');
 
-                $("#nextBtn3").click(function(event) {
+                $("#nextBtn4").click(function(event) {
                     event.preventDefault();
 
                     // Replace the current form content with the included next step
-                    $(".identity-form1").html($("#identity2-step").html());
+                    $(".identity-form2").html($("#identity3-step").html());
                 });
             });
         </script>
