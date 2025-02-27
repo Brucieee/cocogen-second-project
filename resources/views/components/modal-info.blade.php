@@ -12,8 +12,8 @@
             <div class="title-p">
                 <p class="modal-title">BRANCH HOURS</p>
                 <div class="modal-p">
-                    <p>Cocogen branches are open Monday to Friday, from 8AM to 5PM. Please be reminded you will be accommodated within office hours only. </p>
-                    <p>If you have concerns regarding account creation, you may email <span style="font-weight: bold;">client_services@cocogen.com</span> </p>
+                    <p>Cocogen branches are open Monday to Friday, from 8AM to 5PM. Please be reminded you will be accommodated within office hours only.</p>
+                    <p>If you have concerns regarding account creation, you may email <span style="font-weight: bold;">client_services@cocogen.com</span></p>
                 </div>
             </div>
             <button id="closeModal" class="close-btn">Close</button>
@@ -31,7 +31,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: #9E9C9C80;
+        background: rgba(158, 156, 156, 0.5);
+        display: flex;
+        align-items: center;
         justify-content: center;
         z-index: 1000;
     }
@@ -41,15 +43,12 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 393px;
-        height: 284px auto;
-        margin-left: 40%;
-        margin-bottom: 359px;
-        margin-right: 390px;
-        margin-top: 189px;
+        width: auto;
         display: flex;
+        flex-direction: column;
         gap: 15px;
-
+        margin: auto;
+        background: white;
     }
 
     .title-p {
@@ -72,7 +71,6 @@
 
     .modal-p p {
         text-align: left;
-        text-shadow: 14px;
         font-weight: 400;
         color: #2D2727;
         font-family: 'Inter', sans-serif;
@@ -86,6 +84,7 @@
         color: #008080;
         border-radius: 5px;
         cursor: pointer;
+        align-self: flex-end;
     }
 </style>
 
@@ -97,17 +96,19 @@
         $('#infoModal').hide();
 
         // Show modal when info icon is clicked
-        $('#infoIcon').click(function() {
+        $('#infoIcon').click(function(event) {
+            event.preventDefault();
             $('#infoModal').fadeIn();
         });
 
         // Hide modal when close button is clicked
-        $('#closeModal').click(function() {
+        $('#closeModal').click(function(event) {
+            event.preventDefault();
             $('#infoModal').fadeOut();
         });
 
-        // Hide modal when clicking outside modal content
-        $(document).click(function(event) {
+        // Hide modal when clicking outside modal content (but not when clicking inside)
+        $(document).mouseup(function(event) {
             if (!$(event.target).closest('.modal-content, #infoIcon').length) {
                 $('#infoModal').fadeOut();
             }

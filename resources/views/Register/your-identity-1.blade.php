@@ -92,106 +92,130 @@
             line-height: normal;
             margin-bottom: 0;
         }
+
+        .identity-form1 {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
+    <div class="identity-form1">
+        <x-stepper :currentStep="session('currentStep', 2)" />
 
-    <x-stepper :currentStep="session('currentStep', 2)" />
+        <div class="form-container-1" id="identity-form-1">
 
-    <div class="form-container-1" id="identity-form-1">
+            <h1 class="policyholder-title">Create account as Policyholder</h1>
 
-        <h1 class="policyholder-title">Create account as Policyholder</h1>
+            <div class="form-1">
+                <x-Register.form-title
+                    title="Your identity" />
+                <div class="form-contents-1">
+                    <p class="form-p">Present residence <span class="form-span">*</span></p>
+                    <div class="row-1">
+                        <x-fields.text-field
+                            id="house"
+                            name="house-unit"
+                            label="House/Unit No."
+                            placeholder="10"
+                            width="212px"
+                            required />
 
-        <div class="form-1">
-            <x-Register.form-title
-                title="Your identity" />
-            <div class="form-contents-1">
-                <p class="form-p">Present residence <span class="form-span">*</span></p>
-                <div class="row-1">
-                    <x-fields.text-field
-                        id="house"
-                        name="house-unit"
-                        label="House/Unit No."
-                        placeholder="10"
-                        width="212px"
-                        required />
+                        <x-fields.text-field
+                            id="house"
+                            name="Street"
+                            label="Street"
+                            placeholder="Street name"
+                            width="212px"
 
-                    <x-fields.text-field
-                        id="house"
-                        name="Street"
-                        label="Street"
-                        placeholder="Street name"
-                        width="212px"
+                            required />
 
-                        required />
+                        <x-fields.dropdown-field-2
+                            id="house"
+                            name="Barangay"
+                            label="Barangay"
+                            :options="[ 'Barangay 1', 'Barangay 2', 'Barangay 3']"
+                            placeholder="Barangay"
+                            width="345px"
+                            height="56px"
+                            required />
+                    </div>
+                    <div class="row-2">
 
-                    <x-fields.dropdown-field-2
-                        id="house"
-                        name="Barangay"
-                        label="Barangay"
-                        :options="[ 'Barangay 1', 'Barangay 2', 'Barangay 3']"
-                        placeholder="Barangay"
-                        width="345px"
-                        height="56px"
-                        required />
+                        <x-fields.dropdown-field-2
+                            id="city"
+                            name="City"
+                            label="City"
+                            :options="[ 'Pasig', 'Manila', 'Quezon City', 'Cavite']"
+                            placeholder="City"
+                            width="345px"
+                            height="56px"
+                            required />
+
+                        <x-fields.dropdown-field-2
+                            id="province"
+                            name="Province"
+                            label="Province"
+                            :options="['Manila', 'Batangas', 'Abra']"
+                            placeholder="Province"
+                            width="345px"
+                            height="56px"
+                            required />
+
+                        <x-fields.dropdown-field-2
+                            id="region"
+                            name="Region"
+                            label="Region"
+                            :options="['NCR', 'Region 1', 'Region 2']"
+                            placeholder="Region"
+                            width="345px"
+                            height="56px"
+                            required />
+                    </div>
+                    <div class="row-3">
+
+                        <x-fields.text-field
+                            id="zip"
+                            name="zip"
+                            label="ZIP"
+                            placeholder="10"
+                            width="212px"
+
+                            required />
+                    </div>
+
                 </div>
-                <div class="row-2">
 
-                    <x-fields.dropdown-field-2
-                        id="city"
-                        name="City"
-                        label="City"
-                        :options="[ 'Pasig', 'Manila', 'Quezon City', 'Cavite']"
-                        placeholder="City"
-                        width="345px"
-                        height="56px"
-                        required />
+                <div class="identity-btn-1">
+                    <div class="row-btn">
+                        <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
+                        <x-buttons.primary-button id="nextBtn3">Next</x-buttons.primary-button>
 
-                    <x-fields.dropdown-field-2
-                        id="province"
-                        name="Province"
-                        label="Province"
-                        :options="['Manila', 'Batangas', 'Abra']"
-                        placeholder="Province"
-                        width="345px"
-                        height="56px"
-                        required />
-
-                    <x-fields.dropdown-field-2
-                        id="region"
-                        name="Region"
-                        label="Region"
-                        :options="['NCR', 'Region 1', 'Region 2']"
-                        placeholder="Region"
-                        width="345px"
-                        height="56px"
-                        required />
+                    </div>
                 </div>
-                <div class="row-3">
-
-                    <x-fields.text-field
-                        id="zip"
-                        name="zip"
-                        label="ZIP"
-                        placeholder="10"
-                        width="212px"
-
-                        required />
-                </div>
-
             </div>
 
-            <div class="identity-btn-1">
-                <div class="row-btn">
-                    <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
-                    <x-buttons.primary-button>Next</x-buttons.primary-button>
-
-                </div>
+            <div id="identity2-step" style="display: none;">
+                @include('Register.your-identity-2')
             </div>
         </div>
 
 
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#nextBtn3").click(function(event) {
+                    event.preventDefault();
+
+                    // Replace the current form content with the included next step
+                    $(".identity-form1").html($("#identity2-step").html());
+                });
+            });
+        </script>
 </body>

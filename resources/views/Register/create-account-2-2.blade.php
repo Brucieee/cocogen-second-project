@@ -254,7 +254,8 @@
 
     <script>
         $(document).ready(function() {
-            $(".pill-button").on("click", function() {
+            $(".pill-button").on("click", function(event) {
+                event.preventDefault();
                 const selectedId = $(this).attr("id");
 
                 // Toggle button states

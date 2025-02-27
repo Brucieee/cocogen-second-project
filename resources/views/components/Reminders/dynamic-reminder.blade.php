@@ -15,9 +15,4 @@
             {{ $message }}
         </div>
     </div>
-
-    <!-- Right Content -->
-    <div style="color: #303030; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: {{ $fontWeight }}; line-height: 24px;">
-        {{ $message }}
-    </div>
 </div>

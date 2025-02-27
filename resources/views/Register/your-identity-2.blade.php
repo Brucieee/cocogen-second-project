@@ -1,5 +1,6 @@
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -194,45 +195,55 @@
             }
         </style>
     </head>
+
     <body>
-        <x-stepper :currentStep="session('currentStep', 2)" />
 
-        <div class="content-container">
-            <div class="container-1">
-                <h1 class="title">Create Account as Policyholder</h1>
+        <div class="identity-form2" id="identity-form2">
+            <x-stepper :currentStep="session('currentStep', 2)" />
 
-                <div class="container-2">
-                    <x-Register.form-title title="Your identity" />
+            <div class="content-container">
+                <div class="container-1">
+                    <h1 class="title">Create Account as Policyholder</h1>
 
-                    <div class="container-3">
-                        <div class="identification-title">
-                            <span class="identification-text">Identification</span>
-                            <span class="optional-text">(Optional)</span>
+                    <div class="container-2">
+                        <x-Register.form-title title="Your identity" />
+
+                        <div class="container-3">
+                            <div class="identification-title">
+                                <span class="identification-text">Identification</span>
+                                <span class="optional-text">(Optional)</span>
+                            </div>
+
+                            <!-- Upload ID Section -->
+                            <div class="container-4">
+                                <x-file-preview id="uploadID" buttonText="Upload ID" />
+                                <x-Reminders.file-format />
+                            </div>
+
+                            <!-- Upload Display Picture Section -->
+                            <div class="container-5">
+                                <span class="upload-dp-title">Upload Display Picture (Optional)</span>
+                                <x-file-preview id="uploadDisplayPicture" buttonText="Upload" />
+                                <x-Reminders.file-format />
+                            </div>
                         </div>
 
-                        <!-- Upload ID Section -->
-                        <div class="container-4">
-                            <x-file-preview id="uploadID" buttonText="Upload ID" />
-                            <x-Reminders.file-format />
-                        </div>
-
-                        <!-- Upload Display Picture Section -->
-                        <div class="container-5">
-                            <span class="upload-dp-title">Upload Display Picture (Optional)</span>
-                            <x-file-preview id="uploadDisplayPicture" buttonText="Upload" />
-                            <x-Reminders.file-format />
-                        </div>
-                    </div>
-
-                    <div class="container-6">
-                        <div class="button-group">
-                            <x-Buttons.secondary-button>Continue later</x-Buttons.secondary-button>
-                            <x-Buttons.primary-button>Next</x-Buttons.primary-button>
+                        <div class="container-6">
+                            <div class="button-group">
+                                <x-Buttons.secondary-button>Continue later</x-Buttons.secondary-button>
+                                <x-Buttons.primary-button id="nextBtn4">Next</x-Buttons.primary-button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div id="identity2-step" style="display: none;">
+                    @include('Register.your-identity-2')
+                </div>
             </div>
         </div>
+
+
 
         <!-- jQuery and Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -294,7 +305,15 @@
                 // Initialize file upload for both sections
                 initializeFileUpload('uploadID');
                 initializeFileUpload('uploadDisplayPicture');
+
+                $("#nextBtn3").click(function(event) {
+                    event.preventDefault();
+
+                    // Replace the current form content with the included next step
+                    $(".identity-form1").html($("#identity2-step").html());
+                });
             });
         </script>
     </body>
+
     </html>
