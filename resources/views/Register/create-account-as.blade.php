@@ -19,10 +19,7 @@
         .content-container {
             width: 756px;
             height: 600px;
-            margin-top: 55px;
-            margin-left: 225px;
-            margin-right: 144px;
-            margin-bottom: 44px;
+            margin: auto;
             padding: 25px;
             padding-bottom: 0px;
             display: flex;

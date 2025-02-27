@@ -24,7 +24,7 @@
         }
 
         .identity-3-container {
-            margin-left: 98px;
+            margin: auto;
             width: 784px;
             height: 454px auto;
             padding: 35px;
@@ -54,11 +54,6 @@
             /* Prevents stretching */
         }
 
-        .pill-button {
-            gap: 22px;
-            display: flex;
-        }
-
         .payment-fields {
             display: flex;
             justify-content: space-between;
@@ -86,9 +81,7 @@
 
     <div class="identity-3-container">
         <x-Register.back-button
-            title="Create account as Policyholder"
-        
-            />
+            title="Create account as Policyholder" />
         <div class="identity-form-3">
             <x-Register.form-title
                 title="Your identity" />
@@ -98,14 +91,12 @@
                         title="Do you want to add payment method?"
                         placeholder="(Optional)"
                         :required="false" />
-                    <div class="pill-button-container-payment">
-                        <x-Buttons.pill-button
-                            idOne="pill-one-no-payment"
-                            idTwo="pill-two-yes-payment"
-                            pillOneText="No"
-                            pillTwoText="Yes" />
+                    <x-Buttons.pill-button
+                        idOne="pill-one-no-payment"
+                        idTwo="pill-two-yes-payment"
+                        pillOneText="No"
+                        pillTwoText="Yes" />
 
-                    </div>
                     <div class="payment-fields">
                         <x-Fields.dropdown-field-2
                             id="payment-type"

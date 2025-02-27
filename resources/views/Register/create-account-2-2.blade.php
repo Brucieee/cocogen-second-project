@@ -40,9 +40,8 @@
             align-items: flex-start;
             gap: 25px;
             border-radius: 8px;
-            background: var(--Surfaces-LVL-0, #F7FCFF);
-            margin-left: 111px;
-            margin-top: 35px; 
+            background: var(--Surfaces-LVL-0, #fff);
+            margin: auto;
             width: 780px;
         }
 

@@ -20,10 +20,7 @@
         .content-container {
             width: 756px;
             height: 600px;
-            margin-top: 35px;
-            margin-left: 125px;
-            margin-right: 144px;
-            margin-bottom: 0px;
+            margin: auto;
             padding: 25px;
             padding-bottom: 0px;
             display: flex;
@@ -40,7 +37,7 @@
             align-items: flex-start;
             gap: 25px;
             border-radius: 8px;
-            background: var(--Surfaces-LVL-0, #F7FCFF);
+            background: var(--Surfaces-LVL-0, #fff);
         }
 
         .title {

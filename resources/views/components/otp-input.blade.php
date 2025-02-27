@@ -4,12 +4,12 @@
 <div class="otp-container">
     <div class="otp-box">
         @for ($i = 0; $i < 6; $i++)
-            <input type="text" class="otp-input" maxlength="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+            <input type="text" class="otp-input" maxlength="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" disabled placeholder="-" />
         @endfor
     </div>
     
     <p class="otp-timer" id="otp-timer">Code to expire in <span class="countdown" id="countdown"></span></p>
-    <button class="resend-btn d-none" id="resend-btn">Resend OTP</button>
+    <p class="otp-expired d-none" id="otp-expired">OTP has expired. <button class="resend-btn" id="resend-btn">Resend OTP</button></p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,20 +17,27 @@
     $(document).ready(function() {
         let timerDuration = {{ $duration }};
         let countdownEl = $('#countdown');
+        let otpTimer = $('#otp-timer');
+        let otpExpired = $('#otp-expired');
         let resendBtn = $('#resend-btn');
+        let otpInputs = $('.otp-input');
         let interval;
 
         function startTimer() {
+            clearInterval(interval);
             let timeLeft = timerDuration;
             countdownEl.text(formatTime(timeLeft));
-            resendBtn.addClass('d-none');
+            otpExpired.addClass('d-none');
+            otpTimer.removeClass('d-none');
+            otpInputs.prop('disabled', false).val('').attr('placeholder', ''); // Enable inputs and clear values
             interval = setInterval(function() {
                 timeLeft--;
                 countdownEl.text(formatTime(timeLeft));
                 if (timeLeft <= 0) {
                     clearInterval(interval);
-                    $('#otp-timer').text('');
-                    resendBtn.removeClass('d-none');
+                    otpTimer.addClass('d-none');
+                    otpExpired.removeClass('d-none');
+                    otpInputs.prop('disabled', true).val('').attr('placeholder', '-'); // Disable inputs and set placeholder to '-'
                 }
             }, 1000);
         }
@@ -42,12 +49,12 @@
         }
 
         resendBtn.click(function() {
-            startTimer(); // Restart timer
+            startTimer();
         });
 
-        startTimer(); // Initial timer start
+        startTimer();
 
-        $('.otp-input').on('input', function() {
+        otpInputs.on('input', function() {
             let inputVal = $(this).val();
             if (inputVal.length === 1) {
                 $(this).next('.otp-input').focus();
@@ -68,11 +75,11 @@
     }
     .otp-box {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         align-items: center;
     }
     .otp-input {
-        width: 114px;
+        width: 100%;
         height: 80px;
         font-size: 40px;
         font-weight: bold;
@@ -82,26 +89,47 @@
         background-color: #F7FFFF;
         outline: none;
         font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        padding: 0;
+    }
+    .otp-input:disabled {
+        color: #666;
+        background-color: #F7FFFF;
+        border-bottom: 2px solid #848A90;
+
     }
     .otp-input:focus {
         border-bottom-color:rgb(4, 176, 176);
     }
+    .otp-input::placeholder
+    {
+        color: #2D2727;
+    }
     .otp-timer {
         color: #2D2727;
         font-size: 12px;
+        margin: 0;
     }
     .countdown {
         color: #E4509A;
     }
+    .otp-expired {
+        color: #2D2727;
+        font-size: 12px;
+        margin: 0;
+    }
     .resend-btn {
-        margin-top: 5px;
         background: none;
         border: none;
-        color: #E4509A;
+        color: #008080;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 12px;
+        padding: 0;
     }
     .resend-btn:hover {
         text-decoration: underline;
+    }
+    .d-none {
+        display: none;
     }
 </style>

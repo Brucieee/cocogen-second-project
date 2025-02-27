@@ -32,10 +32,7 @@
             position: relative;
             text-align: center;
             gap: 31px;
-            margin-top: 184px;
-            margin-left: 492px;
-            margin-right: 239px;
-            margin-bottom: 333px;
+            margin: auto;
             background: white;
         }
 
