@@ -23,18 +23,6 @@
                 box-sizing: border-box;
             }
 
-            .content-container {
-                width: 756px;
-                height: 600px;
-                margin: auto;
-                padding: 25px;
-                padding-bottom: 0px;
-                display: flex;
-                flex-direction: column;
-                gap: 25px;
-                position: relative;
-            }
-
             .container-1 {
                 display: flex;
                 width: 784px;
@@ -312,12 +300,7 @@
                 initializeFileUpload('uploadID');
                 initializeFileUpload('uploadDisplayPicture');
 
-                $("#nextBtn4").click(function(event) {
-                    event.preventDefault();
-
-                    // Replace the current form content with the included next step
-                    $(".identity-form2").html($("#identity3-step").html());
-                });
+               
             });
         </script>
     </body>

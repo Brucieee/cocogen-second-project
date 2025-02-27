@@ -81,11 +81,14 @@
 
 <script>
     $(document).ready(function() {
+
         $('#infoIcon').click(function() {
             $('#infoOverlay').fadeIn();
         });
 
-        $('#closeInfo').click(function() {
+        $('#closeInfo').click(function(event) {
+        event.preventDefault();
+
             $('#infoOverlay').fadeOut();
         });
     });
