@@ -1,8 +1,10 @@
+@props(['id', 'name', 'label', 'options', 'placeholder', 'width', 'required', 'disabled' => false])
+
 <style>
     .dropdown-container {
         display: flex;
         flex-direction: column;
-        width: {{ $width ?? '100%' }};
+        width: {{ $width }};
         position: relative;
         gap: 5px;
     }
@@ -147,6 +149,7 @@
     .dropdown-container.disabled .dropdown-text-field {
         background: var(--Surfaces-LVL-1, #F7FCFF);
         cursor: not-allowed;
+        color: var(--Surfaces-LVL-5, #848A90);
     }
 
     .dropdown-container.disabled .dropdown-text-field::placeholder {
@@ -158,13 +161,13 @@
     }
 </style>
 
-<div class="dropdown-container @if(isset($disabled) && $disabled) disabled @endif">
+<div class="dropdown-container @if($disabled) disabled @endif">
     <!-- Closed Dropdown Field -->
     <div class="dropdown-text-field-container">
         <div class="dropdown-label-container">
             <span class="dropdown-label-text">
                 {{ $label }}
-                @if(!empty($required))<span class="dropdown-required">*</span>@endif
+                @if($required)<span class="dropdown-required">*</span>@endif
             </span>
         </div>
         <div class="dropdown-input-container" onclick="!this.closest('.dropdown-container').classList.contains('disabled') && toggleDropdown('{{ $id }}')">
@@ -174,7 +177,7 @@
                 class="dropdown-text-field" 
                 placeholder="{{ $placeholder }}" 
                 oninput="!this.closest('.dropdown-container').classList.contains('disabled') && filterOptions(this.value, '{{ $id }}')"
-                @if(isset($disabled) && $disabled) disabled @endif
+                @if($disabled) disabled @endif
             >
             <img 
                 src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" 
