@@ -18,8 +18,6 @@
         .account-container-1 {
             width: 775px;
             height: 830px auto;
-            top: 96px;
-            left: 349px;
             padding: 35px;
             gap: 25px;
             display: flex;
@@ -73,7 +71,7 @@
             flex-direction: column;
         }
 
-        .form-container-1 {
+        .create-account1 {
             display: flex;
             width: 100%;
             height: 100%;
@@ -84,7 +82,7 @@
 
 <body>
 
-    <div class="form-container-1" id="form-container">
+    <div class="create-account1" id="form-container">
 
         <x-stepper :currentStep="session('currentStep', 1)" />
 
@@ -196,11 +194,13 @@
             let selectedOption = null; // No default selection
 
             // Handle pill button clicks
-            $("#policy-yes-btn").click(function() {
+            $("#policy-yes-btn").click(function(event) {
+                event.preventDefault();
                 selectedOption = "yes";
             });
 
-            $("#policy-no-btn").click(function() {
+            $("#policy-no-btn").click(function(event) {
+                event.preventDefault();
                 selectedOption = "no";
             });
 

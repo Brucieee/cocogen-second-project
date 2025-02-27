@@ -129,116 +129,129 @@
             gap: 25px;
             align-self: stretch;
         }
+
+        .create-account2-2 {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
+    <div class="create-account2-2">
+        <x-stepper :currentStep="session('currentStep', 1)" />
 
+        <div class="main-container">
+            <!-- Back Button Component -->
+            <x-Register.back-button
+                title="Create account as Policyholder"
+                backUrl="{{ url()->previous() }}" />
 
-    <x-stepper :currentStep="session('currentStep', 1)" />
+            <!-- Getting to Know You Container -->
+            <div class="getting-to-know-you-container">
+                <!-- Form Title Component -->
+                <x-Register.form-title
+                    title="Getting to know you" />
 
-    <div class="main-container">
-        <!-- Back Button Component -->
-        <x-Register.back-button
-            title="Create account as Policyholder"
-            backUrl="{{ url()->previous() }}" />
-
-        <!-- Getting to Know You Container -->
-        <div class="getting-to-know-you-container">
-            <!-- Form Title Component -->
-            <x-Register.form-title
-                title="Getting to know you" />
-
-            <!-- Active Policies Container -->
-            <div class="active-policies-container">
-                <!-- Title for Active Policies -->
-                <x-title-required
-                    title="Active Policy/s you have"
-                    :required="true" />
-
-                <!-- Policy Fields -->
-                <x-Fields.add-policy
-                    label="Policy No."
-                    required="true" />
-            </div>
-
-            <!-- Representative Container -->
-            <div class="representative-container">
-                <!-- Title for Representative -->
-                <x-title-required
-                    title="Do you want to be contacted by a Cocogen Representative?"
-                    :required="true" />
-
-
-                <!-- Pill Button Container -->
-                <div class="pill-button-container">
-                    <x-Buttons.pill-button
-                        idOne="pill-one-No-1.2"
-                        idTwo="pill-two-Yes-1.2"
-                        pillOneText="No, I will explore Cocogen products myself"
-                        pillTwoText="Yes, I need a representative to talk to me" />
-
-                </div>
-            </div>
-
-            <!-- Branch Container -->
-            <div class="branch-container">
-                <div class="title-container-2">
+                <!-- Active Policies Container -->
+                <div class="active-policies-container">
+                    <!-- Title for Active Policies -->
                     <x-title-required
-                        title="Which Cocogen branch should you wish to be contacted by?"
+                        title="Active Policy/s you have"
                         :required="true" />
-                    <x-modal-info />
+
+                    <!-- Policy Fields -->
+                    <x-Fields.add-policy
+                        label="Policy No."
+                        required="true" />
+                </div>
+
+                <!-- Representative Container -->
+                <div class="representative-container">
+                    <!-- Title for Representative -->
+                    <x-title-required
+                        title="Do you want to be contacted by a Cocogen Representative?"
+                        :required="true" />
+
+
+                    <!-- Pill Button Container -->
+                    <div class="pill-button-container">
+                        <x-Buttons.pill-button
+                            idOne="pill-one-No-1.2"
+                            idTwo="pill-two-Yes-1.2"
+                            pillOneText="No, I will explore Cocogen products myself"
+                            pillTwoText="Yes, I need a representative to talk to me" />
+
+                    </div>
+                </div>
+
+                <!-- Branch Container -->
+                <div class="branch-container">
+                    <div class="title-container-2">
+                        <x-title-required
+                            title="Which Cocogen branch should you wish to be contacted by?"
+                            :required="true" />
+                        <x-modal-info />
+                    </div>
+                </div>
+
+                <!-- Dropdown Container -->
+                <div class="dropdown-container">
+                    <x-fields.dropdown-field-2
+                        label="Select one (1) Cocogen branch"
+                        id="selected_branch"
+                        placeholder="Select branch"
+                        :required="true"
+                        width="'300px'"
+                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
                 </div>
             </div>
 
-            <!-- Dropdown Container -->
-            <div class="dropdown-container">
-                <x-fields.dropdown-field-2
-                    label="Select one (1) Cocogen branch"
-                    id="selected_branch"
-                    placeholder="Select branch"
+
+            <!-- Contact Container -->
+            <div class="contact-container">
+                <!-- Title for Contact -->
+                <x-title-required
+                    title="How do you want to be contacted?"
                     :required="true"
-                    width="'300px'"
-                    :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
+                    placeholder="(You may select more than one)" />
+
+                <!-- Main Contact Container -->
+                <div class="main-contact-container">
+                    <!-- Left Container -->
+                    <div class="left-container">
+                        <x-Buttons.checkbox-button
+                            label="Email" />
+                        <x-Buttons.checkbox-button
+                            label="SMS" />
+                    </div>
+
+                    <!-- Right Container -->
+                    <div class="right-container">
+                        <x-Buttons.checkbox-button
+                            label="Messenger" />
+                        <x-Buttons.checkbox-button
+                            label="Call" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button Container -->
+            <div class="button-container">
+                <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
+                <x-buttons.primary-button id="nextBtn2-2">Next</x-buttons.primary-button>
             </div>
         </div>
 
-
-        <!-- Contact Container -->
-        <div class="contact-container">
-            <!-- Title for Contact -->
-            <x-title-required
-                title="How do you want to be contacted?"
-                :required="true"
-                placeholder="(You may select more than one)" />
-
-            <!-- Main Contact Container -->
-            <div class="main-contact-container">
-                <!-- Left Container -->
-                <div class="left-container">
-                    <x-Buttons.checkbox-button
-                        label="Email" />
-                    <x-Buttons.checkbox-button
-                        label="SMS" />
-                </div>
-
-                <!-- Right Container -->
-                <div class="right-container">
-                    <x-Buttons.checkbox-button
-                        label="Messenger" />
-                    <x-Buttons.checkbox-button
-                        label="Call" />
-                </div>
-            </div>
-        </div>
-
-        <!-- Button Container -->
-        <div class="button-container">
-            <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-            <x-buttons.primary-button>Next</x-buttons.primary-button>
+        <div id="identity-step2" style="display: none;">
+            @include('Register.your-identity-1')
         </div>
     </div>
     </div>
+
+
+
     <script>
         $(document).ready(function() {
             $(".pill-button").on("click", function() {
@@ -254,6 +267,13 @@
                 } else {
                     $(".branch-container, .dropdown-container, .contact-container").slideDown();
                 }
+            });
+
+            $("#nextBtn2-2").click(function(event) {
+                event.preventDefault();
+
+                // Replace the current form content with the included next step
+                $(".create-account2-2").html($("#identity-step2").html());
             });
         });
     </script>

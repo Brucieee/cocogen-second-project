@@ -65,7 +65,6 @@
             flex-direction: column;
         }
 
-        .contact-representative,
         .branch-contact,
         .contact-type {
             display: flex;
@@ -96,8 +95,11 @@
             gap: 10px;
 
         }
-        .create-account2{
+
+        .create-account2 {
             display: flex;
+            height: 100%;
+            width: 100%;
         }
     </style>
 </head>
@@ -252,14 +254,16 @@
             <div id="identity-step" style="display: none;">
                 @include('Register.your-identity-1')
             </div>
-          
+
         </div>
     </div>
 
 
     <script>
         $(document).ready(function() {
-            $(".pill-button").on("click", function() {
+            $(".pill-button").on("click", function(event) {
+                event.preventDefault(); // Prevents any default action (like form submission)
+
                 const selectedId = $(this).attr("id");
 
                 // Toggle button states
@@ -279,10 +283,10 @@
                 $(".branch-contact, .contact-type").hide();
             }
 
-            $("#nextBtn2").click(function() {
+            $("#nextBtn2").click(function(event) {
+                event.preventDefault();
                 $("#create-account2").html($("#identity-step").html());
-
-            })
+            });
         });
     </script>
 
