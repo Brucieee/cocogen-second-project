@@ -49,6 +49,7 @@
         border-radius: 1px;
         border-bottom: 1px solid var(--Teal-LVL-9, #066);
         color: #1E1F21;
+        transition: all 0.3s ease;
     }
 
     .dropdown-text-field {
@@ -61,6 +62,7 @@
         font-weight: 400;
         line-height: 24px;
         color: #1E1F21;
+        background: transparent;
     }
 
     .dropdown-text-field::placeholder {
@@ -103,9 +105,8 @@
     }
 
     .search-bar::placeholder {
-    font-size: 14px; /* Adjust size as needed */
-}
-
+        font-size: 14px; /* Adjust size as needed */
+    }
 
     .search-bar {
         flex: 1;
@@ -135,9 +136,29 @@
     .dropdown-option:hover {
         background: var(--Teal-LVL-2, #E0F5F5);
     }
+
+    /* Disabled State */
+    .dropdown-container.disabled .dropdown-input-container {
+        border-bottom: 1px solid var(--Surfaces-LVL-5, #848A90);
+        background: var(--Surfaces-LVL-1, #F7FCFF);
+        cursor: not-allowed;
+    }
+
+    .dropdown-container.disabled .dropdown-text-field {
+        background: var(--Surfaces-LVL-1, #F7FCFF);
+        cursor: not-allowed;
+    }
+
+    .dropdown-container.disabled .dropdown-text-field::placeholder {
+        color: var(--Surfaces-LVL-5, #848A90);
+    }
+
+    .dropdown-container.disabled .dropdown-icon {
+        filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(90%) contrast(90%); /* Grayed out */
+    }
 </style>
 
-<div class="dropdown-container">
+<div class="dropdown-container @if(isset($disabled) && $disabled) disabled @endif">
     <!-- Closed Dropdown Field -->
     <div class="dropdown-text-field-container">
         <div class="dropdown-label-container">
@@ -146,13 +167,14 @@
                 @if(!empty($required))<span class="dropdown-required">*</span>@endif
             </span>
         </div>
-        <div class="dropdown-input-container" onclick="toggleDropdown('{{ $id }}')">
+        <div class="dropdown-input-container" onclick="!this.closest('.dropdown-container').classList.contains('disabled') && toggleDropdown('{{ $id }}')">
             <input 
                 type="text" 
                 id="{{ $id }}" 
                 class="dropdown-text-field" 
                 placeholder="{{ $placeholder }}" 
-                oninput="filterOptions(this.value, '{{ $id }}')"
+                oninput="!this.closest('.dropdown-container').classList.contains('disabled') && filterOptions(this.value, '{{ $id }}')"
+                @if(isset($disabled) && $disabled) disabled @endif
             >
             <img 
                 src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" 
@@ -174,7 +196,7 @@
         <!-- Dropdown Options -->
         <div class="dropdown-options">
             @foreach ($options as $option)
-                <div class="dropdown-option" onclick="selectOption('{{ $option }}', '{{ $id }}')">
+                <div class="dropdown-option" onclick="!this.closest('.dropdown-container').classList.contains('disabled') && selectOption('{{ $option }}', '{{ $id }}')">
                     {{ $option }}
                 </div>
             @endforeach
@@ -191,37 +213,38 @@
 
     // Toggles the dropdown visibility and changes the icon accordingly
     function toggleDropdown(id) {
-    const allMenus = document.querySelectorAll('.dropdown-menu');
-    const allIcons = document.querySelectorAll('.dropdown-icon');
-    
-    // Close other dropdowns and reset their icons
-    allMenus.forEach(menu => {
-        if (menu.id !== `dropdown-menu-${id}`) {
-            menu.classList.remove('open');
-        }
-    });
-    
-    allIcons.forEach(icon => {
-        if (icon.id !== `dropdown-icon-${id}`) {
+        const allMenus = document.querySelectorAll('.dropdown-menu');
+        const allIcons = document.querySelectorAll('.dropdown-icon');
+        
+        // Close other dropdowns and reset their icons
+        allMenus.forEach(menu => {
+            if (menu.id !== `dropdown-menu-${id}`) {
+                menu.classList.remove('open');
+            }
+        });
+        
+        allIcons.forEach(icon => {
+            if (icon.id !== `dropdown-icon-${id}`) {
+                icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
+                icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
+            }
+        });
+
+        // Toggle the clicked dropdown
+        const menu = document.getElementById(`dropdown-menu-${id}`);
+        const icon = document.getElementById(`dropdown-icon-${id}`);
+        menu.classList.toggle('open');
+        
+        // Change the icon with smooth transition
+        if (menu.classList.contains('open')) {
+            icon.src = '{{ asset('assets/icons/Icon-ArrowUp.svg') }}';
+            icon.style.filter = 'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)'; // #D7DEE3
+        } else {
             icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
             icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
         }
-    });
-
-    // Toggle the clicked dropdown
-    const menu = document.getElementById(`dropdown-menu-${id}`);
-    const icon = document.getElementById(`dropdown-icon-${id}`);
-    menu.classList.toggle('open');
-    
-    // Change the icon with smooth transition
-    if (menu.classList.contains('open')) {
-        icon.src = '{{ asset('assets/icons/Icon-ArrowUp.svg') }}';
-        icon.style.filter = 'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)'; // #D7DEE3
-    } else {
-        icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
-        icon.style.filter = 'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
     }
-}
+
     // Filters options in the dropdown based on input value
     function filterOptions(input, id) {
         const options = document.querySelectorAll(`#dropdown-menu-${id} .dropdown-option`);
