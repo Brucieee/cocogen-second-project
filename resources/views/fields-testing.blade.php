@@ -25,3 +25,20 @@
     width="300px" 
 />
 
+<x-Fields.dropdown-field-2
+                            id="payment-type"
+                            name="payment-type"
+                            label="Payment Types"
+                            :options="['Debit Card', 'Credit Card']"
+                            placeholder="Payment Type"
+                            width="330px"
+                            required 
+                            disabled />
+                        <x-Fields.dropdown-field-2
+                            id="bank"
+                            name="bank"
+                            label="Bank/E-Wallet"
+                            :options="['GCash', 'Maya', 'BDO']"
+                            placeholder="Bank/E-Wallet Name"
+                            width="330px"
+                            required />
