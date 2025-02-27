@@ -82,10 +82,10 @@
         }
 
         .form-container-1 {
-         display: flex;
-         width: 100%;
-         height: 100%;
-         
+            display: flex;
+            width: 100%;
+            height: 100%;
+
         }
     </style>
 </head>
@@ -105,15 +105,37 @@
                 <x-Register.form-title title="Getting to know you" />
 
                 <div class="account-form-contents">
-                    <div class="form-row-1">
-                        <x-fields.text-field id="first-name" name="first-name" label="First Name" placeholder="First Name" width="212px" required />
-                        <x-fields.text-field id="middle-name" name="middle-name" label="Middle Name" placeholder="Middle Name" width="212px" />
-                        <x-fields.text-field id="last-name" name="last-name" label="Last Name" placeholder="Last Name" width="212px" required />
+                    <div class="form-row-1"><x-Fields.text-field
+                            label="First Name"
+                            id="first_name"
+                            type="text"
+                            placeholder="First Name"
+                            required="true"
+                            width="100%" />
+                    <x-Fields.text-field
+                            label="Middle Name"
+                            id="middle_name"
+                            type="text"
+                            placeholder="Middle Name"
+                            width="100%" />
+                    <x-Fields.text-field
+                            label="Last Name"
+                            id="last_name"
+                            type="text"
+                            placeholder="Last Name"
+                            required="true"
+                            width="100%" />
                     </div>
 
                     <div class="form-row-2">
                         <x-fields.text-field type="Date" id="date-birth" name="date-birth" label="Date of Birth" placeholder="Date of Birth" width="100%" required />
-                        <x-fields.text-field id="place-birth" name="place-birth" label="Place of Birth" placeholder="City, Region, Country" width="330px" required />
+                        <x-Fields.text-field
+                            label="Place of Birth"
+                            id="birth_place"
+                            type="text"
+                            placeholder="City, Region, Country"
+                            required="true"
+                            width="100%" />
                     </div>
 
                     <div class="form-row-3">
@@ -122,8 +144,20 @@
                     </div>
 
                     <div class="form-row-4">
-                        <x-fields.text-field type="tel" id="mobile" name="Mobile" label="Mobile" placeholder="(09XX) XXX-XXXX" width="330px" required />
-                        <x-fields.text-field type="email" id="email" name="Email" label="Email" placeholder="name@gmail.com" width="330px" required />
+                        <x-Fields.text-field
+                            label="Mobile"
+                            id="contact_number"
+                            type="number"
+                            placeholder="(09XX) XXX-XXXX"
+                            required="true"
+                            width="100%" />
+                        <x-Fields.text-field
+                            label="Email"
+                            id="email"
+                            type="email"
+                            placeholder="Email"
+                            required="true"
+                            width="100%" />
                     </div>
                 </div>
 
