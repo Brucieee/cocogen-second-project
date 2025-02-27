@@ -1,22 +1,26 @@
-<x-Fields.text-field
-    label="First Name"
-    id="first_name"
-    placeholder="Enter your first name"
-    width="300px"
-    required />
+<x-Fields.text-field 
+    label="Full Name" 
+    id="nameField" 
+    type="text" 
+    placeholder="Enter your name..." 
+    required="true" 
+    width="300px" 
+/>
 
-<x-Fields.dropdown-field-2
-    label="Nationality"
-    id="nationality-dropdown"
-    placeholder="Select nationality"
-    :required="true"
-    :width="'300px'"
-    :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']" />
+<x-Fields.text-field 
+    label="Age" 
+    id="ageField" 
+    type="number" 
+    placeholder="Enter your age..." 
+    required="true" 
+    width="300px" 
+/>
 
-<x-Fields.dropdown-field-2
-    label="Test"
-    id="test"
-    placeholder="Select nationality"
-    :required="false"
-    :width="'300px'"
-    :options="['Filipino', 'Japanese', 'Korean', 'Chinese', 'Indian', 'Thai']" />
+<x-Fields.text-field 
+    label="Email" 
+    id="emailField" 
+    type="email" 
+    placeholder="Enter your email..." 
+    required="true" 
+    width="300px" 
+/>
