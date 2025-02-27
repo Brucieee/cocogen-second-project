@@ -24,7 +24,7 @@
         }
 
         .identity-3-container {
-            margin-left: 98px;
+            margin: auto;
             width: 784px;
             height: 454px auto;
             padding: 35px;

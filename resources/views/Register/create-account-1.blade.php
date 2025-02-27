@@ -80,131 +80,115 @@
             gap: 20px;
             flex-direction: column;
         }
+
+        .form-container-1 {
+         display: flex;
+         width: 100%;
+         height: 100%;
+         
+        }
     </style>
 </head>
 
 <body>
 
-    <x-stepper
-        :currentStep="session('currentStep', 1)" />
+    <div class="form-container-1" id="form-container">
 
-    <div class="account-container-1"
-        id="account-form-1">
-        <x-Register.back-button
-            title="Create account as Policyholder"
-            backUrl="{{ url()->previous() }}" />
-        <div class="account-form">
-            <x-Register.form-title
-                title="Getting to know you" />
-            <div class="account-form-contents">
-                <div class="form-row-1">
-                    <x-fields.text-field
-                        id="first-name"
-                        name="first-name"
-                        label="First Name"
-                        placeholder="First Name"
-                        width="212px"
-                        required />
-                    <x-fields.text-field
-                        id="middle-name"
-                        name="middle-name"
-                        label="Middle Name"
-                        placeholder="Middle Name"
-                        width="212px" />
-                    <x-fields.text-field
-                        id="last-name"
-                        name="last-name"
-                        label="Last Name"
-                        placeholder="Last Name"
-                        width="212px"
-                        required />
-                </div>
-                <div class="form-row-2">
-                    <x-fields.text-field
-                        type="Date"
-                        id="date-birth"
-                        name="date-birth"
-                        label="Date of Birth"
-                        placeholder="Date of Birth"
-                        width=100%
-                        required />
-                    <x-fields.text-field
-                        id="place-birth"
-                        name="-place-birth"
-                        label="Place of Birth"
-                        placeholder="City, Region, Country"
-                        width="330px"
-                        required />
-                </div>
-                <div class="form-row-3">
-                    <x-fields.dropdown-field-2
-                        id="sex"
-                        name="Sex"
-                        label="Sex"
-                        :options="['Female', 'Male', 'Other']"
-                        placeholder="Female"
-                        width="330px"
-                        required />
-                    <x-fields.dropdown-field-2
-                        id="citizen"
-                        name="Citizenship"
-                        label="Citizenship"
-                        :options="['Filipino', 'American', 'Other']"
-                        placeholder="Filipino"
-                        width="330px"
-                        required />
+        <x-stepper :currentStep="session('currentStep', 1)" />
 
+        <div class="account-container-1" id="account-form-1">
+            <x-Register.back-button
+                title="Create account as Policyholder"
+                backUrl="{{ url()->previous() }}" />
+
+            <div class="account-form">
+                <x-Register.form-title title="Getting to know you" />
+
+                <div class="account-form-contents">
+                    <div class="form-row-1">
+                        <x-fields.text-field id="first-name" name="first-name" label="First Name" placeholder="First Name" width="212px" required />
+                        <x-fields.text-field id="middle-name" name="middle-name" label="Middle Name" placeholder="Middle Name" width="212px" />
+                        <x-fields.text-field id="last-name" name="last-name" label="Last Name" placeholder="Last Name" width="212px" required />
+                    </div>
+
+                    <div class="form-row-2">
+                        <x-fields.text-field type="Date" id="date-birth" name="date-birth" label="Date of Birth" placeholder="Date of Birth" width="100%" required />
+                        <x-fields.text-field id="place-birth" name="place-birth" label="Place of Birth" placeholder="City, Region, Country" width="330px" required />
+                    </div>
+
+                    <div class="form-row-3">
+                        <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']" placeholder="Female" width="330px" required />
+                        <x-fields.dropdown-field-2 id="citizen" name="Citizenship" label="Citizenship" :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px" required />
+                    </div>
+
+                    <div class="form-row-4">
+                        <x-fields.text-field type="tel" id="mobile" name="Mobile" label="Mobile" placeholder="(09XX) XXX-XXXX" width="330px" required />
+                        <x-fields.text-field type="email" id="email" name="Email" label="Email" placeholder="name@gmail.com" width="330px" required />
+                    </div>
                 </div>
-                <div class="form-row-4">
-                    <x-fields.text-field
-                        type="tel"
-                        id="mobile"
-                        name="Mobile"
-                        label="Mobile"
-                        placeholder="(09XX) XXX-XXXX"
-                        width="330px"
-                        required />
-                    <x-fields.text-field
-                        type="email"
-                        id="email"
-                        name="Email"
-                        label="Email"
-                        placeholder="name@gmail.com "
-                        width="330px"
-                        required />
+
+                <div class="reminder">
+                    <x-Reminders.reminder-update-profile>
+                        You may change your input data should you need to update your information. Note: Email address cannot be changed.
+                        </x-reminder-update-profile>
+                </div>
+
+                <div class="existing-policy">
+                    <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px" weight="500" style="Inter" />
+
+                    <x-buttons.pill-button idOne="policy-yes-btn" idTwo="policy-no-btn" pillOneText="No" pillTwoText="Yes" />
                 </div>
             </div>
-            <div class="reminder">
-                <x-Reminders.reminder-update-profile>
-                    You may change your input data should you need to update your information. Note: Email address cannot be changed.
-                    </x-reminder-update-profile>
 
+            <div class="next-cancel-btns">
+                <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
+                <x-buttons.primary-button id="nextBtn1">Next</x-buttons.primary-button>
             </div>
 
-            <div class="existing-policy">
-                <x-question-label
-                    text="Do you have an existing policy with Cocogen?"
-                    required="true"
-                    size="16px"
-                    weight="500" style="Inter" />
+            <!-- Step 2 - No (Hidden by Default) -->
+            <div id="step-2-no" style="display: none;">
+                @include('Register.create-account-2-2')
+            </div>
 
-                <x-buttons.pill-button
-                    idOne="policy-yes-btn"
-                    idTwo="policy-no-btn"
-                    pillOneText="No"
-                    pillTwoText="Yes" />
-
+            <!-- Step 2 - Yes (Hidden by Default) -->
+            <div id="step-2-yes" style="display: none;">
+                @include('Register.create-account-2')
             </div>
         </div>
-        <div class="next-cancel-btns">
-            <x-buttons.secondary-button
-                id="prev-button">Cancel</x-buttons.secondary-button>
-            <x-buttons.primary-button
-                id="nextBtn1">Next</x-buttons.primary-button>
-        </div>
-    </div>
 
     </div>
+
+
+
+    <!-- Bootstrap and jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery Script for Redirecting Based on Selection -->
+    <script>
+        $(document).ready(function() {
+            let selectedOption = null; // No default selection
+
+            // Handle pill button clicks
+            $("#policy-yes-btn").click(function() {
+                selectedOption = "yes";
+            });
+
+            $("#policy-no-btn").click(function() {
+                selectedOption = "no";
+            });
+
+            // Handle Next button click
+            $("#nextBtn1").click(function() {
+                if (selectedOption === "yes") {
+                    $("#form-container").html($("#step-2-yes").html());
+                } else if (selectedOption === "no") {
+                    $("#form-container").html($("#step-2-no").html());
+                } else {
+                    alert("Please select an option before proceeding.");
+                }
+            });
+        });
+    </script>
+
 </body>
