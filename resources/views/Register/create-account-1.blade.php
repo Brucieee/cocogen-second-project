@@ -15,14 +15,6 @@
             display: flex;
         }
 
-        .content-container {
-            margin-top: 66px;
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px;
-            flex-grow: 1;
-        }
-
         .account-container-1 {
             width: 775px;
             height: 830px auto;
@@ -83,9 +75,9 @@
 
         .form-container-1 {
          display: flex;
-         width: 100%;
          height: 100%;
-         
+         width: 100%;
+         flex-direction: row;
         }
     </style>
 </head>
@@ -146,7 +138,7 @@
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->
-            <div id="step-2-no" style="display: none;">
+            <div id="step-2-no" style="display: none; ">
                 @include('Register.create-account-2-2')
             </div>
 

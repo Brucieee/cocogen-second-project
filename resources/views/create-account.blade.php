@@ -7,8 +7,8 @@
     <style>
         .create-form
         {
-            width: 100%;
-            height: 100%;
+            width: auto;
+            height: auto;
         }
     </style>
 </head>
@@ -16,8 +16,7 @@
 <body>
 
     <form action="" class="create-form">
-        @include(' Register.create-account-1')
-
+        @include('Register.create-account-1')
     </form>
 
 
