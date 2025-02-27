@@ -192,7 +192,7 @@
                         <x-title-required
                             title="Which Cocogen branch should you wish to be contacted by?"
                             :required="true" />
-                        <x-modal-info />
+                        <x-info-icon />
                     </div>
                 </div>
 

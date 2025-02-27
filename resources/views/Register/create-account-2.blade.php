@@ -189,7 +189,7 @@
                                     style="Inter"
                                     info="" />
 
-                                <x-modal-info />
+                                <x-info-icon />
 
                             </div>
 
