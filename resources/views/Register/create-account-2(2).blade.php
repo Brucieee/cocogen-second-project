@@ -51,12 +51,25 @@
             align-self: stretch;
         }
 
-        .active-policies-container {
+        .policy-checkbox {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
             gap: 35px;
-            align-self: stretch;
+            flex-direction: column;
+        }
+
+        .checkbox-col-1 {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .check-row-1,
+        .check-row-3,
+        .check-row-2 {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            flex-direction: column;
         }
 
         .representative-container {
@@ -153,16 +166,50 @@
                     title="Getting to know you" />
 
                 <!-- Active Policies Container -->
-                <div class="active-policies-container">
-                    <!-- Title for Active Policies -->
-                    <x-title-required
-                        title="Active Policy/s you have"
-                        :required="true" />
+                <div class="policy-checkboxes">
+                    <x-question-label text="What policy are you interested in? "
+                        required="true"
+                        size="16px"
+                        weight="500" style="Inter"
+                        info="You may select as many as you want" />
 
-                    <!-- Policy Fields -->
-                    <x-Fields.add-policy
-                        label="Policy No."
-                        required="true" />
+
+                    <div class="checkbox-col-1">
+                        <div class="check-row-1">
+                            <x-buttons.checkbox-button
+                                id="checkbox_AEP"
+                                name="Auto-Excel"
+                                label="Auto Excel Plus"
+                                :checked=false />
+                            <x-buttons.checkbox-button
+                                id="checkbox_ITP"
+                                name="International-Travel"
+                                label="International Travel Plus"
+                                :checked=false />
+                        </div>
+                        <div class="check-row-2">
+                            <x-buttons.checkbox-button
+                                id="checkbox_DTP"
+                                name="Domestic-Travel"
+                                label="Domestic Travel Plus"
+                                :checked=false />
+                            <x-buttons.checkbox-button
+                                id="checkbox_PT"
+                                name="Pro-Tech"
+                                label="Pro-Tech"
+                                :checked=false />
+                        </div>
+                        <div class="check-row-3">
+                            <x-buttons.checkbox-button
+                                id="checkbox_CEP"
+                                name="condo-excel"
+                                label="Condo Excel Plus"
+                                :checked=false />
+                        </div>
+                        <div class="check-row-4">
+
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Representative Container -->
@@ -176,8 +223,8 @@
                     <!-- Pill Button Container -->
                     <div class="pill-button-container">
                         <x-Buttons.pill-button
-                            idOne="pill_no_2_2"
-                            idTwo="pill_no_2_2"
+                            idOne="pill_no_2"
+                            idTwo="pill_yes_2"
                             pillOneText="No, I will explore Cocogen products myself"
                             pillTwoText="Yes, I need a representative to talk to me" />
 
@@ -242,7 +289,7 @@
             <!-- Button Container -->
             <div class="button-container">
                 <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next_2_2">Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next_2">Next</x-buttons.primary-button>
             </div>
         </div>
 
@@ -254,41 +301,61 @@
 
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         $(document).ready(function() {
+            console.log("Script Loaded"); // Debugging
+
             // Handle Pill Button Click
             $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
+                console.log("Pill Button Clicked:", this.id); // Debugging
 
-                const selectedId = $(this).attr("id");
-
-                // Toggle button states
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                // Hide or show sections based on selected button
-                if (selectedId === "pill-one-No-1.2") {
-                    $(".branch-container, .dropdown-container, .contact-container").slideUp();
+                if (this.id === "pill_no_2") {
+                    $(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function() {
+                        $(".contact-container input[type='checkbox']").prop("checked", false);
+                    });
                 } else {
-                    $(".branch-container, .dropdown-container, .contact-container").slideDown();
+                    $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
                 }
             });
 
             // Handle Next Button Click
-            $(document).on("click", "#nextBtn2-2", function(event) {
+            $(document).on("click", "#button_next_2", function(event) {
                 event.preventDefault();
+                console.log("Next Button Clicked"); // Debugging
 
-                // Replace the current content, ensuring the event handlers persist
                 $(".create-account2-2").html($("#identity-step2").html());
 
-                // Reinitialize event listeners after content replacement
+                // Reinitialize Event Listeners (if needed)
+                reinitializeEventListeners();
             });
+
+            // Function to Reinitialize Event Listeners After Content Replacement
+            function reinitializeEventListeners() {
+                console.log("Reinitializing Event Listeners"); // Debugging
+                $(".pill-button").off("click").on("click", function(event) {
+                    event.preventDefault();
+                    console.log("Pill Button Clicked After Reload:", this.id);
+
+                    $(".pill-button").removeClass("expanded");
+                    $(this).addClass("expanded");
+
+                    if (this.id === "pill_no_2") {
+                        $(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function() {
+                            $(".contact-container input[type='checkbox']").prop("checked", false);
+                        });
+                    } else {
+                        $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
+                    }
+                });
+            }
         });
     </script>
 
-
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>

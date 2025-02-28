@@ -160,13 +160,13 @@
                 <div class="existing-policy">
                     <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px" weight="500" style="Inter" />
 
-                    <x-buttons.pill-button idOne="policy-yes-btn" idTwo="policy-no-btn" pillOneText="No" pillTwoText="Yes" />
+                    <x-buttons.pill-button idOne="button_policy_yes" idTwo="button_policy_no" pillOneText="No" pillTwoText="Yes" />
                 </div>
             </div>
 
             <div class="next-cancel-btns">
-                <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="nextBtn1">Next</x-buttons.primary-button>
+                <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
+                <x-buttons.primary-button id="button_next_1">Next</x-buttons.primary-button>
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->
@@ -188,33 +188,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- jQuery Script for Redirecting Based on Selection -->
-    <script>
-        $(document).ready(function() {
-            let selectedOption = null; // No default selection
 
-            // Handle pill button clicks
-            $("#policy-yes-btn").click(function(event) {
-                event.preventDefault();
-                selectedOption = "yes";
-            });
-
-            $("#policy-no-btn").click(function(event) {
-                event.preventDefault();
-                selectedOption = "no";
-            });
-
-            // Handle Next button click
-            $("#nextBtn1").click(function() {
-                if (selectedOption === "yes") {
-                    $("#form-container").html($("#step-2-yes").html());
-                } else if (selectedOption === "no") {
-                    $("#form-container").html($("#step-2-no").html());
-                } else {
-                    alert("Please select an option before proceeding.");
-                }
-            });
-        });
-    </script>
 
 </body>
