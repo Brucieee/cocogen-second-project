@@ -71,7 +71,7 @@
                     :title="'Policyholder'"
                     :description="'Sign up as Policyholder. Avail of Cocogen products, access policies conveniently, and file claims easily.'"
                     :buttonText="'Create account as Policyholder'"
-                    :id="'policyholder-btn'" />
+                    :id="'button_policyholder'" />
             </div>
 
             <div class="select-account-component">
@@ -80,7 +80,7 @@
                     :title="'Partner'"
                     :description="'Sign up as Partner. Be a Cocogen agent to earn additional income, and get perks for being a partner of Cocogen.'"
                     :buttonText="'Create account as Agent'"
-                    :id="'partner-btn'" />
+                    :id="'button_partner'" />
             </div>
         </div>
     </div>

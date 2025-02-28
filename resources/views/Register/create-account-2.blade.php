@@ -246,8 +246,8 @@
                 </div>
 
                 <div class="next-cancel-btn-2">
-                    <x-buttons.secondary-button id="prev-button">Cancel</x-buttons.secondary-button>
-                    <x-buttons.primary-button id="nextBtn2">Next</x-buttons.primary-button>
+                    <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
+                    <x-buttons.primary-button id="button_next_2">Next</x-buttons.primary-button>
                 </div>
             </div>
 
@@ -297,3 +297,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
+

@@ -121,23 +121,23 @@
                             label="House/Unit No."
                             placeholder="10"
                             width="212px"
+                            type="email"
                             required />
 
                         <x-fields.text-field
-                            id="house"
+                            id="street"
                             name="Street"
                             label="Street"
                             placeholder="Street name"
                             width="212px"
-
                             required />
 
                         <x-fields.dropdown-field-2
-                            id="house"
+                            id="barangay"
                             name="Barangay"
                             label="Barangay"
-                            :options="[ 'Barangay 1', 'Barangay 2', 'Barangay 3']"
                             placeholder="Barangay"
+                            :options="[ 'Pasig', 'Manila', 'Quezon City', 'Cavite']"
                             width="345px"
                             height="56px"
                             required />
@@ -209,6 +209,36 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-        
+            $(document).ready(function() {
+                $("#nextBtn3").click(function(event) {
+                    event.preventDefault();
+
+                    // Replace the current form content with the included next step
+                    $(".identity-form1").html($("#identity2-step").html());
+                });
+            });
+
+            $(document).ready(function() {
+                // Fetch barangays from the Laravel API endpoint
+                $.ajax({
+                    url: '/api/barangays', // Laravel API route
+                    method: 'GET',
+                    success: function(response) {
+                        // Clear existing options
+                        $('#barangay').empty();
+
+                        // Add a default placeholder option
+                        $('#barangay').append('<option value="" disabled selected>Select Barangay</option>');
+
+                        // Populate the dropdown with barangays
+                        response.forEach(function(barangay) {
+                            $('#barangay').append('<option value="' + barangay.name + '">' + barangay.name + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Failed to fetch barangays:', error);
+                    }
+                });
+            });
         </script>
 </body>

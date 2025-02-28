@@ -11,7 +11,7 @@
 
 <body>
     
-    @include('Register.create-account-2-2')
+    @include('Register.create-account-2(2)')
 
 
 
