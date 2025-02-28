@@ -190,31 +190,31 @@
 
     <!-- jQuery Script for Redirecting Based on Selection -->
     <script>
-        $(document).ready(function() {
-            let selectedOption = null; // No default selection
+        // $(document).ready(function() {
+        //     let selectedOption = null; // No default selection
 
-            // Handle pill button clicks
-            $("#policy-yes-btn").click(function(event) {
-                event.preventDefault();
-                selectedOption = "yes";
-            });
+        //     // Handle pill button clicks
+        //     $("#policy-yes-btn").click(function(event) {
+        //         event.preventDefault();
+        //         selectedOption = "yes";
+        //     });
 
-            $("#policy-no-btn").click(function(event) {
-                event.preventDefault();
-                selectedOption = "no";
-            });
+        //     $("#policy-no-btn").click(function(event) {
+        //         event.preventDefault();
+        //         selectedOption = "no";
+        //     });
 
-            // Handle Next button click
-            $("#nextBtn1").click(function() {
-                if (selectedOption === "yes") {
-                    $("#form-container").html($("#step-2-yes").html());
-                } else if (selectedOption === "no") {
-                    $("#form-container").html($("#step-2-no").html());
-                } else {
-                    alert("Please select an option before proceeding.");
-                }
-            });
-        });
+        //     // Handle Next button click
+        //     $("#nextBtn1").click(function() {
+        //         if (selectedOption === "yes") {
+        //             $("#form-container").html($("#step-2-yes").html());
+        //         } else if (selectedOption === "no") {
+        //             $("#form-container").html($("#step-2-no").html());
+        //         } else {
+        //             alert("Please select an option before proceeding.");
+        //         }
+        //     });
+        // });
     </script>
 
 </body>

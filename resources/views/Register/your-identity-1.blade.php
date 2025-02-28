@@ -209,13 +209,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-            $(document).ready(function() {
-                $("#nextBtn3").click(function(event) {
-                    event.preventDefault();
-
-                    // Replace the current form content with the included next step
-                    $(".identity-form1").html($("#identity2-step").html());
-                });
-            });
+        
         </script>
 </body>
