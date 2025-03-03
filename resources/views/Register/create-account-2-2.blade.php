@@ -249,14 +249,14 @@
             });
 
             // Handle Next Button Click
-            $(document).on("click", "#nextBtn2-2", function (event) {
-                event.preventDefault();
+            // $(document).on("click", "#nextBtn2-2", function(event) {
+            //     event.preventDefault();
 
-                // Replace the current content, ensuring the event handlers persist
-                $(".create-account2-2").html($("#identity-step2").html());
+            //     // Replace the current content, ensuring the event handlers persist
+            //     $(".create-account2-2").html($("#identity-step2").html());
 
-                // Reinitialize event listeners after content replacement
-            });
+            //     // Reinitialize event listeners after content replacement
+            // });
         });
     </script>
 

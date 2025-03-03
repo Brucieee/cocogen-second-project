@@ -85,6 +85,7 @@
 </head>
 
 <body>
+    
     <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="identity-3-container">
@@ -135,7 +136,7 @@
 
             <div class="next-cancel-btn-3">
                 <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button>Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="nextBtn4">Next</x-buttons.primary-button>
             </div>
         </div>
     </div>

@@ -229,10 +229,10 @@
                 $(".branch-contact, .contact-type").hide();
             }
 
-            $("#nextBtn2").click(function (event) {
-                event.preventDefault();
-                $("#create-account2").html($("#identity-step").html());
-            });
+            // $("#nextBtn2").click(function(event) {
+            //     event.preventDefault();
+            //     $("#create-account2").html($("#identity-step").html());
+            // });
         });
     </script>
 
