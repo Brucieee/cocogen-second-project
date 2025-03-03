@@ -30,7 +30,11 @@ Route::get('/create-account-as', function () {
 
 Route::get('/create-account-as-partner', function () {
     return view('create-account-as-partner');
-})->name('create-account-as-partner');
+})->name('create.partner');
+
+Route::get('/create-account-as-ph-1', function () {
+    return view('Register.create-account-as-ph-1');
+})->name('create.ph-1');
 
 
 

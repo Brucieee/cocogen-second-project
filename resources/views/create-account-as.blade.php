@@ -57,10 +57,9 @@
 
 
 <body>
-
-
-    <x-stepper :currentStep="session('currentStep', 1)" />
-
+    <div class="stepper-container">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+    </div>
 
     <div class="main-wrapper">
         <div class="content-container">
@@ -100,6 +99,25 @@
 
                     // Hide unnecessary elements
                     $(".content-container, .stepper-container").hide();
+                },
+                error: function(xhr) {
+                    console.error("Error loading page:", xhr.status, xhr.statusText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $("#button_policyholder").click(function() {
+            $.ajax({
+                url: '/create-account-as-ph-1',
+                type: 'GET',
+                success: function(response) {
+                    // Replace content properly
+                    $("#dynamic-content").html(response).show();
+
+                    // Hide unnecessary elements
+                    $(".content-container").hide();
                 },
                 error: function(xhr) {
                     console.error("Error loading page:", xhr.status, xhr.statusText);

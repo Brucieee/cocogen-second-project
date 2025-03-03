@@ -209,36 +209,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-            // $(document).ready(function() {
-            //     $("#nextBtn3").click(function(event) {
-            //         event.preventDefault();
-
-            //         // Replace the current form content with the included next step
-            //         $(".identity-form1").html($("#identity2-step").html());
-            //     });
-            // });
-
-            $(document).ready(function() {
-                // Fetch barangays from the Laravel API endpoint
-                $.ajax({
-                    url: '/api/barangays', // Laravel API route
-                    method: 'GET',
-                    success: function(response) {
-                        // Clear existing options
-                        $('#barangay').empty();
-
-                        // Add a default placeholder option
-                        $('#barangay').append('<option value="" disabled selected>Select Barangay</option>');
-
-                        // Populate the dropdown with barangays
-                        response.forEach(function(barangay) {
-                            $('#barangay').append('<option value="' + barangay.name + '">' + barangay.name + '</option>');
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Failed to fetch barangays:', error);
-                    }
-                });
-            });
+          
         </script>
 </body>

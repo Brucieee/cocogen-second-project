@@ -83,9 +83,6 @@
 <body>
 
     <div class="create-account1" id="form-container">
-
-        <x-stepper :currentStep="session('currentStep', 1)" />
-
         <div class="account-container-1" id="account-form-1">
             <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
 
@@ -143,7 +140,7 @@
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->
