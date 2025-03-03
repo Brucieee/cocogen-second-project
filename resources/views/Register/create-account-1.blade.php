@@ -93,31 +93,9 @@
                 <x-Register.form-title title="Getting to know you" />
 
                 <div class="account-form-contents">
-<<<<<<< HEAD
-                    <div class="form-row-1"><x-Fields.text-field
-                            label="First Name"
-                            id="first_name"
-                            type="text"
-                            placeholder="First Name"
-                            required="true"
-                            width="100%" />
-                        <x-Fields.text-field
-                            label="Middle Name"
-                            id="middle_name"
-                            type="text"
-                            placeholder="Middle Name"
-                            width="100%" />
-                        <x-Fields.text-field
-                            label="Last Name"
-                            id="last_name"
-                            type="text"
-                            placeholder="Last Name"
-                            required="true"
-=======
                     <div class="form-row-1"><x-Fields.text-field label="First Name" id="first_name" type="text"
                             placeholder="First Name" required="true" width="100%" />
                         <x-Fields.text-field label="Middle Name" id="middle_name" type="text" placeholder="Middle Name"
->>>>>>> dedcde2d207251f318d3c8eeadaa875ea7db7b82
                             width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
@@ -163,7 +141,7 @@
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next_1">Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" data-step ="create-account-1" >Next</x-buttons.primary-button>
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->
@@ -184,20 +162,45 @@
 
 
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
             let selectedOption = null;
 
-            $("#policy-yes-btn").click(function(event) {
+            // Handle Yes/No selection
+            $("#button_policy_yes").click(function(event) {
                 event.preventDefault();
                 selectedOption = "yes";
                 $(this).addClass("active");
-                $("#policy-no-btn").removeClass("active");
+                $("#button_policy_no").removeClass("active");
             });
 
-            $("#policy-no-btn").removeClass("active");
+            $("#button_policy_no").click(function(event) {
+                event.preventDefault();
+                selectedOption = "no";
+                $(this).addClass("active");
+                $("#button_policy_yes").removeClass("active");
+            });
+
+            // Handle Next button clicks
+            $(document).on("click", ".btnNext", function(event) {
+                event.preventDefault();
+                let step = $(this).data("step");
+
+                $.ajax({
+                    url: "{{ route('register.process') }}",
+                    type: "POST",
+                    data: {
+                        step: step,
+                        yes_no: selectedOption,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        $("#form-container").html(response);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
         });
-
-        
-
     </script>
 </body>
