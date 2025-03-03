@@ -14,9 +14,9 @@
 </head>
 
 <body>
-    
 
-    <div class="main-container">
+
+    <div class="main-container" id="form-container">
         <form action="" class="create-form">
             @include('Register.create-account-1')
         </form>

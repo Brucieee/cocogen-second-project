@@ -143,7 +143,7 @@
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" data-step ="create-account-1" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->
@@ -164,47 +164,6 @@
 
 
     <script>
-        $(document).ready(function () {
-            let selectedOption = null;
-
-            $("#policy-yes-btn").click(function (event) {
-                event.preventDefault();
-                selectedOption = "yes";
-                $(this).addClass("active");
-                $("#button_policy_no").removeClass("active");
-            });
-
-            $("#button_policy_no").click(function(event) {
-                event.preventDefault();
-                selectedOption = "no";
-                $(this).addClass("active");
-                $("#button_policy_yes").removeClass("active");
-            });
-
-            // Handle Next button clicks
-            $(document).on("click", ".btnNext", function(event) {
-                event.preventDefault();
-                let step = $(this).data("step");
-
-                $.ajax({
-                    url: "{{ route('register.process') }}",
-                    type: "POST",
-                    data: {
-                        step: step,
-                        yes_no: selectedOption,
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        $("#form-container").html(response);
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            });
-        });
-
-
 
     </script>
 </body>

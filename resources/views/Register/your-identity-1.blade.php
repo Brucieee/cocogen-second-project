@@ -191,7 +191,7 @@
                 <div class="identity-btn-1">
                     <div class="row-btn">
                         <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
-                        <x-buttons.primary-button id="nextBtn3">Next</x-buttons.primary-button>
+                        <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
 
                     </div>
                 </div>
@@ -209,14 +209,14 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-            $(document).ready(function() {
-                $("#nextBtn3").click(function(event) {
-                    event.preventDefault();
+            // $(document).ready(function() {
+            //     $("#nextBtn3").click(function(event) {
+            //         event.preventDefault();
 
-                    // Replace the current form content with the included next step
-                    $(".identity-form1").html($("#identity2-step").html());
-                });
-            });
+            //         // Replace the current form content with the included next step
+            //         $(".identity-form1").html($("#identity2-step").html());
+            //     });
+            // });
 
             $(document).ready(function() {
                 // Fetch barangays from the Laravel API endpoint
