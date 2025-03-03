@@ -4,15 +4,13 @@
 <style>
     .back-button-container {
         display: flex;
-        gap: 23px;
+        align-items: center;
         height: 33px;
-        width: auto;
     }
 
     .back-button {
         display: flex;
         align-items: center;
-        gap: 23px;
         background: none;
         border: none;
         padding: 0;
@@ -22,7 +20,6 @@
     .back-button-icon {
         width: 32px;
         height: 32px;
-        cursor: pointer;
     }
 
     .back-button-title {
@@ -31,6 +28,10 @@
         font-size: 27px;
         font-weight: 700;
         line-height: normal;
+        user-select: none; /* Prevents text selection */
+        cursor: default; /* Ensures the title is non-clickable */
+        pointer-events: none; /* Prevents any click events on the title */
+        margin-left: 10px; /* Add spacing between icon and title */
     }
 </style>
 
@@ -40,16 +41,14 @@
             <img src="{{ asset('assets/icons/Icon-ArrowLeft.svg') }}" alt="Back" class="back-button-icon">
         </button>
     @endif
-    <div class="back-button-title" onclick="event.stopPropagation();">{{ $title }}</div>
+    <div class="back-button-title">{{ $title }}</div>
 </div>
 
 <script>
     function handleBackButtonClick(backUrl) {
         if (backUrl === '#') {
-            // Handle dynamic behavior (e.g., reload or show the previous page)
-            window.location.reload(); // Reload the page (or use AJAX to load the previous content)
+            window.history.back(); // Go back instead of reloading
         } else {
-            // Navigate to the specified URL
             window.location.href = backUrl;
         }
     }
