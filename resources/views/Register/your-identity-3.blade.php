@@ -31,6 +31,7 @@
             gap: 25px;
             display: flex;
             flex-direction: column;
+            margin-left: 50%;
         }
 
         .identity-form-3 {
@@ -85,7 +86,6 @@
 </head>
 
 <body>
-    
     <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="identity-3-container">
@@ -94,49 +94,24 @@
             <x-Register.form-title title="Your identity" />
             <div class="form-contents">
                 <div class="payment-method">
-                    <x-title-required
-                        title="Do you want to add payment method?"
-                        placeholder="(Optional)"
-                        :required="false" />
-                    <x-Buttons.pill-button
-                        idOne="pill-one-no-payment"
-                        idTwo="pill-two-yes-payment"
-                        pillOneText="No"
-                        pillTwoText="Yes" />
+                    <x-title-required title="Do you want to add payment method?" placeholder="(Optional)" :required="false" />
+                    <x-Buttons.pill-button idOne="pill-one-no-payment" idTwo="pill-two-yes-payment" pillOneText="No" pillTwoText="Yes" />
 
                     <div class="payment-fields">
-                        <x-Fields.dropdown-field-2
-                            id="payment-type"
-                            name="payment-type"
-                            label="Payment Types"
-                            :options="['Debit Card', 'Credit Card']"
-                            placeholder="Payment Type"
-                            width="330px"
-                            :disabled="true"
-                            required />
+                        <x-Fields.dropdown-field-2 id="payment-type" name="payment-type" label="Payment Types" :options="['Debit Card', 'Credit Card']" placeholder="Payment Type" width="330px" :disabled="true" required />
 
-                        <x-Fields.dropdown-field-2
-                            id="bank"
-                            name="bank"
-                            label="Bank/E-Wallet"
-                            :options="['GCash', 'Maya', 'BDO']"
-                            placeholder="Bank/E-Wallet Name"
-                            width="330px"
-                            :disabled="true"
-                            required />
+                        <x-Fields.dropdown-field-2 id="bank" name="bank" label="Bank/E-Wallet" :options="['GCash', 'Maya', 'BDO']" placeholder="Bank/E-Wallet Name" width="330px" :disabled="true" required />
                     </div>
                 </div>
             </div>
 
             <div class="reminder-change">
-                <x-Reminders.dynamic-reminder
-                    icon="assets/icons/Icon-LightBulb.svg"
-                    message="You may change your payment method later." />
+                <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LightBulb.svg" message="You may change your payment method later." />
             </div>
 
             <div class="next-cancel-btn-3">
                 <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
             </div>
         </div>
     </div>
@@ -147,34 +122,27 @@
 
     <script>
         $(document).ready(function() {
-            // Disable dropdowns by default (if "No" is selected by default)
-            $('#payment-type').prop('disabled', true);
-            $('#bank').prop('disabled', true);
-
-            // Handle "No" button click using event delegation
-            $(document).on('click', '#pill-one-no-payment', function() {
+            $('#pill-one-no-payment').on('click', function(event) {
+                event.preventDefault();
                 console.log('No button clicked');
-                $('#payment-type').prop('disabled', true);
-                $('#bank').prop('disabled', true);
-                console.log('Payment Type Disabled:', $('#payment-type').prop('disabled')); // Debug
-                console.log('Bank Disabled:', $('#bank').prop('disabled')); // Debug
 
-                // Debug: Log the dropdown elements
-                console.log('Payment Type Element:', $('#payment-type')[0]);
-                console.log('Bank Element:', $('#bank')[0]);
+                // Disable dropdowns
+                $('#payment-type, #bank').prop('disabled', true);
+
+                // Reset dropdowns to default (empty)
+                $('#payment-type, #bank').val("");
+
+                $('.dropdown-container').addClass('disabled'); // Add the disabled state
             });
 
-            // Handle "Yes" button click using event delegation
-            $(document).on('click', '#pill-two-yes-payment', function() {
+            // Handle "Yes" button click
+            $('#pill-two-yes-payment').on('click', function(event) {
+                event.preventDefault();
                 console.log('Yes button clicked');
-                $('#payment-type').prop('disabled', false);
-                $('#bank').prop('disabled', false);
-                console.log('Payment Type Disabled:', $('#payment-type').prop('disabled')); // Debug
-                console.log('Bank Disabled:', $('#bank').prop('disabled')); // Debug
 
-                // Debug: Log the dropdown elements
-                console.log('Payment Type Element:', $('#payment-type')[0]);
-                console.log('Bank Element:', $('#bank')[0]);
+                // Enable dropdowns
+                $('#payment-type, #bank').prop('disabled', false);
+                $('.dropdown-container').removeClass('disabled'); // Remove the disabled state
             });
         });
     </script>
