@@ -143,7 +143,7 @@
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next_1">Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
             </div>
 
             <!-- Step 2 - No (Hidden by Default) -->

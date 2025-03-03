@@ -225,7 +225,7 @@
                         <div class="container-6">
                             <div class="button-group">
                                 <x-Buttons.secondary-button>Continue later</x-Buttons.secondary-button>
-                                <x-Buttons.primary-button id="nextBtn4">Next</x-Buttons.primary-button>
+                                <x-Buttons.primary-button id="button_next" >Next</x-Buttons.primary-button>
                             </div>
                         </div>
                     </div>
