@@ -19,16 +19,11 @@
 
         .content-registered {
             width: 474px;
-            /* Fixed width */
             height: 315px;
-            /* Fixed height */
             margin: auto;
-            /* Padding around the content */
             display: flex;
             flex-direction: column;
-            /* Keeps back button on top */
             padding: 35;
-            /* Space between elements */
             position: relative;
             text-align: center;
             gap: 31px;
@@ -36,7 +31,7 @@
             background: white;
         }
 
-        .icon { 
+        .icon {
             width: 65px;
             height: 65px;
             align-items: center;
@@ -49,16 +44,17 @@
             display: flex;
             flex-direction: column;
 
-            
+
 
         }
-        .checked-icon{
-           gap: 35px;
-          
-        
+
+        .checked-icon {
+            gap: 35px;
+
+
         }
-        .content-text
-        {
+
+        .content-text {
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -73,7 +69,7 @@
 
     <div class="content-registered">
         <div class="checked-icon">
-        <img class="icon" src="{{ asset('assets/icons/registered-check.svg') }}">
+            <img class="icon" src="{{ asset('assets/icons/registered-check.svg') }}">
         </div>
 
         <div class="registered-contents">

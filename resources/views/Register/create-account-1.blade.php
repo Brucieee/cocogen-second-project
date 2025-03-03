@@ -87,14 +87,13 @@
         <x-stepper :currentStep="session('currentStep', 1)" />
 
         <div class="account-container-1" id="account-form-1">
-            <x-Register.back-button
-                title="Create account as Policyholder"
-                backUrl="{{ url()->previous() }}" />
+            <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
 
             <div class="account-form">
                 <x-Register.form-title title="Getting to know you" />
 
                 <div class="account-form-contents">
+<<<<<<< HEAD
                     <div class="form-row-1"><x-Fields.text-field
                             label="First Name"
                             id="first_name"
@@ -114,53 +113,51 @@
                             type="text"
                             placeholder="Last Name"
                             required="true"
+=======
+                    <div class="form-row-1"><x-Fields.text-field label="First Name" id="first_name" type="text"
+                            placeholder="First Name" required="true" width="100%" />
+                        <x-Fields.text-field label="Middle Name" id="middle_name" type="text" placeholder="Middle Name"
+>>>>>>> dedcde2d207251f318d3c8eeadaa875ea7db7b82
                             width="100%" />
+                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
+                            required="true" width="100%" />
                     </div>
 
                     <div class="form-row-2">
-                        <x-fields.text-field type="Date" id="date-birth" name="date-birth" label="Date of Birth" placeholder="Date of Birth" width="100%" required />
-                        <x-Fields.text-field
-                            label="Place of Birth"
-                            id="birth_place"
-                            type="text"
-                            placeholder="City, Region, Country"
-                            required="true"
-                            width="100%" />
+                        <x-fields.text-field type="Date" id="date-birth" name="date-birth" label="Date of Birth"
+                            placeholder="Date of Birth" width="100%" required />
+                        <x-Fields.text-field label="Place of Birth" id="birth_place" type="text"
+                            placeholder="City, Region, Country" required="true" width="100%" />
                     </div>
 
                     <div class="form-row-3">
                         <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']" placeholder="Female" width="330px" required />
-                        <x-fields.dropdown-field-2 id="citizen" name="Citizenship" label="Citizenship" :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px" required />
+                        <x-fields.dropdown-field-2 id="citizen" name="Citizenship" label="Citizenship"
+                            :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px"
+                            required />
                     </div>
 
                     <div class="form-row-4">
-                        <x-Fields.text-field
-                            label="Mobile"
-                            id="contact_number"
-                            type="number"
-                            placeholder="(09XX) XXX-XXXX"
-                            required="true"
-                            width="100%" />
-                        <x-Fields.text-field
-                            label="Email"
-                            id="email"
-                            type="email"
-                            placeholder="Email"
-                            required="true"
+                        <x-Fields.text-field label="Mobile" id="contact_number" type="number"
+                            placeholder="(09XX) XXX-XXXX" required="true" width="100%" />
+                        <x-Fields.text-field label="Email" id="email" type="email" placeholder="Email" required="true"
                             width="100%" />
                     </div>
                 </div>
 
                 <div class="reminder">
                     <x-Reminders.reminder-update-profile>
-                        You may change your input data should you need to update your information. Note: Email address cannot be changed.
+                        You may change your input data should you need to update your information. Note: Email address
+                        cannot be changed.
                         </x-reminder-update-profile>
                 </div>
 
                 <div class="existing-policy">
-                    <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px" weight="500" style="Inter" />
+                    <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px"
+                        weight="500" style="Inter" />
 
-                    <x-buttons.pill-button idOne="button_policy_yes" idTwo="button_policy_no" pillOneText="No" pillTwoText="Yes" />
+                    <x-buttons.pill-button idOne="button_policy_yes" idTwo="button_policy_no" pillOneText="No"
+                        pillTwoText="Yes" />
                 </div>
             </div>
 

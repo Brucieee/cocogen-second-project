@@ -142,42 +142,32 @@
 
         <div class="main-container">
             <!-- Back Button Component -->
-            <x-Register.back-button
-                title="Create account as Policyholder"
-                backUrl="{{ url()->previous() }}" />
+            <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
 
             <!-- Getting to Know You Container -->
             <div class="getting-to-know-you-container">
                 <!-- Form Title Component -->
-                <x-Register.form-title
-                    title="Getting to know you" />
+                <x-Register.form-title title="Getting to know you" />
 
                 <!-- Active Policies Container -->
                 <div class="active-policies-container">
                     <!-- Title for Active Policies -->
-                    <x-title-required
-                        title="Active Policy/s you have"
-                        :required="true" />
+                    <x-title-required title="Active Policy/s you have" :required="true" />
 
                     <!-- Policy Fields -->
-                    <x-Fields.add-policy
-                        label="Policy No."
-                        required="true" />
+                    <x-Fields.add-policy label="Policy No." required="true" />
                 </div>
 
                 <!-- Representative Container -->
                 <div class="representative-container">
                     <!-- Title for Representative -->
-                    <x-title-required
-                        title="Do you want to be contacted by a Cocogen Representative?"
+                    <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
                         :required="true" />
 
 
                     <!-- Pill Button Container -->
                     <div class="pill-button-container">
-                        <x-Buttons.pill-button
-                            idOne="pill_no_2_2"
-                            idTwo="pill_no_2_2"
+                        <x-Buttons.pill-button idOne="pill_no_2_2" idTwo="pill_no_2_2"
                             pillOneText="No, I will explore Cocogen products myself"
                             pillTwoText="Yes, I need a representative to talk to me" />
 
@@ -187,8 +177,7 @@
                 <!-- Branch Container -->
                 <div class="branch-container">
                     <div class="title-container-2">
-                        <x-title-required
-                            title="Which Cocogen branch should you wish to be contacted by?"
+                        <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
                             :required="true" />
                         <x-info-icon />
                     </div>
@@ -196,13 +185,8 @@
 
                 <!-- Dropdown Container -->
                 <div class="dropdown-container">
-                    <x-fields.dropdown-field-2
-                        label="Select one (1) Cocogen branch"
-                        id="selected_branch"
-                        placeholder="Select branch"
-                        :required="true"
-                        width="'300px'"
-                        :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
+                    <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="selected_branch"
+                        placeholder="Select branch" :required="true" width="'300px'" :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
                 </div>
             </div>
 
@@ -210,31 +194,21 @@
             <!-- Contact Container -->
             <div class="contact-container">
                 <!-- Title for Contact -->
-                <x-title-required
-                    title="How do you want to be contacted?"
-                    :required="true"
+                <x-title-required title="How do you want to be contacted?" :required="true"
                     placeholder="(You may select more than one)" />
 
                 <!-- Main Contact Container -->
                 <div class="main-contact-container">
                     <!-- Left Container -->
                     <div class="left-container">
-                        <x-Buttons.checkbox-button
-                            id="checkbox_email"
-                            label="Email" />
-                        <x-Buttons.checkbox-button
-                            id="checkbox_SMS"
-                            label="SMS" />
+                        <x-Buttons.checkbox-button id="checkbox_email" label="Email" />
+                        <x-Buttons.checkbox-button id="checkbox_SMS" label="SMS" />
                     </div>
 
                     <!-- Right Container -->
                     <div class="right-container">
-                        <x-Buttons.checkbox-button
-                            id="checkbox_messenger"
-                            label="Messenger" />
-                        <x-Buttons.checkbox-button
-                            id="checkbox_call"
-                            label="Call" />
+                        <x-Buttons.checkbox-button id="checkbox_messenger" label="Messenger" />
+                        <x-Buttons.checkbox-button id="checkbox_call" label="Call" />
                     </div>
                 </div>
             </div>
@@ -255,9 +229,9 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Handle Pill Button Click
-            $(document).on("click", ".pill-button", function(event) {
+            $(document).on("click", ".pill-button", function (event) {
                 event.preventDefault();
 
                 const selectedId = $(this).attr("id");
