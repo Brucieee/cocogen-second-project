@@ -25,11 +25,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/create-account', [PageController::class, 'CreateAccount'])->name('CreateAccount');
 
 Route::get('/create-account-as', function () {
-    return view('create-account-as');
+    return view('Register.create-account-as');
 })->name('create-account-as');
 
 Route::get('/create-account-as-partner', function () {
-    return view('create-account-as-partner');
+    return view('Register.create-account-as-partner');
 })->name('create.partner');
 
 Route::get('/create-account-as-ph-1', function () {

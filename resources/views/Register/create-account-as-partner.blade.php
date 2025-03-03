@@ -149,15 +149,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Reload or show create-account-as page
-        $("#button_back_partner").click(function() {
+        $("#button_back_partner").click(function(e) {
+            e.preventDefault(); // Prevent default anchor or button behavior
+
             $.ajax({
-                url: '/create-account-as', // Update this to the correct route
+                url: '/create-account-as', // Ensure this route serves the correct content
                 type: 'GET',
                 success: function(response) {
                     $("#dynamic-content").html(response);
                     $(".content-container").show();
                     $(".stepper-container").show();
+                },
+                error: function(xhr) {
+                    console.error("Error loading page:", xhr.status, xhr.statusText);
                 }
             });
         });
