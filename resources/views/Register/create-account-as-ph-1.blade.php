@@ -23,6 +23,7 @@
             display: flex;
             flex-direction: column;
             margin: auto;
+            margin-top: 66px;
         }
 
         .form-row-1,
@@ -83,9 +84,6 @@
 <body>
 
     <div class="create-account1" id="form-container">
-
-        <x-stepper :currentStep="session('currentStep', 1)" />
-
         <div class="account-container-1" id="account-form-1">
             <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
 
@@ -143,7 +141,7 @@
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" data-next="create-account-2">Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" data-next="create-account-as-ph-2">Next</x-buttons.primary-button>
             </div>
         </div>
 
@@ -177,7 +175,7 @@
                 }
 
                 // Determine the next page based on selection
-                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-2-2" : "create-account-2";
+                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-as-ph-2-2" : "create-account-as-ph-2";
 
                 loadStep(nextPage);
             });

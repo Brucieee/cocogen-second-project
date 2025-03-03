@@ -1,31 +1,39 @@
 <head>
-    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        .create-form {
-            display: flex;
-            width: 100%;
-            height: 100%;
+        html,
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            width: 100% !important;
+            height: auto !important;
+            font-family: 'Inter', sans-serif;
         }
+
+
+
+
     </style>
+
 </head>
 
 <body>
 
 
-    <div class="main-container" id="form-container">
-        <form action="" class="create-form">
-            @include('Register.create-account-as-ph-1')
-        </form>
-    </div>
+
+    <form action="" class="create-form">
+        <div class="create-account-as-wrapper">
+            @include('Register.create-account-as')
+        </div>
+    </form>
+
 
 
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-</script>
+<script></script>

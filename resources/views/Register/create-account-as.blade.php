@@ -6,17 +6,13 @@
 <style>
     html,
     body {
-        width: 100%;
-        height: 100%;
+        width: auto !important;
+        height: auto !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
         font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
-    /* Ensures stepper and main-wrapper share space properly */
     .page-container {
         display: flex;
         flex-direction: column;
@@ -29,9 +25,14 @@
         display: flex;
         justify-content: center;
         gap: 25px;
-
-
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin-top: auto;
     }
+
 
     .select-account-row {
         display: flex;
@@ -57,10 +58,9 @@
 
 
 <body>
-
-
-    <x-stepper :currentStep="session('currentStep', 1)" />
-
+    <div class="stepper-container-1">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+    </div>
 
     <div class="main-wrapper">
         <div class="content-container">
@@ -90,7 +90,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $("#button_partner").click(function() {
+        $("#button_partner").click(function(e) {
+            e.preventDefault();
             $.ajax({
                 url: '/create-account-as-partner',
                 type: 'GET',
@@ -99,7 +100,27 @@
                     $("#dynamic-content").html(response).show();
 
                     // Hide unnecessary elements
-                    $(".content-container, .stepper-container").hide();
+                    $(".content-container, .stepper-container-1").hide();
+                },
+                error: function(xhr) {
+                    console.error("Error loading page:", xhr.status, xhr.statusText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $("#button_policyholder").click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/create-account-as-ph-1',
+                type: 'GET',
+                success: function(response) {
+                    // Replace content properly
+                    $("#dynamic-content").html(response).show();
+
+                    // Hide unnecessary elements
+                    $(".content-container").hide();
                 },
                 error: function(xhr) {
                     console.error("Error loading page:", xhr.status, xhr.statusText);

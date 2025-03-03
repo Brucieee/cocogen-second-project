@@ -31,7 +31,6 @@
         height: 54px;
     }
 
-
     .container {
         display: flex;
         width: 862px;
@@ -96,7 +95,26 @@
     .back-button-container {
         display: flex;
         justify-content: flex-start;
+        align-items: center;
+        gap: 0;
+    }
 
+    .back-button-container .back-button-title {
+        pointer-events: none; /* Disable clicks on the title */
+        cursor: default; /* Ensure the cursor doesn't change to a pointer */
+    }
+
+    .back-button-container button {
+        pointer-events: auto; /* Ensure the button is clickable */
+    }
+
+    button#button_back_partner {
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        border: none;
+        background: none;
     }
 </style>
 
@@ -110,6 +128,7 @@
         <div class="back-button-container">
             <x-Register.back-button id="button_back_partner" title="Create account as Policyholder" backUrl="#" />
         </div>
+
         <div class="contents">
             <!-- Left Image -->
             <div class="left-image">
@@ -140,7 +159,6 @@
                         <x-buttons.secondary-button id="button_branch">Locate a branch</x-buttons.secondary-button>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
@@ -149,15 +167,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Reload or show create-account-as page
         $("#button_back_partner").click(function() {
+
             $.ajax({
-                url: '/create-account-as', // Update this to the correct route
+                url: '/create-account-as', // Ensure this route serves the correct content
                 type: 'GET',
                 success: function(response) {
                     $("#dynamic-content").html(response);
                     $(".content-container").show();
                     $(".stepper-container").show();
+                },
+                error: function(xhr) {
+                    console.error("Error loading page:", xhr.status, xhr.statusText);
                 }
             });
         });

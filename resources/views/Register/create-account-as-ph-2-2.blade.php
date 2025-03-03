@@ -138,7 +138,6 @@
 
 <body>
     <div class="create-account2-2">
-        <x-stepper :currentStep="session('currentStep', 1)" />
 
         <div class="main-container">
             <!-- Back Button Component -->
