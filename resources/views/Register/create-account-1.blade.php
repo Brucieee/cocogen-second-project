@@ -93,32 +93,12 @@
                 <x-Register.form-title title="Getting to know you" />
 
                 <div class="account-form-contents">
-<<<<<<< HEAD
-                    <div class="form-row-1"><x-Fields.text-field
-                            label="First Name"
-                            id="first_name"
-                            type="text"
-                            placeholder="First Name"
-                            required="true"
-                            width="100%" />
-                        <x-Fields.text-field
-                            label="Middle Name"
-                            id="middle_name"
-                            type="text"
-                            placeholder="Middle Name"
-                            width="100%" />
-                        <x-Fields.text-field
-                            label="Last Name"
-                            id="last_name"
-                            type="text"
-                            placeholder="Last Name"
-                            required="true"
-=======
                     <div class="form-row-1"><x-Fields.text-field label="First Name" id="first_name" type="text"
                             placeholder="First Name" required="true" width="100%" />
                         <x-Fields.text-field label="Middle Name" id="middle_name" type="text" placeholder="Middle Name"
->>>>>>> dedcde2d207251f318d3c8eeadaa875ea7db7b82
                             width="100%" />
+                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
+                            required="true" width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
                     </div>
@@ -184,10 +164,10 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let selectedOption = null;
 
-            $("#policy-yes-btn").click(function(event) {
+            $("#policy-yes-btn").click(function (event) {
                 event.preventDefault();
                 selectedOption = "yes";
                 $(this).addClass("active");
@@ -197,7 +177,7 @@
             $("#policy-no-btn").removeClass("active");
         });
 
-        
+
 
     </script>
 </body>
