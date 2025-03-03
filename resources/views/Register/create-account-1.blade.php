@@ -99,6 +99,8 @@
                             width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
+                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
+                            required="true" width="100%" />
                     </div>
 
                     <div class="form-row-2">
@@ -162,11 +164,10 @@
 
 
     <script>
-       $(document).ready(function() {
+        $(document).ready(function () {
             let selectedOption = null;
 
-            // Handle Yes/No selection
-            $("#button_policy_yes").click(function(event) {
+            $("#policy-yes-btn").click(function (event) {
                 event.preventDefault();
                 selectedOption = "yes";
                 $(this).addClass("active");
@@ -202,5 +203,8 @@
                 });
             });
         });
+
+
+
     </script>
 </body>
