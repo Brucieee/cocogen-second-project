@@ -216,22 +216,19 @@
             <!-- Button Container -->
             <div class="button-container">
                 <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" date-next="your-identity-1">Next</x-buttons.primary-button>
             </div>
         </div>
 
-        <div id="identity-step2" style="display: none;">
-            @include('Register.your-identity-1')
-        </div>
     </div>
     </div>
 
 
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Handle Pill Button Click
-            $(document).on("click", ".pill-button", function (event) {
+            $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
 
                 const selectedId = $(this).attr("id");
@@ -248,15 +245,28 @@
                 }
             });
 
-            // Handle Next Button Click
-            // $(document).on("click", "#nextBtn2-2", function(event) {
-            //     event.preventDefault();
+            $(document).ready(function() {
+                $("#button_next").on("click", function(event) {
+                    event.preventDefault();
+                    loadStep("your-identity-1"); // Load the first identity step
+                });
 
-            //     // Replace the current content, ensuring the event handlers persist
-            //     $(".create-account2-2").html($("#identity-step2").html());
-
-            //     // Reinitialize event listeners after content replacement
-            // });
+                function loadStep(page) {
+                    $.ajax({
+                        url: `/Register/${page}`,
+                        type: "GET",
+                        beforeSend: function() {
+                            $("#form-container").html("<div>Loading...</div>");
+                        },
+                        success: function(response) {
+                            $("#form-container").html(response);
+                        },
+                        error: function() {
+                            alert("Error loading the page. Please try again.");
+                        }
+                    });
+                }
+            });
         });
     </script>
 

@@ -96,8 +96,6 @@
                             placeholder="Middle Name" width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
-                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
-                            required="true" width="100%" />
                     </div>
 
                     <div class="form-row-2">
@@ -137,20 +135,12 @@
                         pillTwoText="Yes" />
                 </div>
             </div>
+            <div id="step-content"></div>
+
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
-            </div>
-
-            <!-- Step 2 - No (Hidden by Default) -->
-            <div id="step-2-no" style="display: none; ">
-                @include('Register.create-account-2-2')
-            </div>
-
-            <!-- Step 2 - Yes (Hidden by Default) -->
-            <div id="step-2-yes" style="display: none;">
-                @include('Register.create-account-2')
+                <x-buttons.primary-button id="button_next" data-next="create-account-2">Next</x-buttons.primary-button>
             </div>
         </div>
 
@@ -162,16 +152,49 @@
 
     <script>
         $(document).ready(function() {
-            let selectedOption = null;
+            let selectedOption = null; // Variable to store the selected option
 
-            $("#policy-yes-btn").click(function(event) {
+            $(".pill-button").on("click", function(event) {
                 event.preventDefault();
-                selectedOption = "yes";
-                $(this).addClass("active");
-                $("#policy-no-btn").removeClass("active");
+
+                $(".pill-button").removeClass("expanded");
+                $(this).addClass("expanded");
+
+                selectedOption = $(this).attr("id"); // Update the selected option
             });
 
-            $("#policy-no-btn").removeClass("active");
+            // Handle "Next" button click
+            $("#button_next").on("click", function(event) {
+                event.preventDefault();
+
+                // Check if either "Yes" or "No" is selected
+                if (selectedOption !== "button_policy_yes" && selectedOption !== "button_policy_no") {
+                    alert("Please select 'Yes' or 'No' before proceeding.");
+                    return;
+                }
+
+                // Determine the next page based on selection
+                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-2-2" : "create-account-2";
+
+                loadStep(nextPage);
+            });
+
+            // Function to load next step dynamically
+            function loadStep(page) {
+                $.ajax({
+                    url: `/Register/${page}`, // Load the corresponding Blade view
+                    type: "GET",
+                    beforeSend: function() {
+                        $("#form-container").html("<div>Loading...</div>"); // Show a loader
+                    },
+                    success: function(response) {
+                        $("#form-container").html(response); // Replace content with the next step
+                    },
+                    error: function() {
+                        alert("Error loading the page. Please try again.");
+                    }
+                });
+            }
         });
     </script>
 </body>

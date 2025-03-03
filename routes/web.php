@@ -42,7 +42,8 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::post('/register/process', [RegisterController::class, 'process'])->name('register.process');
-
+Route::get('/Register/{page}', function ($page) {
+    return view ("Register.$page");
+});
 
 require __DIR__ . '/auth.php';

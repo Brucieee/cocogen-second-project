@@ -196,10 +196,6 @@
                     </div>
                 </div>
             </div>
-
-            <div id="identity2-step" style="display: none;">
-                @include('Register.your-identity-2')
-            </div>
         </div>
 
 

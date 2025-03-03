@@ -249,12 +249,8 @@
             <!-- Button Container -->
             <div class="button-container">
                 <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" date-next="your-identity-1">Next</x-buttons.primary-button>
             </div>
-        </div>
-
-        <div id="identity-step2" style="display: none;">
-            @include('Register.your-identity-1')
         </div>
     </div>
     </div>
@@ -265,11 +261,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             console.log("Script Loaded"); // Debugging
 
             // Handle Pill Button Click
-            $(document).on("click", ".pill-button", function (event) {
+            $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
                 console.log("Pill Button Clicked:", this.id); // Debugging
 
@@ -277,7 +273,7 @@
                 $(this).addClass("expanded");
 
                 if (this.id === "pill_no_2") {
-                    $(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function () {
+                    $(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function() {
                         $(".contact-container input[type='checkbox']").prop("checked", false);
                     });
                 } else {
@@ -285,36 +281,29 @@
                 }
             });
 
-            // Handle Next Button Click
-            $(document).on("click", "#button_next_2", function (event) {
-                event.preventDefault();
-                console.log("Next Button Clicked"); // Debugging
 
-                $(".create-account2-2").html($("#identity-step2").html());
-
-                // Reinitialize Event Listeners (if needed)
-                reinitializeEventListeners();
-            });
-
-            // Function to Reinitialize Event Listeners After Content Replacement
-            function reinitializeEventListeners() {
-                console.log("Reinitializing Event Listeners"); // Debugging
-                $(".pill-button").off("click").on("click", function (event) {
+            $(document).ready(function() {
+                $("#button_next").on("click", function(event) {
                     event.preventDefault();
-                    console.log("Pill Button Clicked After Reload:", this.id);
-
-                    $(".pill-button").removeClass("expanded");
-                    $(this).addClass("expanded");
-
-                    if (this.id === "pill_no_2") {
-                        $(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function () {
-                            $(".contact-container input[type='checkbox']").prop("checked", false);
-                        });
-                    } else {
-                        $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
-                    }
+                    loadStep("your-identity-1"); // Load the first identity step
                 });
-            }
+
+                function loadStep(page) {
+                    $.ajax({
+                        url: `/Register/${page}`,
+                        type: "GET",
+                        beforeSend: function() {
+                            $("#form-container").html("<div>Loading...</div>");
+                        },
+                        success: function(response) {
+                            $("#form-container").html(response);
+                        },
+                        error: function() {
+                            alert("Error loading the page. Please try again.");
+                        }
+                    });
+                }
+            });
         });
     </script>
 
