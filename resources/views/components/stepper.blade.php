@@ -1,7 +1,7 @@
 <style>
 .stepper-container {
     width: 255px;
-    height: 100vh;
+    height: auto;
     position: sticky;
     top: 0;
     left: 0;
