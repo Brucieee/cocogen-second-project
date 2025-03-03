@@ -95,8 +95,8 @@
                 <div class="account-form-contents">
                     <div class="form-row-1"><x-Fields.text-field label="First Name" id="first_name" type="text"
                             placeholder="First Name" required="true" width="100%" />
-                        <x-Fields.text-field label="Middle Name" id="middle_name" type="text" placeholder="Middle Name"
-                            width="100%" />
+                        <x-Fields.text-field label="Middle Name" id="middle_name" type="text"
+                            placeholder="Middle Name" width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
                         <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
@@ -111,17 +111,17 @@
                     </div>
 
                     <div class="form-row-3">
-                        <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']" placeholder="Female" width="330px" required />
+                        <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']"
+                            placeholder="Female" width="330px" required />
                         <x-fields.dropdown-field-2 id="citizen" name="Citizenship" label="Citizenship"
-                            :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px"
-                            required />
+                            :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px" required />
                     </div>
 
                     <div class="form-row-4">
                         <x-Fields.text-field label="Mobile" id="contact_number" type="number"
                             placeholder="(09XX) XXX-XXXX" required="true" width="100%" />
-                        <x-Fields.text-field label="Email" id="email" type="email" placeholder="Email" required="true"
-                            width="100%" />
+                        <x-Fields.text-field label="Email" id="email" type="email" placeholder="Email"
+                            required="true" width="100%" />
                     </div>
                 </div>
 
@@ -156,6 +156,17 @@
 
 
     <script>
-    
+        $(document).ready(function() {
+            let selectedOption = null;
+
+            $("#policy-yes-btn").click(function(event) {
+                event.preventDefault();
+                selectedOption = "yes";
+                $(this).addClass("active");
+                $("#policy-no-btn").removeClass("active");
+            });
+
+            $("#policy-no-btn").removeClass("active");
+        });
     </script>
 </body>

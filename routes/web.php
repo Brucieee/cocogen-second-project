@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StepperController;
 use App\Http\Controllers\PageController;
-Use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\RegisterController;
 
 
 Route::get('/', function () {
@@ -21,16 +21,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/step1', [StepperController::class, 'step1'])->name('step1');
-Route::get('/step2', [StepperController::class, 'step2'])->name('step2');
-Route::get('/step3', [StepperController::class, 'step3'])->name('step3');
 
 Route::get('/create-account', [PageController::class, 'CreateAccount'])->name('CreateAccount');
+
+Route::get('/create-account-as', function () {
+    return view('create-account-as');
+})->name('create-account-as');
+
+Route::get('/create-account-as-partner', function () {
+    return view('create-account-as-partner');
+})->name('create-account-as-partner');
+
+
 
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+Route::post('/register/process', [RegisterController::class, 'process'])->name('register.process');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
