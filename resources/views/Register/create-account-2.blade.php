@@ -111,50 +111,29 @@
 
 
         <div class="create-account-2" id="form-2">
-            <x-Register.back-button
-                title="Create account as Policyholder"
-                backUrl="{{ url()->previous() }}" />
+            <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
             <div class="account-form-2">
-                <x-Register.form-title
-                    title="Getting to know you" />
+                <x-Register.form-title title="Getting to know you" />
                 <div class="policy-checkbox">
-                    <x-question-label text="What policy are you interested in? "
-                        required="true"
-                        size="16px"
-                        weight="500" style="Inter"
-                        info="You may select as many as you want" />
+                    <x-question-label text="What policy are you interested in? " required="true" size="16px"
+                        weight="500" style="Inter" info="You may select as many as you want" />
 
                     <div class="policy-checkboxes">
                         <div class="checkbox-col-1">
                             <div class="check-row-1">
-                                <x-buttons.checkbox-button
-                                    id="Auto-Excel"
-                                    name="Auto-Excel"
-                                    label="Auto Excel Plus"
+                                <x-buttons.checkbox-button id="Auto-Excel" name="Auto-Excel" label="Auto Excel Plus"
                                     :checked=false />
-                                <x-buttons.checkbox-button
-                                    id="International-Travel"
-                                    name="International-Travel"
-                                    label="International Travel Plus"
-                                    :checked=false />
+                                <x-buttons.checkbox-button id="International-Travel" name="International-Travel"
+                                    label="International Travel Plus" :checked=false />
                             </div>
                             <div class="check-row-2">
-                                <x-buttons.checkbox-button
-                                    id="Domestic-Travel"
-                                    name="Domestic-Travel"
-                                    label="Domestic Travel Plus"
-                                    :checked=false />
-                                <x-buttons.checkbox-button
-                                    id="pro_tech"
-                                    name="Pro-Tech"
-                                    label="Pro-Tech"
+                                <x-buttons.checkbox-button id="Domestic-Travel" name="Domestic-Travel"
+                                    label="Domestic Travel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="pro_tech" name="Pro-Tech" label="Pro-Tech"
                                     :checked=false />
                             </div>
                             <div class="check-row-3">
-                                <x-buttons.checkbox-button
-                                    id="condo-excel"
-                                    name="condo-excel"
-                                    label="Condo Excel Plus"
+                                <x-buttons.checkbox-button id="condo-excel" name="condo-excel" label="Condo Excel Plus"
                                     :checked=false />
                             </div>
                             <div class="check-row-4">
@@ -166,14 +145,9 @@
                     <div class="contact-representative">
                         <div class="representatives">
                             <x-question-label text="Do you want to be contacted by a Cocogen Representative? "
-                                required="true"
-                                size="16px"
-                                weight="500" style="Inter"
-                                info="" />
+                                required="true" size="16px" weight="500" style="Inter" info="" />
                             <div class="pill-btns">
-                                <x-Buttons.pill-button
-                                    idOne="pill-one-No-1"
-                                    idTwo="pill-two-Yes-1"
+                                <x-Buttons.pill-button idOne="pill-one-No-1" idTwo="pill-two-Yes-1"
                                     pillOneText="No, I will explore Cocogen products myself."
                                     pillTwoText="Yes, I need a representative to talk to me." />
                             </div>
@@ -181,63 +155,33 @@
 
                         <div class="branch-contact">
                             <div class="label-icon">
-                                <x-question-label
-                                    text="Which Cocogen branch should you wish to be contacted by?"
-                                    required="true"
-                                    size="16px"
-                                    weight="500"
-                                    style="Inter"
-                                    info="" />
+                                <x-question-label text="Which Cocogen branch should you wish to be contacted by?"
+                                    required="true" size="16px" weight="500" style="Inter" info="" />
 
                                 <x-info-icon />
 
                             </div>
 
                             <div class="branch-input">
-                                <x-fields.dropdown-field-2
-                                    name="language"
-                                    id="languageDropdown"
-                                    label="Select one (1) Cocogen branch"
-                                    placeholder="Type here to search"
-                                    :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                                    :required="true"
+                                <x-fields.dropdown-field-2 name="language" id="languageDropdown"
+                                    label="Select one (1) Cocogen branch" placeholder="Type here to search"
+                                    :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" :required="true"
                                     :width="'100%'" />
 
                             </div>
                         </div>
 
                         <div class="contact-type">
-                            <x-question-label
-                                text="How do you want to be contacted? "
-                                required="true"
-                                size="16px"
-                                weight="500"
-                                style="Inter"
-                                info="You may select more than one"
-                                icon="" />
+                            <x-question-label text="How do you want to be contacted? " required="true" size="16px"
+                                weight="500" style="Inter" info="You may select more than one" icon="" />
                             <div class="checkbox-col-1">
                                 <div class="checkbox-row">
-                                    <x-buttons.checkbox-button
-                                        id="email"
-                                        name="email"
-                                        label="Email"
-                                        :checked=false />
-                                    <x-buttons.checkbox-button
-                                        id="sms"
-                                        name="sms"
-                                        label="SMS"
-                                        :checked=false />
+                                    <x-buttons.checkbox-button id="email" name="email" label="Email" :checked=false />
+                                    <x-buttons.checkbox-button id="sms" name="sms" label="SMS" :checked=false />
                                 </div>
                                 <div class="checkbox-row">
-                                    <x-buttons.checkbox-button
-                                        id="call"
-                                        name="call"
-                                        label="Call"
-                                        :checked=false />
-                                    <x-buttons.checkbox-button
-                                        id="messenger"
-                                        name="messenger"
-                                        label="Messenger"
+                                    <x-buttons.checkbox-button id="call" name="call" label="Call" :checked=false />
+                                    <x-buttons.checkbox-button id="messenger" name="messenger" label="Messenger"
                                         :checked=false />
                                 </div>
                             </div>
@@ -260,8 +204,8 @@
 
 
     <script>
-        $(document).ready(function() {
-            $(".pill-button").on("click", function(event) {
+        $(document).ready(function () {
+            $(".pill-button").on("click", function (event) {
                 event.preventDefault(); // Prevents any default action (like form submission)
 
                 const selectedId = $(this).attr("id");
@@ -285,7 +229,7 @@
                 $(".branch-contact, .contact-type").hide();
             }
 
-            $("#nextBtn2").click(function(event) {
+            $("#nextBtn2").click(function (event) {
                 event.preventDefault();
                 $("#create-account2").html($("#identity-step").html());
             });
@@ -297,4 +241,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
-
