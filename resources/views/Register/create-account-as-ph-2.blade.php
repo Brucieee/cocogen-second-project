@@ -162,19 +162,19 @@
 
                         <div class="checkbox-col-1">
                             <div class="check-row-1">
-                                <x-buttons.checkbox-button id="checkbox_AEP" name="Auto-Excel" label="Auto Excel Plus"
+                                <x-buttons.checkbox-button id="policyAEP" name="AutoExcelPlus" label="Auto Excel Plus"
                                     :checked=false />
-                                <x-buttons.checkbox-button id="checkbox_ITP" name="International-Travel"
+                                <x-buttons.checkbox-button id="policyITP" name="International-Travel"
                                     label="International Travel Plus" :checked=false />
                             </div>
                             <div class="check-row-2">
-                                <x-buttons.checkbox-button id="checkbox_DTP" name="Domestic-Travel"
+                                <x-buttons.checkbox-button id="policyDTP" name="Domestic-Travel"
                                     label="Domestic Travel Plus" :checked=false />
-                                <x-buttons.checkbox-button id="checkbox_PT" name="Pro-Tech" label="Pro-Tech"
+                                <x-buttons.checkbox-button id="policyPT" name="Pro-Tech" label="Pro-Tech"
                                     :checked=false />
                             </div>
                             <div class="check-row-3">
-                                <x-buttons.checkbox-button id="checkbox_CEP" name="condo-excel" label="Condo Excel Plus"
+                                <x-buttons.checkbox-button id="policyCEP" name="condo-excel" label="Condo Excel Plus"
                                     :checked=false />
                             </div>
                         </div>
@@ -205,7 +205,7 @@
 
                     <!-- Dropdown Container -->
                     <div class="dropdown-container">
-                        <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="selected_branch"
+                        <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="branch"
                             placeholder="Select branch" :required="true" width="'300px'"
                             :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
                     </div>
@@ -221,22 +221,22 @@
                     <div class="main-contact-container">
                         <!-- Left Container -->
                         <div class="left-container">
-                            <x-Buttons.checkbox-button id="checkbox_email" label="Email" />
-                            <x-Buttons.checkbox-button id="checkbox_SMS" label="SMS" />
+                            <x-Buttons.checkbox-button id="contactEmail" label="Email" />
+                            <x-Buttons.checkbox-button id="contactSMS" label="SMS" />
                         </div>
 
                         <!-- Right Container -->
                         <div class="right-container">
-                            <x-Buttons.checkbox-button id="checkbox_messenger" label="Messenger" />
-                            <x-Buttons.checkbox-button id="checkbox_call" label="Call" />
+                            <x-Buttons.checkbox-button id="contactMessenger" label="Messenger" />
+                            <x-Buttons.checkbox-button id="contactCall" label="Call" />
                         </div>
                     </div>
                 </div>
 
                 <!-- Button Container -->
                 <div class="button-container">
-                    <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
-                    <x-buttons.primary-button id="button_next" date-next="your-identity-1">Next</x-buttons.primary-button>
+                    <x-buttons.secondary-button id="cancelAction">Cancel</x-buttons.secondary-button>
+                    <x-buttons.primary-button id="nextStep" date-next="your-identity-1">Next</x-buttons.primary-button>
                 </div>
             </div>
         </div>

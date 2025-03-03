@@ -32,19 +32,21 @@
 
             // Function to load pages dynamically
             function loadPage(page) {
-                // Add error checking
                 if (!page) {
                     console.error("Attempted to load undefined page");
                     return;
                 }
 
-                console.log(`Loading page: ${page}`); // Add logging
+                console.log(`Loading page: ${page}`);
 
                 $.ajax({
                     url: `/register/${page}`,
                     type: 'GET',
                     success: function(response) {
                         $('#dynamic-content').html(response);
+                        
+                        // Restore form values after loading new page
+                        restoreFormValues();
                     },
                     error: function(xhr, status, error) {
                         console.error(`Error loading page: ${page}`, error);
@@ -52,14 +54,54 @@
                 });
             }
 
-            // Event delegation for standard navigation buttons
-            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack', function(e) {
+            // Save form values to sessionStorage
+            function saveFormValues() {
+                $('input, select, textarea').each(function() {
+                    let fieldName = $(this).attr('id') || $(this).attr('name');
+                    if (fieldName) {
+                        if ($(this).is(':checkbox, :radio')) {
+                            sessionStorage.setItem(fieldName, $(this).prop('checked'));
+                        } else {
+                            sessionStorage.setItem(fieldName, $(this).val());
+                        }
+                    }
+                });
+                console.log("Form values saved to sessionStorage.");
+            }
+
+            // Restore form values from sessionStorage
+            function restoreFormValues() {
+                $('input, select, textarea').each(function() {
+                    let fieldName = $(this).attr('id') || $(this).attr('name');
+                    if (fieldName && sessionStorage.getItem(fieldName) !== null) {
+                        if ($(this).is(':checkbox, :radio')) {
+                            $(this).prop('checked', sessionStorage.getItem(fieldName) === "true");
+                        } else {
+                            $(this).val(sessionStorage.getItem(fieldName));
+                        }
+                    }
+                });
+                console.log("Form values restored from sessionStorage.");
+            }
+
+            // Event delegation for navigation buttons
+            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep', function(e) {
                 e.preventDefault();
+
+                // Save form data before navigating
+                saveFormValues();
+
                 let targetPage = $(this).data('target');
                 console.log(`Navigation button clicked: ${this.id}, target: ${targetPage}`);
-                loadPage(targetPage);
+                
+                if (targetPage) {
+                    loadPage(targetPage);
+                } else {
+                    console.error("No target page specified");
+                }
             });
 
+            // Back button handling
             $(document).on('click', '#goBack', function(e) {
                 e.preventDefault();
                 let targetPage = $(this).data('target');
@@ -84,10 +126,8 @@
                 e.preventDefault();
                 console.log(`Next step clicked, selected option: ${selectedOption}`);
 
-                // First check if the button has a data-target
                 let targetPage = $(this).data('target');
 
-                // If no data-target, use the selected pill option to determine the page
                 if (!targetPage) {
                     if (selectedOption === 'noOption') {
                         targetPage = 'create-account-as-ph-2';
@@ -95,12 +135,18 @@
                         targetPage = 'create-account-as-ph-2-2';
                     } else {
                         console.error("No target page and no pill option selected");
-                        return; // Exit if we can't determine where to go
+                        return;
                     }
                 }
 
                 loadPage(targetPage);
             });
+
+            // Optional: Clear form data on final submission
+            $(document).on('submit', 'form', function() {
+                sessionStorage.clear();
+            });
+
         });
     </script>
 </body>
