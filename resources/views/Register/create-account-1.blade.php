@@ -140,30 +140,22 @@
                         pillTwoText="Yes" />
                 </div>
             </div>
+            <div id="step-content"></div>
+
 
             <div class="next-cancel-btns">
                 <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
-            </div>
-
-            <!-- Step 2 - No (Hidden by Default) -->
-            <div id="step-2-no" style="display: none; ">
-                @include('Register.create-account-2-2')
-            </div>
-
-            <!-- Step 2 - Yes (Hidden by Default) -->
-            <div id="step-2-yes" style="display: none;">
-                @include('Register.create-account-2')
+                <x-buttons.primary-button id="button_next" data-next="create-account-2">Next</x-buttons.primary-button>
             </div>
         </div>
 
     </div>
     <!-- Bootstrap and jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <script>
-
+    
     </script>
 </body>

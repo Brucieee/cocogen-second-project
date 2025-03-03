@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StepperController;
 use App\Http\Controllers\PageController;
-Use App\Http\Controllers\RegisterController;
+Use App\Http\Controllers\RegistrationController;
 
 
 Route::get('/', function () {
@@ -30,5 +30,7 @@ Route::get('/create-account', [PageController::class, 'CreateAccount'])->name('C
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+
 
 require __DIR__.'/auth.php';

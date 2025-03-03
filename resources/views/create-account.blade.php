@@ -16,7 +16,7 @@
 <body>
 
 
-    <div class="main-container" id="form-container">
+    <div class="main-container" id="step-content">
         <form action="" class="create-form">
             @include('Register.create-account-1')
         </form>
@@ -28,5 +28,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+        $('#next-btn').click(function() {
+            var nextStep = $(this).data('next'); // Get the next step from the button
 
+            $.ajax({
+                url: "{{ route('load.step') }}",
+                type: "GET",
+                data: {
+                    step: nextStep
+                },
+                success: function(response) {
+                    $('#step-content').html(response);
+
+                    // Update button with the next step (you can set this dynamically in each step)
+                    $('#next-btn').data('next', 'your-identity-1'); // Example: set next step dynamically
+                },
+                error: function() {
+                    alert("Something went wrong!");
+                }
+            });
+        });
+    });
 </script>

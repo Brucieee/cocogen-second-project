@@ -229,9 +229,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="identity3-step" style="display: none;">
-                        @include('Register.your-identity-3')
-                    </div>
                 </div>
 
 

@@ -249,12 +249,8 @@
             <!-- Button Container -->
             <div class="button-container">
                 <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" >Next</x-buttons.primary-button>
+                <x-buttons.primary-button id="button_next" date-next = "your-identity-1">Next</x-buttons.primary-button>
             </div>
-        </div>
-
-        <div id="identity-step2" style="display: none;">
-            @include('Register.your-identity-1')
         </div>
     </div>
     </div>
