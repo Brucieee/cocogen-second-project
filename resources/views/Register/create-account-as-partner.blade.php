@@ -100,12 +100,15 @@
     }
 
     .back-button-container .back-button-title {
-        pointer-events: none; /* Disable clicks on the title */
-        cursor: default; /* Ensure the cursor doesn't change to a pointer */
+        pointer-events: none;
+        /* Disable clicks on the title */
+        cursor: default;
+        /* Ensure the cursor doesn't change to a pointer */
     }
 
     .back-button-container button {
-        pointer-events: auto; /* Ensure the button is clickable */
+        pointer-events: auto;
+        /* Ensure the button is clickable */
     }
 
     button#button_back_partner {
@@ -167,20 +170,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $("#button_back_partner").click(function() {
+        
+            e.preventDefault();
 
-            $.ajax({
-                url: '/create-account-as', // Ensure this route serves the correct content
-                type: 'GET',
-                success: function(response) {
-                    $("#dynamic-content").html(response);
-                    $(".content-container").show();
-                    $(".stepper-container").show();
-                },
-                error: function(xhr) {
-                    console.error("Error loading page:", xhr.status, xhr.statusText);
-                }
+            // Hide current content to prevent flickering
+            $(".container").fadeOut(200, function() {
+                $.ajax({
+                    url: '/create-account-as', // Ensure this route serves the correct content
+                    type: 'GET',
+                    success: function(response) {
+                        $("#dynamic-content").html(response).fadeIn(200);
+                        $(".content-container").show();
+                        $(".stepper-container").show();
+                    },
+                    error: function(xhr) {
+                        console.error("Error loading page:", xhr.status, xhr
+                            .statusText);
+                    }
+                });
             });
-        });
     });
 </script>
