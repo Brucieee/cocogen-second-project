@@ -136,7 +136,7 @@
     }
 </style>
 
-<!-- Card Component -->
+
 <div class="card-container">
     <!-- Fixed Image -->
     <img src="{{ asset('assets/' . $image) }}" alt="Image" class="card-image">
@@ -151,7 +151,9 @@
         <div class="card-button-container">
             <x-buttons.secondary-button
                 :id="$id"
-                class="secondary-button">
+                :data-target="$dataTarget"
+                class="secondary-button"
+            >
                 {{ $buttonText }}
             </x-buttons.secondary-button>
         </div>

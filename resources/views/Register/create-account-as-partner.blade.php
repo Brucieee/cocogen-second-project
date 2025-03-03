@@ -119,6 +119,10 @@
         border: none;
         background: none;
     }
+    
+    .left-image img{
+        width: 100%;
+    }
 </style>
 
 <body>
@@ -129,7 +133,8 @@
 
     <div class="container">
         <div class="back-button-container">
-            <x-Register.back-button id="button_back_partner" title="Create account as Policyholder" backUrl="#" />
+            <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as" />
+
         </div>
 
         <div class="contents">
