@@ -102,13 +102,13 @@
                             placeholder="First Name"
                             required="true"
                             width="100%" />
-                    <x-Fields.text-field
+                        <x-Fields.text-field
                             label="Middle Name"
                             id="middle_name"
                             type="text"
                             placeholder="Middle Name"
                             width="100%" />
-                    <x-Fields.text-field
+                        <x-Fields.text-field
                             label="Last Name"
                             id="last_name"
                             type="text"
@@ -181,12 +181,26 @@
         </div>
 
     </div>
-
-
-
     <!-- Bootstrap and jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
+    <script>
+        $(document).ready(function() {
+            let selectedOption = null;
+
+            $("#policy-yes-btn").click(function(event) {
+                event.preventDefault();
+                selectedOption = "yes";
+                $(this).addClass("active");
+                $("#policy-no-btn").removeClass("active");
+            });
+
+            $("#policy-no-btn").removeClass("active");
+        });
+
+        
+
+    </script>
 </body>

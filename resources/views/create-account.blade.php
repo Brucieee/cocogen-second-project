@@ -14,14 +14,19 @@
 </head>
 
 <body>
+    
 
-    <form action="" class="create-form">
-        @include('Register.create-account-1')
-    </form>
+    <div class="main-container">
+        <form action="" class="create-form">
+            @include('Register.create-account-1')
+        </form>
+    </div>
+
 
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 
 </script>

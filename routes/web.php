@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StepperController;
 use App\Http\Controllers\PageController;
+Use App\Http\Controllers\RegisterController;
 
 
 Route::get('/', function () {
@@ -26,7 +27,11 @@ Route::get('/step3', [StepperController::class, 'step3'])->name('step3');
 
 Route::get('/create-account', [PageController::class, 'CreateAccount'])->name('CreateAccount');
 
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 
+Route::post('/register/process', [RegisterController::class, 'process'])->name('register.process');
 
 
 require __DIR__.'/auth.php';
