@@ -18,7 +18,7 @@
 
     <div class="main-container" id="form-container">
         <form action="" class="create-form">
-            @include('Register.create-account-1')
+            @include('Register.create-account-as-ph-1')
         </form>
     </div>
 
