@@ -175,7 +175,7 @@
                 }
 
                 // Determine the next page based on selection
-                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-as-ph-2-2" : "create-account-as-ph-2";
+                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-as-ph-2" : "create-account-as-ph-2-2";
 
                 loadStep(nextPage);
             });

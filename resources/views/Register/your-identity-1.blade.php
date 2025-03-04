@@ -191,7 +191,7 @@
                 <div class="identity-btn-1">
                     <div class="row-btn">
                         <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
-                        <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
+                        <x-buttons.primary-button id="button_next" data-next="your-identity-2">Next</x-buttons.primary-button>
 
                     </div>
                 </div>
@@ -205,6 +205,27 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-          
+            $(document).ready(function() {
+                $("#button_next").on("click", function(event) {
+                    event.preventDefault();
+                    loadStep("your-identity-2");
+                });
+
+                function loadStep(page) {
+                    $.ajax({
+                        url: `/Register/${page}`,
+                        type: "GET",
+                        beforeSend: function() {
+                            $("#form-container").html("<div>Loading...</div>");
+                        },
+                        success: function(response) {
+                            $("#form-container").html(response);
+                        },
+                        error: function() {
+                            alert("Error loading the page. Please try again.");
+                        }
+                    });
+                }
+            });
         </script>
 </body>

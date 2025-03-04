@@ -20,12 +20,16 @@
             justify-content: center;
             top: 0;
             left: 0;
+            margin-left: 50%;
             width: 100%;
             height: 100%;
             gap: 25px;
             
             
         }
+
+
+
 
     </style>
 
@@ -37,7 +41,7 @@
 
     <form action="" class="create-form">
         <div class="create-account-as-wrapper">
-            @include('Register.your-identity-3')
+            @include('Register.create-account-as-ph-1')
         </div>
     </form>
 

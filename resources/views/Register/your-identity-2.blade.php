@@ -181,8 +181,8 @@
             .d-none {
                 display: none !important;
             }
-            .identity-form2 
-            {
+
+            .identity-form2 {
                 display: flex;
                 width: 100%;
                 height: 100%;
@@ -225,7 +225,7 @@
                         <div class="container-6">
                             <div class="button-group">
                                 <x-Buttons.secondary-button>Continue later</x-Buttons.secondary-button>
-                                <x-Buttons.primary-button id="button_next" >Next</x-Buttons.primary-button>
+                                <x-Buttons.primary-button id="button_next" data-next="your-identity-3">Next</x-Buttons.primary-button>
                             </div>
                         </div>
                     </div>
@@ -297,7 +297,30 @@
                 initializeFileUpload('uploadID');
                 initializeFileUpload('uploadDisplayPicture');
 
-               
+                $(document).ready(function() {
+                    $("#button_next").on("click", function(event) {
+                        event.preventDefault();
+                        loadStep("your-identity-3");
+                    });
+
+                    function loadStep(page) {
+                        $.ajax({
+                            url: `/Register/${page}`,
+                            type: "GET",
+                            beforeSend: function() {
+                                $("#form-container").html("<div>Loading...</div>");
+                            },
+                            success: function(response) {
+                                $("#form-container").html(response);
+                            },
+                            error: function() {
+                                alert("Error loading the page. Please try again.");
+                            }
+                        });
+                    }
+                });
+
+
             });
         </script>
     </body>
