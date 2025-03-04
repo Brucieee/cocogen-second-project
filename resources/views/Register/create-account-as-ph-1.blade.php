@@ -1,7 +1,5 @@
 <head>
-    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
@@ -12,18 +10,22 @@
             width: 100%;
             height: 100%;
             font-family: 'Inter', sans-serif;
-            display: flex;
         }
+
+        .main-container {
+            display: flex;
+            height: 100%;
+        }
+
 
         .account-container-1 {
             width: 775px;
-            height: 830px auto;
+            height: auto;
             padding: 35px;
             gap: 25px;
             display: flex;
             flex-direction: column;
             margin: auto;
-            margin-top: 66px;
         }
 
         .form-row-1,
@@ -76,45 +78,51 @@
             display: flex;
             width: 100%;
             height: 100%;
-
         }
     </style>
 </head>
 
 <body>
+    <div class="main-container">
+        <!-- Stepper is sticky and positioned on the left -->
 
-    <div class="create-account1" id="form-container">
+        <x-stepper :currentStep="session('currentStep', 1)" />
+
+
+        <!-- Centered account container -->
         <div class="account-container-1" id="account-form-1">
-            <x-Register.back-button title="Create account as Policyholder" backUrl="{{ url()->previous() }}" />
+            <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as" />
+
 
             <div class="account-form">
                 <x-Register.form-title title="Getting to know you" />
 
                 <div class="account-form-contents">
-                    <div class="form-row-1"><x-Fields.text-field label="First Name" id="first_name" type="text"
-                            placeholder="First Name" required="true" width="100%" />
-                        <x-Fields.text-field label="Middle Name" id="middle_name" type="text"
+                    <div class="form-row-1">
+                        <x-Fields.text-field label="First Name" id="firstName" type="text" placeholder="First Name"
+                            required="true" width="100%" />
+                        <x-Fields.text-field label="Middle Name" id="middleName" type="text"
                             placeholder="Middle Name" width="100%" />
-                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
+                        <x-Fields.text-field label="Last Name" id="lastName" type="text" placeholder="Last Name"
                             required="true" width="100%" />
                     </div>
 
                     <div class="form-row-2">
-                        <x-fields.text-field type="Date" id="date-birth" name="date-birth" label="Date of Birth"
+                        <x-fields.text-field type="Date" id="dateOfBirth" name="date of birth" label="Date of Birth"
                             placeholder="Date of Birth" width="100%" required />
-                        <x-Fields.text-field label="Place of Birth" id="birth_place" type="text"
+                        <x-Fields.text-field label="Place of Birth" id="placeOfBirth" type="text"
                             placeholder="City, Region, Country" required="true" width="100%" />
                     </div>
 
                     <div class="form-row-3">
                         <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']"
                             placeholder="Female" width="330px" required />
-                        <x-fields.dropdown-field-2 id="citizen" name="Citizenship" label="Citizenship"
+                        <x-fields.dropdown-field-2 id="citizenship" name="Citizenship" label="Citizenship"
                             :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px" required />
                     </div>
 
                     <div class="form-row-4">
-                        <x-Fields.text-field label="Mobile" id="contact_number" type="number"
+                        <x-Fields.text-field label="Mobile" id="contactNumber" type="number"
                             placeholder="(09XX) XXX-XXXX" required="true" width="100%" />
                         <x-Fields.text-field label="Email" id="email" type="email" placeholder="Email"
                             required="true" width="100%" />
@@ -125,35 +133,32 @@
                     <x-Reminders.reminder-update-profile>
                         You may change your input data should you need to update your information. Note: Email address
                         cannot be changed.
-                        </x-reminder-update-profile>
+                    </x-Reminders.reminder-update-profile>
                 </div>
 
                 <div class="existing-policy">
                     <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px"
                         weight="500" style="Inter" />
-
-                    <x-buttons.pill-button idOne="button_policy_yes" idTwo="button_policy_no" pillOneText="No"
+                    <x-buttons.pill-button idOne="noOption" idTwo="yesOption" pillOneText="No"
                         pillTwoText="Yes" />
                 </div>
             </div>
             <div id="step-content"></div>
 
-
             <div class="next-cancel-btns">
-                <x-buttons.secondary-button id="button_cancel"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="button_next" data-next="create-account-as-ph-2">Next</x-buttons.primary-button>
+                <x-buttons.secondary-button id="cancelAction"> Cancel </x-buttons.secondary-button>
+                <x-buttons.primary-button id="nextStep" data-target="create-account-as-ph-2"> Next </x-buttons.primary-button>
             </div>
         </div>
-
     </div>
+
     <!-- Bootstrap and jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
     <script>
         $(document).ready(function() {
-            let selectedOption = null; // Variable to store the selected option
+            let selectedOption = null;
 
             $(".pill-button").on("click", function(event) {
                 event.preventDefault();
@@ -161,41 +166,8 @@
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                selectedOption = $(this).attr("id"); // Update the selected option
+                selectedOption = $(this).attr("id");
             });
-
-            // Handle "Next" button click
-            $("#button_next").on("click", function(event) {
-                event.preventDefault();
-
-                // Check if either "Yes" or "No" is selected
-                if (selectedOption !== "button_policy_yes" && selectedOption !== "button_policy_no") {
-                    alert("Please select 'Yes' or 'No' before proceeding.");
-                    return;
-                }
-
-                // Determine the next page based on selection
-                let nextPage = (selectedOption === "button_policy_yes") ? "create-account-as-ph-2" : "create-account-as-ph-2-2";
-
-                loadStep(nextPage);
-            });
-
-            // Function to load next step dynamically
-            function loadStep(page) {
-                $.ajax({
-                    url: `/Register/${page}`, // Load the corresponding Blade view
-                    type: "GET",
-                    beforeSend: function() {
-                        $("#form-container").html("<div>Loading...</div>"); // Show a loader
-                    },
-                    success: function(response) {
-                        $("#form-container").html(response); // Replace content with the next step
-                    },
-                    error: function() {
-                        alert("Error loading the page. Please try again.");
-                    }
-                });
-            }
         });
     </script>
 </body>

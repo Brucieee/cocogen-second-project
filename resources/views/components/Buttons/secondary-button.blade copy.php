@@ -33,6 +33,6 @@
     }
 </style>
 
-<button class="secondary-btn" id="{{ $id ?? 'default-id' }}" data-target="{{ $dataTarget ?? '' }}">
+<button class="secondary-btn" id="{{ $id ?? 'default-id' }}">
     <span class="button-text">{{ $slot }}</span>
 </button>
