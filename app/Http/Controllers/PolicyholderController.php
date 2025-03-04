@@ -23,7 +23,6 @@ class PolicyholderController extends Controller
             'contactMethods' => 'array',
         ]);
 
-        // Save the policyholder in the database
         $policyholder = Policyholder::create([
             'first_name' => $validatedData['firstName'],
             'middle_name' => $validatedData['middleName'],
@@ -38,10 +37,8 @@ class PolicyholderController extends Controller
             'contact_methods' => json_encode($validatedData['contactMethods']),
         ]);
 
-        // Store user ID in session for tracking
         session(['policyholder_id' => $policyholder->id]);
 
-        // Redirect to the next step
         return redirect()->route('create-account-as-ph-identity-1');
     }
 }

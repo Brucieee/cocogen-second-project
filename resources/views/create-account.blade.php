@@ -18,187 +18,157 @@
 </head>
 
 <body>
-    <div id="dynamic-content">
-        <!-- Dynamic content will be loaded here -->
-    </div>
+    <form action="{{ url('Register.create-account-as-ph-identity-1') }}" method="POST" id="addPolicyholder">
+        @csrf
+        <div id="dynamic-content">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Variable to store selected option - add this outside the document.ready function
-        let selectedOption = null;
+        </div>
 
-        $(document).ready(function() {
-            // Load the initial page
-            loadPage('create-account-as');
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#addPolicyholder').on('submit', function(event) {
+                    event.preventDefault(); // Prevents the default form submission
 
-            // Function to load pages dynamically
-            function loadPage(page) {
-                if (!page) {
-                    console.error("Attempted to load undefined page");
-                    return;
-                }
+                    let formData = $(this).serialize(); // Serializes form data
 
-                console.log(`Loading page: ${page}`);
-
-                $.ajax({
-                    url: `/register/${page}`,
-                    type: 'GET',
-                    success: function(response) {
-                        $('#dynamic-content').html(response);
-
-                        // Restore form values after loading new page
-                        restoreFormValues();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(`Error loading page: ${page}`, error);
-                    }
-                });
-            }
-
-            // Save form values to sessionStorage
-            function saveFormValues() {
-                $('input, select, textarea').each(function() {
-                    let fieldName = $(this).attr('id') || $(this).attr('name');
-                    if (fieldName) {
-                        if ($(this).is(':checkbox, :radio')) {
-                            sessionStorage.setItem(fieldName, $(this).prop('checked'));
-                        } else {
-                            sessionStorage.setItem(fieldName, $(this).val());
+                    $.ajax({
+                        url: "{{ url('create-account-as-ph-identity-1') }}", // Make sure this route exists
+                        type: 'POST',
+                        data: jQuery('#addPolicyholder').serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                'content') // CSRF protection
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            alert("Form submitted successfully!");
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            alert("An error occurred.");
                         }
-                    }
+                    });
                 });
-                console.log("Form values saved to sessionStorage.");
-            }
-
-            // Restore form values from sessionStorage
-            function restoreFormValues() {
-                $('input, select, textarea').each(function() {
-                    let fieldName = $(this).attr('id') || $(this).attr('name');
-                    if (fieldName && sessionStorage.getItem(fieldName) !== null) {
-                        if ($(this).is(':checkbox, :radio')) {
-                            $(this).prop('checked', sessionStorage.getItem(fieldName) === "true");
-                        } else {
-                            $(this).val(sessionStorage.getItem(fieldName));
-                        }
-                    }
-                });
-                console.log("Form values restored from sessionStorage.");
-            }
-
-            // Event delegation for navigation buttons
-            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep, #cancelAction', function(
-                e) {
-                e.preventDefault();
-
-                // Save form data before navigating
-                saveFormValues();
-
-                let targetPage = $(this).data('target');
-                console.log(`Navigation button clicked: ${this.id}, target: ${targetPage}`);
-
-                if (targetPage) {
-                    loadPage(targetPage);
-                } else {
-                    console.error("No target page specified");
-                }
             });
 
-            // Back button handling
-            $(document).on('click', '#goBack', function(e) {
-                e.preventDefault();
-                let targetPage = $(this).data('target');
+            let selectedOption = null;
 
-                if (targetPage && targetPage !== '#') {
-                    loadPage(targetPage);
-                } else {
-                    window.history.back();
-                }
-            });
+            $(document).ready(function() {
 
-            // Handle pill button selection
-            $(document).on('click', '.pill-button', function() {
-                $('.pill-button').removeClass('expanded');
-                $(this).addClass('expanded');
-                selectedOption = $(this).attr('id');
-                console.log(`Pill selected: ${selectedOption}`);
-            });
+                loadPage('create-account-as');
 
-            // Handle next step based on selected option
-            $(document).on('click', '#nextStep', function(e) {
-                e.preventDefault();
-                saveFormValues();
-
-                let targetPage = $(this).data('target');
-                if (!targetPage) {
-                    if (selectedOption === 'noOption') {
-                        targetPage = 'create-account-as-ph-2';
-                    } else if (selectedOption === 'yesOption') {
-                        targetPage = 'create-account-as-ph-2-2';
-                    } else {
-                        console.error("No target page and no pill option selected");
+                function loadPage(page) {
+                    if (!page) {
+                        console.error("Attempted to load undefined page");
                         return;
                     }
+
+                    console.log(`Loading page: ${page}`);
+
+                    $.ajax({
+                        url: `/register/${page}`,
+                        type: 'GET',
+                        success: function(response) {
+                            $('#dynamic-content').html(response);
+
+                            restoreFormValues();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(`Error loading page: ${page}`, error);
+                        }
+                    });
                 }
-                // Load the next step
-                loadPage(targetPage);
-            });
 
-            //Submit
-            $(document).on('click', '#submit', function(e) {
-                e.preventDefault();
+                function saveFormValues() {
+                    $('input, select, textarea').each(function() {
+                        let fieldName = $(this).attr('id') || $(this).attr('name');
+                        if (fieldName) {
+                            if ($(this).is(':checkbox, :radio')) {
+                                sessionStorage.setItem(fieldName, $(this).prop('checked'));
+                            } else {
+                                sessionStorage.setItem(fieldName, $(this).val());
+                            }
+                        }
+                    });
+                    console.log("Form values saved to sessionStorage.");
+                }
 
-                let formData = {
-                    first_name: sessionStorage.getItem('firstName'),
-                    middle_name: sessionStorage.getItem('middleName'),
-                    last_name: sessionStorage.getItem('lastName'),
-                    date_of_birth: sessionStorage.getItem('dateOfBirth'),
-                    place_of_birth: sessionStorage.getItem('placeOfBirth'),
-                    sex: sessionStorage.getItem('sex'),
-                    citizenship: sessionStorage.getItem('citizenship'),
-                    contact_number: sessionStorage.getItem('contactNumber'),
-                    email: sessionStorage.getItem('email'),
-                    interested_policies: [],
-                    contact_methods: []
-                };
+                function restoreFormValues() {
+                    $('input, select, textarea').each(function() {
+                        let fieldName = $(this).attr('id') || $(this).attr('name');
+                        if (fieldName && sessionStorage.getItem(fieldName) !== null) {
+                            if ($(this).is(':checkbox, :radio')) {
+                                $(this).prop('checked', sessionStorage.getItem(fieldName) ===
+                                    "true");
+                            } else {
+                                $(this).val(sessionStorage.getItem(fieldName));
+                            }
+                        }
+                    });
+                    console.log("Form values restored from sessionStorage.");
+                }
 
-                // Collect checked policy checkboxes
-                if ($('#policyAEP').is(':checked')) formData.interested_policies.push('Auto Excel Plus');
-                if ($('#policyITP').is(':checked')) formData.interested_policies.push(
-                    'International-Travel');
-                if ($('#policyDTP').is(':checked')) formData.interested_policies.push('Domestic-Travel');
-                if ($('#policyPT').is(':checked')) formData.interested_policies.push('Pro-Tech');
-                if ($('#policyCEP').is(':checked')) formData.interested_policies.push('Condo Excel Plus');
+                $(document).on('click',
+                    '#goToPolicyholder, #goToPartner, #goBack, #nextStep, #cancelAction',
+                    function(
+                        e) {
+                        e.preventDefault();
 
-                // Collect checked contact method checkboxes
-                if ($('#contactEmail').is(':checked')) formData.contact_methods.push('Email');
-                if ($('#contactSMS').is(':checked')) formData.contact_methods.push('SMS');
-                if ($('#contactMessenger').is(':checked')) formData.contact_methods.push('Messenger');
-                if ($('#contactCall').is(':checked')) formData.contact_methods.push('Call');
+                        saveFormValues();
 
-                console.log("Submitting form data:", formData);
+                        let targetPage = $(this).data('target');
+                        console.log(`Navigation button clicked: ${this.id}, target: ${targetPage}`);
 
-                $.ajax({
-                    url: 'create-account-as-ph-2', // Ensure this matches your Laravel route
-                    type: 'POST',
-                    data: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                            'content') // Include CSRF token
-                    },
-                    success: function(response) {
-                        console.log("Form submitted successfully:", response);
-                        sessionStorage.clear();
-                        loadPage('registration-success'); // Load success page
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error submitting form:", error);
+                        if (targetPage) {
+                            loadPage(targetPage);
+                        } else {
+                            console.error("No target page specified");
+                        }
+                    });
+
+                $(document).on('click', '#goBack', function(e) {
+                    e.preventDefault();
+                    let targetPage = $(this).data('target');
+
+                    if (targetPage && targetPage !== '#') {
+                        loadPage(targetPage);
+                    } else {
+                        window.history.back();
                     }
                 });
 
-            });
+                $(document).on('click', '.pill-button', function() {
+                    $('.pill-button').removeClass('expanded');
+                    $(this).addClass('expanded');
+                    selectedOption = $(this).attr('id');
+                    console.log(`Pill selected: ${selectedOption}`);
+                });
 
-        });
-    </script>
+
+                $(document).on('click', '#nextStep', function(e) {
+                    e.preventDefault();
+                    saveFormValues();
+
+                    let targetPage = $(this).data('target');
+                    if (!targetPage) {
+                        if (selectedOption === 'noOption') {
+                            targetPage = 'create-account-as-ph-2';
+                        } else if (selectedOption === 'yesOption') {
+                            targetPage = 'create-account-as-ph-2-2';
+                        } else {
+                            console.error("No target page and no pill option selected");
+                            return;
+                        }
+                    }
+
+                    loadPage(targetPage);
+                });
+
+
+
+            });
+        </script>
 </body>
 
 </html>

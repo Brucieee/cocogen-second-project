@@ -98,18 +98,18 @@
 
                 <div class="account-form-contents">
                     <div class="form-row-1">
-                        <x-Fields.text-field label="First Name" id="firstName" type="text" placeholder="First Name"
+                        <x-Fields.text-field label="First Name" id="first_name" type="text" placeholder="First Name"
                             required="true" width="100%" />
-                        <x-Fields.text-field label="Middle Name" id="middleName" type="text"
+                        <x-Fields.text-field label="Middle Name" id="middle_name" type="text"
                             placeholder="Middle Name" width="100%" />
-                        <x-Fields.text-field label="Last Name" id="lastName" type="text" placeholder="Last Name"
+                        <x-Fields.text-field label="Last Name" id="last_name" type="text" placeholder="Last Name"
                             required="true" width="100%" />
                     </div>
 
                     <div class="form-row-2">
-                        <x-fields.text-field type="Date" id="dateOfBirth" name="date of birth" label="Date of Birth"
+                        <x-fields.text-field type="Date" id="date_of_birth" name="date of birth" label="Date of Birth"
                             placeholder="Date of Birth" width="100%" required />
-                        <x-Fields.text-field label="Place of Birth" id="placeOfBirth" type="text"
+                        <x-Fields.text-field label="Place of Birth" id="place_of_birth" type="text"
                             placeholder="City, Region, Country" required="true" width="100%" />
                     </div>
 

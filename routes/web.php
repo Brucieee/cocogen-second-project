@@ -41,6 +41,10 @@ Route::prefix('register')->group(function () {
     Route::get('create-account-as-ph-2-2', function () {
         return view('Register.create-account-as-ph-2-2');
     });
+
+    Route::get('create-account-as-ph-identity-1', function () {
+        return view('Register.create-account-as-ph-identity-1');
+    });
 });
 
 Route::get('/create-account-as-ph-identity-1', function () {
@@ -49,7 +53,7 @@ Route::get('/create-account-as-ph-identity-1', function () {
 
 Route::post('create-account-as-ph-1', [RegisterController::class, 'storeStep1']);
 Route::post('create-account-as-ph-2', [RegisterController::class, 'storeStep2']);
-Route::post('/create-account-as-ph-identity-1', [RegisterController::class, 'store']);
+Route::post('create-account-as-ph-identity-1', [RegisterController::class, 'store']);
 
 
 require __DIR__ . '/auth.php';
