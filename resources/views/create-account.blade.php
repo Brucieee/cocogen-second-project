@@ -85,7 +85,7 @@
             }
 
             // Event delegation for navigation buttons
-            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep', function(e) {
+            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep, #cancelAction', function(e) {
                 e.preventDefault();
 
                 // Save form data before navigating

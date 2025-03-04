@@ -221,7 +221,7 @@
 
                 <!-- Button Container -->
                 <div class="button-container">
-                    <x-buttons.secondary-button id="button_cancel">Cancel</x-buttons.secondary-button>
+                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
                     <x-buttons.primary-button id="button_next" date-next="your-identity-1">Next</x-buttons.primary-button>
                 </div>
             </div>

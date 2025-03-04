@@ -88,7 +88,6 @@
 
         <x-stepper :currentStep="session('currentStep', 1)" />
 
-
         <!-- Centered account container -->
         <div class="account-container-1" id="account-form-1">
             <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as" />
@@ -146,7 +145,7 @@
             <div id="step-content"></div>
 
             <div class="next-cancel-btns">
-                <x-buttons.secondary-button id="cancelAction"> Cancel </x-buttons.secondary-button>
+                <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
                 <x-buttons.primary-button id="nextStep" data-target="create-account-as-ph-2"> Next </x-buttons.primary-button>
             </div>
         </div>
