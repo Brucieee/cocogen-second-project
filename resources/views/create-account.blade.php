@@ -1,4 +1,5 @@
 <html>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +45,7 @@
                     type: 'GET',
                     success: function(response) {
                         $('#dynamic-content').html(response);
-                        
+
                         // Restore form values after loading new page
                         restoreFormValues();
                     },
@@ -85,7 +86,8 @@
             }
 
             // Event delegation for navigation buttons
-            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep, #cancelAction', function(e) {
+            $(document).on('click', '#goToPolicyholder, #goToPartner, #goBack, #nextStep, #cancelAction', function(
+                e) {
                 e.preventDefault();
 
                 // Save form data before navigating
@@ -93,7 +95,7 @@
 
                 let targetPage = $(this).data('target');
                 console.log(`Navigation button clicked: ${this.id}, target: ${targetPage}`);
-                
+
                 if (targetPage) {
                     loadPage(targetPage);
                 } else {
@@ -109,7 +111,7 @@
                 if (targetPage && targetPage !== '#') {
                     loadPage(targetPage);
                 } else {
-                    window.history.back(); // Go back without reloading
+                    window.history.back();
                 }
             });
 
@@ -124,10 +126,9 @@
             // Handle next step based on selected option
             $(document).on('click', '#nextStep', function(e) {
                 e.preventDefault();
-                console.log(`Next step clicked, selected option: ${selectedOption}`);
+                saveFormValues();
 
                 let targetPage = $(this).data('target');
-
                 if (!targetPage) {
                     if (selectedOption === 'noOption') {
                         targetPage = 'create-account-as-ph-2';
@@ -138,13 +139,62 @@
                         return;
                     }
                 }
-
+                // Load the next step
                 loadPage(targetPage);
             });
 
-            // Optional: Clear form data on final submission
-            $(document).on('submit', 'form', function() {
-                sessionStorage.clear();
+            //Submit
+            $(document).on('click', '#submit', function(e) {
+                e.preventDefault();
+
+                let formData = {
+                    first_name: sessionStorage.getItem('firstName'),
+                    middle_name: sessionStorage.getItem('middleName'),
+                    last_name: sessionStorage.getItem('lastName'),
+                    date_of_birth: sessionStorage.getItem('dateOfBirth'),
+                    place_of_birth: sessionStorage.getItem('placeOfBirth'),
+                    sex: sessionStorage.getItem('sex'),
+                    citizenship: sessionStorage.getItem('citizenship'),
+                    contact_number: sessionStorage.getItem('contactNumber'),
+                    email: sessionStorage.getItem('email'),
+                    interested_policies: [],
+                    contact_methods: []
+                };
+
+                // Collect checked policy checkboxes
+                if ($('#policyAEP').is(':checked')) formData.interested_policies.push('Auto Excel Plus');
+                if ($('#policyITP').is(':checked')) formData.interested_policies.push(
+                    'International-Travel');
+                if ($('#policyDTP').is(':checked')) formData.interested_policies.push('Domestic-Travel');
+                if ($('#policyPT').is(':checked')) formData.interested_policies.push('Pro-Tech');
+                if ($('#policyCEP').is(':checked')) formData.interested_policies.push('Condo Excel Plus');
+
+                // Collect checked contact method checkboxes
+                if ($('#contactEmail').is(':checked')) formData.contact_methods.push('Email');
+                if ($('#contactSMS').is(':checked')) formData.contact_methods.push('SMS');
+                if ($('#contactMessenger').is(':checked')) formData.contact_methods.push('Messenger');
+                if ($('#contactCall').is(':checked')) formData.contact_methods.push('Call');
+
+                console.log("Submitting form data:", formData);
+
+                $.ajax({
+                    url: 'create-account-as-ph-2', // Ensure this matches your Laravel route
+                    type: 'POST',
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Include CSRF token
+                    },
+                    success: function(response) {
+                        console.log("Form submitted successfully:", response);
+                        sessionStorage.clear();
+                        loadPage('registration-success'); // Load success page
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error submitting form:", error);
+                    }
+                });
+
             });
 
         });

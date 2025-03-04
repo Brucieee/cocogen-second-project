@@ -19,6 +19,21 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // Policyholder-specific fields
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
+            $table->date('date_of_birth');
+            $table->string('place_of_birth');
+            $table->enum('sex', ['Male', 'Female', 'Other']);
+            $table->string('citizenship');
+            $table->string('contact_number');
+            $table->boolean('has_existing_policy')->default(false);
+            $table->json('interested_policies')->nullable();
+            $table->boolean('wants_representative')->default(false);
+            $table->string('preferred_branch')->nullable();
+            $table->json('preferred_contact_methods')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

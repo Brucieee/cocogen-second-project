@@ -18,15 +18,18 @@
 
         .create-account2-2 {
             display: flex;
-            height: 100vh; /* Ensure it takes the full viewport height */
-            width: 100%; /* Ensure it takes the full viewport width */
-            position: relative; /* Ensure it's positioned relative to the viewport */
+            height: 100vh;
+            /* Ensure it takes the full viewport height */
+            width: 100%;
+            /* Ensure it takes the full viewport width */
+            position: relative;
+            /* Ensure it's positioned relative to the viewport */
         }
 
         .main-container-wrapper {
             flex: 1;
             display: flex;
-            justify-content: center; 
+            justify-content: center;
             padding: 35px;
             margin-left: 35%;
         }
@@ -141,14 +144,15 @@
 <body>
     <div class="create-account2-2">
         <!-- Stepper Container -->
-            <x-stepper :currentStep="session('currentStep', 1)" />
+        <x-stepper :currentStep="session('currentStep', 1)" />
 
 
         <!-- Main Container Wrapper -->
         <div class="main-container-wrapper">
             <div class="main-container">
                 <!-- Back Button Component -->
-                <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as-ph-1" />
+                <x-Register.back-button title="Create account as Policyholder" id="goBack"
+                    backUrl="create-account-as-ph-1" />
 
                 <!-- Getting to Know You Container -->
                 <div class="getting-to-know-you-container">
@@ -162,20 +166,15 @@
 
                         <div class="checkbox-col-1">
                             <div class="check-row-1">
-                                <x-buttons.checkbox-button id="policyAEP" name="AutoExcelPlus" label="Auto Excel Plus"
-                                    :checked=false />
-                                <x-buttons.checkbox-button id="policyITP" name="International-Travel"
-                                    label="International Travel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyAEP" name="AutoExcelPlus" label="Auto Excel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyITP" name="InternationalTravel" label="International Travel Plus" :checked=false />
                             </div>
                             <div class="check-row-2">
-                                <x-buttons.checkbox-button id="policyDTP" name="Domestic-Travel"
-                                    label="Domestic Travel Plus" :checked=false />
-                                <x-buttons.checkbox-button id="policyPT" name="Pro-Tech" label="Pro-Tech"
-                                    :checked=false />
+                                <x-buttons.checkbox-button id="policyDTP" name="DomesticTravel" label="Domestic Travel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyPT" name="ProTech" label="Pro-Tech" :checked=false />
                             </div>
                             <div class="check-row-3">
-                                <x-buttons.checkbox-button id="policyCEP" name="condo-excel" label="Condo Excel Plus"
-                                    :checked=false />
+                                <x-buttons.checkbox-button id="policyCEP" name="CondoExcelPlus" label="Condo Excel Plus" :checked=false />
                             </div>
                         </div>
                     </div>
@@ -206,8 +205,7 @@
                     <!-- Dropdown Container -->
                     <div class="dropdown-container">
                         <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="branch"
-                            placeholder="Select branch" :required="true" width="'300px'"
-                            :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
+                            placeholder="Select branch" :required="true" width="'300px'" :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
                     </div>
                 </div>
 
@@ -236,7 +234,7 @@
                 <!-- Button Container -->
                 <div class="button-container">
                     <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
-                    <x-buttons.primary-button id="nextStep" date-next="your-identity-1">Next</x-buttons.primary-button>
+                    <x-buttons.primary-button id="submit" date-next="create-account-as-ph-identity-1">Next</x-buttons.primary-button>
                 </div>
             </div>
         </div>

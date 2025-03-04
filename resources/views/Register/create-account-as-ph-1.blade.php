@@ -114,7 +114,7 @@
                     </div>
 
                     <div class="form-row-3">
-                        <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="['Female', 'Male', 'Other']"
+                        <x-fields.dropdown-field-2 id="sex" name="Sex" label="Sex" :options="[' ','Male', 'Female', 'Other']"
                             placeholder="Female" width="330px" required />
                         <x-fields.dropdown-field-2 id="citizenship" name="Citizenship" label="Citizenship"
                             :options="['Filipino', 'American', 'Other']" placeholder="Filipino" width="330px" required />
@@ -168,5 +168,6 @@
                 selectedOption = $(this).attr("id");
             });
         });
+        
     </script>
 </body>

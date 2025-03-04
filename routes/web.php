@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,5 +42,14 @@ Route::prefix('register')->group(function () {
         return view('Register.create-account-as-ph-2-2');
     });
 });
+
+Route::get('/create-account-as-ph-identity-1', function () {
+    return view('create-account-as-ph-identity-1');
+})->name('create-account-as-ph-identity-1');
+
+Route::post('create-account-as-ph-1', [RegisterController::class, 'storeStep1']);
+Route::post('create-account-as-ph-2', [RegisterController::class, 'storeStep2']);
+Route::post('/create-account-as-ph-identity-1', [RegisterController::class, 'store']);
+
 
 require __DIR__ . '/auth.php';

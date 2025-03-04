@@ -21,6 +21,19 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'date_of_birth',
+        'place_of_birth',
+        'sex',
+        'citizenship',
+        'contact_number',
+        'has_existing_policy',
+        'interested_policies',
+        'wants_representative',
+        'preferred_branch',
+        'preferred_contact_methods'
     ];
 
     /**
@@ -43,6 +56,10 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'has_existing_policy' => 'boolean',
+            'wants_representative' => 'boolean',
+            'interested_policies' => 'array',
+            'preferred_contact_methods' => 'array',
         ];
     }
 }
