@@ -110,11 +110,13 @@
             </div>
 
             <div class="next-cancel-btn-3">
-                <x-buttons.secondary-button>Cancel</x-buttons.secondary-button>
+                <x-buttons.secondary-button id="openModal">Cancel</x-buttons.secondary-button>
                 <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
             </div>
         </div>
     </div>
+    <x-modal-continue-later />
+
 
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

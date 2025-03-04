@@ -1,16 +1,21 @@
 <head>
     <style>
         .modal-background {
-            display: flex;
+            display: none;
             position: fixed;
             z-index: 1;
             height: 100%;
             width: 100%;
-            background: gray;
+            background: #9E9C9C80;
+            margin: auto;
+
         }
 
         .modal-container {
-            margin: auto;
+            margin-top: 159px;
+            margin-left: 766px;
+            margin-right: 375px;
+            margin-bottom: 282px;
             gap: 31px;
             background: #fff;
             width: 440px ;
@@ -48,7 +53,7 @@
         }
     </style>
 </head>
-<div class="modal-background">
+<div class="modal-background" id="continueLaterModal">
     <div class="modal-container">
 
         <img src="{{ asset('assets/icons/Icon-WarningTriangle.svg') }}" alt="Warning Icon" class="warning-icon">
@@ -71,3 +76,26 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Show Modal when clicking "Yes, continue later"
+        $("#openModal").click(function() {
+            $("#continueLaterModal").fadeIn();
+        });
+
+        // Hide Modal when clicking "Close" button
+        $("#no_continue_later").click(function() {
+            $("#continueLaterModal").fadeOut();
+        });
+
+        // Hide Modal when clicking outside the modal container
+        $("#continueLaterModal").click(function(event) {
+            if (!$(event.target).closest(".modal-container").length) {
+                $("#continueLaterModal").fadeOut();
+            }
+        });
+    });
+</script>

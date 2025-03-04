@@ -224,7 +224,7 @@
 
                         <div class="container-6">
                             <div class="button-group">
-                                <x-Buttons.secondary-button>Continue later</x-Buttons.secondary-button>
+                                <x-Buttons.secondary-button id="openModal">Continue later</x-Buttons.secondary-button>
                                 <x-Buttons.primary-button id="button_next" data-next="your-identity-3">Next</x-Buttons.primary-button>
                             </div>
                         </div>
@@ -234,6 +234,9 @@
 
             </div>
         </div>
+
+        <x-modal-continue-later />
+
 
 
         <!-- jQuery and Bootstrap JS -->

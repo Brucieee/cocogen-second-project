@@ -10,8 +10,7 @@
 </head>
 
 <body>
-    
-        <x-modal-continue-later />
+        @include('Register.your-identity-3')
 
 
 
