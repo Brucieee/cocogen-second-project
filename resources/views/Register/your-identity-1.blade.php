@@ -143,7 +143,7 @@
                 <div class="identity-btn-1">
                     <div class="row-btn">
                         <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
-                        <x-buttons.primary-button id="button_next">Next</x-buttons.primary-button>
+                        <x-buttons.primary-button id="button_next" data-next="your-identity-2">Next</x-buttons.primary-button>
 
                     </div>
                 </div>
