@@ -62,50 +62,66 @@
         <div class="account-container-1" id="account-form-1">
             <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as" />
 
-            <div class="account-form">
-                <x-Register.form-title title="Getting to know you" />
+            <form id="addPolicyholder">
+                @csrf
+                <div class="account-form">
+                    <x-Register.form-title title="Getting to know you" />
 
-                <div class="account-form-contents">
-                    <div class="form-row-1">
-                        <x-Fields.text-field label="First Name" id="first_name" name="firstName" type="text" placeholder="First Name" required="true" width="100%" />
-                        <x-Fields.text-field label="Middle Name" id="middle_name" name="middleName" type="text" placeholder="Middle Name" width="100%" />
-                        <x-Fields.text-field label="Last Name" id="last_name" name="lastName" type="text" placeholder="Last Name" required="true" width="100%" />
+                    <div class="account-form-contents">
+                        <div class="form-row-1">
+                            <x-Fields.text-field label="First Name" id="first_name" name="first_name" type="text"
+                                placeholder="First Name" required="true" width="100%" />
+                            <x-Fields.text-field label="Middle Name" id="middle_name" name="middle_name" type="text"
+                                placeholder="Middle Name" width="100%" />
+                            <x-Fields.text-field label="Last Name" id="last_name" name="last_name" type="text"
+                                placeholder="Last Name" required="true" width="100%" />
+                        </div>
+
+                        <div class="form-row-2">
+                            <x-fields.text-field type="date" id="date_of_birth" name="date_of_birth" label="Date of Birth"
+                                placeholder="Date of Birth" width="100%" required />
+                            <x-Fields.text-field label="Place of Birth" id="place_of_birth" name="place_of_birth"
+                                type="text" placeholder="City, Region, Country" required="true" width="100%" />
+                        </div>
+
+                        <div class="form-row-3">
+                            <x-fields.dropdown-field-2 id="sex" name="sex" label="Sex" :options="[' ', 'Male', 'Female', 'Other']"
+                                placeholder="Select Sex" width="330px" required />
+                            <x-fields.dropdown-field-2 id="citizenship" name="citizenship" label="Citizenship"
+                                :options="['Filipino', 'American', 'Other']" placeholder="Select Citizenship" width="330px" required />
+                        </div>
+
+                        <div class="form-row-4">
+                            <x-Fields.text-field label="Mobile" id="contact_number" name="contact_number" type="tel"
+                                placeholder="(09XX) XXX-XXXX" required="true" width="100%" />
+                            <x-Fields.text-field label="Email" id="email" name="email" type="email"
+                                placeholder="Email" required="true" width="100%" />
+                        </div>
                     </div>
 
-                    <div class="form-row-2">
-                        <x-fields.text-field type="date" id="date_of_birth" name="dateOfBirth" label="Date of Birth" placeholder="Date of Birth" width="100%" required />
-                        <x-Fields.text-field label="Place of Birth" id="place_of_birth" name="placeOfBirth" type="text" placeholder="City, Region, Country" required="true" width="100%" />
+                    <div class="reminder">
+                        <x-Reminders.reminder-update-profile>
+                            You may change your input data should you need to update your information. Note: Email address
+                            cannot be changed.
+                        </x-Reminders.reminder-update-profile>
                     </div>
 
-                    <div class="form-row-3">
-                        <x-fields.dropdown-field-2 id="sex" name="sex" label="Sex" :options="[' ','Male', 'Female', 'Other']" placeholder="Select Sex" width="330px" required />
-                        <x-fields.dropdown-field-2 id="citizenship" name="citizenship" label="Citizenship" :options="['Filipino', 'American', 'Other']" placeholder="Select Citizenship" width="330px" required />
-                    </div>
-
-                    <div class="form-row-4">
-                        <x-Fields.text-field label="Mobile" id="contactNumber" name="contactNumber" type="number" placeholder="(09XX) XXX-XXXX" required="true" width="100%" />
-                        <x-Fields.text-field label="Email" id="email" name="email" type="email" placeholder="Email" required="true" width="100%" />
+                    <div class="existing-policy">
+                        <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px"
+                            weight="500" style="Inter" />
+                        <x-buttons.pill-button idOne="noOption" idTwo="yesOption" pillOneText="No" pillTwoText="Yes" />
                     </div>
                 </div>
 
-                <div class="reminder">
-                    <x-Reminders.reminder-update-profile>
-                        You may change your input data should you need to update your information. Note: Email address cannot be changed.
-                    </x-Reminders.reminder-update-profile>
+                <div id="step-content"></div>
+
+                <div class="next-cancel-btns">
+                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel
+                    </x-buttons.secondary-button>
+                    <x-buttons.primary-button id="nextStep" data-target="create-account-as-ph-2"> Next
+                    </x-buttons.primary-button>
                 </div>
-
-                <div class="existing-policy">
-                    <x-question-label text="Do you have an existing policy with Cocogen?" required="true" size="16px" weight="500" style="Inter" />
-                    <x-buttons.pill-button idOne="noOption" idTwo="yesOption" pillOneText="No" pillTwoText="Yes" />
-                </div>
-            </div>
-
-            <div id="step-content"></div>
-
-            <div class="next-cancel-btns">
-                <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
-                <x-buttons.primary-button id="nextStep" data-target="create-account-as-ph-2"> Next </x-buttons.primary-button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -116,42 +132,25 @@
         $(document).ready(function() {
             let selectedOption = null;
 
-            $(".pill-button").on("click", function(event) {
+            // ✅ Use event delegation for dynamically added elements
+            $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
                 selectedOption = $(this).attr("id");
             });
 
-            $('#nextStep').on('click', function(event) {
+
+            // ✅ Navigation event for dynamically loaded steps
+            $(document).on("click", "#cancelAction, #goBack", function(event) {
                 event.preventDefault();
+                let targetPage = $(this).data("target");
 
-                var formData = {
-                    firstName: $('#first_name').val(),
-                    middleName: $('#middle_name').val(),
-                    lastName: $('#last_name').val(),
-                    dateOfBirth: $('#date_of_birth').val(),
-                    placeOfBirth: $('#place_of_birth').val(),
-                    sex: $('#sex').val(),
-                    citizenship: $('#citizenship').val(),
-                    contactNumber: $('#contactNumber').val(),
-                    email: $('#email').val(),
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/register-policyholder', // Update with correct Laravel route
-                    data: formData,
-                    success: function(response) {
-                        alert('Form submitted successfully');
-                        window.location.href = response.redirect_url;
-                    },
-                    error: function(xhr) {
-                        let errors = xhr.responseJSON.errors;
-                        let errorMessages = Object.values(errors).flat().join("\n");
-                        alert("Form submission failed:\n" + errorMessages);
-                    }
-                });
+                if (targetPage) {
+                    $("#dynamic-content").load(`/register/${targetPage}`);
+                } else {
+                    window.history.back();
+                }
             });
         });
     </script>

@@ -166,15 +166,20 @@
 
                         <div class="checkbox-col-1">
                             <div class="check-row-1">
-                                <x-buttons.checkbox-button id="policyAEP" name="AutoExcelPlus" label="Auto Excel Plus" :checked=false />
-                                <x-buttons.checkbox-button id="policyITP" name="InternationalTravel" label="International Travel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyAEP" name="AutoExcelPlus" label="Auto Excel Plus"
+                                    :checked=false />
+                                <x-buttons.checkbox-button id="policyITP" name="InternationalTravel"
+                                    label="International Travel Plus" :checked=false />
                             </div>
                             <div class="check-row-2">
-                                <x-buttons.checkbox-button id="policyDTP" name="DomesticTravel" label="Domestic Travel Plus" :checked=false />
-                                <x-buttons.checkbox-button id="policyPT" name="ProTech" label="Pro-Tech" :checked=false />
+                                <x-buttons.checkbox-button id="policyDTP" name="DomesticTravel"
+                                    label="Domestic Travel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyPT" name="ProTech" label="Pro-Tech"
+                                    :checked=false />
                             </div>
                             <div class="check-row-3">
-                                <x-buttons.checkbox-button id="policyCEP" name="CondoExcelPlus" label="Condo Excel Plus" :checked=false />
+                                <x-buttons.checkbox-button id="policyCEP" name="CondoExcelPlus" label="Condo Excel Plus"
+                                    :checked=false />
                             </div>
                         </div>
                     </div>
@@ -233,8 +238,10 @@
 
                 <!-- Button Container -->
                 <div class="button-container">
-                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
-                    <x-buttons.primary-button id="submit" date-next="create-account-as-ph-identity-1">Next</x-buttons.primary-button>
+                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel
+                    </x-buttons.secondary-button>
+                    <x-buttons.primary-button id="submit"
+                        date-next="create-account-as-ph-identity-1">Next</x-buttons.primary-button>
                 </div>
             </div>
         </div>
@@ -258,12 +265,44 @@
 
                 if (this.id === "noRepresentative") {
                     $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
-                        function() {
-                            $(".contact-container input[type='checkbox']").prop("checked", false);
-                        });
+                function() {
+                        $(".contact-container input[type='checkbox']").prop("checked", false);
+                    });
                 } else {
                     $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
                 }
+            });
+
+            // Handle Submit Button Click
+            $("#submit").click(function(event) {
+                event.preventDefault();
+                console.log("Submit Button Clicked"); // Debugging
+
+                // Collect form data from sessionStorage
+                let formData = {
+                    step1: JSON.parse(sessionStorage.getItem("create-account-as-ph-1")) || {},
+                    step2: JSON.parse(sessionStorage.getItem("create-account-as-ph-2")) || {}
+                };
+
+                console.log("Form Data to Submit:", formData); // Debugging
+
+                $.ajax({
+                    url: "register-policyholder", // Update with your actual Laravel route
+                    type: "POST",
+                    data: formData,
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    success: function(response) {
+                        console.log("Submission Success:", response);
+                        window.location.href =
+                        "create-account-as-ph-identity-1"; // Proceed to next step
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Submission Error:", error);
+                        alert("An error occurred while submitting. Please try again.");
+                    }
+                });
             });
         });
     </script>

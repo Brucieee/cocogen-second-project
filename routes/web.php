@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-use App\http\Controllers\PolicyholderController;
+use App\Http\Controllers\PolicyholderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,8 +54,6 @@ Route::get('/create-account-as-ph-identity-1', function () {
 
 Route::post('create-account-as-ph-1', [RegisterController::class, 'storeStep1']);
 Route::post('create-account-as-ph-2', [RegisterController::class, 'storeStep2']);
-Route::post('create-account-as-ph-identity-1', [RegisterController::class, 'store']);
-
 Route::post('/register-policyholder', [PolicyholderController::class, 'store'])->name('register.policyholder');
 
 

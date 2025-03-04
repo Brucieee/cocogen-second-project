@@ -19,6 +19,7 @@
 
 <body>
     <form action="{{ route('register.policyholder') }}" method="POST" id="addPolicyholder">
+
         @csrf
         <div id="dynamic-content">
 
@@ -34,38 +35,7 @@
                 }
             });
 
-            $(document).ready(function() {
-                $('#nextStep').on('click', function(event) {
-                    event.preventDefault();
-
-                    var formData = {
-                        firstName: $('#first_name').val(),
-                        middleName: $('#middle_name').val(),
-                        lastName: $('#last_name').val(),
-                        dateOfBirth: $('#date_of_birth').val(),
-                        placeOfBirth: $('#place_of_birth').val(),
-                        sex: $('#sex').val(),
-                        citizenship: $('#citizenship').val(),
-                        contactNumber: $('#contactNumber').val(),
-                        email: $('#email').val(),
-                    };
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '/register-policyholder', // Update with your route
-                        data: formData,
-                        success: function(response) {
-                            alert('Form submitted successfully');
-                            window.location.href = response.redirect_url; // Redirect if needed
-                        },
-                        error: function(xhr) {
-                            let errors = xhr.responseJSON.errors;
-                            let errorMessages = Object.values(errors).flat().join("\n");
-                            alert("Form submission failed:\n" + errorMessages);
-                        }
-                    });
-                });
-            });
+           
 
 
 

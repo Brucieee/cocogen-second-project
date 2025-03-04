@@ -67,6 +67,7 @@
         -webkit-appearance: none;
         margin: 0;
     }
+
     .text-field[type="number"] {
         -moz-appearance: textfield;
     }
@@ -75,12 +76,15 @@
     .valid .label-text {
         color: #848A90;
     }
+
     .valid .text-field::placeholder {
         color: #1E1F21;
     }
+
     .valid .input-container {
         border-bottom: 1px solid var(--Teal-LVL-9, #066);
     }
+
     .valid .input-container:hover {
         border-bottom: 1px solid var(--Teal-LVL-9, #066);
         background: var(--Teal-LVL-1, #F0FFFF);
@@ -92,6 +96,7 @@
         background: #FFF7F7;
 
     }
+
     .invalid .text-field {
         color: #DD0707;
         background: #FFF7F7;
@@ -102,22 +107,26 @@
         background: #FFE2E2;
     }
 
-    .invalid .input-container:hover{
+    .invalid .input-container:hover {
         background: #FFE2E2;
     }
-    
 </style>
 
 <div class="text-field-container" data-id="{{ $id }}">
     <div class="label-container">
         <span class="label-text">
             {{ $label }}
-            @if(!empty($required))<span class="required">*</span> @endif
+            @if (!empty($required))
+                <span class="required">*</span>
+            @endif
         </span>
     </div>
 
     <div class="input-container">
-        <input type="{{ $type ?? 'text' }}" id="{{ $id }}" class="text-field" placeholder="{{ $placeholder }}">
+        <input type="{{ $type ?? 'text' }}" id="{{ $id }}" name="{{ $id }}" class="text-field"
+            placeholder="{{ $placeholder }}" @if (!empty($required)) required @endif
+            aria-label="{{ $label }}">
+
     </div>
 </div>
 
@@ -127,13 +136,14 @@
         $(".text-field").on("input", function() {
             let inputField = $(this);
             let inputWrapper = inputField.closest(".text-field-container");
-            let value = inputField.val();
+            let value = inputField.val().trim();
             let isValid = false;
 
             if (inputField.attr("type") === "text") {
-                isValid = /^[a-zA-Z ]+$/.test(value);
+                isValid = /^[a-zA-Z\s\-']+$/.test(
+                    value); // Allow letters, spaces, hyphens, and apostrophes
             } else if (inputField.attr("type") === "number") {
-                isValid = /^\d{11}$/.test(value); // Valid only when 11 digits
+                isValid = /^\d{7,15}$/.test(value); // Accept numbers between 7-15 digits
             } else if (inputField.attr("type") === "email") {
                 isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
             }
