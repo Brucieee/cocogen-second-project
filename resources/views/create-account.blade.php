@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form action="{{ url('Register.create-account-as-ph-identity-1') }}" method="POST" id="addPolicyholder">
+    <form action="{{ route('register.policyholder') }}" method="POST" id="addPolicyholder">
         @csrf
         <div id="dynamic-content">
 
@@ -26,31 +26,48 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            $(document).ready(function() {
-                $('#addPolicyholder').on('submit', function(event) {
-                    event.preventDefault(); // Prevents the default form submission
+            // submit event 
 
-                    let formData = $(this).serialize(); // Serializes form data
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).ready(function() {
+                $('#nextStep').on('click', function(event) {
+                    event.preventDefault();
+
+                    var formData = {
+                        firstName: $('#first_name').val(),
+                        middleName: $('#middle_name').val(),
+                        lastName: $('#last_name').val(),
+                        dateOfBirth: $('#date_of_birth').val(),
+                        placeOfBirth: $('#place_of_birth').val(),
+                        sex: $('#sex').val(),
+                        citizenship: $('#citizenship').val(),
+                        contactNumber: $('#contactNumber').val(),
+                        email: $('#email').val(),
+                    };
 
                     $.ajax({
-                        url: "{{ url('create-account-as-ph-identity-1') }}", // Make sure this route exists
                         type: 'POST',
-                        data: jQuery('#addPolicyholder').serialize(),
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                'content') // CSRF protection
-                        },
+                        url: '/register-policyholder', // Update with your route
+                        data: formData,
                         success: function(response) {
-                            console.log(response);
-                            alert("Form submitted successfully!");
+                            alert('Form submitted successfully');
+                            window.location.href = response.redirect_url; // Redirect if needed
                         },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                            alert("An error occurred.");
+                        error: function(xhr) {
+                            let errors = xhr.responseJSON.errors;
+                            let errorMessages = Object.values(errors).flat().join("\n");
+                            alert("Form submission failed:\n" + errorMessages);
                         }
                     });
                 });
             });
+
+
 
             let selectedOption = null;
 
@@ -164,6 +181,8 @@
 
                     loadPage(targetPage);
                 });
+
+
 
 
 
