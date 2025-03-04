@@ -11,7 +11,7 @@
 
 <body>
     
-    @include('Register.create-account-as')
+        <x-modal-continue-later />
 
 
 
