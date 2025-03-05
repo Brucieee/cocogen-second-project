@@ -151,8 +151,7 @@
         <div class="main-container-wrapper">
             <div class="main-container">
                 <!-- Back Button Component -->
-                <x-Register.back-button title="Create account as Policyholder" id="goBack"
-                    backUrl="create-account-as-ph-1" />
+                <x-back-title title="Create account as Policyholder" id="goBack"
 
                 <!-- Getting to Know You Container -->
                 <div class="getting-to-know-you-container">

@@ -10,9 +10,7 @@
 </head>
 
 <body>
-    <h1>Testing Page</h1> <!-- Add a test heading -->
- 
-    @include('forms.form1-ph')
+    <x-stepper :currentStep="session('currentStep', 1)" />
 
 </body>
 

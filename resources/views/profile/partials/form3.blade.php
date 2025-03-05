@@ -18,8 +18,7 @@
             // Collect form data
             let form3Data = {
                 additionalInfo: $('#additionalInfo').val(), // Get the additional info
-                agree_terms: $('#agree_terms').is(':checked') ? 1 :
-                    0 // Get checkbox value (1 if checked, 0 if not)
+                agree_terms: $('#agree_terms').is(':checked') ? 1 : 0 
             };
 
             // Get the stored ID

@@ -34,8 +34,10 @@
         .main-container-wrapper {
             flex: 1;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            margin-left: 255px; /* Offset for the stepper */
+            justify-content: center;
+            /* Center horizontally */
+            margin-left: 255px;
+            /* Offset for the stepper */
             padding: 35px;
             margin-left: 35%;
         }
@@ -132,7 +134,7 @@
             align-self: stretch;
         }
 
-        .create-account2-2 {
+        .create-account2-1 {
             display: flex;
             height: 100%;
             width: 100%;
@@ -141,81 +143,108 @@
 </head>
 
 <body>
-    <div class="create-account2-2">
+
+    <form id="form2-1">
+        <div class="create-account2-1">
             <x-stepper :currentStep="session('currentStep', 1)" />
 
-        <div class="main-container-wrapper">
-            <div class="main-container">
-                <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as-ph-1" />
+            <div class="main-container-wrapper">
+                <div class="main-container">
+                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2-1" />
 
 
-                <div class="getting-to-know-you-container">
-                    <x-Register.form-title title="Getting to know you" />
+                    <div class="getting-to-know-you-container">
+                        <x-Register.form-title title="Getting to know you" />
 
-                    <div class="active-policies-container">
-                        <x-title-required title="Active Policy/s you have" :required="true" />
+                        <div class="active-policies-container">
+                            <x-title-required title="Active Policy/s you have" :required="true" />
 
-                        <x-Fields.add-policy label="Policy No." required="true" />
-                    </div>
-
-                    <div class="representative-container">
-                        <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
-                            :required="true" />
-
-                        <div class="pill-button-container">
-                            <x-Buttons.pill-button idOne="noRepresentative" idTwo="yesRepresentative"
-                                pillOneText="No, I will explore Cocogen products myself"
-                                pillTwoText="Yes, I need a representative to talk to me" />
+                            <x-Fields.add-policy label="Policy No." required="true" />
                         </div>
-                    </div>
 
-                    <div class="branch-container">
-                        <div class="title-container-2">
-                            <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
+                        <div class="representative-container">
+                            <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
                                 :required="true" />
-                            <x-info-icon />
+
+                            <div class="pill-button-container">
+                                <x-Buttons.pill-button idOne="noRepresentativeForm2-1" idTwo="yesRepresentativeForm2-1"
+                                    pillOneText="No, I will explore Cocogen products myself"
+                                    pillTwoText="Yes, I need a representative to talk to me" />
+                            </div>
+                        </div>
+
+                        <!-- Branch Container -->
+                        <div class="branch-container">
+                            <div class="title-container-2">
+                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
+                                    :required="true" />
+                                <x-info-icon />
+                            </div>
+                        </div>
+
+                        <!-- Dropdown Container -->
+                        <div class="dropdown-container">
+
+                            <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" required="true" />
+
                         </div>
                     </div>
 
-                    <div class="dropdown-container">
-                        <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="selected_branch"
-                            placeholder="Select branch" :required="true" width="'300px'"
-                            :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
-                    </div>
-                </div>
+                    <div class="contact-container">
+                        <!-- Title for Contact -->
+                        <x-title-required title="How do you want to be contacted?" :required="true"
+                            placeholder="(You may select more than one)" />
 
-                <div class="contact-container">
-                    <x-title-required title="How do you want to be contacted?" :required="true"
-                        placeholder="(You may select more than one)" />
+                        <!-- Main Contact Container -->
+                        <div class="main-contact-container">
+                            <!-- Left Container -->
+                            <div class="left-container">
 
-                    <div class="main-contact-container">
-                        <div class="left-container">
-                            <x-Buttons.checkbox-button id="checkbox_email" label="Email" />
-                            <x-Buttons.checkbox-button id="checkbox_SMS" label="SMS" />
+                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="1" />
+
+                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="1" />
+
+                            </div>
+
+                            <!-- Right Container -->
+                            <div class="right-container">
+
+                                <x-checkbox id="contactMessenger" name="contactMessenger" label="Messenger"
+                                    value="1" />
+
+                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="1" />
+
+                            </div>
                         </div>
-
-                        <div class="right-container">
-                            <x-Buttons.checkbox-button id="checkbox_messenger" label="Messenger" />
-                            <x-Buttons.checkbox-button id="checkbox_call" label="Call" />
-                        </div>
                     </div>
-                </div>
 
-                <div class="button-container">
-                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
-                    <x-buttons.primary-button id="submit" date-next="your-identity-1">Next</x-buttons.primary-button>
+                    <div class="button-container">
+                        <x-buttons.secondary-button id="cancelForm2-1">
+                            Cancel
+                        </x-buttons.secondary-button>
+
+                        <x-buttons.primary-button type="submit" id="submitForm2-1">
+                            Next
+                        </x-buttons.primary-button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-       $(document).ready(function() {
-            console.log("Script Loaded"); // Debugging
+        $(document).ready(function() {
+
+            $('#backtoForm1FromForm2-1').on('click', function() {
+                event.preventDefault();
+                $('#form2-1').hide();
+                $('#form1').show();
+            });
 
             // Handle Pill Button Click
             $(document).on("click", ".pill-button", function(event) {
@@ -224,7 +253,7 @@
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                if (this.id === "noRepresentative") {
+                if (this.id === "noRepresentativeForm2-1") {
                     $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
                         function() {
                             $(".contact-container input[type='checkbox']").prop("checked", false);
@@ -234,7 +263,5 @@
                 }
             });
         });
-
-        
     </script>
 </body>

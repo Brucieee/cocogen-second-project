@@ -119,53 +119,55 @@
         border: none;
         background: none;
     }
-    
-    .left-image img{
+
+    .left-image img {
         width: 100%;
     }
 </style>
 
 <body>
-    <!-- Logo (Outside the Container) -->
-    <div class="logo-container">
-        <img src="{{ asset('assets/images/cocogen-logo.svg') }}" alt="Cocogen Logo">
-    </div>
-
-    <div class="container">
-        <div class="back-button-container">
-            <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as" />
-
+    <div class="m-container" id="asPartner">
+        <div class="logo-container">
+            <img src="{{ asset('assets/images/cocogen-logo.svg') }}" alt="Cocogen Logo">
         </div>
 
-        <div class="contents">
-            <!-- Left Image -->
-            <div class="left-image">
-                <img src="{{ asset('assets/images/Image-Partner.png') }}" alt="Partner Image">
+        <div class="container">
+            <div class="back-button-container">
+
+                <x-back-title 
+                    title="Create account as Partner" 
+                    id="backToAccountAsFromPartner"
+                />
             </div>
 
-            <!-- Right Content -->
-            <div class="right-content">
-                <div class="title">Cocogen Partner Benefits</div>
-                <div class="description">
-                    Becoming a Cocogen partner means working with a company that puts your career development before
-                    anything else. We want you to have as much freedom and control as you want while making sure that we
-                    give you the proper support to help you maximize your profits. Working with us means you'll make
-                    money and develop your skills and knowledge as an insurance agent.
+            <div class="contents">
+                <div class="left-image">
+                    <img src="{{ asset('assets/images/Image-Partner.png') }}" alt="Partner Image">
                 </div>
 
-                <!-- Buttons -->
-                <div class="buttons-container">
-                    <a href="https://www.cocogen.com/be-a-partner">
-                        <x-buttons.primary-button id="button_signup">Signup as Partner</x-buttons.primary-button>
-                    </a>
+                <div class="right-content">
+                    <div class="title">Cocogen Partner Benefits</div>
+                    <div class="description">
+                        Becoming a Cocogen partner means working with a company that puts your career development before
+                        anything else. We want you to have as much freedom and control as you want while making sure
+                        that we
+                        give you the proper support to help you maximize your profits. Working with us means you'll make
+                        money and develop your skills and knowledge as an insurance agent.
+                    </div>
 
-                    <a href="https://www.cocogen.com/client-services">
-                        <x-buttons.secondary-button id="button_email">Email Cocogen</x-buttons.secondary-button>
-                    </a>
+                    <div class="buttons-container">
+                        <a href="https://www.cocogen.com/be-a-partner">
+                            <x-buttons.primary-button id="button_signup">Signup as Partner</x-buttons.primary-button>
+                        </a>
 
-                    <a href="https://www.cocogen.com/locate-a-branch">
-                        <x-buttons.secondary-button id="button_branch">Locate a branch</x-buttons.secondary-button>
-                    </a>
+                        <a href="https://www.cocogen.com/client-services">
+                            <x-buttons.secondary-button id="button_email">Email Cocogen</x-buttons.secondary-button>
+                        </a>
+
+                        <a href="https://www.cocogen.com/locate-a-branch">
+                            <x-buttons.secondary-button id="button_branch">Locate a branch</x-buttons.secondary-button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,25 +176,19 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        
-            e.preventDefault();
 
-            // Hide current content to prevent flickering
-            $(".container").fadeOut(200, function() {
-                $.ajax({
-                    url: '/create-account-as', // Ensure this route serves the correct content
-                    type: 'GET',
-                    success: function(response) {
-                        $("#dynamic-content").html(response).fadeIn(200);
-                        $(".content-container").show();
-                        $(".stepper-container").show();
-                    },
-                    error: function(xhr) {
-                        console.error("Error loading page:", xhr.status, xhr
-                            .statusText);
-                    }
-                });
+        $(document).ready(function() {
+
+            $('#backToAccountAsFromPartner').on('click', function() {
+                console.log('Go back button clicked!');
+
+                // Debugging: Check if the elements exist
+                console.log('asPartner exists:', $('#asPartner').length);
+                console.log('accountAs exists:', $('#accountAs').length);
+
+                $('#asPartner').hide(); // Hide the Partner page
+                $('#accountAs').show(); // Show the Account Selection page
             });
-    });
+        });
+
 </script>

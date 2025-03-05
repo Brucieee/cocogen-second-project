@@ -29,10 +29,20 @@
     .secondary-btn:focus {
         background: #60B3B3;
         color: white;
-        outline: none; /* Removes the default focus outline */
+        outline: none;
+        /* Removes the default focus outline */
     }
 </style>
 
-<button class="secondary-btn" id="{{ $id ?? 'default-id' }}" data-target="{{ $dataTarget ?? '' }}">
+@props([
+    'id' => null, // Unique ID for the button
+    'class' => '', // Additional CSS classes
+    'type' => 'button', // Button type (button, submit, reset)
+    'disabled' => false, // Whether the button is disabled
+    'onclick' => '', // Optional onclick event handler
+])
+
+<button id="{{ $id ?? 'default-id' }}" type="{{ $type }}" class="secondary-btn {{ $class }}"
+    {{ $disabled ? 'disabled' : '' }} {{ $onclick ? 'onclick="' . $onclick . '"' : '' }} {{ $attributes }} 
     <span class="button-text">{{ $slot }}</span>
 </button>

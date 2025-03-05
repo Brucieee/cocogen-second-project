@@ -64,7 +64,7 @@
             <x-stepper :currentStep="session('currentStep', 1)" />
 
             <div class="account-container-1" id="account-form-1">
-                <x-Register.back-button title="Create account as Policyholder" id="goBack"
+                <x-back-title title="Create account as Policyholder" id="goBack"
                     backUrl="create-account-as" />
                 @csrf
                 <div class="account-form">

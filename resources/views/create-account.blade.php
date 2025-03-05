@@ -7,6 +7,7 @@
     <style>
         html,
         body {
+            display: block;
             margin: 0 !important;
             padding: 0 !important;
             border: none !important;
@@ -18,7 +19,20 @@
 </head>
 
 <body>
-    @include('forms.form1')
+
+    @include('register.create-account-as')
+
+    @include('register.create-account-as-partner')
+
+    @include('forms.form1-ph')
+    
+    @include('forms.form2-ph')
+    
+    @include('forms.form2-1-ph')
+
+    {{-- @include('forms.form3-ph') --}}
+
+
 
 
 

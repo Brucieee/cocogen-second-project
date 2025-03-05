@@ -1,10 +1,15 @@
-@props(['title', 'backUrl' => null, 'id' => 'default-id'])
+@props([
+    'title' => 'Back', // Default title
+    'id' => 'default-id', // Default ID
+    'onclick' => '', // Optional onclick event handler
+])
 
 <style>
     .back-button-container {
         display: flex;
         align-items: center;
         height: 33px;
+        gap: 10px; /* Add spacing between icon and title */
     }
 
     .back-button {
@@ -28,12 +33,16 @@
         font-weight: 700;
         user-select: none; /* Prevents text selection */
         pointer-events: none; /* Prevents any click events on the title */
-        margin-left: 10px; /* Add spacing between icon and title */
     }
 </style>
 
 <div class="back-button-container">
-    <button class="back-button" id="{{ $id }}" data-target="{{ $backUrl }}">
+    <button
+        class="back-button"
+        id="{{ $id }}"
+        {{ $onclick ? 'onclick="' . $onclick . '"' : '' }}
+        {{ $attributes }} 
+    >
         <img src="{{ asset('assets/icons/Icon-ArrowLeft.svg') }}" alt="Back" class="back-button-icon">
     </button>
     <div class="back-button-title">{{ $title }}</div>

@@ -73,7 +73,7 @@
     <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="otp-page-container">
-        <x-Register.back-button title="Create account as Policyholder"  />
+        <x-back-title title="Create account as Policyholder"  />
         <div class="page-contents">
             <x-Register.form-title title="Your identity" />
             <div class="main-otp-content">

@@ -89,7 +89,7 @@
     <x-stepper :currentStep="session('currentStep', 2)" />
 
     <div class="identity-3-container">
-        <x-Register.back-button title="Create account as Policyholder" />
+        <x-back-title title="Create account as Policyholder" />
         <div class="identity-form-3">
             <x-Register.form-title title="Your identity" />
             <div class="form-contents">

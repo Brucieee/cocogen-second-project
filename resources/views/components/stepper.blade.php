@@ -34,6 +34,7 @@
     height: 155px;
     gap: 15px;
     position: relative;
+    margin-top: 125px;
 }
 
 .step {

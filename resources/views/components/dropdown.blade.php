@@ -1,17 +1,25 @@
-@props(['id', 'name', 'label', 'options', 'placeholder', 'width', 'required', 'disabled' => false])
+@props([
+    'id' => 'dropdown-' . uniqid(),
+    'name' => 'dropdown',
+    'label' => 'Label',
+    'options' => [], // Array of options (simple values)
+    'placeholder' => 'Select an option',
+    'required' => false,
+    'disabled' => false,
+])
 
 <style>
     .dropdown-container {
         display: flex;
         flex-direction: column;
-        width: {{ $width }};
         position: relative;
         gap: 5px;
+        width: 100%;
+        /* Full width by default */
     }
 
     .dropdown-text-field-container {
         height: 56px;
-        width: 100%;
         display: flex;
         flex-direction: column;
     }
@@ -65,6 +73,10 @@
         line-height: 24px;
         color: #1E1F21;
         background: transparent;
+        cursor: pointer;
+        /* Indicate that the field is clickable */
+        pointer-events: none;
+        /* Prevent manual typing */
     }
 
     .dropdown-text-field::placeholder {
@@ -178,9 +190,15 @@
         </div>
         <div class="dropdown-input-container"
             onclick="!this.closest('.dropdown-container').classList.contains('disabled') && toggleDropdown('{{ $id }}')">
-            <input type="text" id="{{ $id }}" class="dropdown-text-field" placeholder="{{ $placeholder }}"
-                oninput="!this.closest('.dropdown-container').classList.contains('disabled') && filterOptions(this.value, '{{ $id }}')"
-                @if ($disabled) disabled @endif>
+            <input
+                type="text"
+                id="{{ $id }}"
+                name="{{ $name }}"
+                class="dropdown-text-field"
+                placeholder="{{ $placeholder }}"
+                readonly
+                @if ($disabled) disabled @endif
+            />
             <img src="{{ asset('assets/icons/Icon-ArrowDown.svg') }}" id="dropdown-icon-{{ $id }}"
                 class="dropdown-icon" onload="initializeIcon('{{ $id }}')">
         </div>
@@ -197,31 +215,27 @@
 
         <!-- Dropdown Options -->
         <div class="dropdown-options">
-            @foreach ($options as $key => $option)
+            @foreach ($options as $option)
                 <div class="dropdown-option"
-                    onclick="!this.closest('.dropdown-container').classList.contains('disabled') && selectOption('{{ is_array($options) ? $option : $key }}', '{{ $id }}')">
+                    onclick="!this.closest('.dropdown-container').classList.contains('disabled') && selectOption('{{ $option }}', '{{ $id }}')">
                     {{ $option }}
                 </div>
             @endforeach
         </div>
-
     </div>
 </div>
 
 <script>
-    // Initializes the icon to ensure it is visible
     function initializeIcon(id) {
         const icon = document.getElementById(`dropdown-icon-${id}`);
         icon.style.filter =
-            'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // Initial down arrow icon color
+            'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; 
     }
 
-    // Toggles the dropdown visibility and changes the icon accordingly
     function toggleDropdown(id) {
         const allMenus = document.querySelectorAll('.dropdown-menu');
         const allIcons = document.querySelectorAll('.dropdown-icon');
 
-        // Close other dropdowns and reset their icons
         allMenus.forEach(menu => {
             if (menu.id !== `dropdown-menu-${id}`) {
                 menu.classList.remove('open');
@@ -232,28 +246,25 @@
             if (icon.id !== `dropdown-icon-${id}`) {
                 icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
                 icon.style.filter =
-                    'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
+                    'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)';
             }
         });
 
-        // Toggle the clicked dropdown
         const menu = document.getElementById(`dropdown-menu-${id}`);
         const icon = document.getElementById(`dropdown-icon-${id}`);
         menu.classList.toggle('open');
 
-        // Change the icon with smooth transition
         if (menu.classList.contains('open')) {
             icon.src = '{{ asset('assets/icons/Icon-ArrowUp.svg') }}';
             icon.style.filter =
-                'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)'; // #D7DEE3
+                'invert(92%) sepia(4%) saturate(0%) hue-rotate(180deg) brightness(98%) contrast(90%)';
         } else {
             icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
             icon.style.filter =
-                'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)'; // #40444D
+                'invert(22%) sepia(4%) saturate(529%) hue-rotate(180deg) brightness(92%) contrast(91%)';
         }
     }
 
-    // Filters options in the dropdown based on input value
     function filterOptions(input, id) {
         const options = document.querySelectorAll(`#dropdown-menu-${id} .dropdown-option`);
         options.forEach(option => {
@@ -266,28 +277,22 @@
     }
 
     function selectOption(value, id) {
-        document.getElementById(id).value = value;
+        const inputField = document.getElementById(id);
+        inputField.value = value; // Set the selected option as the value
 
-        // Clear the search bar
         const searchBar = document.querySelector(`#dropdown-menu-${id} .search-bar`);
-        searchBar.value = '';
+        searchBar.value = ''; // Clear the search bar
 
-        // Close dropdown
-        toggleDropdown(id);
+        toggleDropdown(id); // Close the dropdown
     }
 
-
-    // Close dropdown if clicked outside
     document.addEventListener('click', function(event) {
         const dropdowns = document.querySelectorAll('.dropdown-container');
         dropdowns.forEach(dropdown => {
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-            const dropdownInput = dropdown.querySelector('.input-container');
 
-            // Close dropdown if click is outside the dropdown or the input field
             if (!dropdown.contains(event.target)) {
                 dropdownMenu.classList.remove('open');
-                // Reset the icon when dropdown is closed
                 const icon = dropdown.querySelector('.dropdown-icon');
                 icon.src = '{{ asset('assets/icons/Icon-ArrowDown.svg') }}';
                 icon.style.filter =

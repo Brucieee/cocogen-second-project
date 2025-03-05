@@ -1,9 +1,19 @@
+@props([
+    'id' => 'text-field-' . uniqid(), // Unique ID for the input
+    'label' => 'Label', // Field label
+    'type' => 'text', // Input type (text, number, email, etc.)
+    'placeholder' => '', // Placeholder text
+    'required' => false, // Whether the field is required
+    'width' => '100%', // Width of the field container
+])
+
 <style>
     .text-field-container {
         height: 56px;
-        width: {{ $width ?? '100%' }};
+        width: {{ $width }};
         display: flex;
         flex-direction: column;
+        margin-bottom: 15px; /* Add spacing between fields */
     }
 
     .label-container {
@@ -77,10 +87,6 @@
         color: #848A90;
     }
 
-    .valid .text-field::placeholder {
-        color: #1E1F21;
-    }
-
     .valid .input-container {
         border-bottom: 1px solid var(--Teal-LVL-9, #066);
     }
@@ -94,17 +100,11 @@
     .invalid .input-container {
         border-bottom: 1px solid var(--Status-Danger, #DD0707);
         background: #FFF7F7;
-
     }
 
     .invalid .text-field {
         color: #DD0707;
         background: #FFF7F7;
-
-    }
-
-    .invalid .text-field:hover {
-        background: #FFE2E2;
     }
 
     .invalid .input-container:hover {
@@ -116,17 +116,22 @@
     <div class="label-container">
         <span class="label-text">
             {{ $label }}
-            @if (!empty($required))
+            @if ($required)
                 <span class="required">*</span>
             @endif
         </span>
     </div>
 
     <div class="input-container">
-        <input type="{{ $type ?? 'text' }}" id="{{ $id }}" name="{{ $id }}" class="text-field"
-            placeholder="{{ $placeholder }}" @if (!empty($required)) required @endif
-            aria-label="{{ $label }}">
-
+        <input
+            type="{{ $type }}"
+            id="{{ $id }}"
+            name="{{ $id }}"
+            class="text-field"
+            placeholder="{{ $placeholder }}"
+            @if ($required) required @endif
+            aria-label="{{ $label }}"
+        />
     </div>
 </div>
 
@@ -139,15 +144,22 @@
             let value = inputField.val().trim();
             let isValid = false;
 
-            if (inputField.attr("type") === "text") {
-                isValid = /^[a-zA-Z\s\-']+$/.test(
-                    value); // Allow letters, spaces, hyphens, and apostrophes
-            } else if (inputField.attr("type") === "number") {
-                isValid = /^\d{7,15}$/.test(value); // Accept numbers between 7-15 digits
-            } else if (inputField.attr("type") === "email") {
-                isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
+            // Validation rules based on input type
+            switch (inputField.attr("type")) {
+                case "text":
+                    isValid = /^[a-zA-Z\s\-']+$/.test(value); // Allow letters, spaces, hyphens, and apostrophes
+                    break;
+                case "number":
+                    isValid = /^09\d{9}$/.test(value); // Must start with 09 and have exactly 11 digits
+                    break;
+                case "email":
+                    isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value); // Email validation
+                    break;
+                default:
+                    isValid = true; // No validation for other types
             }
 
+            // Update valid/invalid states
             if (value === "") {
                 inputWrapper.removeClass("valid invalid");
             } else if (isValid) {

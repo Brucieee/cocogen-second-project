@@ -16,28 +16,18 @@
             flex-direction: row;
         }
 
-        .stepper-container {
-            width: 255px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #008080;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
+        form#form2 {
+            margin: 0;
+            padding: 0;
+            width: 100%;
         }
 
         .main-container-wrapper {
             flex: 1;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            margin-left: 255px; /* Offset for the stepper */
+            justify-content: center;
             padding: 35px;
-            margin-left: 35%;
+
         }
 
         .main-container {
@@ -101,7 +91,7 @@
             display: flex;
             align-items: flex-end;
             gap: 20px;
-            align-self: stretch;
+            width: 100%
         }
 
         .contact-container {
@@ -139,87 +129,145 @@
         }
     </style>
 </head>
+
 <body>
 
-<form action="{{ route() }}">
-<div class="create-account2-2">
+    <form id="form2">
+        <div class="create-account2">
+
             <x-stepper :currentStep="session('currentStep', 1)" />
 
-        <div class="main-container-wrapper">
-            <div class="main-container">
-                <x-Register.back-button title="Create account as Policyholder" id="goBack" backUrl="create-account-as-ph-1" />
+            <div class="main-container-wrapper">
+                <div class="main-container">
+                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2" />
 
 
-                <div class="getting-to-know-you-container">
-                    <x-Register.form-title title="Getting to know you" />
+                    <div class="getting-to-know-you-container">
+                        <!-- Form Title Component -->
+                        <x-Register.form-title title="Getting to know you" />
 
-                    <div class="active-policies-container">
-                        <x-title-required title="Active Policy/s you have" :required="true" />
+                        <!-- Active Policies Container -->
+                        <div class="policy-checkboxes">
+                            <x-question-label text="What policy are you interested in? " required="true" size="16px"
+                                weight="500" info="You may select as many as you want" />
 
-                        <x-Fields.add-policy label="Policy No." required="true" />
-                    </div>
+                            <div class="checkbox-col-1">
+                                <div class="check-row-1">
 
-                    <div class="representative-container">
-                        <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
-                            :required="true" />
+                                    <x-checkbox id="AutoExcelPlus" name="AutoExcelPlus" label="Auto Excel Plus"
+                                        value="1" />
 
-                        <div class="pill-button-container">
-                            <x-Buttons.pill-button idOne="noRepresentative" idTwo="yesRepresentative"
-                                pillOneText="No, I will explore Cocogen products myself"
-                                pillTwoText="Yes, I need a representative to talk to me" />
+                                    <x-checkbox id="InternationalTravelPlus" name="InternationalTravelPlus"
+                                        label="International Travel Plus" value="1" />
+
+                                </div>
+                                <div class="check-row-2">
+
+                                    <x-checkbox id="DomesticTravelPlus" name="DomesticTravelPlus"
+                                        label="Domestic Travel Plus" value="1" />
+
+                                    <x-checkbox id="ProTech" name="ProTech" label="Pro-Tech" value="1" />
+
+                                </div>
+                                <div class="check-row-3">
+
+                                    <x-checkbox id="CondoExcelPlus" name="CondoExcelPlus" label="Condo Excel Plus"
+                                        value="1" />
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="branch-container">
-                        <div class="title-container-2">
-                            <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
+                        <!-- Representative Container -->
+                        <div class="representative-container">
+                            <!-- Title for Representative -->
+                            <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
                                 :required="true" />
-                            <x-info-icon />
+
+                            <!-- Pill Button Container -->
+                            <div class="pill-button-container">
+                                <x-Buttons.pill-button idOne="noRepresentativeForm2" idTwo="yesRepresentativeForm2"
+                                    pillOneText="No, I will explore Cocogen products myself"
+                                    pillTwoText="Yes, I need a representative to talk to me" />
+                            </div>
+                        </div>
+
+                        <!-- Branch Container -->
+                        <div class="branch-container">
+                            <div class="title-container-2">
+                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
+                                    :required="true" />
+                                <x-info-icon />
+                            </div>
+                        </div>
+
+                        <!-- Dropdown Container -->
+                        <div class="dropdown-container">
+
+                            <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" required="true" />
+
                         </div>
                     </div>
 
-                    <div class="dropdown-container">
-                        <x-fields.dropdown-field-2 label="Select one (1) Cocogen branch" id="selected_branch"
-                            placeholder="Select branch" :required="true" width="'300px'"
-                            :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" />
-                    </div>
-                </div>
+                    <!-- Contact Container -->
+                    <div class="contact-container">
+                        <!-- Title for Contact -->
+                        <x-title-required title="How do you want to be contacted?" :required="true"
+                            placeholder="(You may select more than one)" />
 
-                <div class="contact-container">
-                    <x-title-required title="How do you want to be contacted?" :required="true"
-                        placeholder="(You may select more than one)" />
+                        <!-- Main Contact Container -->
+                        <div class="main-contact-container">
+                            <!-- Left Container -->
+                            <div class="left-container">
 
-                    <div class="main-contact-container">
-                        <div class="left-container">
-                            <x-Buttons.checkbox-button id="checkbox_email" label="Email" />
-                            <x-Buttons.checkbox-button id="checkbox_SMS" label="SMS" />
+                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="1" />
+
+                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="1" />
+
+                            </div>
+
+                            <!-- Right Container -->
+                            <div class="right-container">
+
+                                <x-checkbox id="contactMessenger" name="contactMessenger" label="Messenger"
+                                    value="1" />
+
+                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="1" />
+
+                            </div>
                         </div>
-
-                        <div class="right-container">
-                            <x-Buttons.checkbox-button id="checkbox_messenger" label="Messenger" />
-                            <x-Buttons.checkbox-button id="checkbox_call" label="Call" />
-                        </div>
                     </div>
-                </div>
 
-                <div class="button-container">
-                    <x-buttons.secondary-button id="cancelAction" data-target="create-account-as"> Cancel </x-buttons.secondary-button>
-                    <x-buttons.primary-button id="submit" date-next="your-identity-1">Next</x-buttons.primary-button>
+                    <!-- Button Container -->
+                    <div class="button-container">
+                        <x-buttons.secondary-button id="cancelForm2">
+                            Cancel
+                        </x-buttons.secondary-button>
+
+                        <x-buttons.primary-button type="submit" id="submitForm2">
+                            Next
+                        </x-buttons.primary-button>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-    
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-       $(document).ready(function() {
-            console.log("Script Loaded"); // Debugging
+        $(document).ready(function() {
+
+            $('#backtoForm1FromForm2').on('click', function() {
+                console.log('Go back button clicked!');
+                $('#form2').hide();
+                $('#form1').show();
+            });
 
             // Handle Pill Button Click
             $(document).on("click", ".pill-button", function(event) {
@@ -228,7 +276,7 @@
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                if (this.id === "noRepresentative") {
+                if (this.id === "noRepresentativeForm2") {
                     $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
                         function() {
                             $(".contact-container input[type='checkbox']").prop("checked", false);
@@ -243,9 +291,57 @@
 
                 let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
                 let form2Data = {
-                    branch: $('#selected_branch').val(),
-                    
+                    AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 1 : 0,
+                    InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 1 : 0,
+                    DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 1 : 0,
+                    ProTech: $('#ProTech').is(':checked') ? 1 : 0,
+                    CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 1 : 0,
+                    branch: $('#branch').is(':checked') ? 1 : 0,
+                    contactEmail: $('#contactEmail').is(':checked') ? 1 : 0,
+                    contactSMS: $('#contactSMS').is(':checked') ? 1 : 0,
+                    contactMessenger: $('#contactMessenger').is(':checked') ? 1 : 0,
+                    contactCall: $('#contactCall').is(':checked') ? 1 : 0
+                };
+
+
+                let combinedData = {
+                    ...form1Data,
+                    ...form2Data
+                }; 
+
+                $.ajax({
+                url: '/submit-step1', // Adjust to your backend route
+                type: 'POST',
+                data: combinedData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                        'content') // Include CSRF token here
+                },
+                success: function(response) {
+                    console.log('Step 1 submitted successfully:', response); // Debugging
+                    if (response.id) {
+                        sessionStorage.setItem("submittedID", response
+                            .id); // Store the ID for Form 3 submission
+                        $('#form2').fadeOut(function() {
+                            $('#form3')
+                                .fadeIn(); // Show Form 3 after Form 2 is hidden
+                        });
+                    } else {
+                        alert('Error: No ID returned from server.');
+                    }
+                    sessionStorage.removeItem(
+                        "form1Data"); // Clear Form 1 data after submit
+                },
+                error: function(xhr, status, error) {
+                    let errors = xhr.responseJSON.errors;
+                    if (errors && errors.email) {
+                        alert('Validation error: ' + errors.email[0]); // Show email error
+                    } else {
+                        alert('An error occurred: ' + error);
+                    }
+                    console.error(xhr.responseText); // Log the error response
                 }
+            });
             })
 
         });

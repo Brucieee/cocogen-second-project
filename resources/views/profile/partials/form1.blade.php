@@ -10,7 +10,6 @@
 
 <script>
     $(document).ready(function() {
-        // Initially, hide Form 2
         $('#form2').hide();
 
         // When Next button is clicked, show Form 2 and hide Form 1

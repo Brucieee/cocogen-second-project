@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PolicyholderController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,9 +64,11 @@ Route::get('testing-page', function () {
 
 // routes/web.php
 
-use App\Http\Controllers\UserController;
+
 
 Route::post('/submit-test', [TestController::class, 'store']);
 Route::post('/submit-extra-data/{id}', [TestController::class, 'update']);
+
+Route::post('/submit-step1', [PolicyholderController::class, 'store']);
 
 require __DIR__ . '/auth.php';

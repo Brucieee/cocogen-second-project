@@ -1,3 +1,14 @@
+@props([
+    'image' => '', // Path to the image
+    'title' => '', // Card title
+    'description' => '', // Card description
+    'buttonText' => 'Click Me', // Button text (default value)
+    'id' => 'default-id', // Button ID (default value)
+    'dataTarget' => '', // Optional data-target attribute
+    'onclick' => '', // Optional onclick event handler
+    'disabled' => false, // Whether the button is disabled
+])
+
 <style>
     .card-container {
         width: 332px !important;
@@ -67,10 +78,7 @@
         margin-top: auto;
     }
 
-    /* Default Style for Secondary Button */
-    /* Default Style for Secondary Button */
-
-
+    /* Hover Effect for Secondary Button */
     .card-container:hover .secondary-btn {
         background-color: #008080;
         color: white;
@@ -84,7 +92,6 @@
         color: white !important;
         border: 1px solid #60B3B3 !important;
     }
-
 
     /* Media Queries for Responsiveness */
     @media (max-width: 768px) {
@@ -136,7 +143,6 @@
     }
 </style>
 
-
 <div class="card-container">
     <!-- Fixed Image -->
     <img src="{{ asset('assets/' . $image) }}" alt="Image" class="card-image">
@@ -144,14 +150,15 @@
     <!-- Card Content -->
     <div class="card-content">
         <h5 class="card-title">{{ $title }}</h5>
-
         <p class="card-description">{{ $description }}</p>
 
-        <!-- Button Inside Card Content -->
+        <!-- Dynamic Secondary Button -->
         <div class="card-button-container">
             <x-buttons.secondary-button
                 :id="$id"
                 :data-target="$dataTarget"
+                :onclick="$onclick"
+                :disabled="$disabled"
                 class="secondary-button"
             >
                 {{ $buttonText }}

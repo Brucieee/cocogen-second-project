@@ -89,7 +89,7 @@
     // Event delegation for all checkboxes
     document.addEventListener("change", function(event) {
         if (event.target.matches('.checkbox-input')) {
-            console.log(event.target.checked ? "Checked" : "Unchecked");
+
         }
     });
 </script>
