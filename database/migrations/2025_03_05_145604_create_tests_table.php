@@ -21,6 +21,7 @@ class CreateTestsTable extends Migration
             $table->string('bank');
             $table->string('address');
             $table->string('phone');
+            $table->string('info');
             $table->timestamps();
         });
     }

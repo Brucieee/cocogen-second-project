@@ -60,5 +60,6 @@ Route::get('/create-account-as-ph-identity-1', function () {
 use App\Http\Controllers\UserController;
 
 Route::post('/submit-test', [TestController::class, 'store']);
+Route::post('/submit-extra-data/{id}', [TestController::class, 'update']);
 
 require __DIR__ . '/auth.php';
