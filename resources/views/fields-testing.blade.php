@@ -1,51 +1,93 @@
-<form id="userForm">
-    <!-- CSRF Token for security -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <x-Fields.text-field label="Full Name" id="nameField" type="text" placeholder="Enter your name..." required="true"
-        width="300px" />
-    <x-Fields.text-field label="Age" id="ageField" type="number" placeholder="Enter your age..." required="true"
-        width="300px" />
-    <x-Fields.text-field label="Email" id="emailField" type="email" placeholder="Enter your email..." required="true"
-        width="300px" />
-    <x-Fields.dropdown-field-2 id="bank" name="bank" label="Bank/E-Wallet" :options="['GCash', 'Maya', 'BDO']"
-        placeholder="Bank/E-Wallet Name" width="330px" required />
+    <div id="form1Container"> <!-- Wrap Form 1 in a container -->
+        @include('profile.partials.form1')
+    </div>
 
-    <button type="submit">Submit</button>
-</form>
+    <button id="nextButton">Next</button> <!-- Button to show Form 2 -->
 
-<script>
-    $(document).ready(function() {
-        $('#userForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent form from submitting the traditional way
+    <div id="form2Container" style="display: none;"> <!-- Hide Form 2 initially -->
 
-            // Get the CSRF token from the meta tag
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        @include('profile.partials.form2')
 
-            // Gather form data
-            var formData = {
-                name: $('#nameField').val(),
-                age: $('#ageField').val(),
-                email: $('#emailField').val(),
-                bank: $('#bank').val(),
-            };
+        <button id="previousButton">Previous</button> <!-- Button to go back to Form 1 -->
+    </div>
+    </section>
 
-            // Send data to backend using AJAX
-            $.ajax({
-                url: '/submit-test', // Updated route to /submit-test
-                type: 'POST',
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken // Add CSRF token to the request headers
-                },
-                success: function(response) {
-                    alert('Form submitted successfully');
-                    console.log(response); // Handle response
-                },
-                error: function(xhr, status, error) {
-                    alert('An error occurred: ' + error);
-                }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Hide form2 by default
+            $('#form2Container').hide();
+
+            // When Next button is clicked, show form2 and hide form1
+            $('#nextButton').on('click', function() {
+                $('#form1Container').fadeOut(); // Hide Form 1 smoothly
+                $('#form2Container').fadeIn(); // Show Form 2 smoothly
+                $(this).hide(); // Hide Next button
+            });
+
+            // When Previous button is clicked, show form1 and hide form2
+            $('#previousButton').on('click', function() {
+                $('#form1Container').fadeIn(); // Show Form 1
+                $('#form2Container').fadeOut(); // Hide Form 2
+                $('#nextButton').show(); // Show Next button again
+            });
+
+            // ✅ Store form1 data in sessionStorage when typing
+            $('#form1 input, #form1 select').on('input', function() {
+                let formData = {
+                    name: $('#nameField').val(),
+                    age: $('#ageField').val(),
+                    email: $('#emailField').val(),
+                    bank: $('#bank').val()
+                };
+                sessionStorage.setItem("form1Data", JSON.stringify(formData));
+            });
+
+            // ✅ Load stored data when the page loads
+            if (sessionStorage.getItem("form1Data")) {
+                let formData = JSON.parse(sessionStorage.getItem("form1Data"));
+                $('#nameField').val(formData.name);
+                $('#ageField').val(formData.age);
+                $('#emailField').val(formData.email);
+                $('#bank').val(formData.bank);
+            }
+
+            // ✅ Submit both forms when Form 2 is submitted
+            $('#form2').on('submit', function(e) {
+                e.preventDefault();
+
+                let form1Data = JSON.parse(sessionStorage.getItem("form1Data")) || {};
+                let form2Data = {
+                    address: $('#addressField').val(),
+                    phone: $('#phoneField').val()
+                };
+
+                let combinedData = {
+                    ...form1Data,
+                    ...form2Data
+                }; // Merge data
+
+                $.ajax({
+                    url: '/submit-test',
+                    type: 'POST',
+                    data: combinedData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Include CSRF token here
+                    },
+                    success: function(response) {
+                        alert('Form submitted successfully');
+                        console.log(response);
+                        sessionStorage.removeItem("form1Data"); // ✅ Clear storage after submit
+                    },
+                    error: function(xhr, status, error) {
+                        alert('An error occurred: ' + error);
+                    }
+                });
+
             });
         });
-    });
-</script>
+    </script>

@@ -1,16 +1,16 @@
 <?php
 
+// database/migrations/YYYY_MM_DD_HHMMSS_create_tests_table.php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTestsTable extends Migration
 {
     /**
      * Run the migrations.
      */
-    // database/migrations/YYYY_MM_DD_create_users_table.php
-
     public function up()
     {
         Schema::create('tests', function (Blueprint $table) {
@@ -19,16 +19,17 @@ return new class extends Migration
             $table->integer('age');
             $table->string('email')->unique();
             $table->string('bank');
+            $table->string('address');
+            $table->string('phone');
             $table->timestamps();
         });
     }
 
-
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('tests');
     }
-};
+}

@@ -2,6 +2,8 @@
 
 // app/Http/Controllers/TestController.php
 
+// app/Http/Controllers/TestController.php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,23 +14,20 @@ class TestController extends Controller
 {
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer',
+            'email' => 'required|email|unique:tests,email',
+            'bank' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string'
+        ]);
+
         try {
-            // Validate request data
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'age' => 'required|integer',
-                'email' => 'required|email|unique:tests,email', // Ensure 'tests' is the correct table name
-                'bank' => 'required|string',
-            ]);
-
-            // Create a new Test record
-            $test = Test::create($validated);
-
-            return response()->json(['message' => 'Test created successfully!', 'test' => $test], 201);
-        } catch (ValidationException $e) {
-            return response()->json(['errors' => $e->errors()], 422);
+            Test::create($validated);
+            return response()->json(['message' => 'Test created successfully!'], 201);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['error' => 'Something went wrong!', 'message' => $e->getMessage()], 500);
         }
     }
 }
