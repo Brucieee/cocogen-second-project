@@ -243,6 +243,7 @@
 
                 let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
                 let form2Data = {
+                    branch: $('#selected_branch').val(),
                     
                 }
             })

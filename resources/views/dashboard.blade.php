@@ -10,7 +10,7 @@
 </head>
 
 <body>
-        @include('Register.your-identity-3')
+        @include('forms.form1-ph')
 
 
 

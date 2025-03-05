@@ -55,6 +55,10 @@ Route::get('/create-account-as-ph-identity-1', function () {
     return view('create-account-as-ph-identity-1');
 })->name('create-account-as-ph-identity-1');
 
+Route::get('testing-page', function () {
+    return view('testing-page');
+});
+
 // routes/web.php
 
 use App\Http\Controllers\UserController;
