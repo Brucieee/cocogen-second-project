@@ -22,20 +22,21 @@ return new class extends Migration
         $table->string('citizenship');
         $table->string('contactNumber');
         $table->string('email')->unique();
-        $table->boolean('AutoExcelPlus')->default(0);
-        $table->boolean('InternationalTravelPlus')->default(0);
-        $table->boolean('DomesticTravelPlus')->default(0);
-        $table->boolean('ProTech')->default(0);
-        $table->boolean('CondoExcelPlus')->default(0);
-        $table->boolean('branch')->default(0);
-        $table->boolean('contactEmail')->default(0);
-        $table->boolean('contactSMS')->default(0);
-        $table->boolean('contactMessenger')->default(0);
-        $table->boolean('contactCall')->default(0);
+        $table->enum('AutoExcelPlus', ['yes', 'no'])->default('no');
+        $table->enum('InternationalTravelPlus', ['yes', 'no'])->default('no');
+        $table->enum('DomesticTravelPlus', ['yes', 'no'])->default('no');
+        $table->enum('ProTech', ['yes', 'no'])->default('no');
+        $table->enum('CondoExcelPlus', ['yes', 'no'])->default('no');
+        $table->string('branch');
+        $table->enum('contactEmail', ['yes', 'no'])->default('no');
+        $table->enum('contactSMS', ['yes', 'no'])->default('no');
+        $table->enum('contactMessenger', ['yes', 'no'])->default('no');
+        $table->enum('contactCall', ['yes', 'no'])->default('no');
         $table->timestamps();
     });
 }
 
+// $table->enum('AutoExcelPlus', ['yes', 'no'])->default('no');
 
     /**
      * Reverse the migrations.

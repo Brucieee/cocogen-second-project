@@ -1,4 +1,6 @@
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
@@ -155,24 +157,24 @@
                                 <div class="check-row-1">
 
                                     <x-checkbox id="AutoExcelPlus" name="AutoExcelPlus" label="Auto Excel Plus"
-                                        value="1" />
+                                        value="yes" />
 
                                     <x-checkbox id="InternationalTravelPlus" name="InternationalTravelPlus"
-                                        label="International Travel Plus" value="1" />
+                                        label="International Travel Plus" value="yes" />
 
                                 </div>
                                 <div class="check-row-2">
 
                                     <x-checkbox id="DomesticTravelPlus" name="DomesticTravelPlus"
-                                        label="Domestic Travel Plus" value="1" />
+                                        label="Domestic Travel Plus" value="yes" />
 
-                                    <x-checkbox id="ProTech" name="ProTech" label="Pro-Tech" value="1" />
+                                    <x-checkbox id="ProTech" name="ProTech" label="Pro-Tech" value="yes" />
 
                                 </div>
                                 <div class="check-row-3">
 
                                     <x-checkbox id="CondoExcelPlus" name="CondoExcelPlus" label="Condo Excel Plus"
-                                        value="1" />
+                                        value="yes" />
 
                                 </div>
                             </div>
@@ -221,9 +223,9 @@
                             <!-- Left Container -->
                             <div class="left-container">
 
-                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="1" />
+                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="yes" />
 
-                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="1" />
+                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="yes" />
 
                             </div>
 
@@ -231,9 +233,9 @@
                             <div class="right-container">
 
                                 <x-checkbox id="contactMessenger" name="contactMessenger" label="Messenger"
-                                    value="1" />
+                                    value="yes" />
 
-                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="1" />
+                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="yes" />
 
                             </div>
                         </div>
@@ -291,16 +293,16 @@
 
                 let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
                 let form2Data = {
-                    AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 1 : 0,
-                    InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 1 : 0,
-                    DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 1 : 0,
-                    ProTech: $('#ProTech').is(':checked') ? 1 : 0,
-                    CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 1 : 0,
-                    branch: $('#branch').is(':checked') ? 1 : 0,
-                    contactEmail: $('#contactEmail').is(':checked') ? 1 : 0,
-                    contactSMS: $('#contactSMS').is(':checked') ? 1 : 0,
-                    contactMessenger: $('#contactMessenger').is(':checked') ? 1 : 0,
-                    contactCall: $('#contactCall').is(':checked') ? 1 : 0
+                    AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 'yes' : 'no',
+                    InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 'yes' : 'no',
+                    DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 'yes' : 'no',
+                    ProTech: $('#ProTech').is(':checked') ? 'yes' : 'no',
+                    CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 'yes' : 'no',
+                    branch: $('#branch').val(),
+                    contactEmail: $('#contactEmail').is(':checked') ? 'yes' : 'no',
+                    contactSMS: $('#contactSMS').is(':checked') ? 'yes' : 'no',
+                    contactMessenger: $('#contactMessenger').is(':checked') ? 'yes' : 'no',
+                    contactCall: $('#contactCall').is(':checked') ? 'yes' : 'no'
                 };
 
 

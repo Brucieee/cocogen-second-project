@@ -20,16 +20,16 @@ class PolicyholderController extends Controller
             'citizenship' => 'required|string',
             'contactNumber' => 'required|integer',
             'email' => 'required|email',
-            'AutoExcelPlus' => 'required|boolean',
-            'InternationalTravelPlus' => 'required|boolean',
-            'DomesticTravelPlus' => 'required|boolean',
-            'ProTech' => 'required|boolean',
-            'CondoExcelPlus' => 'required|boolean',
             'branch' => 'required|string',
-            'contactEmail' => 'required|boolean',
-            'contactSMS' => 'required|boolean',
-            'contactMessenger' => 'required|boolean',
-            'contactCall' => 'required|boolean'
+            'AutoExcelPlus' => 'in:yes,no',
+            'InternationalTravelPlus' => 'in:yes,no',
+            'DomesticTravelPlus' => 'in:yes,no',
+            'ProTech' => 'in:yes,no',
+            'CondoExcelPlus' => 'in:yes,no',
+            'contactEmail' => 'in:yes,no',
+            'contactSMS' => 'in:yes,no',
+            'contactMessenger' => 'in:yes,no',
+            'contactCall' => 'in:yes,no',
         ]);
 
         try {
