@@ -2,27 +2,35 @@
     <x-Fields.text-field label="Additional Info" id="additionalInfo" type="text" placeholder="Enter more details..."
         required="true" width="300px" />
 
-    <button type="button" id="previousToForm2">Previous</button>
-    <button type="submit" id="submitFinal">Submit Final Data</button>
+    <x-buttons.checkbox id="agree_terms" name="agree_terms" label="I agree to the terms and conditions" value="1" required
+        />
+
+        <button type="button" id="previousToForm2">Previous</button>
+        <button type="submit" id="submitFinal">Submit Final Data</button>
 </form>
 
 <script>
     $(document).ready(function() {
-        // Submit Form 2 and show Form 3
+        // Submit Form 3
         $('#form3').on('submit', function(e) {
             e.preventDefault();
 
+            // Collect form data
             let form3Data = {
-                additionalInfo: $('#additionalInfo').val() // Get the additional info
+                additionalInfo: $('#additionalInfo').val(), // Get the additional info
+                agree_terms: $('#agree_terms').is(':checked') ? 1 :
+                    0 // Get checkbox value (1 if checked, 0 if not)
             };
 
-            let id = sessionStorage.getItem("submittedID"); // Get the stored ID
+            // Get the stored ID
+            let id = sessionStorage.getItem("submittedID");
 
             if (!id) {
                 alert('Error: No ID found. Please start over.');
                 return;
             }
 
+            // Submit data via AJAX
             $.ajax({
                 url: `/submit-extra-data/${id}`, // Include the ID in the URL
                 type: 'POST',

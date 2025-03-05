@@ -11,5 +11,5 @@ class Test extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'age', 'email', 'bank', 'address', 'phone', 'info' ]; // Ensure these match your database columns
+    protected $fillable = ['name', 'age', 'email', 'bank', 'address', 'phone', 'info', 'agree_terms' ]; // Ensure these match your database columns
 }

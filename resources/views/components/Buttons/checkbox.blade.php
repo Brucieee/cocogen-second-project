@@ -17,18 +17,19 @@
     $checkboxId = $id ?? uniqid('checkbox_');
 @endphp
 
-<div class="checkbox-button {{ $class }}">
+<div class="checkbox-button {{ $class }}" {{ $attributes }}>
     <input
         type="checkbox"
         id="{{ $checkboxId }}"
         name="{{ $name }}"
         value="{{ $value }}"
-        {{ $checked ? 'checked' : '' }}
-        {{ $disabled ? 'disabled' : '' }}
-        {{ $required ? 'required' : '' }}
+        @checked($checked)
+        @disabled($disabled)
+        @required($required)
         class="checkbox-input {{ $inputClass }}"
+        aria-labelledby="label-{{ $checkboxId }}"
     />
-    <label for="{{ $checkboxId }}" class="checkbox-label {{ $labelClass }}">
+    <label for="{{ $checkboxId }}" id="label-{{ $checkboxId }}" class="checkbox-label {{ $labelClass }}">
         {{ $label }}
     </label>
 </div>

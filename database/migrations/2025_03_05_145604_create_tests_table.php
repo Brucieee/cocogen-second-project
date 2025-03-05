@@ -22,6 +22,7 @@ class CreateTestsTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('info');
+            $table->boolean('agree_terms')->default(false); // Add this line
             $table->timestamps();
         });
     }

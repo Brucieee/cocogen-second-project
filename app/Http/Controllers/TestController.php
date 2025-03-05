@@ -31,12 +31,16 @@ class TestController extends Controller
     {
         $validated = $request->validate([
             'additionalInfo' => 'required|string',
+            'agree_terms' => 'required|boolean', // Validate the checkbox value
         ]);
 
         try {
             $test = Test::findOrFail($id); // Find the record by ID
-            $test->update(['info' => $validated['additionalInfo']]); // Update the record
-            return response()->json(['message' => 'Test updated successfully!'], 200);
+            $test->update([
+                'info' => $validated['additionalInfo'],
+                'agree_terms' => $validated['agree_terms'], // Update the agree_terms field
+            ]);
+            return response()->json(['message' => 'Additional info saved successfully!'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Something went wrong!', 'message' => $e->getMessage()], 500);
         }
