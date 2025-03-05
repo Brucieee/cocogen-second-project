@@ -52,10 +52,5 @@ Route::get('/create-account-as-ph-identity-1', function () {
     return view('create-account-as-ph-identity-1');
 })->name('create-account-as-ph-identity-1');
 
-Route::post('create-account-as-ph-1', [RegisterController::class, 'storeStep1']);
-Route::post('create-account-as-ph-2', [RegisterController::class, 'storeStep2']);
-Route::post('/register-policyholder', [PolicyholderController::class, 'store'])->name('register.policyholder');
-
-
 
 require __DIR__ . '/auth.php';

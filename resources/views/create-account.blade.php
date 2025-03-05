@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form action="{{ route('register.policyholder') }}" method="POST" id="addPolicyholder">
+    <form action="" method="POST" id="add_policyholder">
 
         @csrf
         <div id="dynamic-content">
@@ -29,15 +29,8 @@
         <script>
             // submit event 
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
-           
-
-
+        
 
             let selectedOption = null;
 

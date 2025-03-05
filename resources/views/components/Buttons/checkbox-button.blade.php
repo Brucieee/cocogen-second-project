@@ -1,3 +1,7 @@
+@php
+    $checkboxId = $id ?? uniqid('checkbox_');
+@endphp
+
 <style>
     .checkbox-button {
         display: flex;
@@ -13,22 +17,19 @@
         border-radius: 4px;
         border: 2px solid var(--Primary-Light-Pink, #FB9FCD);
         appearance: none;
-        /* Removes default checkbox appearance */
         position: relative;
         background-color: transparent;
-        cursor: pointer; /* Allows clicking on the checkbox */
+        cursor: pointer;
     }
 
-    /* Checkbox when checked */
     .checkbox-button input[type="checkbox"]:checked {
-        background-image: url('/assets/icons/Icon-Checkbox-Pink.svg');
-        background-size: 20px 20px; /* Ensures icon size matches the checkbox */
+        background-image: url("{{ asset('assets/icons/Icon-Checkbox-Pink.svg') }}");
+        background-size: 20px 20px; 
         background-repeat: no-repeat;
-        background-position: center; /* Centers the icon */
-        border: none; /* Removes the border when checked */
+        background-position: center; 
+        border: none;
     }
 
-    /* Text Style */
     .checkbox-button label {
         font-family: 'Inter', sans-serif;
         font-size: 14px;
@@ -36,15 +37,8 @@
         font-weight: 400;
         line-height: 24px;
         color: var(--Surfaces-LVL-9, #1E1F21);
-        pointer-events: none; /* Disables any interaction with the label */
     }
 
-    /* Ensure the cursor is a pointer only on the checkbox */
-    .checkbox-button input[type="checkbox"]:hover {
-        cursor: pointer; /* Ensures the cursor only changes when hovering over the checkbox */
-    }
-
-    /* Make the checkbox button responsive */
     @media (max-width: 992px) {
         .checkbox-button {
             gap: 10px;
@@ -52,14 +46,16 @@
     }
 </style>
 
-<!-- Checkbox Button with Clickable Checkbox -->
 <div class="checkbox-button">
-    <input type="checkbox" id="checkbox{{ $id ?? 'default_id' }}" {{ $checked ?? false ? 'checked' : '' }} />
-    <label for="checkbox{{ $id ?? 'default_id' }}">{{ $label ?? 'Click me' }}</label>
+    <input type="checkbox" id="{{ $checkboxId }}" {{ $checked ?? false ? 'checked' : '' }} />
+    <label for="{{ $checkboxId }}">{{ $label ?? 'Click me' }}</label>
 </div>
 
 <script>
-    document.getElementById("checkbox{{ $id ?? 'default_id' }}").addEventListener("change", function() {
-        console.log(this.checked ? "Checked" : "Unchecked");
+    // Event delegation for all checkboxes
+    document.addEventListener("change", function(event) {
+        if (event.target.matches('.checkbox-button input[type="checkbox"]')) {
+            console.log(event.target.checked ? "Checked" : "Unchecked");
+        }
     });
 </script>
