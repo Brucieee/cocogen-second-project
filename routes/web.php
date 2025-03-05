@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\PolicyholderController;
+use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('create-account', function () {
     return view('create-account');
+});
+Route::get('fields-testing', function () {
+    return view('fields-testing');
 });
 // Register routes
 Route::prefix('register')->group(function () {
@@ -52,5 +55,10 @@ Route::get('/create-account-as-ph-identity-1', function () {
     return view('create-account-as-ph-identity-1');
 })->name('create-account-as-ph-identity-1');
 
+// routes/web.php
+
+use App\Http\Controllers\UserController;
+
+Route::post('/submit-test', [TestController::class, 'store']);
 
 require __DIR__ . '/auth.php';
