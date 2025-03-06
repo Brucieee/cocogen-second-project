@@ -75,7 +75,6 @@
         $('#form4').hide();
         $('#form5').hide();
         $('#form6').hide();
-
         $('#asPartner').hide();
 
         $('#goToPolicyholder').on('click', function() {
@@ -87,7 +86,6 @@
             $('#accountAs').hide();
             $('#asPartner').show();
         });
-
 
     })
 </script>

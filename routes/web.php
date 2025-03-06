@@ -21,54 +21,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('create-account', function () {
-    return view('create-account');
-});
-Route::get('fields-testing', function () {
-    return view('fields-testing');
-});
-// Register routes
-Route::prefix('register')->group(function () {
-    Route::get('create-account-as', function () {
-        return view('Register.create-account-as');
-    });
-
-    Route::get('create-account-as-partner', function () {
-        return view('Register.create-account-as-partner');
-    });
-
-    Route::get('create-account-as-ph-1', function () {
-        return view('Register.create-account-as-ph-1');
-    });
-
-    Route::get('create-account-as-ph-2', function () {
-        return view('Register.create-account-as-ph-2');
-    });
-
-    Route::get('create-account-as-ph-2-2', function () {
-        return view('Register.create-account-as-ph-2-2');
-    });
-
-    Route::get('create-account-as-ph-identity-1', function () {
-        return view('Register.create-account-as-ph-identity-1');
-    });
-});
-
-Route::get('/create-account-as-ph-identity-1', function () {
-    return view('create-account-as-ph-identity-1');
-})->name('create-account-as-ph-identity-1');
-
-Route::get('testing-page', function () {
-    return view('testing-page');
-});
-
-// routes/web.php
-
+Route::get('create-account', function () { return view('create-account'); });
+Route::get('fields-testing', function () { return view('fields-testing'); });
+Route::get('testing-page', function () { return view('testing-page'); });
 
 
 Route::post('/submit-test', [TestController::class, 'store']);
 Route::post('/submit-extra-data/{id}', [TestController::class, 'update']);
 
 Route::post('/submit-step1', [PolicyholderController::class, 'store']);
+Route::post('/submit-step2/{id}', [PolicyholderController::class, 'update']);
+
 
 require __DIR__ . '/auth.php';

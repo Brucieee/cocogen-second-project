@@ -122,7 +122,7 @@
                         Back
                     </x-buttons.secondary-button>
 
-                    <x-buttons.primary-button id="nextForm5">
+                    <x-buttons.primary-button type="submit" id="nextForm5">
                         Next
                     </x-buttons.primary-button>
                 </div>
@@ -142,24 +142,50 @@
 
             });
 
-            $('#nextForm3').on('click', function() {
-                $('#form5').hide();
-                $('#form6').show();
+            $('#nextForm5').on('submit', function() {
+                e.preventDefault();
 
 
-                let formData = {
+                let form3Data = JSON.parse(sessionStorage.getItem("form3Data")) || {};
+                let form4Data = JSON.parse(sessionStorage.getItem("form4Data")) || {};
+                let form5Data = {
                     payment: $("#payment").val(),
-                    bankWallet: $("#bankWallet").val(),
+                    bankWallet: $("#bankWallet").val()
 
                 };
+                let id = sessionStorage.getItem("submittedID");
 
+                if (!id) {
+                    alert('Error: No ID found. Please start over.');
+                    return;
+                }
+                
+                let combinedData = {
+                    ...form3Data,
+                    ...form4Data,
+                    ...form5Data
+                }
+
+                $.ajax({
+                    url: '/submit-step2/{id}',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    sucesss: function(response) {
+                        console.log('Step 2 submitted sucessfully:', response);
+                        alert('Additional info saved');
+
+                        $('#form5').hide();
+                        $('#form6').show();
+                    }
+                })
                 sessionStorage.setItem('form5Data', JSON.stringify(formData));
 
                 if (sessionStorage.getItem("form5Data")) {
-                    let formData = JSON.parse(sessionStorage.getItem("form5Data"));
+                    let form5Data = JSON.parse(sessionStorage.getItem("form5Data"));
                     $('payment').val(formData.payment);
                     $('bankWallet').val(formData.bankWallet);
-
 
                 }
             })

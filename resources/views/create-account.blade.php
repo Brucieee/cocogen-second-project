@@ -36,8 +36,7 @@
     
     @include('forms.form5-ph')
 
-    @include('forms.form6-otp')
-
+ 
 
 </body>
 

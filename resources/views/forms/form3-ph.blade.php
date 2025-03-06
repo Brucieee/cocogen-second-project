@@ -204,14 +204,18 @@
     <script>
         $(document).ready(function() {
             $('#continueForm3').on('click', function() {
-                // Implement the "Continue Later" functionality here if needed
+
             });
 
             $('#nextForm3').on('click', function() {
+                $('#form3').hide();
+                $('#form4').show();
+            });
+
+            $('#form3 input, #form3 select').on('input', function() {
                 console.log("Form 3 submitted");
 
-                // Collect form data and store it in sessionStorage when the "Next" button is clicked
-                let formData = {
+                let form3Data = {
                     unitNo: $("#unitNo").val(),
                     street: $("#street").val(),
                     barangay: $("#barangay").val(),
@@ -219,12 +223,8 @@
                     province: $("#province").val(),
                     region: $("#region").val(),
                 };
+                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
 
-                sessionStorage.setItem('form3Data', JSON.stringify(formData));
-
-                // Hide form 3 and show form 4
-                $('#form3').hide();
-                $('#form4').show(); // Ensure form4 exists in HTML
             });
 
             // Pre-populate form fields if data is available in sessionStorage
