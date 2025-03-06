@@ -204,14 +204,13 @@
     <script>
         $(document).ready(function() {
             $('#continueForm3').on('click', function() {
-
+                // Implement the "Continue Later" functionality here if needed
             });
 
             $('#nextForm3').on('click', function() {
-                $('#form3').hide();
-                $('#form4').show();
+                console.log("Form 3 submitted");
 
-
+                // Collect form data and store it in sessionStorage when the "Next" button is clicked
                 let formData = {
                     unitNo: $("#unitNo").val(),
                     street: $("#street").val(),
@@ -219,22 +218,25 @@
                     city: $("#city").val(),
                     province: $("#province").val(),
                     region: $("#region").val(),
-
                 };
 
                 sessionStorage.setItem('form3Data', JSON.stringify(formData));
 
-                if (sessionStorage.getItem("form3Data")) {
-                    let formData = JSON.parse(sessionStorage.getItem("form3Data"));
-                    $('unitNo').val(formData.unitNo);
-                    $('street').val(formData.street);
-                    $('barangay').val(formData.barangay);
-                    $('city').val(formData.city);
-                    $('province').val(formData.province);
-                    $('region').val(formData.region);
+                // Hide form 3 and show form 4
+                $('#form3').hide();
+                $('#form4').show(); // Ensure form4 exists in HTML
+            });
 
-                }
-            })
+            // Pre-populate form fields if data is available in sessionStorage
+            if (sessionStorage.getItem("form3Data")) {
+                let formData = JSON.parse(sessionStorage.getItem("form3Data"));
+                $('#unitNo').val(formData.unitNo);
+                $('#street').val(formData.street);
+                $('#barangay').val(formData.barangay);
+                $('#city').val(formData.city);
+                $('#province').val(formData.province);
+                $('#region').val(formData.region);
+            }
         });
     </script>
 </body>

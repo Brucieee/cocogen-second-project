@@ -32,8 +32,7 @@
             position: relative;
         }
 
-        .otp-page-container
-        {
+        .otp-page-container {
             display: flex;
             gap: 25px;
             flex-direction: column;
@@ -46,52 +45,47 @@
             margin-bottom: 0px; */
             margin: auto;
         }
-        .page-contents
-        {
+
+        .page-contents {
             display: flex;
             flex-direction: column;
             gap: 35px;
         }
 
-        .otp-btns
-        {
+        .otp-btns {
             display: flex;
             gap: 25px;
         }
-        .main-otp-content{
+
+        .main-otp-content {
             display: flex;
             gap: 25px;
             flex-direction: column;
 
         }
-
     </style>
 </head>
 
 <body>
+    <form id="form6">
+        <x-stepper :currentStep="session('currentStep', 2)" />
 
-    <x-stepper :currentStep="session('currentStep', 2)" />
-
-    <div class="otp-page-container">
-        <x-back-title title="Create account as Policyholder"  />
-        <div class="page-contents">
-            <x-Register.form-title title="Your identity" />
-            <div class="main-otp-content">
-            <x-Reminders.dynamic-reminder
-                    icon="assets/icons/Icon-LockKey.svg"
-                    fontWeight="700"
-                    message="An OTP has been sent to your registered email address."
-                     />
+        <div class="otp-page-container">
+            <x-back-title title="Create account as Policyholder" />
+            <div class="page-contents">
+                <x-Register.form-title title="Your identity" />
+                <div class="main-otp-content">
+                    <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LockKey.svg" fontWeight="700"
+                        message="An OTP has been sent to your registered email address." />
                     <x-otp-input duration="60" />
-            </div>
+                </div>
 
-            <div class="otp-btns">
+                <div class="otp-btns">
                     <x-buttons.primary-button>Next</x-button.primary-button>
+                </div>
+
             </div>
-
-
-        </div>
-
+    </form>
 
     </div>
 

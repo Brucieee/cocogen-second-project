@@ -30,17 +30,7 @@ class PolicyholderController extends Controller
             'contactSMS' => 'required|boolean',
             'contactMessenger' => 'required|boolean',
             'contactCall' => 'required|boolean',
-            'unitNo' => 'required|string',
-            'street' => 'required|string',
-            'barangay' => 'required|string',
-            'city' => 'required|string',
-            'province' => 'required|string',
-            'region' => 'required|string',
-            'uploadID' => 'required|string',
-            'uploadDisplayPicture' => 'required|string',
-            'payment' => 'required|string',
-            'bankWallet' => 'required|string',
-            'otp' => 'required|string',
+            
         ]);
 
         try {
@@ -54,25 +44,7 @@ class PolicyholderController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'firstName' => 'nullable|string',
-            'middleName' => 'nullable|string',
-            'lastName' => 'nullable|string',
-            'dateOfBirth' => 'nullable|string',
-            'placeOfBirth' => 'nullable|string',
-            'sex' => 'nullable|string',
-            'citizenship' => 'nullable|string',
-            'contactNumber' => 'nullable|integer',
-            'email' => 'nullable|email',
-            'AutoExcelPlus' => 'nullable|boolean',
-            'InternationalTravelPlus' => 'nullable|boolean',
-            'DomesticTravelPlus' => 'nullable|boolean',
-            'ProTech' => 'nullable|boolean',
-            'CondoExcelPlus' => 'nullable|boolean',
-            'branch' => 'nullable|string',
-            'contactEmail' => 'nullable|boolean',
-            'contactSMS' => 'nullable|boolean',
-            'contactMessenger' => 'nullable|boolean',
-            'contactCall' => 'nullable|boolean',
+            
             'unitNo' => 'nullable|string',
             'street' => 'nullable|string',
             'barangay' => 'nullable|string',

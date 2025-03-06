@@ -86,48 +86,49 @@
 </head>
 
 <body>
-    <x-stepper :currentStep="session('currentStep', 2)" />
+    <form id="form5">
+        <x-stepper :currentStep="session('currentStep', 2)" />
 
-    <div class="identity-3-container">
-        <x-back-title title="Create account as Policyholder" />
-        <div class="identity-form-3">
-            <x-Register.form-title title="Your identity" />
-            <div class="form-contents">
-                <div class="payment-method">
-                    <x-title-required title="Do you want to add payment method?" placeholder="(Optional)"
-                        :required="false" />
-                    <x-Buttons.pill-button idOne="pill-one-no-payment" idTwo="pill-two-yes-payment" pillOneText="No"
-                        pillTwoText="Yes" />
+        <div class="identity-3-container">
+            <x-back-title title="Create account as Policyholder" />
+            <div class="identity-form-3">
+                <x-Register.form-title title="Your identity" />
+                <div class="form-contents">
+                    <div class="payment-method">
+                        <x-title-required title="Do you want to add payment method?" placeholder="(Optional)"
+                            :required="false" />
+                        <x-Buttons.pill-button idOne="pill-one-no-payment" idTwo="pill-two-yes-payment" pillOneText="No"
+                            pillTwoText="Yes" />
 
-                    <div class="payment-fields">
+                        <div class="payment-fields">
 
-                        <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
-                            placeholder="Payment type" required="true" />
+                            <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
+                                placeholder="Payment type" required="true" />
 
-                        <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
-                            placeholder="Bank/E-Wallet Name" required="true" />
+                            <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
+                                placeholder="Bank/E-Wallet Name" required="true" />
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="reminder-change">
-                <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LightBulb.svg"
-                    message="You may change your payment method later." />
-            </div>
+                <div class="reminder-change">
+                    <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LightBulb.svg"
+                        message="You may change your payment method later." />
+                </div>
 
-            <div class="next-cancel-btn-3">
-                <x-buttons.secondary-button id="backForm5">
-                    Back
-                </x-buttons.secondary-button>
+                <div class="next-cancel-btn-3">
+                    <x-buttons.secondary-button id="backForm5">
+                        Back
+                    </x-buttons.secondary-button>
 
-                <x-buttons.primary-button id="nextForm5">
-                    Next
-                </x-buttons.primary-button>
+                    <x-buttons.primary-button id="nextForm5">
+                        Next
+                    </x-buttons.primary-button>
+                </div>
             </div>
         </div>
-    </div>
-
+    </form>
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

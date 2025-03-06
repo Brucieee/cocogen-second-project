@@ -191,55 +191,55 @@
 </head>
 
 <body>
+    <form id="form4">
+        <div class="identity-form2">
+            <x-stepper :currentStep="session('currentStep', 2)" />
 
-    <div class="identity-form2">
-        <x-stepper :currentStep="session('currentStep', 2)" />
+            <div class="content-container">
+                <div class="container-1">
+                    <h1 class="title">Create Account as Policyholder</h1>
 
-        <div class="content-container">
-            <div class="container-1">
-                <h1 class="title">Create Account as Policyholder</h1>
+                    <div class="container-2">
+                        <x-Register.form-title title="Your identity" />
 
-                <div class="container-2">
-                    <x-Register.form-title title="Your identity" />
+                        <div class="container-3">
+                            <div class="identification-title">
+                                <span class="identification-text">Identification</span>
+                                <span class="optional-text">(Optional)</span>
+                            </div>
 
-                    <div class="container-3">
-                        <div class="identification-title">
-                            <span class="identification-text">Identification</span>
-                            <span class="optional-text">(Optional)</span>
+                            <!-- Upload ID Section -->
+                            <div class="container-4">
+                                <x-file-preview id="uploadID" buttonText="Upload ID" />
+                                <x-Reminders.file-format />
+                            </div>
+
+                            <!-- Upload Display Picture Section -->
+                            <div class="container-5">
+                                <span class="upload-dp-title">Upload Display Picture (Optional)</span>
+                                <x-file-preview id="uploadDisplayPicture" buttonText="Upload" />
+                                <x-Reminders.file-format />
+                            </div>
                         </div>
 
-                        <!-- Upload ID Section -->
-                        <div class="container-4">
-                            <x-file-preview id="uploadID" buttonText="Upload ID" />
-                            <x-Reminders.file-format />
-                        </div>
+                        <div class="container-6">
+                            <div class="button-group">
+                                <x-buttons.secondary-button id="backForm4">
+                                    Back
+                                </x-buttons.secondary-button>
 
-                        <!-- Upload Display Picture Section -->
-                        <div class="container-5">
-                            <span class="upload-dp-title">Upload Display Picture (Optional)</span>
-                            <x-file-preview id="uploadDisplayPicture" buttonText="Upload" />
-                            <x-Reminders.file-format />
-                        </div>
-                    </div>
-
-                    <div class="container-6">
-                        <div class="button-group">
-                            <x-buttons.secondary-button id="backForm4">
-                                Back
-                            </x-buttons.secondary-button>
-
-                            <x-buttons.primary-button id="nextForm4">
-                                Next
-                            </x-buttons.primary-button>
+                                <x-buttons.primary-button id="nextForm4">
+                                    Next
+                                </x-buttons.primary-button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
-
-
         </div>
-    </div>
-
+    </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -259,7 +259,7 @@
                 });
 
                 fileInput.on('change', function() {
-                    const file = this.files[0]; 
+                    const file = this.files[0];
                     if (file) {
 
                         if (file.size < 15 * 1024 || file.size > 5 * 1024 * 1024) {

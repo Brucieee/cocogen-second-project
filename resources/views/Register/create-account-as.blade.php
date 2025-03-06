@@ -71,6 +71,10 @@
         $('#form1').hide();
         $('#form2').hide();
         $('#form2-1').hide();
+        $('#form3').hide();
+        $('#form4').hide();
+        $('#form5').hide();
+        $('#form6').hide();
 
         $('#asPartner').hide();
 

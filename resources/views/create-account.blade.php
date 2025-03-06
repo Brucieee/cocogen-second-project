@@ -30,7 +30,14 @@
     
     @include('forms.form2-1-ph')
 
-    {{-- @include('forms.form3-ph') --}}
+    @include('forms.form3-ph')
+
+    @include('forms.form4-ph')
+    
+    @include('forms.form5-ph')
+
+    @include('forms.form6-otp')
+
 
 </body>
 
