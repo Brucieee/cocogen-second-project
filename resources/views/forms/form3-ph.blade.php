@@ -13,6 +13,13 @@
             display: flex;
         }
 
+        form#form3
+        {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
         .form-container-1 {
             width: 784px;
             height: 542px auto;
@@ -99,7 +106,7 @@
 
 <body>
 
-    <form id="form3">
+    <form id="form3" id="form3">
         <div class="identity-form1">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
