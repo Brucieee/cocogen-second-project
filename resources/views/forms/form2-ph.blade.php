@@ -328,8 +328,7 @@
                     type: 'POST',
                     data: combinedData,
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                            'content') // Include CSRF token here
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token here
                     },
                     success: function(response) {
                         console.log('Step 1 submitted successfully:', response); // Debugging
@@ -337,8 +336,7 @@
                             sessionStorage.setItem("submittedID", response
                                 .id); // Store the ID for Form 3 submission
                             $('#form2').fadeOut(function() {
-                                $('#form3')
-                                    .fadeIn(); // Show Form 3 after Form 2 is hidden
+                                $('#form3').fadeIn(); // Show Form 3 after Form 2 is hidden
                             });
                         } else {
                             alert('Error: No ID returned from server.');
