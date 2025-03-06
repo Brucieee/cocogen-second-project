@@ -1,7 +1,5 @@
 <head>
-    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
@@ -13,6 +11,12 @@
             height: 100%;
             font-family: 'Inter', sans-serif;
             display: flex;
+        }
+
+        form#form3 {
+            margin: 0;
+            padding: 0;
+            width: 100%;
         }
 
         .form-container-1 {
@@ -100,61 +104,151 @@
 </head>
 
 <body>
-    <div class="identity-form1">
-        <x-stepper :currentStep="session('currentStep', 2)" />
 
-        <div class="form-container-1" id="identity-form-1">
+    <form id="form3" style="display: none;">
+        <div class="identity-form1">
+            <x-stepper :currentStep="session('currentStep', 2)" />
 
-            <h1 class="policyholder-title">Create account as Policyholder</h1>
+            <div class="form-container-1" id="identity-form-1">
 
-            <div class="form-1">
-                <x-Register.form-title title="Your identity" />
-                <div class="form-contents-1">
-                    <p class="form-p">Present residence <span class="form-span">*</span></p>
-                    <div class="row-1">
-                        <x-fields.text-field id="house" name="house-unit" label="House/Unit No." placeholder="10"
-                            width="212px" type="email" required />
+                <h1 class="policyholder-title">Create account as Policyholder</h1>
 
-                        <x-fields.text-field id="street" name="Street" label="Street" placeholder="Street name"
-                            width="212px" required />
+                <div class="form-1">
+                    <x-Register.form-title title="Your identity" />
+                    <div class="form-contents-1">
+                        <p class="form-p">Present residence <span class="form-span">*</span></p>
+                        <div class="row-1">
 
-                        <x-fields.dropdown-field-2 id="barangay" name="Barangay" label="Barangay"
-                            placeholder="Barangay" :options="['Pasig', 'Manila', 'Quezon City', 'Cavite']" width="345px" height="56px" required />
+                            <x-text-field label="House/Unit No." id="unitNo" type="text" placeholder="10"
+                                required="true" />
+
+                            <x-text-field label="Street" id="street" type="text" placeholder="Street name"
+                                required="true" />
+
+                            <x-dropdown label="Barangay" id="barangay" name="barangay" :options="[
+                                'Bel-Air',
+                                'San Antonio',
+                                'Lahug',
+                                'Holy Spirit',
+                                'Poblacion',
+                                'Talon Uno',
+                                'Malabanias',
+                                'Mabolo',
+                                'Banilad',
+                                'Guadalupe',
+                            ]"
+                                placeholder="Barangay" required="true" />
+
+                        </div>
+                        <div class="row-2">
+
+                            <x-dropdown label="City" id="city" name="city" :options="['Pasig', 'Manila', 'Quezon City', 'Cavite']"
+                                placeholder="City" required="true" />
+
+                            <x-dropdown label="Province" id="province" name="province" :options="[
+                                'Cebu',
+                                'Pampanga',
+                                'Batangas',
+                                'Bulacan',
+                                'Laguna',
+                                'Rizal',
+                                'Palawan',
+                                'Iloilo',
+                                'Davao del Sur',
+                                'Zambales',
+                            ]"
+                                placeholder="Province" required="true" />
+
+                            <x-dropdown label="Region" id="region" name="region" :options="[
+                                'National Capital Region (NCR)',
+                                'Ilocos Region (Region I)',
+                                'Cagayan Valley (Region II)',
+                                'Central Luzon (Region III)',
+                                'CALABARZON (Region IV-A)',
+                                'MIMAROPA (Region IV-B)',
+                                'Bicol Region (Region V)',
+                                'Western Visayas (Region VI)',
+                                'Central Visayas (Region VII)',
+                                'Eastern Visayas (Region VIII)',
+                                'Zamboanga Peninsula (Region IX)',
+                                'Northern Mindanao (Region X)',
+                                'Davao Region (Region XI)',
+                                'SOCCSKSARGEN (Region XII)',
+                                'Caraga (Region XIII)',
+                                'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)',
+                                'Cordillera Administrative Region (CAR)',
+                            ]"
+                                placeholder="Region" required="true" />
+
+                        </div>
+                        <div class="row-3">
+
+                            <x-text-field label="Zip" id="zip" type="zip" placeholder="10" />
+
+                        </div>
                     </div>
-                    <div class="row-2">
 
-                        <x-fields.dropdown-field-2 id="city" name="City" label="City" :options="['Pasig', 'Manila', 'Quezon City', 'Cavite']"
-                            placeholder="City" width="345px" height="56px" required />
+                    <div class="identity-btn-1">
+                        <div class="row-btn">
+                            <x-buttons.secondary-button id="continueForm3">
+                                Continue later
+                            </x-buttons.secondary-button>
 
-                        <x-fields.dropdown-field-2 id="province" name="Province" label="Province" :options="['Manila', 'Batangas', 'Abra']"
-                            placeholder="Province" width="345px" height="56px" required />
+                            <x-buttons.primary-button id="nextForm3">
+                                Next
+                            </x-buttons.primary-button>
 
-                        <x-fields.dropdown-field-2 id="region" name="Region" label="Region" :options="['NCR', 'Region 1', 'Region 2']"
-                            placeholder="Region" width="345px" height="56px" required />
-                    </div>
-                    <div class="row-3">
-
-                        <x-fields.text-field id="zip" name="zip" label="ZIP" placeholder="10"
-                            width="212px" required />
-                    </div>
-
-                </div>
-
-                <div class="identity-btn-1">
-                    <div class="row-btn">
-                        <x-buttons.secondary-button>Continue later</x-buttons.secondary-button>
-                        <x-buttons.primary-button id="button_next" data-next="your-identity-2">Next</x-buttons.primary-button>
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#form4').hide(); // Initially hide form4
 
+            $('#nextForm3').on('click', function() {
+                $('#form3').fadeOut(300, function() {
+                    // This callback runs after form3 has faded out
+                    $('#form4').show();
+                });
+            });
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            // Save form3 data to sessionStorage
+            $('#form3 input, #form3 select').on('input', function() {
+                let form3Data = {
+                    unitNo: $("#unitNo").val(),
+                    street: $("#street").val(),
+                    barangay: $("#barangay").val(),
+                    city: $("#city").val(),
+                    province: $("#province").val(),
+                    region: $("#region").val(),
+                };
+                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+            });
 
-        <script></script>
+            // Pre-populate form fields if data is available in sessionStorage
+            if (sessionStorage.getItem("form3Data")) {
+                let formData = JSON.parse(sessionStorage.getItem("form3Data"));
+                $('#unitNo').val(formData.unitNo);
+                $('#street').val(formData.street);
+                $('#barangay').val(formData.barangay);
+                $('#city').val(formData.city);
+                $('#province').val(formData.province);
+                $('#region').val(formData.region);
+            }
+
+            $('#nextForm3').on('click', function(e){
+                e.preventDefault();
+
+                $('#form3').hide();
+                $('#form4').show();
+            })
+        });
+    </script>
 </body>

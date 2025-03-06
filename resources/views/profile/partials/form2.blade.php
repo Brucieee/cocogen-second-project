@@ -1,72 +1,122 @@
-<form id="form2">
-    <x-Fields.text-field label="Address" id="addressField" type="text" placeholder="Enter your address..." required="true"
-        width="300px" />
-    <x-Fields.text-field label="Phone" id="phoneField" type="text" placeholder="Enter your phone number..."
-        required="true" width="300px" />
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- Previous and Submit Buttons inside Form 2 -->
-    <button type="button" id="previousButton">Previous</button>
-    <button type="submit" id="submitAll">Submit All Data</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account as Policyholder</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-<script>
-    $(document).ready(function() {
-        // When Previous button is clicked, show Form 1 and hide Form 2
-        $('#previousButton').on('click', function() {
-            console.log('Previous button clicked'); // Debugging
-            $('#form2').fadeOut(function() {
-                $('#form1').fadeIn(); // Show Form 1 after Form 2 is hidden
-            });
-        });
+    <style>
+        /* Your existing CSS */
+    </style>
+</head>
 
-        // Submit both forms when Form 2 is submitted
-        $('#form2').on('submit', function(e) {
-            e.preventDefault();
+<body>
+    <form id="form4" action="{{ route('policyholder.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="identity-form2">
+            <x-stepper :currentStep="session('currentStep', 2)" />
 
-            let form1Data = JSON.parse(sessionStorage.getItem("form1Data")) || {};
-            let form2Data = {
-                address: $('#addressField').val(),
-                phone: $('#phoneField').val()
-            };
+            <div class="content-container">
+                <div class="container-1">
+                    <h1 class="title">Create Account as Policyholder</h1>
 
-            let combinedData = {
-                ...form1Data,
-                ...form2Data
-            }; // Merge data
+                    <div class="container-2">
+                        <x-Register.form-title title="Your identity" />
 
-            $.ajax({
-                url: '/submit-test', // Adjust to your backend route
-                type: 'POST',
-                data: combinedData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                        'content') // Include CSRF token here
-                },
-                success: function(response) {
-                    console.log('Form 2 submitted successfully:', response); // Debugging
-                    if (response.id) {
-                        sessionStorage.setItem("submittedID", response
-                            .id); // Store the ID for Form 3 submission
-                        $('#form2').fadeOut(function() {
-                            $('#form3')
-                                .fadeIn(); // Show Form 3 after Form 2 is hidden
+                        <div class="container-3">
+                            <div class="identification-title">
+                                <span class="identification-text">Identification</span>
+                                <span class="optional-text">(Optional)</span>
+                            </div>
+
+                            <!-- Upload ID Section -->
+                            <div class="container-4">
+                                <x-file-preview id="uploadID" name="uploadID" buttonText="Upload ID" />
+                                <x-Reminders.file-format />
+                            </div>
+
+                            <!-- Upload Display Picture Section -->
+                            <div class="container-5">
+                                <span class="upload-dp-title">Upload Display Picture (Optional)</span>
+                                <x-file-preview id="uploadDisplayPicture" name="uploadDisplayPicture" buttonText="Upload" />
+                                <x-Reminders.file-format />
+                            </div>
+                        </div>
+
+                        <div class="container-6">
+                            <div class="button-group">
+                                <x-buttons.secondary-button id="backForm4">
+                                    Back
+                                </x-buttons.secondary-button>
+
+                                <x-buttons.primary-button type="submit" id="nextForm4">
+                                    Next
+                                </x-buttons.primary-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            function initializeFileUpload(id) {
+                const uploadButton = $(`#uploadButton-${id}`);
+                const fileInput = $(`#fileInput-${id}`);
+                const filePreview = $(`#filePreview-${id}`);
+                const fileName = $(`#fileName-${id}`);
+                const fileSize = $(`#fileSize-${id}`);
+                const viewFileButton = $(`#viewFile-${id}`);
+                const deleteFileButton = $(`#deleteFile-${id}`);
+
+                uploadButton.on('click', function() {
+                    fileInput.trigger('click');
+                });
+
+                fileInput.on('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        if (file.size < 15 * 1024 || file.size > 5 * 1024 * 1024) {
+                            alert('File size must be between 15KB and 5MB.');
+                            return;
+                        }
+
+                        fileName.text(file.name);
+                        fileSize.text((file.size / 1024).toFixed(2) + ' KB');
+
+                        filePreview.removeClass('d-none');
+                        uploadButton.parent().addClass('d-none');
+
+                        viewFileButton.off('click').on('click', function() {
+                            const fileURL = URL.createObjectURL(file);
+                            window.open(fileURL, '_blank');
                         });
-                    } else {
-                        alert('Error: No ID returned from server.');
+
+                        deleteFileButton.off('click').on('click', function() {
+                            fileInput.val('');
+                            filePreview.addClass('d-none');
+                            uploadButton.parent().removeClass('d-none');
+                            fileName.text('No file uploaded');
+                            fileSize.text('0 KB');
+                        });
                     }
-                    sessionStorage.removeItem(
-                        "form1Data"); // Clear Form 1 data after submit
-                },
-                error: function(xhr, status, error) {
-                    let errors = xhr.responseJSON.errors;
-                    if (errors && errors.email) {
-                        alert('Validation error: ' + errors.email[0]); // Show email error
-                    } else {
-                        alert('An error occurred: ' + error);
-                    }
-                    console.error(xhr.responseText); // Log the error response
-                }
-            });
+                });
+            }
+
+            initializeFileUpload('uploadID');
+            initializeFileUpload('uploadDisplayPicture');
         });
-    });
-</script>
+    </script>
+</body>
+
+</html>

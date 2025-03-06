@@ -14,14 +14,14 @@
         flex-direction: column;
         position: relative;
         gap: 5px;
-        width: 100%;
-        /* Full width by default */
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-text-field-container {
         height: 56px;
         display: flex;
         flex-direction: column;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-label-container {
@@ -30,6 +30,7 @@
         align-items: center;
         gap: 10px;
         align-self: stretch;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-label-text {
@@ -38,6 +39,7 @@
         font-size: 10px;
         font-weight: 400;
         line-height: normal;
+        width: auto;
     }
 
     .dropdown-required {
@@ -60,12 +62,13 @@
         border-bottom: 1px solid var(--Teal-LVL-9, #066);
         color: #1E1F21;
         transition: all 0.3s ease;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-text-field {
         border: none;
         outline: none;
-        width: 100%;
+        width: 100%; /* Ensure it takes the full width of the parent */
         padding: 0;
         font-family: 'Inter', sans-serif;
         font-size: 14px;
@@ -74,9 +77,7 @@
         color: #1E1F21;
         background: transparent;
         cursor: pointer;
-        /* Indicate that the field is clickable */
         pointer-events: none;
-        /* Prevent manual typing */
     }
 
     .dropdown-text-field::placeholder {
@@ -84,12 +85,11 @@
     }
 
     .dropdown-menu {
-        display: none;
-        /* Hidden by default */
+        display: none; /* Hidden by default */
         position: absolute;
         top: calc(100% + 5px);
         left: 0;
-        width: 100%;
+        width: 100%; /* Ensure it takes the full width of the parent */
         background: white;
         border-radius: 6px;
         border: 1px solid var(--Surfaces-LVL-1, #F2F2F2);
@@ -99,8 +99,7 @@
     }
 
     .dropdown-menu.open {
-        display: flex;
-        /* Shown when open */
+        display: flex; /* Shown when open */
         flex-direction: column;
         gap: 5px;
     }
@@ -118,11 +117,11 @@
         align-items: center;
         gap: 10px;
         box-sizing: border-box;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .search-bar::placeholder {
         font-size: 14px;
-        /* Adjust size as needed */
     }
 
     .search-bar {
@@ -131,7 +130,7 @@
         border-radius: 5px;
         border: 1px solid #F7F7F7;
         background: #FAFAFA;
-        width: 100%;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .search-icon {
@@ -142,12 +141,14 @@
     .dropdown-options {
         display: flex;
         flex-direction: column;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-option {
         padding: 8px 16px;
         cursor: pointer;
         transition: background 0.2s;
+        width: 100%; /* Ensure it takes the full width of the parent */
     }
 
     .dropdown-option:hover {

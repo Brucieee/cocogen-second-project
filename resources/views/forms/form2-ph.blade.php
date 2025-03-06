@@ -21,19 +21,21 @@
         form#form2 {
             margin: 0;
             padding: 0;
+            height: 100%;
             width: 100%;
         }
 
-        .main-container-wrapper {
-            flex: 1;
+        .create-account2 {
             display: flex;
-            justify-content: center;
-            padding: 35px;
-
         }
 
-        .main-container {
-            display: inline-flex;
+        .main-container-wrapper2 {
+            display: flex;
+            margin: auto;
+        }
+
+        .main-container-form2 {
+            display: flex;
             padding: 35px;
             flex-direction: column;
             align-items: flex-start;
@@ -41,6 +43,7 @@
             border-radius: 8px;
             background: var(--Surfaces-LVL-0, #fff);
             width: 780px;
+            margin: auto;
         }
 
         .getting-to-know-you-container {
@@ -124,23 +127,34 @@
             align-self: stretch;
         }
 
-        .create-account2-2 {
-            display: flex;
-            height: 100%;
+        .checkbox-col-1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 equal columns */
+            gap: 15px;
+            /* Space between checkboxes */
             width: 100%;
+            /* Full width */
+        }
+
+        .check-row-1,
+        .check-row-2,
+        .check-row-3 {
+            display: contents;
+            /* Keeps the structure but allows grid to control layout */
         }
     </style>
 </head>
 
 <body>
 
-    <form id="form2">
+    <form id="form2" style="display: none;">
         <div class="create-account2">
 
             <x-stepper :currentStep="session('currentStep', 1)" />
 
-            <div class="main-container-wrapper">
-                <div class="main-container">
+            <div class="main-container-wrapper2">
+                <div class="main-container-form2">
                     <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2" />
 
 
@@ -309,41 +323,39 @@
                 let combinedData = {
                     ...form1Data,
                     ...form2Data
-                }; 
+                };
 
                 $.ajax({
-                url: '/submit-step1', // Adjust to your backend route
-                type: 'POST',
-                data: combinedData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                        'content') // Include CSRF token here
-                },
-                success: function(response) {
-                    console.log('Step 1 submitted successfully:', response); // Debugging
-                    if (response.id) {
-                        sessionStorage.setItem("submittedID", response
-                            .id); // Store the ID for Form 3 submission
-                        $('#form2').fadeOut(function() {
-                            $('#form3')
-                                .fadeIn(); // Show Form 3 after Form 2 is hidden
-                        });
-                    } else {
-                        alert('Error: No ID returned from server.');
+                    url: '/submit-step1', // Adjust to your backend route
+                    type: 'POST',
+                    data: combinedData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token here
+                    },
+                    success: function(response) {
+                        console.log('Step 1 submitted successfully:', response); // Debugging
+                        if (response.id) {
+                            sessionStorage.setItem("submittedID", response
+                                .id); // Store the ID for Form 3 submission
+                            $('#form2').fadeOut(function() {
+                                $('#form3').fadeIn(); // Show Form 3 after Form 2 is hidden
+                            });
+                        } else {
+                            alert('Error: No ID returned from server.');
+                        }
+                        sessionStorage.removeItem(
+                            "form1Data"); // Clear Form 1 data after submit
+                    },
+                    error: function(xhr, status, error) {
+                        let errors = xhr.responseJSON.errors;
+                        if (errors && errors.email) {
+                            alert('Validation error: ' + errors.email[0]); // Show email error
+                        } else {
+                            alert('An error occurred: ' + error);
+                        }
+                        console.error(xhr.responseText); // Log the error response
                     }
-                    sessionStorage.removeItem(
-                        "form1Data"); // Clear Form 1 data after submit
-                },
-                error: function(xhr, status, error) {
-                    let errors = xhr.responseJSON.errors;
-                    if (errors && errors.email) {
-                        alert('Validation error: ' + errors.email[0]); // Show email error
-                    } else {
-                        alert('An error occurred: ' + error);
-                    }
-                    console.error(xhr.responseText); // Log the error response
-                }
-            });
+                });
             })
 
         });

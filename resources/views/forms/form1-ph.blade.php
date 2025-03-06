@@ -4,7 +4,7 @@
 
     <style>
         html,
-        body {
+        body{
             margin: 0;
             padding: 0;
             width: 100%;
@@ -18,12 +18,11 @@
             width: 100%;
         }
 
-        .main-container {
-            display: flex;
+        .main-container-form {
             height: 100%;
-            margin-left: 30%;
+            width: 100%;
+            display: flex;
         }
-
         .account-container-1 {
             width: 100%;
             max-width: 775px;
@@ -71,9 +70,9 @@
 
 <body>
 
-    <form id="form1">
+    <form id="form1" style="display: none;">
 
-        <div class="main-container">
+        <div class="main-container-form">
             <x-stepper :currentStep="session('currentStep', 1)" />
             <div class="account-container-1">
                 <x-back-title title="Create account as Policyholder" id="backToAccountAsFromForm1" />
@@ -159,17 +158,14 @@
         $(document).ready(function() {
             // Back button functionality
             $('#backToAccountAsFromForm1').on('click', function() {
-                console.log('Go back button clicked!');
                 $('#form1').hide();
                 $('#accountAs').show();
             });
 
-            // Cancel button functionality
             $('#cancelForm1').on('click', function() {
-                console.log('Cancel button clicked!');
                 $('#form1').hide();
                 $('#accountAs').show();
-                sessionStorage.removeItem('form1Data'); //
+                sessionStorage.removeItem('form1Data'); 
             });
 
             // Pill button functionality
