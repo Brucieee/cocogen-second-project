@@ -125,7 +125,22 @@
             align-self: stretch;
         }
 
-       
+        .checkbox-col-1 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 equal columns */
+            gap: 15px;
+            /* Space between checkboxes */
+            width: 100%;
+            /* Full width */
+        }
+
+        .check-row-1,
+        .check-row-2,
+        .check-row-3 {
+            display: contents;
+            /* Keeps the structure but allows grid to control layout */
+        }
     </style>
 </head>
 
