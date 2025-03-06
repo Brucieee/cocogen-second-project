@@ -4,6 +4,7 @@
         height: 100%;
         width: 100%;
         flex-grow: 1;
+
     }
 
     .content-container {
@@ -12,8 +13,7 @@
         gap: 25px;
         padding: 30px;
         border-radius: 10px;
-        margin-left: 20%;
-        margin-top: 5%;
+
     }
 
     .select-account-container {
@@ -66,13 +66,13 @@
 
 
         $('#goToPolicyholder').on('click', function() {
-            $('#accountAs').fadeOut();
-            $('#form1').fadeIn();
+            $('#accountAs').hide();
+            $('#form1').show();
         });
 
         $('#goToPartner').on('click', function() {
-            $('#accountAs').fadeOut();
-            $('#asPartner').fadeIn();
+            $('#accountAs').hide();
+            $('#asPartner').show();
         });
 
     })

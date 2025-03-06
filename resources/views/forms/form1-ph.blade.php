@@ -1,10 +1,21 @@
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </noscript>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    </noscript>
+
 
     <style>
         html,
-        body{
+        body {
+            visiblity: hidden;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -23,6 +34,7 @@
             width: 100%;
             display: flex;
         }
+
         .account-container-1 {
             width: 100%;
             max-width: 775px;
@@ -155,6 +167,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.visibility = "visible";
+        });
+
         $(document).ready(function() {
             // Back button functionality
             $('#backToAccountAsFromForm1').on('click', function() {
@@ -165,7 +182,7 @@
             $('#cancelForm1').on('click', function() {
                 $('#form1').hide();
                 $('#accountAs').show();
-                sessionStorage.removeItem('form1Data'); 
+                sessionStorage.removeItem('form1Data');
             });
 
             // Pill button functionality

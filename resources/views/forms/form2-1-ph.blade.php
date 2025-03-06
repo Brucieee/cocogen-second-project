@@ -202,9 +202,9 @@
                             <!-- Left Container -->
                             <div class="left-container">
 
-                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="1" />
+                                <x-checkbox id="contactEmail" name="contactEmail" label="Email" value="yes" />
 
-                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="1" />
+                                <x-checkbox id="contactSMS" name="contactSMS" label="SMS" value="yes" />
 
                             </div>
 
@@ -212,9 +212,9 @@
                             <div class="right-container">
 
                                 <x-checkbox id="contactMessenger" name="contactMessenger" label="Messenger"
-                                    value="1" />
+                                    value="yes" />
 
-                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="1" />
+                                <x-checkbox id="contactCall" name="contactCall" label="Call" value="yes" />
 
                             </div>
                         </div>

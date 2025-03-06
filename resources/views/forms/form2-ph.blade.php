@@ -1,6 +1,4 @@
 <head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
@@ -18,24 +16,35 @@
             flex-direction: row;
         }
 
-        form#form2 {
+        form#form2-1 {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
         }
 
-        .create-account2 {
+        .stepper-container {
+            width: 255px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #008080;
+            padding: 35px;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            z-index: 1000;
         }
 
-        .main-container-wrapper2 {
+        .main-container-wrapper2-1 {
             display: flex;
             margin: auto;
         }
 
-        .main-container-form2 {
-            display: flex;
+        .main-container {
+            display: inline-flex;
             padding: 35px;
             flex-direction: column;
             align-items: flex-start;
@@ -43,7 +52,6 @@
             border-radius: 8px;
             background: var(--Surfaces-LVL-0, #fff);
             width: 780px;
-            margin: auto;
         }
 
         .getting-to-know-you-container {
@@ -58,16 +66,18 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 35px;
+            gap: 20px;
             align-self: stretch;
+            margin-top: 35px;
         }
 
         .representative-container {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 35px;
+            gap: 20px;
             align-self: stretch;
+            margin-bottom: 35px;
         }
 
         .pill-button-container {
@@ -84,19 +94,21 @@
             align-items: flex-start;
             gap: 20px;
             align-self: stretch;
+            margin-bottom: 20px;
         }
 
-        .title-container-2 {
+        .title-container-1 {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 25px;
         }
 
         .dropdown-container {
             display: flex;
             align-items: flex-end;
             gap: 20px;
-            width: 100%
+            align-self: stretch;
         }
 
         .contact-container {
@@ -127,43 +139,29 @@
             align-self: stretch;
         }
 
-        .checkbox-col-1 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            /* 3 equal columns */
-            gap: 15px;
-            /* Space between checkboxes */
+        .create-account2-1 {
+            display: flex;
+            height: 100%;
             width: 100%;
-            /* Full width */
-        }
-
-        .check-row-1,
-        .check-row-2,
-        .check-row-3 {
-            display: contents;
-            /* Keeps the structure but allows grid to control layout */
         }
     </style>
 </head>
 
 <body>
 
-    <form id="form2" style="display: none;">
-        <div class="create-account2">
-
+    <form id="form2-1">
+        <div class="create-account2-1">
             <x-stepper :currentStep="session('currentStep', 1)" />
 
-            <div class="main-container-wrapper2">
-                <div class="main-container-form2">
-                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2" />
+            <div class="main-container-wrapper2-1">
+                <div class="main-container">
+                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2-1" />
 
 
-                    <div class="getting-to-know-you-container">
-                        <!-- Form Title Component -->
+                    <div class="policy-checkboxes">
                         <x-Register.form-title title="Getting to know you" />
 
-                        <!-- Active Policies Container -->
-                        <div class="policy-checkboxes">
+                        <div class="active-policies-container">
                             <x-question-label text="What policy are you interested in? " required="true" size="16px"
                                 weight="500" info="You may select as many as you want" />
 
@@ -194,15 +192,12 @@
                             </div>
                         </div>
 
-                        <!-- Representative Container -->
                         <div class="representative-container">
-                            <!-- Title for Representative -->
                             <x-title-required title="Do you want to be contacted by a Cocogen Representative?"
                                 :required="true" />
 
-                            <!-- Pill Button Container -->
                             <div class="pill-button-container">
-                                <x-Buttons.pill-button idOne="noRepresentativeForm2" idTwo="yesRepresentativeForm2"
+                                <x-Buttons.pill-button idOne="noRepresentativeForm2-1" idTwo="yesRepresentativeForm2-1"
                                     pillOneText="No, I will explore Cocogen products myself"
                                     pillTwoText="Yes, I need a representative to talk to me" />
                             </div>
@@ -226,7 +221,6 @@
                         </div>
                     </div>
 
-                    <!-- Contact Container -->
                     <div class="contact-container">
                         <!-- Title for Contact -->
                         <x-title-required title="How do you want to be contacted?" :required="true"
@@ -255,22 +249,19 @@
                         </div>
                     </div>
 
-                    <!-- Button Container -->
                     <div class="button-container">
-                        <x-buttons.secondary-button id="cancelForm2">
+                        <x-buttons.secondary-button id="cancelForm2-1">
                             Cancel
                         </x-buttons.secondary-button>
 
-                        <x-buttons.primary-button type="submit" id="submitForm2">
+                        <x-buttons.primary-button type="submit" id="submitForm2-1">
                             Next
                         </x-buttons.primary-button>
-
                     </div>
                 </div>
             </div>
         </div>
     </form>
-
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -279,9 +270,9 @@
     <script>
         $(document).ready(function() {
 
-            $('#backtoForm1FromForm2').on('click', function() {
-                console.log('Go back button clicked!');
-                $('#form2').hide();
+            $('#backtoForm1FromForm2-1').on('click', function() {
+                event.preventDefault();
+                $('#form2-1').hide();
                 $('#form1').show();
             });
 
@@ -292,7 +283,7 @@
                 $(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                if (this.id === "noRepresentativeForm2") {
+                if (this.id === "noRepresentativeForm2-1") {
                     $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
                         function() {
                             $(".contact-container input[type='checkbox']").prop("checked", false);
@@ -301,63 +292,6 @@
                     $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
                 }
             });
-
-            $('#form2').on('submit', function(e) {
-                e.preventDefault();
-
-                let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
-                let form2Data = {
-                    AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 'yes' : 'no',
-                    InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 'yes' : 'no',
-                    DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 'yes' : 'no',
-                    ProTech: $('#ProTech').is(':checked') ? 'yes' : 'no',
-                    CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 'yes' : 'no',
-                    branch: $('#branch').val(),
-                    contactEmail: $('#contactEmail').is(':checked') ? 'yes' : 'no',
-                    contactSMS: $('#contactSMS').is(':checked') ? 'yes' : 'no',
-                    contactMessenger: $('#contactMessenger').is(':checked') ? 'yes' : 'no',
-                    contactCall: $('#contactCall').is(':checked') ? 'yes' : 'no'
-                };
-
-
-                let combinedData = {
-                    ...form1Data,
-                    ...form2Data
-                };
-
-                $.ajax({
-                    url: '/submit-step1', // Adjust to your backend route
-                    type: 'POST',
-                    data: combinedData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token here
-                    },
-                    success: function(response) {
-                        console.log('Step 1 submitted successfully:', response); // Debugging
-                        if (response.id) {
-                            sessionStorage.setItem("submittedID", response
-                                .id); // Store the ID for Form 3 submission
-                            $('#form2').fadeOut(function() {
-                                $('#form3').fadeIn(); // Show Form 3 after Form 2 is hidden
-                            });
-                        } else {
-                            alert('Error: No ID returned from server.');
-                        }
-                        sessionStorage.removeItem(
-                            "form1Data"); // Clear Form 1 data after submit
-                    },
-                    error: function(xhr, status, error) {
-                        let errors = xhr.responseJSON.errors;
-                        if (errors && errors.email) {
-                            alert('Validation error: ' + errors.email[0]); // Show email error
-                        } else {
-                            alert('An error occurred: ' + error);
-                        }
-                        console.error(xhr.responseText); // Log the error response
-                    }
-                });
-            })
-
         });
     </script>
 </body>
