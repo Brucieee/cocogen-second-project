@@ -339,6 +339,7 @@
                             sessionStorage.setItem("submittedID", response.id);
                             $('#form2').fadeOut(function() {
                                 $('#form3').fadeIn();
+
                             });
                         } else {
                             alert('Error: No ID returned from server.');

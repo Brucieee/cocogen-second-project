@@ -104,7 +104,6 @@
 </head>
 
 <body>
-
     <form id="form3" style="display: none;">
         <div class="identity-form1">
             <x-stepper :currentStep="session('currentStep', 2)" />
@@ -186,18 +185,19 @@
                             <x-text-field label="Zip" id="zip" type="zip" placeholder="10" />
 
                         </div>
-                    </div>
 
-                    <div class="identity-btn-1">
-                        <div class="row-btn">
-                            <x-buttons.secondary-button id="continueForm3">
-                                Continue later
-                            </x-buttons.secondary-button>
 
-                            <x-buttons.primary-button id="nextForm3">
-                                Next
-                            </x-buttons.primary-button>
+                        <div class="identity-btn-1">
+                            <div class="row-btn">
+                                <x-buttons.secondary-button id="continueForm3">
+                                    Continue later
+                                </x-buttons.secondary-button>
 
+                                <x-buttons.primary-button id="nextForm3">
+                                    Next
+                                </x-buttons.primary-button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -211,15 +211,31 @@
     <script>
         $(document).ready(function() {
 
+            // console.log("Forms loaded. Checking visibility:");
+            // console.log("Form3 visible:", $('#form3').is(":visible"));
+            // console.log("Form4 visible:", $('#form4').is(":visible"));
+            // console.log("Form4 structure:", $('#form4').html());
+
+            // // Add a test button to manually show form4
+            // $('body').append(
+            //     '<button id="testShowForm4" style="position:fixed; top:10px; right:10px; z-index:1000;">Test Show Form4</button>'
+            //     );
+            // $('#testShowForm4').on('click', function() {
+            //     console.log("Attempting to show form4...");
+            //     $('#form3').hide();
+            //     $('#form4').show();
+            //     $('.identity-form2').show();
+            //     console.log("Form4 visible after click:", $('#form4').is(":visible"));
+            //     console.log("identity-form2 visible:", $('.identity-form2').is(":visible"));
+            // });
+
             $('#nextForm3').on('click', function(e) {
-                e.preventDefault();
-                $('#form3').hide();
-                $('#form4').show();
+                e.preventDefault(); // Prevent any default form submission
 
+                console.log("Next button in form3 clicked");
 
-
-
-                let form3Data = {
+                // Store your form data
+                let formData = {
                     unitNo: $("#unitNo").val(),
                     street: $("#street").val(),
                     barangay: $("#barangay").val(),
@@ -227,9 +243,20 @@
                     province: $("#province").val(),
                     region: $("#region").val(),
                     zip: $("#zip").val(),
-                    
                 };
-                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+                sessionStorage.setItem('form3Data', JSON.stringify(formData));
+
+                // Use direct DOM manipulation instead of jQuery for reliability
+                document.getElementById('form3').style.display = 'none';
+                document.getElementById('form4').style.display = 'block';
+
+                // Make sure the content inside form4 is also displayed
+                var form4Content = document.querySelector('.identity-form2');
+                if (form4Content) {
+                    form4Content.style.display = 'block';
+                }
+
+                console.log("Transition completed");
             });
 
             // Pre-populate form fields if data is available in sessionStorage

@@ -191,7 +191,7 @@
 </head>
 
 <body>
-    <form id="form4" style="display: none;">
+    <form id="form4">
         <div class="identity-form2" style="display: none;">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
@@ -243,6 +243,7 @@
 
     <script>
         $(document).ready(function() {
+            // Initialize file upload functions
             function initializeFileUpload(id) {
                 const uploadButton = $(`#uploadButton-${id}`);
                 const fileInput = $(`#fileInput-${id}`);
@@ -253,14 +254,13 @@
                 const deleteFileButton = $(`#deleteFile-${id}`);
 
                 uploadButton.on('click', function(e) {
-                     e.preventDefault();
+                    e.preventDefault();
                     fileInput.trigger('click');
                 });
 
                 fileInput.on('change', function() {
                     const file = this.files[0];
                     if (file) {
-
                         if (file.size < 15 * 1024 || file.size > 5 * 1024 * 1024) {
                             alert('File size must be between 15KB and 5MB.');
                             return;
@@ -292,31 +292,34 @@
             initializeFileUpload('uploadID');
             initializeFileUpload('uploadDisplayPicture');
 
-            // session storage 
-            $('#nextForm4').on('click', function(e) {
-                e.preventDefault();
-                $('#form4').hide();
-                $('#form5').show();
-
-                console.log("im being clicked!")
-
-
-                // Save form4 data to sessionStorage
-                $('#form4 input, #form4 select').on('input', function() {
-                    let form4Data = {
-                    uploadID: $('#uploadID').val(),
-                    uploadDisplayPicture: $('#uploadDisplayPicture').val()
-                    };
-                    sessionStorage.setItem('form4Data', JSON.stringify(form4Data));
-                });
-
-                // Pre-populate form fields if data is available in sessionStorage
-                if (sessionStorage.getItem("form4Data")) {
-                    let formData = JSON.parse(sessionStorage.getItem("form4Data"));
-                    $('#uploadID').val(formData.uploadID);
-                    $('#uploadDisplayPicture').val(formData.uploadDisplayPicture);
-                }
+            // Handle the back button click
+            $('#backForm4').on('click', function() {
+                $('#form4').hide(500);
+                $('#form3').show(500);
             });
+
+            // Handle the next button click
+            $('#nextForm4').on('click', function() {
+                // Store the file upload information
+                let form4Data = {
+                    uploadID: $('#fileInput-uploadID').val() ? true : false,
+                    uploadDisplayPicture: $('#fileInput-uploadDisplayPicture').val() ? true : false
+                };
+
+                sessionStorage.setItem('form4Data', JSON.stringify(form4Data));
+
+                // Hide current form and show next form
+                $('#form4').hide(500);
+                $('#form5').show(500);
+            });
+
+            // Pre-populate form fields if data is available in sessionStorage
+            if (sessionStorage.getItem("form4Data")) {
+                let formData = JSON.parse(sessionStorage.getItem("form4Data"));
+                // Since you can't pre-populate file inputs directly, you might need
+                // to handle this differently, possibly showing a message that files
+                // were previously uploaded.
+            }
         });
     </script>
 </body>

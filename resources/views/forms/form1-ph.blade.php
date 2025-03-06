@@ -225,7 +225,7 @@
                     $('#form2').show(); // Show form2
                 } else if (selectedOption === 'yesOptionForm1') {
                     $('#form1').hide();
-                    $('#form2-1').show(); // Show form2.1
+                    $('#form2-1').show(); 
                 }
             });
 
