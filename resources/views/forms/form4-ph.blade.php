@@ -252,7 +252,8 @@
                 const viewFileButton = $(`#viewFile-${id}`);
                 const deleteFileButton = $(`#deleteFile-${id}`);
 
-                uploadButton.on('click', function() {
+                uploadButton.on('click', function(e) {
+                     e.preventDefault();
                     fileInput.trigger('click');
                 });
 
@@ -291,7 +292,31 @@
             initializeFileUpload('uploadID');
             initializeFileUpload('uploadDisplayPicture');
 
+            // session storage 
+            $('#nextForm4').on('click', function(e) {
+                e.preventDefault();
+                $('#form4').hide();
+                $('#form5').show();
 
+                console.log("im being clicked!")
+
+
+                // Save form4 data to sessionStorage
+                $('#form4 input, #form4 select').on('input', function() {
+                    let form4Data = {
+                    uploadID: $('#uploadID').val(),
+                    uploadDisplayPicture: $('#uploadDisplayPicture').val()
+                    };
+                    sessionStorage.setItem('form4Data', JSON.stringify(form4Data));
+                });
+
+                // Pre-populate form fields if data is available in sessionStorage
+                if (sessionStorage.getItem("form4Data")) {
+                    let formData = JSON.parse(sessionStorage.getItem("form4Data"));
+                    $('#uploadID').val(formData.uploadID);
+                    $('#uploadDisplayPicture').val(formData.uploadDisplayPicture);
+                }
+            });
         });
     </script>
 </body>

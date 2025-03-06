@@ -37,7 +37,8 @@
         const deleteFileButton = $('#deleteFile-{{ $id }}');
 
         // Trigger file input when upload button is clicked
-        uploadButton.on('click', function() {
+        uploadButton.on('click', function(e) {
+            e.preventDefault();
             fileInput.trigger('click');
         });
 
