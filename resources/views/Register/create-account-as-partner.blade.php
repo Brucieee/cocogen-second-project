@@ -126,7 +126,7 @@
 </style>
 
 <body>
-    <div class="m-container" id="asPartner">
+    <div class="m-container" id="asPartner" style="display: none;">
         <div class="logo-container">
             <img src="{{ asset('assets/images/cocogen-logo.svg') }}" alt="Cocogen Logo">
         </div>

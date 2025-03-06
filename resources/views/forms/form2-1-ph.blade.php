@@ -145,7 +145,7 @@
 
 <body>
 
-    <form id="form2-1">
+    <form id="form2-1" style="display: none;">
         <div class="create-account2-1">
             <x-stepper :currentStep="session('currentStep', 1)" />
 

@@ -67,7 +67,7 @@
 </head>
 
 <body>
-    <form id="form6">
+    <form id="form6" style="display: none;">
         <x-stepper :currentStep="session('currentStep', 2)" />
 
         <div class="otp-page-container">

@@ -86,7 +86,7 @@
 </head>
 
 <body>
-    <form id="form5">
+    <form id="form5" style="display: none;">
         <x-stepper :currentStep="session('currentStep', 2)" />
 
         <div class="identity-3-container">
@@ -138,7 +138,7 @@
 
             $('#backForm5').on('click', function() {
                 $('#form5').hide();
-                $('#form4').show();
+                $('#form6').show();
 
             });
 
@@ -159,7 +159,7 @@
                     alert('Error: No ID found. Please start over.');
                     return;
                 }
-                
+
                 let combinedData = {
                     ...form3Data,
                     ...form4Data,

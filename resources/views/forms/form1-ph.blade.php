@@ -70,7 +70,7 @@
 
 <body>
 
-    <form id="form1">
+    <form id="form1" style="display: none;">
 
         <div class="main-container-form">
             <x-stepper :currentStep="session('currentStep', 1)" />

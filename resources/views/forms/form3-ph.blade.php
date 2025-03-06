@@ -13,8 +13,7 @@
             display: flex;
         }
 
-        form#form3
-        {
+        form#form3 {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -106,7 +105,7 @@
 
 <body>
 
-    <form id="form3" id="form3">
+    <form id="form3" style="display: none;">
         <div class="identity-form1">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
@@ -209,41 +208,59 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#continueForm3').on('click', function() {
+       $(document).ready(function() {
+    console.log("Document is ready.");
 
-            });
+    // Initially hide form4
+    $('#form4').hide();
+    console.log("form4 is initially hidden.");
 
-            $('#nextForm3').on('click', function() {
-                $('#form3').hide();
-                $('#form4').show();
-            });
+    $('#nextForm3').on('click', function() {
+        console.log("nextForm3 button clicked.");
 
-            $('#form3 input, #form3 select').on('input', function() {
-                console.log("Form 3 submitted");
+        // Fade out form3
+        $('#form3').fadeOut(300, function() {
+            console.log("form3 has faded out.");
 
-                let form3Data = {
-                    unitNo: $("#unitNo").val(),
-                    street: $("#street").val(),
-                    barangay: $("#barangay").val(),
-                    city: $("#city").val(),
-                    province: $("#province").val(),
-                    region: $("#region").val(),
-                };
-                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+            // Check if form4 exists in the DOM
+            if ($('#form4').length) {
+                console.log("form4 exists in the DOM.");
 
-            });
-
-            // Pre-populate form fields if data is available in sessionStorage
-            if (sessionStorage.getItem("form3Data")) {
-                let formData = JSON.parse(sessionStorage.getItem("form3Data"));
-                $('#unitNo').val(formData.unitNo);
-                $('#street').val(formData.street);
-                $('#barangay').val(formData.barangay);
-                $('#city').val(formData.city);
-                $('#province').val(formData.province);
-                $('#region').val(formData.region);
+                // Show form4
+                $('#form4').fadeIn(300, function() {
+                    console.log("form4 is now visible.");
+                });
+            } else {
+                console.error("form4 does not exist in the DOM.");
             }
         });
+    });
+
+    // Save form3 data to sessionStorage
+    $('#form3 input, #form3 select').on('input', function() {
+        let form3Data = {
+            unitNo: $("#unitNo").val(),
+            street: $("#street").val(),
+            barangay: $("#barangay").val(),
+            city: $("#city").val(),
+            province: $("#province").val(),
+            region: $("#region").val(),
+        };
+        sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+        console.log("form3 data saved to sessionStorage.");
+    });
+
+
+    if (sessionStorage.getItem("form3Data")) {
+        let formData = JSON.parse(sessionStorage.getItem("form3Data"));
+        $('#unitNo').val(formData.unitNo);
+        $('#street').val(formData.street);
+        $('#barangay').val(formData.barangay);
+        $('#city').val(formData.city);
+        $('#province').val(formData.province);
+        $('#region').val(formData.region);
+        console.log("form3 data pre-populated from sessionStorage.");
+    }
+});
     </script>
 </body>

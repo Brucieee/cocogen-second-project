@@ -1,14 +1,10 @@
 <style>
-
-
-    /* Content wrapper must push content to center */
     .content-wrapper {
         display: flex;
         height: 100%;
         width: 100%;
-        flex-grow: 1; /* Take up remaining space */
+        flex-grow: 1;
     }
-
 
     .content-container {
         display: flex;
@@ -42,23 +38,23 @@
 
         <x-stepper :currentStep="session('currentStep', 1)" />
 
-        
-            <div class="content-container">
-                <div class="back-button-row">
-                    <x-back-title id="goBack" title="Create account" backUrl="#" />
-                </div>
 
-                <div class="select-account-container">
-                    <x-Register.select-account image="images/Image-Policyholder.png" title="Policyholder"
-                        description="Sign up as Policyholder. Avail of Cocogen products, access policies conveniently, and file claims easily."
-                        buttonText="Create account as Policyholder" id="goToPolicyholder" />
-                    <div class="select-account-component">
-                        <x-Register.select-account :image="'images/Image-Partner.png'" :title="'Partner'" :description="'Sign up as Partner. Be a Cocogen agent to earn additional income, and get perks for being a partner of Cocogen.'"
-                            :buttonText="'Create account as Agent'" id="goToPartner" />
-                    </div>
+        <div class="content-container">
+            <div class="back-button-row">
+                <x-back-title id="goBack" title="Create account" backUrl="#" />
+            </div>
+
+            <div class="select-account-container">
+                <x-Register.select-account image="images/Image-Policyholder.png" title="Policyholder"
+                    description="Sign up as Policyholder. Avail of Cocogen products, access policies conveniently, and file claims easily."
+                    buttonText="Create account as Policyholder" id="goToPolicyholder" />
+                <div class="select-account-component">
+                    <x-Register.select-account :image="'images/Image-Partner.png'" :title="'Partner'" :description="'Sign up as Partner. Be a Cocogen agent to earn additional income, and get perks for being a partner of Cocogen.'" :buttonText="'Create account as Agent'"
+                        id="goToPartner" />
                 </div>
             </div>
         </div>
+    </div>
 
 
 </body>
@@ -68,23 +64,15 @@
 <script>
     $(document).ready(function() {
 
-        $('#form1').hide();
-        $('#form2').hide();
-        $('#form2-1').hide();
-        $('#form3').hide();
-        $('#form4').hide();
-        $('#form5').hide();
-        $('#form6').hide();
-        $('#asPartner').hide();
 
         $('#goToPolicyholder').on('click', function() {
-            $('#accountAs').hide();
-            $('#form1').show();
+            $('#accountAs').fadeOut();
+            $('#form1').fadeIn();
         });
 
         $('#goToPartner').on('click', function() {
-            $('#accountAs').hide();
-            $('#asPartner').show();
+            $('#accountAs').fadeOut();
+            $('#asPartner').fadeIn();
         });
 
     })

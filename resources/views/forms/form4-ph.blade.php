@@ -191,7 +191,7 @@
 </head>
 
 <body>
-    <form id="form4">
+    <form id="form4" style="display: none;">
         <div class="identity-form2">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
@@ -235,8 +235,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </form>
