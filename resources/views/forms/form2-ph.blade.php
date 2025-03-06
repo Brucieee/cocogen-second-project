@@ -216,7 +216,8 @@
                         <div class="dropdown-container">
 
                             <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
-                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" required="true" />
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                                placeholder="Select branch" required="true" />
 
                         </div>
                     </div>
@@ -268,86 +269,91 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
-            $('#backtoForm1FromForm2').on('click', function() {
+            $('#backtoForm1FromForm2').on('click', function (event) {
                 event.preventDefault();
                 $('#form2').hide();
                 $('#form1').show();
             });
 
             // Handle Pill Button Click
-            $(document).on("click", ".pill-button", function(event) {
-        event.preventDefault();
+            $(document).on("click", ".pill-button", function (event) {
+                event.preventDefault();
 
-        // Get the parent form of the clicked button
-        let form = $(this).closest("form");
+                // Get the parent form of the clicked button
+                let form = $(this).closest("form");
 
-        // Remove 'expanded' class from all buttons inside the same form
-        form.find(".pill-button").removeClass("expanded");
-        $(this).addClass("expanded");
+                // Remove 'expanded' class from all buttons inside the same form
+                form.find(".pill-button").removeClass("expanded");
+                $(this).addClass("expanded");
 
-        // Handle logic separately for each form
-        if (this.id === "noRepresentativeForm2" || this.id === "noRepresentativeForm2-1") {
-            form.find(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function() {
-                form.find(".contact-container input[type='checkbox']").prop("checked", false);
+                // Handle logic separately for each form
+                if (this.id === "noRepresentativeForm2" || this.id === "noRepresentativeForm2-1") {
+                    form.find(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function () {
+                        form.find(".contact-container input[type='checkbox']").prop("checked", false);
+                    });
+                }
+
+                // Form Submission Handling
+                $('#form2').on('submit', function (e) {
+                    e.preventDefault();
+
+                    let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
+                    let form2Data = {
+                        AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 'yes' : 'no',
+                        InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 'yes' : 'no',
+                        DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 'yes' : 'no',
+                        ProTech: $('#ProTech').is(':checked') ? 'yes' : 'no',
+                        CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 'yes' : 'no',
+                        branch: $('#branch').val(),
+                        contactEmail: $('#contactEmail').is(':checked') ? 'yes' : 'no',
+                        contactSMS: $('#contactSMS').is(':checked') ? 'yes' : 'no',
+                        contactMessenger: $('#contactMessenger').is(':checked') ? 'yes' : 'no',
+                        contactCall: $('#contactCall').is(':checked') ? 'yes' : 'no'
+                    };
+
+                    let combinedData = {
+                        ...form1Data,
+                        ...form2Data
+                    };
+
+                    $.ajax({
+                        url: '/submit-step1', // Adjust to your backend route
+                        type: 'POST',
+                        data: combinedData,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token here
+                        },
+                        success: function (response) {
+                            console.log('Step 1 submitted successfully:', response); // Debugging
+                            if (response.id) {
+                                sessionStorage.setItem("submittedID", response.id); // Store the ID for Form 3 submission
+                                $('#form2').fadeOut(function () {
+                                    $('#form3').fadeIn(); // Show Form 3 after Form 2 is hidden
+                                });
+                            } else {
+                                alert('Error: No ID returned from server.');
+                            }
+                            sessionStorage.removeItem("form1Data"); // Clear Form 1 data after submit
+                        },
+                        error: function (xhr, status, error) {
+                            let errors = xhr.responseJSON?.errors;
+                            if (errors && errors.email) {
+                                alert('Validation error: ' + errors.email[0]); // Show email error
+                            } else {
+                                alert('An error occurred: ' + error);
+                            }
+                            console.error(xhr.responseText); // Log the error response
+                        }
+                    });
+                });
+
             });
 
-            $('#form2').on('submit', function(e) {
-                e.preventDefault();
-
-                let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};
-                let form2Data = {
-                    AutoExcelPlus: $('#AutoExcelPlus').is(':checked') ? 'yes' : 'no',
-                    InternationalTravelPlus: $('#InternationalTravelPlus').is(':checked') ? 'yes' : 'no',
-                    DomesticTravelPlus: $('#DomesticTravelPlus').is(':checked') ? 'yes' : 'no',
-                    ProTech: $('#ProTech').is(':checked') ? 'yes' : 'no',
-                    CondoExcelPlus: $('#CondoExcelPlus').is(':checked') ? 'yes' : 'no',
-                    branch: $('#branch').val(),
-                    contactEmail: $('#contactEmail').is(':checked') ? 'yes' : 'no',
-                    contactSMS: $('#contactSMS').is(':checked') ? 'yes' : 'no',
-                    contactMessenger: $('#contactMessenger').is(':checked') ? 'yes' : 'no',
-                    contactCall: $('#contactCall').is(':checked') ? 'yes' : 'no'
-                };
-
-
-                let combinedData = {
-                    ...form1Data,
-                    ...form2Data
-                };
-
-                $.ajax({
-                    url: '/submit-step1', // Adjust to your backend route
-                    type: 'POST',
-                    data: combinedData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token here
-                    },
-                    success: function(response) {
-                        console.log('Step 1 submitted successfully:', response); // Debugging
-                        if (response.id) {
-                            sessionStorage.setItem("submittedID", response
-                                .id); // Store the ID for Form 3 submission
-                            $('#form2').fadeOut(function() {
-                                $('#form3').fadeIn(); // Show Form 3 after Form 2 is hidden
-                            });
-                        } else {
-                            alert('Error: No ID returned from server.');
-                        }
-                        sessionStorage.removeItem(
-                            "form1Data"); // Clear Form 1 data after submit
-                    },
-                    error: function(xhr, status, error) {
-                        let errors = xhr.responseJSON.errors;
-                        if (errors && errors.email) {
-                            alert('Validation error: ' + errors.email[0]); // Show email error
-                        } else {
-                            alert('An error occurred: ' + error);
-                        }
-                        console.error(xhr.responseText); // Log the error response
-                    }
-                });
-            })
         });
+
+
+
     </script>
 </body>
