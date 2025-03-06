@@ -4,8 +4,7 @@
     /* Content wrapper must push content to center */
     .content-wrapper {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 100%;
         width: 100%;
         flex-grow: 1; /* Take up remaining space */
     }
@@ -17,7 +16,8 @@
         gap: 25px;
         padding: 30px;
         border-radius: 10px;
-        max-width: 700px;
+        margin-left: 20%;
+        margin-top: 5%;
     }
 
     .select-account-container {
