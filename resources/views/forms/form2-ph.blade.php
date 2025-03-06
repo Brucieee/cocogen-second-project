@@ -216,7 +216,8 @@
                         <div class="dropdown-container">
 
                             <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
-                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" required="true" />
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
+                                placeholder="Select branch" required="true" />
 
                         </div>
                     </div>
@@ -268,7 +269,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $('#backtoForm1FromForm2').on('click', function(event) {
                 event.preventDefault();
@@ -358,5 +359,8 @@
 
 
         });
+
+
+
     </script>
 </body>
