@@ -197,7 +197,7 @@
                                 :required="true" />
 
                             <div class="pill-button-container">
-                                <x-Buttons.pill-button idOne="noRepresentativeForm2-1" idTwo="yesRepresentativeForm2-1"
+                                <x-Buttons.pill-button idOne="noRepresentativeForm2" idTwo="yesRepresentativeForm2"
                                     pillOneText="No, I will explore Cocogen products myself"
                                     pillTwoText="Yes, I need a representative to talk to me" />
                             </div>
@@ -278,20 +278,24 @@
 
             // Handle Pill Button Click
             $(document).on("click", ".pill-button", function(event) {
-                event.preventDefault();
+        event.preventDefault();
 
-                $(".pill-button").removeClass("expanded");
-                $(this).addClass("expanded");
+        // Get the parent form of the clicked button
+        let form = $(this).closest("form");
 
-                if (this.id === "noRepresentativeForm2-1") {
-                    $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
-                        function() {
-                            $(".contact-container input[type='checkbox']").prop("checked", false);
-                        });
-                } else {
-                    $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
-                }
+        // Remove 'expanded' class from all buttons inside the same form
+        form.find(".pill-button").removeClass("expanded");
+        $(this).addClass("expanded");
+
+        // Handle logic separately for each form
+        if (this.id === "noRepresentativeForm2" || this.id === "noRepresentativeForm2-1") {
+            form.find(".branch-container, .dropdown-container, .contact-container").fadeOut(300, function() {
+                form.find(".contact-container input[type='checkbox']").prop("checked", false);
             });
+        } else {
+            form.find(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
+        }
+    });
         });
     </script>
 </body>
