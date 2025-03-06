@@ -159,17 +159,14 @@
         $(document).ready(function() {
             // Back button functionality
             $('#backToAccountAsFromForm1').on('click', function() {
-                console.log('Go back button clicked!');
                 $('#form1').hide();
                 $('#accountAs').show();
             });
 
-            // Cancel button functionality
             $('#cancelForm1').on('click', function() {
-                console.log('Cancel button clicked!');
                 $('#form1').hide();
                 $('#accountAs').show();
-                sessionStorage.removeItem('form1Data'); //
+                sessionStorage.removeItem('form1Data'); 
             });
 
             // Pill button functionality

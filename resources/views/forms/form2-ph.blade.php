@@ -307,41 +307,41 @@
                 let combinedData = {
                     ...form1Data,
                     ...form2Data
-                }; 
+                };
 
                 $.ajax({
-                url: '/submit-step1', // Adjust to your backend route
-                type: 'POST',
-                data: combinedData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                        'content') // Include CSRF token here
-                },
-                success: function(response) {
-                    console.log('Step 1 submitted successfully:', response); // Debugging
-                    if (response.id) {
-                        sessionStorage.setItem("submittedID", response
-                            .id); // Store the ID for Form 3 submission
-                        $('#form2').fadeOut(function() {
-                            $('#form3')
-                                .fadeIn(); // Show Form 3 after Form 2 is hidden
-                        });
-                    } else {
-                        alert('Error: No ID returned from server.');
+                    url: '/submit-step1', // Adjust to your backend route
+                    type: 'POST',
+                    data: combinedData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Include CSRF token here
+                    },
+                    success: function(response) {
+                        console.log('Step 1 submitted successfully:', response); // Debugging
+                        if (response.id) {
+                            sessionStorage.setItem("submittedID", response
+                                .id); // Store the ID for Form 3 submission
+                            $('#form2').fadeOut(function() {
+                                $('#form3')
+                                    .fadeIn(); // Show Form 3 after Form 2 is hidden
+                            });
+                        } else {
+                            alert('Error: No ID returned from server.');
+                        }
+                        sessionStorage.removeItem(
+                            "form1Data"); // Clear Form 1 data after submit
+                    },
+                    error: function(xhr, status, error) {
+                        let errors = xhr.responseJSON.errors;
+                        if (errors && errors.email) {
+                            alert('Validation error: ' + errors.email[0]); // Show email error
+                        } else {
+                            alert('An error occurred: ' + error);
+                        }
+                        console.error(xhr.responseText); // Log the error response
                     }
-                    sessionStorage.removeItem(
-                        "form1Data"); // Clear Form 1 data after submit
-                },
-                error: function(xhr, status, error) {
-                    let errors = xhr.responseJSON.errors;
-                    if (errors && errors.email) {
-                        alert('Validation error: ' + errors.email[0]); // Show email error
-                    } else {
-                        alert('An error occurred: ' + error);
-                    }
-                    console.error(xhr.responseText); // Log the error response
-                }
-            });
+                });
             })
 
         });
