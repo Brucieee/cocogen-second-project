@@ -149,13 +149,13 @@
 
 <body>
 
-    <form id="form2-1">
+    <form id="form2" style="display: none;">
         <div class="create-account2-1">
             <x-stepper :currentStep="session('currentStep', 1)" />
 
             <div class="main-container-wrapper2-1">
                 <div class="main-container">
-                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2-1" />
+                    <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2" />
 
 
                     <div class="policy-checkboxes">
@@ -270,9 +270,9 @@
     <script>
         $(document).ready(function() {
 
-            $('#backtoForm1FromForm2-1').on('click', function() {
+            $('#backtoForm1FromForm2').on('click', function() {
                 event.preventDefault();
-                $('#form2-1').hide();
+                $('#form2').hide();
                 $('#form1').show();
             });
 
