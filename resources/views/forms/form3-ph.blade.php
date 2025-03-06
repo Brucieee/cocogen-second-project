@@ -242,6 +242,13 @@
                 $('#province').val(formData.province);
                 $('#region').val(formData.region);
             }
+
+            $('#nextForm3').on('click', function(e){
+                e.preventDefault();
+
+                $('#form3').hide();
+                $('#form4').show();
+            })
         });
     </script>
 </body>

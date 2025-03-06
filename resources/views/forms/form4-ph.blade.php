@@ -191,8 +191,8 @@
 </head>
 
 <body>
-    <form id="form4" style="display: none;">
-        <div class="identity-form2">
+    <form id="form4" >
+        <div class="identity-form2" style="display: none;">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
             <div class="content-container">
