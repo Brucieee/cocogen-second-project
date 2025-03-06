@@ -210,45 +210,39 @@
 
     <script>
         $(document).ready(function() {
-            $('#form4').hide(); // Initially hide form4
-
-            $('#nextForm3').on('click', function() {
-                $('#form3').fadeOut(300, function() {
-                    // This callback runs after form3 has faded out
-                    $('#form4').show();
-                });
-            });
-
-            // Save form3 data to sessionStorage
-            $('#form3 input, #form3 select').on('input', function() {
-                let form3Data = {
-                    unitNo: $("#unitNo").val(),
-                    street: $("#street").val(),
-                    barangay: $("#barangay").val(),
-                    city: $("#city").val(),
-                    province: $("#province").val(),
-                    region: $("#region").val(),
-                };
-                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
-            });
-
-            // Pre-populate form fields if data is available in sessionStorage
-            if (sessionStorage.getItem("form3Data")) {
-                let formData = JSON.parse(sessionStorage.getItem("form3Data"));
-                $('#unitNo').val(formData.unitNo);
-                $('#street').val(formData.street);
-                $('#barangay').val(formData.barangay);
-                $('#city').val(formData.city);
-                $('#province').val(formData.province);
-                $('#region').val(formData.region);
-            }
-
-            $('#nextForm3').on('click', function(e){
+            // Move to the next form when the "Next" button is clicked
+            $('#nextForm3').on('click', function(e) {
                 e.preventDefault();
-
                 $('#form3').hide();
                 $('#form4').show();
-            })
+
+                console.log("im being clicked!")
+
+
+                // Save form3 data to sessionStorage
+                $('#form3 input, #form3 select').on('input', function() {
+                    let form3Data = {
+                        unitNo: $("#unitNo").val(),
+                        street: $("#street").val(),
+                        barangay: $("#barangay").val(),
+                        city: $("#city").val(),
+                        province: $("#province").val(),
+                        region: $("#region").val(),
+                    };
+                    sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+                });
+
+                // Pre-populate form fields if data is available in sessionStorage
+                if (sessionStorage.getItem("form3Data")) {
+                    let formData = JSON.parse(sessionStorage.getItem("form3Data"));
+                    $('#unitNo').val(formData.unitNo);
+                    $('#street').val(formData.street);
+                    $('#barangay').val(formData.barangay);
+                    $('#city').val(formData.city);
+                    $('#province').val(formData.province);
+                    $('#region').val(formData.region);
+                }
+            });
         });
     </script>
 </body>
