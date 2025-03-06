@@ -58,7 +58,6 @@
 </div>
 
 <script>
-    // bruce
     function togglePill(selectedId, otherId) {
         document.getElementById(selectedId).classList.add('expanded');
         document.getElementById(otherId).classList.remove('expanded');

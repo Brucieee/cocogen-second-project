@@ -68,6 +68,7 @@
             align-items: flex-start;
             gap: 35px;
             align-self: stretch;
+            margin: 0;
         }
 
         .representative-container {
@@ -251,16 +252,22 @@
             $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
 
-                $(".pill-button").removeClass("expanded");
+                // Get the parent form of the clicked button
+                let form = $(this).closest("form");
+
+                // Remove 'expanded' class from all buttons inside the same form
+                form.find(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
-                if (this.id === "noRepresentativeForm2-1") {
-                    $(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
+                // Handle logic separately for each form
+                if (this.id === "noRepresentativeForm2" || this.id === "noRepresentativeForm2-1") {
+                    form.find(".branch-container, .dropdown-container, .contact-container").fadeOut(300,
                         function() {
-                            $(".contact-container input[type='checkbox']").prop("checked", false);
+                            form.find(".contact-container input[type='checkbox']").prop("checked",
+                                false);
                         });
                 } else {
-                    $(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
+                    form.find(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
                 }
             });
         });
