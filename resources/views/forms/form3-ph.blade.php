@@ -208,59 +208,42 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-       $(document).ready(function() {
-    console.log("Document is ready.");
+        $(document).ready(function() {
 
-    // Initially hide form4
-    $('#form4').hide();
-    console.log("form4 is initially hidden.");
+            $('#form4').hide();
 
-    $('#nextForm3').on('click', function() {
-        console.log("nextForm3 button clicked.");
+            // Save form3 data to sessionStorage
+            $('#form3 input, #form3 select').on('input', function() {
+                let form3Data = {
+                    unitNo: $("#unitNo").val(),
+                    street: $("#street").val(),
+                    barangay: $("#barangay").val(),
+                    city: $("#city").val(),
+                    province: $("#province").val(),
+                    region: $("#region").val(),
+                };
+                sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
+                console.log("form3 data saved to sessionStorage.");
+            });
 
-        // Fade out form3
-        $('#form3').fadeOut(300, function() {
-            console.log("form3 has faded out.");
 
-            // Check if form4 exists in the DOM
-            if ($('#form4').length) {
-                console.log("form4 exists in the DOM.");
-
-                // Show form4
-                $('#form4').fadeIn(300, function() {
-                    console.log("form4 is now visible.");
-                });
-            } else {
-                console.error("form4 does not exist in the DOM.");
+            if (sessionStorage.getItem("form3Data")) {
+                let formData = JSON.parse(sessionStorage.getItem("form3Data"));
+                $('#unitNo').val(formData.unitNo);
+                $('#street').val(formData.street);
+                $('#barangay').val(formData.barangay);
+                $('#city').val(formData.city);
+                $('#province').val(formData.province);
+                $('#region').val(formData.region);
+                console.log("form3 data pre-populated from sessionStorage.");
             }
+
+            $('#nextForm3').on('click', function(e){
+                e.preventDefault();
+
+                $('#form3').hide();
+                $('#form4').show();
+            })
         });
-    });
-
-    // Save form3 data to sessionStorage
-    $('#form3 input, #form3 select').on('input', function() {
-        let form3Data = {
-            unitNo: $("#unitNo").val(),
-            street: $("#street").val(),
-            barangay: $("#barangay").val(),
-            city: $("#city").val(),
-            province: $("#province").val(),
-            region: $("#region").val(),
-        };
-        sessionStorage.setItem('form3Data', JSON.stringify(form3Data));
-        console.log("form3 data saved to sessionStorage.");
-    });
-
-
-    if (sessionStorage.getItem("form3Data")) {
-        let formData = JSON.parse(sessionStorage.getItem("form3Data"));
-        $('#unitNo').val(formData.unitNo);
-        $('#street').val(formData.street);
-        $('#barangay').val(formData.barangay);
-        $('#city').val(formData.city);
-        $('#province').val(formData.province);
-        $('#region').val(formData.region);
-        console.log("form3 data pre-populated from sessionStorage.");
-    }
-});
     </script>
 </body>
