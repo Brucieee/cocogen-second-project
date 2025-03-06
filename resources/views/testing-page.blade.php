@@ -10,8 +10,9 @@
 </head>
 
 <body>
-    <x-stepper :currentStep="session('currentStep', 1)" />
+
+    @include('forms.form3-ph')
+
 
 </body>
-
 </html>
