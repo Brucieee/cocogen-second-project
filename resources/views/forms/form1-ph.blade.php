@@ -110,7 +110,7 @@
                                 placeholder="Date of Birth" required="true" />
 
                             <x-text-field label="Place of Birth" id="placeOfBirth" type="text"
-                                placeholder="City, Region, Country" />
+                                placeholder="City, Region, Country" required="true" />
 
                         </div>
 

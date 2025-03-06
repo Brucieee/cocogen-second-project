@@ -57,6 +57,8 @@ class PolicyholderController extends Controller
             'city' => 'nullable|string',
             'province' => 'nullable|string',
             'region' => 'nullable|string',
+            'zip' => 'nullable|string',
+
             'uploadID' => 'nullable|string',
             'uploadDisplayPicture' => 'nullable|string',
             'payment' => 'nullable|string',

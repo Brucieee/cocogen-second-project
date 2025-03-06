@@ -13,5 +13,5 @@ class Policyholder extends Model
 
     protected $fillable = ['firstName', 'middleName', 'lastName', 'dateOfBirth', 'placeOfBirth', 'sex', 'citizenship', 'contactNumber', 'email',
      'AutoExcelPlus', 'InternationalTravelPlus', 'DomesticTravelPlus', 'ProTech', 'CondoExcelPlus', 'branch', 'contactEmail', 'contactSMS', 'contactMessenger', 'contactCall',
-    'unitNo', 'street', 'barangay', 'city', 'province', 'region', 'uploadID', 'uploadDisplayPicture', 'payment', 'bankWallet', 'otp' ];
+    'unitNo', 'street', 'barangay', 'city', 'province', 'region', 'zip', 'uploadID', 'uploadDisplayPicture', 'payment', 'bankWallet', 'otp' ];
 }

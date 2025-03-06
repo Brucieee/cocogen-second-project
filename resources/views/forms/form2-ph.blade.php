@@ -207,7 +207,7 @@
                         <div class="branch-container">
                             <div class="title-container-2">
                                 <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
-                                    :required="true" />
+                                    :required="false" />
                                 <x-info-icon />
                             </div>
                         </div>
@@ -217,7 +217,7 @@
 
                             <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
                                 :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']"
-                                placeholder="Select branch" required="true" />
+                                placeholder="Select branch" />
 
                         </div>
                     </div>
@@ -313,7 +313,7 @@
                     ProTech: form.find('#ProTech').is(':checked') ? "yes" : "no",
                     CondoExcelPlus: form.find('#CondoExcelPlus').is(':checked') ? "yes" : "no",
                     
-                    branch: form.find('#branch').val(),
+                    branch: form.find('#branch').val() || "",
 
                     contactEmail: form.find('#contactEmail').is(':checked') ? "yes" : "no",
                     contactSMS: form.find('#contactSMS').is(':checked') ? "yes" : "no",
