@@ -4,7 +4,7 @@
 
     <style>
         html,
-        body {
+        body{
             margin: 0;
             padding: 0;
             width: 100%;
@@ -18,10 +18,10 @@
             width: 100%;
         }
 
-        .main-container {
-            display: flex;
+        .main-container-form {
             height: 100%;
-            margin-left: 30%;
+            width: 100%;
+            display: flex;
         }
 
         .account-container-1 {
@@ -73,7 +73,7 @@
 
     <form id="form1">
 
-        <div class="main-container">
+        <div class="main-container-form">
             <x-stepper :currentStep="session('currentStep', 1)" />
             <div class="account-container-1">
                 <x-back-title title="Create account as Policyholder" id="backToAccountAsFromForm1" />

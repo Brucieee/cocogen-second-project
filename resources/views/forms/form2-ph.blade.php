@@ -19,19 +19,21 @@
         form#form2 {
             margin: 0;
             padding: 0;
+            height: 100%;
             width: 100%;
         }
 
-        .main-container-wrapper {
-            flex: 1;
+        .create-account2 {
             display: flex;
-            justify-content: center;
-            padding: 35px;
-
         }
 
-        .main-container {
-            display: inline-flex;
+        .main-container-wrapper2 {
+            display: flex;
+            margin: auto;
+        }
+
+        .main-container-form2 {
+            display: flex;
             padding: 35px;
             flex-direction: column;
             align-items: flex-start;
@@ -39,6 +41,7 @@
             border-radius: 8px;
             background: var(--Surfaces-LVL-0, #fff);
             width: 780px;
+            margin: auto;
         }
 
         .getting-to-know-you-container {
@@ -122,11 +125,7 @@
             align-self: stretch;
         }
 
-        .create-account2-2 {
-            display: flex;
-            height: 100%;
-            width: 100%;
-        }
+       
     </style>
 </head>
 
@@ -137,8 +136,8 @@
 
             <x-stepper :currentStep="session('currentStep', 1)" />
 
-            <div class="main-container-wrapper">
-                <div class="main-container">
+            <div class="main-container-wrapper2">
+                <div class="main-container-form2">
                     <x-back-title title="Create account as Policyholder" id="backtoForm1FromForm2" />
 
 
