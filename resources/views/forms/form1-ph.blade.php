@@ -23,7 +23,6 @@
             height: 100%;
             margin-left: 30%;
         }
-
         .account-container-1 {
             width: 100%;
             max-width: 775px;

@@ -12,5 +12,6 @@ class Policyholder extends Model
     use HasFactory;
 
     protected $fillable = ['firstName', 'middleName', 'lastName', 'dateOfBirth', 'placeOfBirth', 'sex', 'citizenship', 'contactNumber', 'email',
-     'AutoExcelPlus', 'InternationalTravelPlus', 'DomesticTravelPlus', 'ProTech', 'CondoExcelPlus', 'branch', 'contactEmail', 'contactSMS', 'contactMessenger', 'contactCall']; // Ensure these match your database columns
+     'AutoExcelPlus', 'InternationalTravelPlus', 'DomesticTravelPlus', 'ProTech', 'CondoExcelPlus', 'branch', 'contactEmail', 'contactSMS', 'contactMessenger', 'contactCall',
+    'unitNo', 'street', 'barangay', 'city', 'province', 'region', 'uploadID', 'uploadDisplayPicture', 'payment', 'bankWallet', 'otp' ];
 }

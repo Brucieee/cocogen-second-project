@@ -134,6 +134,35 @@
 
     <script>
         $(document).ready(function() {
+
+            $('#backForm5').on('click', function() {
+                $('#form5').hide();
+                $('#form4').show();
+
+            });
+
+            $('#nextForm3').on('click', function() {
+                $('#form5').hide();
+                $('#form6').show();
+
+
+                let formData = {
+                    payment: $("#payment").val(),
+                    bankWallet: $("#bankWallet").val(),
+
+                };
+
+                sessionStorage.setItem('form5Data', JSON.stringify(formData));
+
+                if (sessionStorage.getItem("form5Data")) {
+                    let formData = JSON.parse(sessionStorage.getItem("form5Data"));
+                    $('payment').val(formData.payment);
+                    $('bankWallet').val(formData.bankWallet);
+
+
+                }
+            })
+
             $('#pill-one-no-payment').on('click', function(event) {
                 event.preventDefault();
 

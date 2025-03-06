@@ -29,33 +29,69 @@ class PolicyholderController extends Controller
             'contactEmail' => 'required|boolean',
             'contactSMS' => 'required|boolean',
             'contactMessenger' => 'required|boolean',
-            'contactCall' => 'required|boolean'
+            'contactCall' => 'required|boolean',
+            'unitNo' => 'required|string',
+            'street' => 'required|string',
+            'barangay' => 'required|string',
+            'city' => 'required|string',
+            'province' => 'required|string',
+            'region' => 'required|string',
+            'uploadID' => 'required|string',
+            'uploadDisplayPicture' => 'required|string',
+            'payment' => 'required|string',
+            'bankWallet' => 'required|string',
+            'otp' => 'required|string',
         ]);
 
         try {
             $policyholder = Policyholder::create($validated);
-            return response()->json(['message' => 'Test created successfully!', 'id' => $policyholder->id], 201);
+            return response()->json(['message' => 'Policyholder created successfully!', 'id' => $policyholder->id], 201);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Something went wrong!', 'message' => $e->getMessage()], 500);
         }
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $validated = $request->validate([
-    //         'additionalInfo' => 'required|string',
-    //         'agree_terms' => 'required|boolean', // Validate the checkbox value
-    //     ]);
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'firstName' => 'nullable|string',
+            'middleName' => 'nullable|string',
+            'lastName' => 'nullable|string',
+            'dateOfBirth' => 'nullable|string',
+            'placeOfBirth' => 'nullable|string',
+            'sex' => 'nullable|string',
+            'citizenship' => 'nullable|string',
+            'contactNumber' => 'nullable|integer',
+            'email' => 'nullable|email',
+            'AutoExcelPlus' => 'nullable|boolean',
+            'InternationalTravelPlus' => 'nullable|boolean',
+            'DomesticTravelPlus' => 'nullable|boolean',
+            'ProTech' => 'nullable|boolean',
+            'CondoExcelPlus' => 'nullable|boolean',
+            'branch' => 'nullable|string',
+            'contactEmail' => 'nullable|boolean',
+            'contactSMS' => 'nullable|boolean',
+            'contactMessenger' => 'nullable|boolean',
+            'contactCall' => 'nullable|boolean',
+            'unitNo' => 'nullable|string',
+            'street' => 'nullable|string',
+            'barangay' => 'nullable|string',
+            'city' => 'nullable|string',
+            'province' => 'nullable|string',
+            'region' => 'nullable|string',
+            'uploadID' => 'nullable|string',
+            'uploadDisplayPicture' => 'nullable|string',
+            'payment' => 'nullable|string',
+            'bankWallet' => 'nullable|string',
+            'otp' => 'nullable|string',
+        ]);
 
-    //     try {
-    //         $test = Test::findOrFail($id); // Find the record by ID
-    //         $test->update([
-    //             'info' => $validated['additionalInfo'],
-    //             'agree_terms' => $validated['agree_terms'], // Update the agree_terms field
-    //         ]);
-    //         return response()->json(['message' => 'Additional info saved successfully!'], 200);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => 'Something went wrong!', 'message' => $e->getMessage()], 500);
-    //     }
-    // }
+        try {
+            $policyholder = Policyholder::findOrFail($id); // Find the record by ID
+            $policyholder->update($validated);
+            return response()->json(['message' => 'Policyholder info updated successfully!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Something went wrong!', 'message' => $e->getMessage()], 500);
+        }
+    }
 }

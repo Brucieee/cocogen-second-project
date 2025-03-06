@@ -293,29 +293,6 @@
             initializeFileUpload('uploadID');
             initializeFileUpload('uploadDisplayPicture');
 
-            $(document).ready(function() {
-                $("#button_next").on("click", function(event) {
-                    event.preventDefault();
-                    loadStep("your-identity-3");
-                });
-
-                function loadStep(page) {
-                    $.ajax({
-                        url: `/Register/${page}`,
-                        type: "GET",
-                        beforeSend: function() {
-                            $("#form-container").html("<div>Loading...</div>");
-                        },
-                        success: function(response) {
-                            $("#form-container").html(response);
-                        },
-                        error: function() {
-                            alert("Error loading the page. Please try again.");
-                        }
-                    });
-                }
-            });
-
 
         });
     </script>
