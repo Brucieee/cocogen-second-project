@@ -23,6 +23,14 @@
             box-sizing: border-box;
         }
 
+        form#form4
+        {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
         .container-1 {
             display: flex;
             width: 784px;
@@ -192,7 +200,8 @@
 
 <body>
     <form id="form4">
-        <div class="identity-form2" style="display: none;">
+        <div class="identity-form2" >
+            
             <x-stepper :currentStep="session('currentStep', 2)" />
 
             <div class="content-container">
@@ -258,7 +267,8 @@
                     fileInput.trigger('click');
                 });
 
-                fileInput.on('change', function() {
+                fileInput.on('change', function(e) {
+                    e.preventDefault();
                     const file = this.files[0];
                     if (file) {
                         if (file.size < 15 * 1024 || file.size > 5 * 1024 * 1024) {
@@ -277,7 +287,8 @@
                             window.open(fileURL, '_blank');
                         });
 
-                        deleteFileButton.off('click').on('click', function() {
+                        deleteFileButton.off('click').on('click', function(e) {
+                            e.preventDefault();
                             fileInput.val(''); // Clear the file input
                             filePreview.addClass('d-none'); // Hide the file preview
                             uploadButton.parent().removeClass('d-none'); // Show the upload button
