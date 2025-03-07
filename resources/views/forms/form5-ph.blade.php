@@ -16,28 +16,53 @@
             flex-direction: row;
         }
 
-        .content-container {
-            margin-right: 130px;
-            margin-bottom: 66px;
-            margin-left: 370px;
-            flex-grow: 1;
+        form#form5 {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .stepper-container {
+            width: 255px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #008080;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            z-index: 1000;
+        }
+
+        .main-container-wrapper {
+            display: flex;
+            margin-left: 255px;
+            /* Added to ensure content doesn't overlap with stepper */
+            width: calc(100% - 255px);
+            /* Adjust width to account for stepper */
+            justify-content: center;
+            padding: 20px;
         }
 
         .identity-3-container {
-            margin: auto;
-            width: 784px;
-            height: 454px auto;
+            display: inline-flex;
             padding: 35px;
-            gap: 25px;
-            display: flex;
             flex-direction: column;
-            margin-left: 50%;
+            align-items: flex-start;
+            gap: 25px;
+            border-radius: 8px;
+            background: var(--Surfaces-LVL-0, #fff);
+            width: 780px;
         }
 
         .identity-form-3 {
             display: flex;
             flex-direction: column;
             gap: 35px;
+            width: 100%;
         }
 
         .payment-method {
@@ -59,6 +84,7 @@
             display: flex;
             justify-content: space-between;
             gap: 25px;
+            width: 100%;
         }
 
         .next-cancel-btn-3 {
@@ -71,6 +97,7 @@
             display: flex;
             gap: 20px;
             flex-direction: column;
+            width: 100%;
         }
 
         /* Custom CSS for disabled dropdowns */
@@ -87,72 +114,75 @@
 
 <body>
     <form id="form5" style="display: none;">
+
         <x-stepper :currentStep="session('currentStep', 2)" />
 
-        <div class="identity-3-container">
-            <x-back-title title="Create account as Policyholder" />
-            <div class="identity-form-3">
-                <x-Register.form-title title="Your identity" />
-                <div class="form-contents">
-                    <div class="payment-method">
-                        <x-title-required title="Do you want to add payment method?" placeholder="(Optional)"
-                            :required="false" />
-                        <x-Buttons.pill-button idOne="pill-one-no-payment" idTwo="pill-two-yes-payment" pillOneText="No"
-                            pillTwoText="Yes" />
+        <div class="main-container-wrapper">
+            <div class="identity-3-container">
+                <x-back-title title="Create account as Policyholder" />
+                <div class="identity-form-3">
+                    <x-Register.form-title title="Your identity" />
+                    <div class="form-contents">
+                        <div class="payment-method">
+                            <x-title-required title="Do you want to add payment method?" placeholder="(Optional)"
+                                :required="false" />
+                            <x-Buttons.pill-button idOne="pill-one-no-payment" idTwo="pill-two-yes-payment"
+                                pillOneText="No" pillTwoText="Yes" />
 
-                        <div class="payment-fields">
+                            <div class="payment-fields">
+                                <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
+                                    placeholder="Payment type" required="true" />
 
-                            <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
-                                placeholder="Payment type" required="true" />
-
-                            <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
-                                placeholder="Bank/E-Wallet Name" required="true" />
-
+                                <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
+                                    placeholder="Bank/E-Wallet Name" required="true" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="reminder-change">
-                    <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LightBulb.svg"
-                        message="You may change your payment method later." />
-                </div>
+                    <div class="reminder-change">
+                        <x-Reminders.dynamic-reminder icon="assets/icons/Icon-LightBulb.svg"
+                            message="You may change your payment method later." />
+                    </div>
 
-                <div class="next-cancel-btn-3">
-                    <x-buttons.secondary-button id="backForm5">
-                        Back
-                    </x-buttons.secondary-button>
+                    <div class="next-cancel-btn-3">
+                        <x-buttons.secondary-button id="backForm5">
+                            Back
+                        </x-buttons.secondary-button>
 
-                    <x-buttons.primary-button type="submit" id="nextForm5">
-                        Next
-                    </x-buttons.primary-button>
+                        <x-buttons.primary-button type="submit" id="nextForm5">
+                            Next
+                        </x-buttons.primary-button>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         $(document).ready(function() {
-
-            $('#backForm5').on('click', function() {
+            // Fix the script issues
+            $('#backForm5').on('click', function(e) {
+                e.preventDefault();
                 $('#form5').hide();
                 $('#form6').show();
-
             });
 
-            $('#nextForm5').on('submit', function() {
+            $('#form5').on('submit', function(e) {
                 e.preventDefault();
 
+                let addPayment = $('#pill-two-yes-payment').hasClass('expanded');
 
                 let form3Data = JSON.parse(sessionStorage.getItem("form3Data")) || {};
                 let form4Data = JSON.parse(sessionStorage.getItem("form4Data")) || {};
                 let form5Data = {
-                    payment: $("#payment").val(),
-                    bankWallet: $("#bankWallet").val()
-
+                    payment: addPayment ? $("#payment").val() : "",
+                    bankWallet: addPayment ? $("#bankWallet").val() : ""
                 };
+
                 let id = sessionStorage.getItem("submittedID");
 
                 if (!id) {
@@ -164,52 +194,84 @@
                     ...form3Data,
                     ...form4Data,
                     ...form5Data
-                }
+                };
+
+                // Store the current form data
 
                 $.ajax({
-                    url: '/submit-step2/{id}',
+                    url: '/submit-step2/' + id,
                     type: 'POST',
+                    data: combinedData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    sucesss: function(response) {
-                        console.log('Step 2 submitted sucessfully:', response);
+                    success: function(response) {
+                        console.log('Step 2 submitted successfully:', response);
                         alert('Additional info saved');
-
+                        sessionStorage.removeItem("submittedID");
                         $('#form5').hide();
                         $('#form6').show();
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMsg = '';
+                        console.error("Submit error:", xhr.responseText);
+
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            let errors = xhr.responseJSON.errors;
+                            for (let field in errors) {
+                                errorMsg += field + ': ' + errors[field].join(', ') + '\n';
+                            }
+                            alert('Validation errors:\n' + errorMsg);
+                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                            alert('Error: ' + xhr.responseJSON.message);
+                        } else {
+                            alert('An unexpected error occurred: ' + error);
+                        }
                     }
-                })
-                sessionStorage.setItem('form5Data', JSON.stringify(formData));
+                });
+            });
 
-                if (sessionStorage.getItem("form5Data")) {
-                    let form5Data = JSON.parse(sessionStorage.getItem("form5Data"));
-                    $('payment').val(formData.payment);
-                    $('bankWallet').val(formData.bankWallet);
-
+            // Restore form data if available
+            if (sessionStorage.getItem("form5Data")) {
+                let savedData = JSON.parse(sessionStorage.getItem("form5Data"));
+                if (savedData.addPayment === "yes") {
+                    $('#pill-two-yes-payment').addClass('expanded');
+                    $('#pill-one-no-payment').removeClass('expanded');
+                    $('#payment').val(savedData.payment);
+                    $('#bankWallet').val(savedData.bankWallet);
+                    $('#payment, #bankWallet').prop('disabled', false);
+                } else {
+                    $('#pill-one-no-payment').addClass('expanded');
+                    $('#pill-two-yes-payment').removeClass('expanded');
+                    $('#payment, #bankWallet').prop('disabled', true);
                 }
-            })
+            }
 
+            // Handle "No" button click
             $('#pill-one-no-payment').on('click', function(event) {
                 event.preventDefault();
 
+                // Remove expanded class from all pill buttons
+                $('.pill-button').removeClass('expanded');
+                $(this).addClass('expanded');
+
                 // Disable dropdowns
-                $('#payment-type, #bank').prop('disabled', true);
+                $('#payment, #bankWallet').prop('disabled', true);
 
                 // Reset dropdowns to default (empty)
-                $('#payment-type, #bank').val("");
-
-                $('.dropdown-container').addClass('disabled'); // Add the disabled state
+                $('#payment, #bankWallet').val("");
             });
 
             // Handle "Yes" button click
             $('#pill-two-yes-payment').on('click', function(event) {
                 event.preventDefault();
-                console.log('Yes button clicked');
+
+                // Remove expanded class from all pill buttons
+                $('.pill-button').removeClass('expanded');
+                $(this).addClass('expanded');
 
                 // Enable dropdowns
-                $('#payment-type, #bank').prop('disabled', false);
-                $('.dropdown-container').removeClass('disabled'); // Remove the disabled state
+                $('#payment, #bankWallet').prop('disabled', false);
             });
         });
     </script>
