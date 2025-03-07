@@ -1,7 +1,5 @@
 <head>
-    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
@@ -21,18 +19,6 @@
             width: 100%;
             height: 100vh;
         }
-
-        /* .stepper-container {
-            width: 255px;
-            height: 100vh;
-            background-color: #008080;
-            padding: 35px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-        } */
 
         form#form5 {
             margin: 0;
@@ -80,7 +66,6 @@
             flex-direction: column;
             width: 372px;
             align-items: flex-start;
-            /* Prevents stretching */
         }
 
         .payment-fields {
@@ -103,25 +88,19 @@
             width: 100%;
         }
 
-        /* Custom CSS for disabled dropdowns */
         select:disabled {
             background-color: #f8f9fa;
-            /* Light gray background */
             cursor: not-allowed;
-            /* Show not-allowed cursor */
             opacity: 0.7;
-            /* Reduce opacity to indicate disabled state */
         }
     </style>
 </head>
 
 <body>
 
-    <form id="form5" style="display: none;">
+    <form id="form5">
         <div class="container-wrapperform5">
-            <!-- <div class="stepper-container"> -->
-                <x-stepper :currentStep="session('currentStep', 2)" />
-            <!-- </div> -->
+            <x-stepper :currentStep="session('currentStep', 2)" />
             <div class="main-container-wrapperform5">
                 <div class="identity-3-container">
                     <x-back-title title="Create account as Policyholder" />
@@ -138,8 +117,8 @@
                                     <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
                                         placeholder="Payment type" required="true" />
 
-                                    <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
-                                        placeholder="Bank/E-Wallet Name" required="true" />
+                                    <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet"
+                                        :options="['GCash', 'Maya', 'BDO']" placeholder="Bank/E-Wallet Name" required="true" />
                                 </div>
                             </div>
                         </div>
@@ -164,7 +143,6 @@
     </form>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -238,24 +216,22 @@
                 }
             }
 
-            // Event listener for "No" button
             $('#pill-one-no-payment').on('click', function(event) {
                 event.preventDefault();
                 $(this).addClass('expanded');
                 $('#pill-two-yes-payment').removeClass('expanded');
 
-                // Disable and clear dropdowns
                 $('#payment, #bankWallet').prop('disabled', true).val("");
+                $('#payment, #bankWallet').closest('.dropdown-container').addClass('disabled');
             });
 
-            // Event listener for "Yes" button
             $('#pill-two-yes-payment').on('click', function(event) {
                 event.preventDefault();
                 $(this).addClass('expanded');
                 $('#pill-one-no-payment').removeClass('expanded');
 
-                // Enable dropdowns
                 $('#payment, #bankWallet').prop('disabled', false);
+                $('#payment, #bankWallet').closest('.dropdown-container').removeClass('disabled');
             });
         });
     </script>

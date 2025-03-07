@@ -1,3 +1,9 @@
+@props([
+    'title' => '',
+    'required' => false,
+    'placeholder' => ''
+])
+
 <style scoped>
   .title-text-required {
     width: auto;

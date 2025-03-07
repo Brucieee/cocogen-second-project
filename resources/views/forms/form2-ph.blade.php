@@ -163,7 +163,7 @@
 </head>
 
 <body>
-    <form id="form2" style="display: none;">
+    <form id="form2" >
         <div class="create-account2-1">
             <!-- Stepper on the left side -->
             <x-stepper :currentStep="session('currentStep', 1)" />
@@ -213,8 +213,7 @@
                         <!-- Branch Container -->
                         <div class="branch-container">
                             <div class="title-container-2">
-                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
-                                    :required="false" />
+                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?"/>
                                 <x-info-icon />
                             </div>
                         </div>
@@ -253,7 +252,7 @@
                             Cancel
                         </x-buttons.secondary-button>
 
-                        <x-buttons.primary-button type="submit" id="submitForm2-1">
+                        <x-buttons.primary-button type="submit" id="submitForm2">
                             Next
                         </x-buttons.primary-button>
                     </div>

@@ -71,6 +71,10 @@
             margin: 0;
         }
 
+        .policy-field {
+            width: 710px; /* Ensure it takes the same width as the pill buttons */
+        }
+
         .representative-container {
             display: flex;
             flex-direction: column;
@@ -146,7 +150,7 @@
 
 <body>
 
-    <form id="form2-1" style="display: none;">
+    <form id="form2-1">
         <div class="create-account2-1">
             <x-stepper :currentStep="session('currentStep', 1)" />
 
@@ -161,7 +165,9 @@
                         <div class="active-policies-container">
                             <x-title-required title="Active Policy/s you have" :required="true" />
 
-                            <x-Fields.add-policy label="Policy No." required="true" />
+                            <div id="policyFieldsContainer">
+                                <x-add-policy label="Policy No." required="true" />
+                            </div>
                         </div>
 
                         <div class="representative-container">
@@ -178,8 +184,7 @@
                         <!-- Branch Container -->
                         <div class="branch-container">
                             <div class="title-container-2">
-                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?"
-                                    :required="true" />
+                                <x-title-required title="Which Cocogen branch should you wish to be contacted by?" />
                                 <x-info-icon />
                             </div>
                         </div>
@@ -188,7 +193,7 @@
                         <div class="dropdown-container">
 
                             <x-dropdown id="branch" name="branch" label="Select one (1) Cocogen branch"
-                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" required="true" />
+                                :options="['Alabang Branch', 'Makati Branch', 'Pasig Branch']" placeholder="Select branch" />
 
                         </div>
                     </div>
@@ -248,14 +253,12 @@
                 $('#form1').show();
             });
 
-            // Handle Pill Button Click
             $(document).on("click", ".pill-button", function(event) {
                 event.preventDefault();
 
                 // Get the parent form of the clicked button
                 let form = $(this).closest("form");
 
-                // Remove 'expanded' class from all buttons inside the same form
                 form.find(".pill-button").removeClass("expanded");
                 $(this).addClass("expanded");
 
@@ -265,10 +268,67 @@
                         function() {
                             form.find(".contact-container input[type='checkbox']").prop("checked",
                                 false);
+                            form.find("#branch").val(""); // Reset branch dropdown
                         });
                 } else {
                     form.find(".branch-container, .dropdown-container, .contact-container").fadeIn(300);
                 }
+            });
+
+            $('#form2-1').on('submit', function(e) {
+                e.preventDefault();
+                let form = $(this)
+
+                let policyNumbers = [];
+                let allValid = true;
+                let form1Data = JSON.parse(sessionStorage.getItem('form1Data')) || {};  
+                let form2Data = {
+                    policies: policyNumbers,
+
+                    branch: needsRepresentative ? (form.find('#branch').val() || "None") : "None",
+
+                    contactEmail: needsRepresentative && form.find('#contactEmail').is(':checked') ? "yes" : "no",
+                    contactSMS: needsRepresentative && form.find('#contactSMS').is(':checked') ? "yes" : "no",
+                    contactMessenger: needsRepresentative && form.find('#contactMessenger').is(':checked') ? "yes" : "no",
+                    contactCall: needsRepresentative && form.find('#contactCall').is(':checked') ? "yes" : "no",
+                };
+
+                $('.policy-field input').each(function() {
+                    if (!$(this).val()) {
+                        allValid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                    policyNumbers.push($(this).val());
+                });
+
+                if (!allValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                let combinedData = {
+                            ...form1Data,
+                            ...form2Data
+                        };
+                
+                $.ajax({
+                    url: '/submit-step1',
+                    type: 'POST',
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log('Form submitted successfully:', response);
+                        alert('Form submitted successfully');
+                        // Handle success logic
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Submit error:", xhr.responseText);
+                    }
+                });
             });
         });
     </script>

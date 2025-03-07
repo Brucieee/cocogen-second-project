@@ -74,6 +74,10 @@ class PolicyholderController extends Controller
             'contactMessenger' => 'nullable|string|in:yes,no',
             'contactCall' => 'nullable|string|in:yes,no',
 
+            'policyOne' => 'nullable|string',
+            'policyTwo' => 'nullable|string',
+            'policyThree' => 'nullable|string',
+            
             'AutoExcelPlus' => 'nullable|string|in:yes,no',
             'InternationalTravelPlus' => 'nullable|string|in:yes,no',
             'DomesticTravelPlus' => 'nullable|string|in:yes,no',
