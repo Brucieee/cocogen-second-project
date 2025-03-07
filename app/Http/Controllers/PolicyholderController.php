@@ -20,7 +20,7 @@ class PolicyholderController extends Controller
             'citizenship' => 'required|string',
             'contactNumber' => 'required|numeric',
             'email' => 'required|email|unique:policyholders,email',
-            
+
             'branch' => 'required|string',
 
             'contactEmail' => 'required|string|in:yes,no',
@@ -51,6 +51,7 @@ class PolicyholderController extends Controller
 
     public function update(Request $request, $id)
     {
+ 
         $validated = $request->validate([
             'unitNo' => 'nullable|string',
             'street' => 'nullable|string',
@@ -62,8 +63,10 @@ class PolicyholderController extends Controller
 
             'uploadID' => 'nullable|string',
             'uploadDisplayPicture' => 'nullable|string',
+
             'payment' => 'nullable|string',
             'bankWallet' => 'nullable|string',
+
             'otp' => 'nullable|string',
 
             'contactEmail' => 'nullable|string|in:yes,no',
@@ -76,6 +79,8 @@ class PolicyholderController extends Controller
             'DomesticTravelPlus' => 'nullable|string|in:yes,no',
             'ProTech' => 'nullable|string|in:yes,no',
             'CondoExcelPlus' => 'nullable|string|in:yes,no',
+
+            
         ]);
 
         // Convert checkbox (boolean) values to "yes" or "no"

@@ -131,10 +131,10 @@
 
                             <div class="payment-fields">
                                 <x-dropdown label="Payment Types" id="payment" name="payment" :options="['Debit Card', 'Credit Card']"
-                                    placeholder="Payment type" required="true" />
+                                    placeholder="Payment type" required="true"/>
 
                                 <x-dropdown label="Bank/E-Wallet" id="bankWallet" name="bankWallet" :options="['GCash', 'Maya', 'BDO']"
-                                    placeholder="Bank/E-Wallet Name" required="true" />
+                                    placeholder="Bank/E-Wallet Name" required="true"/>
                             </div>
                         </div>
                     </div>
@@ -164,115 +164,90 @@
 
     <script>
         $(document).ready(function() {
-            // Fix the script issues
-            $('#backForm5').on('click', function(e) {
-                e.preventDefault();
+    $('#backForm5').on('click', function(e) {
+        e.preventDefault();
+        $('#form5').hide();
+        $('#form6').show();
+    });
+
+    $('#form5').on('submit', function(e) {
+        e.preventDefault();
+        let addPayment = $('#pill-two-yes-payment').hasClass('expanded');
+
+        let form3Data = JSON.parse(sessionStorage.getItem("form3Data")) || {};
+        let form4Data = JSON.parse(sessionStorage.getItem("form4Data")) || {};
+        let form5Data = {
+            payment:  $("#payment").val(),
+            bankWallet: $("#bankWallet").val(),
+        };
+        sessionStorage.setItem('form5Data', JSON.stringify(form5Data));
+
+        let id = sessionStorage.getItem("submittedID");
+
+        if (!id) {
+            alert('Error: No ID found. Please start over.');
+            return;
+        }
+
+        let combinedData = { ...form3Data, ...form4Data, ...form5Data };
+
+        $.ajax({
+            url: '/submit-step2/' + id,
+            type: 'POST',
+            data: combinedData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                console.log('Step 2 submitted successfully:', response);
+                alert('Additional info saved');
                 $('#form5').hide();
                 $('#form6').show();
-            });
-
-            $('#form5').on('submit', function(e) {
-                e.preventDefault();
-
-                let addPayment = $('#pill-two-yes-payment').hasClass('expanded');
-
-                let form3Data = JSON.parse(sessionStorage.getItem("form3Data")) || {};
-                let form4Data = JSON.parse(sessionStorage.getItem("form4Data")) || {};
-                let form5Data = {
-                    payment: addPayment ? $("#payment").val() : "",
-                    bankWallet: addPayment ? $("#bankWallet").val() : ""
-                };
-
-                let id = sessionStorage.getItem("submittedID");
-
-                if (!id) {
-                    alert('Error: No ID found. Please start over.');
-                    return;
-                }
-
-                let combinedData = {
-                    ...form3Data,
-                    ...form4Data,
-                    ...form5Data
-                };
-
-                // Store the current form data
-
-                $.ajax({
-                    url: '/submit-step2/' + id,
-                    type: 'POST',
-                    data: combinedData,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        console.log('Step 2 submitted successfully:', response);
-                        alert('Additional info saved');
-                        sessionStorage.removeItem("submittedID");
-                        $('#form5').hide();
-                        $('#form6').show();
-                    },
-                    error: function(xhr, status, error) {
-                        let errorMsg = '';
-                        console.error("Submit error:", xhr.responseText);
-
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            let errors = xhr.responseJSON.errors;
-                            for (let field in errors) {
-                                errorMsg += field + ': ' + errors[field].join(', ') + '\n';
-                            }
-                            alert('Validation errors:\n' + errorMsg);
-                        } else if (xhr.responseJSON && xhr.responseJSON.message) {
-                            alert('Error: ' + xhr.responseJSON.message);
-                        } else {
-                            alert('An unexpected error occurred: ' + error);
-                        }
-                    }
-                });
-            });
-
-            // Restore form data if available
-            if (sessionStorage.getItem("form5Data")) {
-                let savedData = JSON.parse(sessionStorage.getItem("form5Data"));
-                if (savedData.addPayment === "yes") {
-                    $('#pill-two-yes-payment').addClass('expanded');
-                    $('#pill-one-no-payment').removeClass('expanded');
-                    $('#payment').val(savedData.payment);
-                    $('#bankWallet').val(savedData.bankWallet);
-                    $('#payment, #bankWallet').prop('disabled', false);
-                } else {
-                    $('#pill-one-no-payment').addClass('expanded');
-                    $('#pill-two-yes-payment').removeClass('expanded');
-                    $('#payment, #bankWallet').prop('disabled', true);
-                }
+                sessionStorage.removeItem("form3Data");
+                sessionStorage.removeItem("form4Data");
+                sessionStorage.removeItem("form5Data");
+            },
+            error: function(xhr, status, error) {
+                console.error("Submit error:", xhr.responseText);
             }
-
-            // Handle "No" button click
-            $('#pill-one-no-payment').on('click', function(event) {
-                event.preventDefault();
-
-                // Remove expanded class from all pill buttons
-                $('.pill-button').removeClass('expanded');
-                $(this).addClass('expanded');
-
-                // Disable dropdowns
-                $('#payment, #bankWallet').prop('disabled', true);
-
-                // Reset dropdowns to default (empty)
-                $('#payment, #bankWallet').val("");
-            });
-
-            // Handle "Yes" button click
-            $('#pill-two-yes-payment').on('click', function(event) {
-                event.preventDefault();
-
-                // Remove expanded class from all pill buttons
-                $('.pill-button').removeClass('expanded');
-                $(this).addClass('expanded');
-
-                // Enable dropdowns
-                $('#payment, #bankWallet').prop('disabled', false);
-            });
         });
+    });
+
+    // Restore form data if available
+    if (sessionStorage.getItem("form5Data")) {
+        let savedData = JSON.parse(sessionStorage.getItem("form5Data"));
+
+        if (savedData.addPayment === "yes") {
+            $('#pill-two-yes-payment').addClass('expanded');
+            $('#pill-one-no-payment').removeClass('expanded');
+            $('#payment, #bankWallet').prop('disabled', false).val(savedData.payment);
+        } else {
+            $('#pill-one-no-payment').addClass('expanded');
+            $('#pill-two-yes-payment').removeClass('expanded');
+            $('#payment, #bankWallet').prop('disabled', true).val("");
+        }
+    }
+
+    // Event listener for "No" button
+    $('#pill-one-no-payment').on('click', function(event) {
+        event.preventDefault();
+        $(this).addClass('expanded');
+        $('#pill-two-yes-payment').removeClass('expanded');
+
+        // Disable and clear dropdowns
+        $('#payment, #bankWallet').prop('disabled', true).val("");
+    });
+
+    // Event listener for "Yes" button
+    $('#pill-two-yes-payment').on('click', function(event) {
+        event.preventDefault();
+        $(this).addClass('expanded');
+        $('#pill-one-no-payment').removeClass('expanded');
+
+        // Enable dropdowns
+        $('#payment, #bankWallet').prop('disabled', false);
+    });
+});
+
     </script>
 </body>
