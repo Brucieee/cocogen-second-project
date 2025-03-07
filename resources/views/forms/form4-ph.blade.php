@@ -1,201 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        justify-content: center; /* Centers the entire content */
+        align-items: center; /* Centers vertically */
+        box-sizing: border-box;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account as Policyholder</title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    form#form4 {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
 
-    <style>
-        html,
-        body {
-            margin: 0px;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: row;
-            box-sizing: border-box;
-        }
+    .identity-form2 {
+        display: grid;
+        grid-template-columns: auto 1fr; /* Ensures stepper takes only needed space */
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
 
-        .container-1 {
-            display: flex;
-            width: 784px;
-            padding: 35px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 25px;
-            border-radius: 8px;
-            background: var(--Surfaces-LVL-0, #fff);
-        }
+    x-stepper {
+        flex-shrink: 0;
+        min-width: 250px; /* Prevents it from shrinking */
+    }
 
-        .title {
-            color: var(--Primary-Black, #2D2727);
-            font-family: Inter;
-            font-size: 27px;
-            font-weight: 700;
-        }
+    .content-containerform4 {
+        width: 784px;
+        padding: 35px;
+        gap: 25px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .container-2 {
-            display: flex;
-            width: 706px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 35px;
-        }
+    .container-1 {
+        display: flex;
+        width: 100%;
+        padding: 35px;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        border-radius: 8px;
+        background: var(--Surfaces-LVL-0, #fff);
+    }
 
-        .container-3 {
-            display: flex;
-            width: 714px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 20px;
-        }
+    .title {
+        color: var(--Primary-Black, #2D2727);
+        font-family: Inter;
+        font-size: 27px;
+        font-weight: 700;
+        text-align: center;
+    }
 
-        .identification-title {
-            display: flex;
-            gap: 8px;
-        }
+    .container-2 {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
 
-        .identification-text {
-            color: var(--Primary-Black-Text, #303030);
-            font-family: Inter;
-            font-size: 16px;
-            font-weight: 500;
-        }
+    .container-3 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 
-        .optional-text {
-            color: var(--Primary-Caption-Black-text, #585858);
-            font-family: Inter;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .container-4 {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 10px;
-            align-self: stretch;
-        }
-
-        .container-5 {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            align-self: stretch;
-        }
-
-        .upload-dp-title {
-            color: var(--Teal-LVL-12, #033);
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 24px;
-        }
-
-        .container-6 {
-            display: flex;
-            width: 706px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 25px;
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 25px;
-        }
-
-        /* New file-preview styles */
-        .file-preview-container {
-            width: 100%;
-            height: auto;
-            display: flex;
-            padding: 30px 20px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 10px;
-            align-self: stretch;
-            border-radius: 10px;
-            background: #ECF5FA;
-        }
-
-        .file-preview-content {
-            display: flex;
-            align-items: center;
-            gap: 166px;
-            align-self: stretch;
-        }
-
-        .file-icon-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 27px;
-        }
-
-        .file-details-container {
-            display: flex;
-            width: 271px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .file-name {
-            align-self: stretch;
-            color: #2D2727;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 24px;
-        }
-
-        .file-size {
-            align-self: stretch;
-            color: #848A90;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-        }
-
-        .file-actions-container {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .d-none {
-            display: none !important;
-        }
-
-        .identity-form2 {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-</head>
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 25px;
+    }
+</style>
 
 <body>
-    <form id="form4">
-        <div class="identity-form2" style="display: none;">
+    <form id="form4" style="display: none;">
+        <div class="identity-form2">
             <x-stepper :currentStep="session('currentStep', 2)" />
 
-            <div class="content-container">
+            <div class="content-containerform4">
+                <div class="container-1">
+                    <h1 class="title">Create Account as Policyholder</h1>
+
+                    <div class="container-2">
+                        <x-Register.form-title title="Your identity" />
+
+                        <div class="container-3">
+                            <div class="identification-title">
+                                <span class="identification-text">Identification</span>
+                                <span class="optional-text">(Optional)</span>
+                            </div>
+
+                            <div class="container-4">
+                                <x-file-preview id="uploadID" buttonText="Upload ID" />
+                                <x-Reminders.file-format />
+                            </div>
+
+                            <div class="container-5">
+                                <span class="upload-dp-title">Upload Display Picture (Optional)</span>
+                                <x-file-preview id="uploadDisplayPicture" buttonText="Upload" />
+                                <x-Reminders.file-format />
+                            </div>
+                        </div>
+
+                        <div class="container-6">
+                            <div class="button-group">
+                                <x-buttons.secondary-button id="backForm4">
+                                    Back
+                                </x-buttons.secondary-button>
+
+                                <x-buttons.primary-button id="nextForm4">
+                                    Next
+                                </x-buttons.primary-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<body>
+    <form id="form4" style="display: none;">
+        <div class="identity-form2">
+            <x-stepper :currentStep="session('currentStep', 2)" />
+
+            <div class="content-containerform4">
                 <div class="container-1">
                     <h1 class="title">Create Account as Policyholder</h1>
 
@@ -294,31 +236,31 @@
 
             // Handle the back button click
             $('#backForm4').on('click', function() {
-                $('#form4').hide(500);
-                $('#form3').show(500);
+                $('#form4').hide();
+                $('#form3').show();
             });
 
             // Handle the next button click
             $('#nextForm4').on('click', function() {
-                // Store the file upload information
+
+                let form3Data = JSON.parse(sessionStorage.getItem('form3Data')) || {};
                 let form4Data = {
                     uploadID: $('#fileInput-uploadID').val() ? true : false,
                     uploadDisplayPicture: $('#fileInput-uploadDisplayPicture').val() ? true : false
                 };
 
-                sessionStorage.setItem('form4Data', JSON.stringify(form4Data));
-
-                // Hide current form and show next form
-                $('#form4').hide(500);
-                $('#form5').show(500);
+                let combinedData = {
+                    ...form3Data,
+                    ...form4Data
+                };
+                
+                $('#form4').hide();
+                $('#form5').show();
             });
 
-            // Pre-populate form fields if data is available in sessionStorage
             if (sessionStorage.getItem("form4Data")) {
                 let formData = JSON.parse(sessionStorage.getItem("form4Data"));
-                // Since you can't pre-populate file inputs directly, you might need
-                // to handle this differently, possibly showing a message that files
-                // were previously uploaded.
+
             }
         });
     </script>

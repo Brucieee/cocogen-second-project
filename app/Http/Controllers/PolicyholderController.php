@@ -20,6 +20,7 @@ class PolicyholderController extends Controller
             'citizenship' => 'required|string',
             'contactNumber' => 'required|numeric',
             'email' => 'required|email|unique:policyholders,email',
+            
             'branch' => 'required|string',
 
             'contactEmail' => 'required|string|in:yes,no',
