@@ -17,7 +17,7 @@
             box-sizing: border-box;
         }
 
-        .content-container {
+        form#form6 {
             width: 756px;
             height: 600px;
             margin-top: 35px;
