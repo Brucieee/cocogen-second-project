@@ -13,6 +13,7 @@
         gap: 25px;
         padding: 30px;
         border-radius: 10px;
+        margin: auto;
 
     }
 
